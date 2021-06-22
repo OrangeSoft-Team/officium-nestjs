@@ -13,7 +13,7 @@ Este README consiste de las siguientes partes, listadas a continuación:
 
 - [Colaboradores de Desarrollo](#man_technologist-colaboradores-de-desarrollo)
 - [Stack de Tecnologías](#computer-stack-de-tecnologías)
-- [Instalación de la Aplicación](#-instalación-de-la-aplicación)
+- [Instalación de la Aplicación](#wrench-instalación-de-la-aplicación)
 - [Construcción de la Aplicación (build)](#hammer-construcción-de-la-aplicación-build)
 - [Ejecución de la Aplicación](#electric_plug-ejecución-de-la-aplicación)
 - [Ejecución de las Pruebas Automatizadas](#test_tube-ejecución-de-las-pruebas-automatizadas)
@@ -39,15 +39,15 @@ Adicionalmente, se utilizan las siguientes plantillas para el repositorio:
 
 ---
 
-| Logo                                                                                                                                        | Tipo                       | Nombre                    | Enlace de Descarga                       | Versión |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------- | ---------------------------------------- | ------- |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="24">                                         | Lenguaje                   | TypeScript                | https://www.typescriptlang.org/download  | 4.3     |
-| <img src="https://nodejs.org/static/images/logo.svg" width="24">                                                                            | Ambiente de ejecución      | Node.js                   | https://nodejs.org/en/download/          | 14.17.1 |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="24">                       | NPM                        | Manejador de dependencias | https://www.npmjs.com/get-npm            | 6.4.13  |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="24"> | Manejador de base de datos | PostgreSQL                | https://www.postgresql.org/download/     | 13.1    |
-| <img src="https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" width="24">         | Framework                  | Nest.js                   | https://docs.nestjs.com/#installation    | 7.16.5  |
-| <img src="https://avatars.githubusercontent.com/u/32196900?s=400&v=4" width="24">                                                           | Jest                       | Testing                   | https://jestjs.io/docs/getting-started   | 26.6.3  |
-| <img src="https://prettier.io/icon.png" width="24">                                                                                         | Prettier                   | Linter                    | https://prettier.io/docs/en/install.html | 7.1.1   |
+| Logo                                                                                                                                        | Tipo                       | Nombre     | Enlace de Descarga                       | Versión |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------- | ---------------------------------------- | ------- |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="24">                                         | Lenguaje                   | TypeScript | https://www.typescriptlang.org/download  | 4.3     |
+| <img src="https://nodejs.org/static/images/logo.svg" width="24">                                                                            | Ambiente de ejecución      | Node.js    | https://nodejs.org/en/download/          | 14.17.1 |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="24">                       | Manejador de Dependencias  | NPM        | https://www.npmjs.com/get-npm            | 6.4.13  |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="24"> | Manejador de base de datos | PostgreSQL | https://www.postgresql.org/download/     | 13.1    |
+| <img src="https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" width="24">         | Framework                  | Nest.js    | https://docs.nestjs.com/#installation    | 7.16.5  |
+| <img src="https://avatars.githubusercontent.com/u/32196900?s=400&v=4" width="24">                                                           | Testing                    | Jest       | https://jestjs.io/docs/getting-started   | 26.6.3  |
+| <img src="https://prettier.io/icon.png" width="24">                                                                                         | Prettier                   | Linter     | https://prettier.io/docs/en/install.html | 7.1.1   |
 
 ### :wrench: Instalación de la Aplicación
 
@@ -108,7 +108,7 @@ Esta aplicación consta de tres tipos de pruebas automatizables ejecutables, las
 
   `por definir`
 
-### :mag_right: Referencias (Deep Research)
+### :mag_right: Referencias
 
 ---
 
