@@ -94,19 +94,19 @@ Esta aplicación consta de tres tipos de pruebas automatizables ejecutables, las
 
 - Todas las pruebas (unitarias, integración, aceptación):
 
-  `por definir`
+  `npm run test`
 
 - Pruebas unitarias:
 
-  `por definir`
+  `npm run test:unit`
 
 - Pruebas de integración:
 
-  `por definir`
+  `npm run test:int`
 
 - Pruebas de aceptación:
 
-  `por definir`
+  `npm run test:acp`
 
 ### :mag_right: Referencias
 
