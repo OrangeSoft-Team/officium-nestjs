@@ -1,4 +1,4 @@
-import { Identificador } from './Identificador'
+import { Identificador } from './values/Identificador'
 
 export abstract class Entidad {
   public constructor(protected readonly id: Identificador) {}
