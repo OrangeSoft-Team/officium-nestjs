@@ -4,34 +4,34 @@ import { CorreoElectronico } from '../../comun/dominio/values/CorreoElectronico'
 import { Identificador } from '../../comun/dominio/values/Identificador'
 import { NumeroTelefonico } from '../../comun/dominio/values/NumeroTelefonico'
 import { OfertaLaboral } from './OfertaLaboral'
-import { EstadoEmpleador } from './values/empleador/EstadoEmpleador'
-import { NombreEmpleador } from './values/empleador/NombreEmpleador'
+import { EstadoEmpresa } from './values/Empresa/EstadoEmpresa'
+import { NombreEmpresa } from './values/Empresa/NombreEmpresa'
 
-export interface DatosEmpleador {
+export interface DatosEmpresa {
   identificador: Identificador
-  nombre: NombreEmpleador
+  nombre: NombreEmpresa
   correo: CorreoElectronico
   telefono: NumeroTelefonico
   direccion: Direccion
-  estado: EstadoEmpleador
+  estado: EstadoEmpresa
   ofertasLaborales: OfertaLaboral[]
 }
 
-export class Empleador extends Entidad {
+export class Empresa extends Entidad {
   private constructor(
     identificador: Identificador,
-    private nombre: NombreEmpleador,
+    private nombre: NombreEmpresa,
     private correo: CorreoElectronico,
     private telefono: NumeroTelefonico,
     private direccion: Direccion,
-    private estado: EstadoEmpleador,
+    private estado: EstadoEmpresa,
     private ofertasLaborales?: OfertaLaboral[],
   ) {
     super(identificador)
   }
 
-  public static crear(datos: DatosEmpleador): Empleador {
-    return new Empleador(
+  public static crear(datos: DatosEmpresa): Empresa {
+    return new Empresa(
       datos.identificador,
       datos.nombre,
       datos.correo,

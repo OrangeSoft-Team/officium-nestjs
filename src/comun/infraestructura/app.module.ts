@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { EmpresaORM } from '../../empleador/infraestructura/persistencia/Empresa.orm'
+import { OfertaLaboralORM } from '../../empleador/infraestructura/persistencia/OfertaLaboral.orm'
 
 @Module({
   imports: [
@@ -10,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [],
+      entities: [EmpresaORM, OfertaLaboralORM],
       synchronize: true,
     }),
   ],

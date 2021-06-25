@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
-import { EmpleadorORM } from './Empleador.orm'
+import { EmpresaORM } from './Empresa.orm'
 
 @Entity()
 export class OfertaLaboralORM {
@@ -39,6 +39,6 @@ export class OfertaLaboralORM {
   @Column()
   estado: string
 
-  @ManyToOne(() => EmpleadorORM, (empleador) => empleador.ofertasLaborales)
-  empleador: EmpleadorORM
+  @ManyToOne(() => EmpresaORM, (empresa) => empresa.ofertasLaborales)
+  empresa: EmpresaORM
 }

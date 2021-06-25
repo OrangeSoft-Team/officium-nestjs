@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
 import { OfertaLaboralORM } from './OfertaLaboral.orm'
 
 @Entity()
-export class EmpleadorORM {
+export class EmpresaORM {
   @PrimaryColumn()
   uuid: string
 
