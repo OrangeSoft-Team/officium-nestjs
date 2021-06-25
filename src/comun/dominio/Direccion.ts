@@ -1,5 +1,5 @@
 import { Entidad } from './Entidad'
-import { Municipio } from './Municipio'
+import { Ciudad } from './Ciudad'
 import { CalleDireccion } from './values/CalleDireccion'
 import { CodigoPostalDireccion } from './values/CodigoPostalDireccion'
 import { Identificador } from './values/Identificador'
@@ -8,7 +8,7 @@ export interface DatosDireccion {
   identificador: Identificador
   calle: CalleDireccion
   codigoPostal: CodigoPostalDireccion
-  municipio: Municipio
+  ciudad: Ciudad
 }
 
 export class Direccion extends Entidad {
@@ -16,7 +16,7 @@ export class Direccion extends Entidad {
     identificador: Identificador,
     private calle: CalleDireccion,
     private codigoPostal: CodigoPostalDireccion,
-    private municipio: Municipio,
+    private ciudad: Ciudad,
   ) {
     super(identificador)
   }
@@ -26,7 +26,7 @@ export class Direccion extends Entidad {
       datos.identificador,
       datos.calle,
       datos.codigoPostal,
-      datos.municipio,
+      datos.ciudad,
     )
   }
 }

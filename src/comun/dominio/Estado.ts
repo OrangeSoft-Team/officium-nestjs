@@ -1,24 +1,24 @@
 import { Entidad } from './Entidad'
-import { Municipio } from './Municipio'
+import { Ciudad } from './Ciudad'
 import { Identificador } from './values/Identificador'
 import { NombreEstado } from './values/NombreEstado'
 
 export interface DatosEstado {
   identificador: Identificador
   nombre: NombreEstado
-  municipios: Municipio[]
+  ciudades: Ciudad[]
 }
 
 export class Estado extends Entidad {
   private constructor(
     identificador: Identificador,
     private nombre: NombreEstado,
-    private municipios: Municipio[],
+    private ciudades: Ciudad[],
   ) {
     super(identificador)
   }
 
   public static crear(datos: DatosEstado): Estado {
-    return new Estado(datos.identificador, datos.nombre, datos.municipios)
+    return new Estado(datos.identificador, datos.nombre, datos.ciudades)
   }
 }

@@ -3,7 +3,7 @@ import { Entidad } from '../../comun/dominio/Entidad'
 import { CorreoElectronico } from '../../comun/dominio/values/CorreoElectronico'
 import { Identificador } from '../../comun/dominio/values/Identificador'
 import { NumeroTelefonico } from '../../comun/dominio/values/NumeroTelefonico'
-import { OfertaLaboral } from '../../oferta/dominio/OfertaLaboral'
+import { OfertaLaboral } from './OfertaLaboral'
 import { EstadoEmpleador } from './values/empleador/EstadoEmpleador'
 import { NombreEmpleador } from './values/empleador/NombreEmpleador'
 
