@@ -1,3 +1,8 @@
+import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
+
+export interface EmpresaExisteDTO {
+  existe: boolean
+}
 export interface IRepositorioEmpresa {
-  null
+  existe(solicitud: IdentificadorDTO): Promise<EmpresaExisteDTO>
 }

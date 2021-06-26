@@ -25,7 +25,7 @@ export class OfertaLaboralORM {
   descripcion: string
 
   @Column()
-  duracionEstimaada: number
+  duracionEstimada: number
 
   @Column()
   escalaDuracion: string
