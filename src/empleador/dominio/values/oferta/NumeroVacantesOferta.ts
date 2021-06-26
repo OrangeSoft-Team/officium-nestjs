@@ -10,6 +10,10 @@ export class NumeroVacantesOferta extends ValueObject {
     super()
   }
 
+  public obtenerNumero() {
+    return this.numero
+  }
+
   public esIgual(numeroVacantesOferta: NumeroVacantesOferta): boolean {
     return this.numero == numeroVacantesOferta.numero
   }

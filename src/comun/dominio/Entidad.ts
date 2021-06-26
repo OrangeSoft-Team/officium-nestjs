@@ -8,4 +8,8 @@ export abstract class Entidad {
     if (this == entidad) return true
     return false
   }
+
+  public obtenerIdentificador() {
+    return this.id
+  }
 }

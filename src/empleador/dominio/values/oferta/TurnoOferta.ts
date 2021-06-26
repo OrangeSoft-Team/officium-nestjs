@@ -10,6 +10,10 @@ export class TurnoOferta extends ValueObject {
     super()
   }
 
+  public obtenerTurno() {
+    return this.turno
+  }
+
   public esIgual(turnoTrabajo: TurnoOferta): boolean {
     return this.turno == turnoTrabajo.turno
   }

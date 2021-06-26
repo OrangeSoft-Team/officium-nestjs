@@ -9,6 +9,10 @@ export class CargoOferta extends ValueObject {
     super()
   }
 
+  public obtenerCargo() {
+    return this.cargo
+  }
+
   public esIgual(cargoOferta: CargoOferta): boolean {
     return this.cargo == cargoOferta.cargo
   }

@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { EmpresaORM } from '../../empleador/infraestructura/persistencia/Empresa.orm'
-import { OfertaLaboralORM } from '../../empleador/infraestructura/persistencia/OfertaLaboral.orm'
+import { ModuloEmpleador } from '../../empleador/infraestructura/api/empleador.module'
+import { EmpresaORM } from './persistencia/Empresa.orm'
+import { OfertaLaboralORM } from './persistencia/OfertaLaboral.orm'
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { OfertaLaboralORM } from '../../empleador/infraestructura/persistencia/O
       entities: [EmpresaORM, OfertaLaboralORM],
       synchronize: true,
     }),
+    ModuloEmpleador,
   ],
   controllers: [],
   providers: [],

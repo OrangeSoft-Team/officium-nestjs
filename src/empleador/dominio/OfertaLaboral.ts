@@ -42,6 +42,38 @@ export class OfertaLaboral extends Entidad {
     super(identificador)
   }
 
+  // getters
+  public obtenerTitulo() {
+    return this.titulo
+  }
+  public obtenerCargo() {
+    return this.cargo
+  }
+  public obtenerTurno() {
+    return this.turno
+  }
+  public obtenerDescripcion() {
+    return this.descripcion
+  }
+  public obtenerDuracion() {
+    return this.duracion
+  }
+  public obtenerEstado() {
+    return this.estado
+  }
+  public obtenerFechaPublicacion() {
+    return this.fechaPublicacion
+  }
+  public obtenerNumeroVacantes() {
+    return this.numeroVacantes
+  }
+  public obtenerSueldo() {
+    return this.sueldo
+  }
+  public obtenerFechaModificacion() {
+    return this.fechaModificacion
+  }
+
   public static crear(datos: DatosOfertaLaboral): OfertaLaboral {
     return new OfertaLaboral(
       datos.identificador,

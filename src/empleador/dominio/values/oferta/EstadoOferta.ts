@@ -11,6 +11,10 @@ export class EstadoOferta extends ValueObject {
     super()
   }
 
+  public obtenerEstado() {
+    return this.estado
+  }
+
   public esIgual(estadoOferta: EstadoOferta): boolean {
     return this.estado == estadoOferta.estado
   }
