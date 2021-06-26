@@ -17,6 +17,14 @@ export class DuracionOferta extends ValueObject {
     super()
   }
 
+  public obtenerDuracion() {
+    return this.duracion
+  }
+
+  public obtenerEscala() {
+    return this.escala
+  }
+
   public esIgual(duracionOferta: DuracionOferta): boolean {
     return (
       this.duracion == duracionOferta.duracion &&

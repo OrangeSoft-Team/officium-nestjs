@@ -10,6 +10,10 @@ export class SueldoOferta extends ValueObject {
     super()
   }
 
+  public obtenerSueldo() {
+    return this.sueldo
+  }
+
   public esIgual(sueldoOferta: SueldoOferta): boolean {
     return this.sueldo == sueldoOferta.sueldo
   }

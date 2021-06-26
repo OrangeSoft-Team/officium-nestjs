@@ -9,6 +9,10 @@ export class FechaPublicacionOferta extends ValueObject {
     super()
   }
 
+  public obtenerFecha() {
+    return this.fecha
+  }
+
   public esIgual(fechaPublicacionOferta: FechaPublicacionOferta): boolean {
     return this.fecha.getTime() == fechaPublicacionOferta.fecha.getTime()
   }
