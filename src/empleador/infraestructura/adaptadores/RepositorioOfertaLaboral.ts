@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
+import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
+import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import {
   IRepositorioOfertaLaboral,
   PersistirOfertaLaboralDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
-import { EmpresaORM } from '../persistencia/Empresa.orm'
-import { OfertaLaboralORM } from '../persistencia/OfertaLaboral.orm'
 
 @Injectable()
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
@@ -18,21 +19,27 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ) {}
 
   public async crear(datos: PersistirOfertaLaboralDTO): Promise<void> {
-    // TODO: Manejar excepcion de BD
-    const ofertaLaboral = new OfertaLaboralORM()
-    const empresa = await this.repositorioEmpresa.findOne(datos.idEmpresa)
-    ofertaLaboral.uuid = datos.id
-    ofertaLaboral.empresa = empresa
-    ofertaLaboral.cargo = datos.cargo
-    ofertaLaboral.descripcion = datos.descripcion
-    ofertaLaboral.duracionEstimada = datos.duracionEstimada
-    ofertaLaboral.escalaDuracion = datos.escalaDuracion
-    ofertaLaboral.estado = datos.estado
-    ofertaLaboral.fechaPublicacion = datos.fechaPublicacion
-    ofertaLaboral.numeroVacantes = datos.numeroVacantes
-    ofertaLaboral.sueldo = datos.sueldo
-    ofertaLaboral.titulo = datos.titulo
-    ofertaLaboral.turno = datos.turno
-    await this.repositorioOferta.save(ofertaLaboral)
+    try {
+      const ofertaLaboral = new OfertaLaboralORM()
+      const empresa = await this.repositorioEmpresa.findOne(datos.idEmpresa)
+      ofertaLaboral.uuid = datos.id
+      ofertaLaboral.empresa = empresa
+      ofertaLaboral.cargo = datos.cargo
+      ofertaLaboral.descripcion = datos.descripcion
+      ofertaLaboral.duracionEstimada = datos.duracionEstimada
+      ofertaLaboral.escalaDuracion = datos.escalaDuracion
+      ofertaLaboral.estado = datos.estado
+      ofertaLaboral.fechaPublicacion = datos.fechaPublicacion
+      ofertaLaboral.numeroVacantes = datos.numeroVacantes
+      ofertaLaboral.sueldo = datos.sueldo
+      ofertaLaboral.titulo = datos.titulo
+      ofertaLaboral.turno = datos.turno
+      await this.repositorioOferta.insert(ofertaLaboral)
+    } catch (error) {
+      throw new ExcepcionAplicacion(
+        datos,
+        'No se ha podido guardar la oferta laboral.',
+      )
+    }
   }
 }
