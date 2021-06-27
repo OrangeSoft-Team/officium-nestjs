@@ -120,3 +120,5 @@ Esta aplicación consta de tres tipos de pruebas automatizables ejecutables, las
 - [Implementación ejemplo de "Arquitectura Hexagonal" del libro "Get Your Hands Dirty On Clean Arquitecture" y estructura de carpetas recomendada](https://github.com/thombergs/buckpal)
 - [Explicación de principios SOLID con ejemplos de código](https://www.baeldung.com/solid-principles)
 - [Implementación de "Arquitectura Hexagonal" y explicación de conceptos utilizando código Dart](https://pub.dev/packages/flutter_clean_architecture)
+- [Pruebas de integración de la base de datos utilizando Nest.js](https://medium.com/@salmon.3e/integration-testing-with-nestjs-and-typeorm-2ac3f77e7628)
+- [Probar PostgreSQL, Nest.js y autentificación utilizando E2E testing](https://firxworx.com/blog/coding/nestjs-integration-and-e2e-tests-with-typeorm-postgres-and-jwt/)
