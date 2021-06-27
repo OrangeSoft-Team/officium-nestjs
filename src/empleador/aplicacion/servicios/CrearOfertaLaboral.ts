@@ -1,8 +1,8 @@
 import { IServicioIdentificador } from '../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../comun/aplicacion/Resultado'
 import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { OfertaLaboral } from '../../dominio/OfertaLaboral'
 import { CrearOfertaLaboralSolicitudDTO } from '../dto/CrearOfertaLaboral.dto'
+import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
 import { CrearOfertaLaboralMapeador } from '../mapeadores/CrearOfertaLaboral.mapeador'
 import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
 import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
@@ -21,7 +21,10 @@ export class CrearOfertaLaboral {
         id: solicitud.idEmpresa,
       })
       if (!empresaExiste.existe)
-        return Resultado.falla<any>('La empresa no se encuentra registrada.')
+        throw new EmpresaNoExiste(
+          solicitud.idEmpresa,
+          'La empresa no se encuentra registrada en el sistema.',
+        )
 
       // Generamos un identificador para la nueva oferta laboral
       const id = this.servicioIdentificador.generarIdentificador().id
@@ -40,7 +43,7 @@ export class CrearOfertaLaboral {
         ),
       )
 
-      return Resultado.ok<OfertaLaboral>(ofertaLaboral)
+      return Resultado.ok<any>(null)
     } catch (error) {
       const err: Excepcion = error
       return Resultado.falla<Excepcion>(err)

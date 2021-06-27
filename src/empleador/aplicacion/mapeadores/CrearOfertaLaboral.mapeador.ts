@@ -44,7 +44,7 @@ export class CrearOfertaLaboralMapeador {
       duracionEstimada: entidad.obtenerDuracion().obtenerDuracion(),
       escalaDuracion: entidad.obtenerDuracion().obtenerEscala(),
       estado: entidad.obtenerEstado().obtenerEstado(),
-      fechaPublicacion: entidad.obtenerFechaModificacion().obtenerFecha(),
+      fechaPublicacion: entidad.obtenerFechaPublicacion().obtenerFecha(),
       numeroVacantes: entidad.obtenerNumeroVacantes().obtenerNumero(),
       sueldo: entidad.obtenerSueldo().obtenerSueldo(),
       turno: entidad.obtenerTurno().obtenerTurno(),

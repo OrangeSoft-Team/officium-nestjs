@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
 import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
+import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/OfertaLaboralYaExiste'
 import {
   IRepositorioOfertaLaboral,
   PersistirOfertaLaboralDTO,
@@ -36,9 +36,9 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       ofertaLaboral.turno = datos.turno
       await this.repositorioOferta.insert(ofertaLaboral)
     } catch (error) {
-      throw new ExcepcionAplicacion(
+      throw new OfertaLaboralYaExiste(
         datos,
-        'No se ha podido guardar la oferta laboral.',
+        'La oferta laboral ya se encuentra registrada.',
       )
     }
   }
