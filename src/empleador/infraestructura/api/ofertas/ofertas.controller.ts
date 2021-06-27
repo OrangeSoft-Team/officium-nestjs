@@ -34,6 +34,6 @@ export class ControladorOfertasLaborales {
       )
     }
 
-    return solicitud
+    return
   }
 }
