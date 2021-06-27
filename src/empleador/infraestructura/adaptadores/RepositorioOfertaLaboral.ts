@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
 import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
+import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/OfertaLaboralYaExiste'
 import {
   IRepositorioOfertaLaboral,
   PersistirOfertaLaboralDTO,
@@ -21,7 +21,11 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async crear(datos: PersistirOfertaLaboralDTO): Promise<void> {
     try {
       const ofertaLaboral = new OfertaLaboralORM()
-      const empresa = await this.repositorioEmpresa.findOne(datos.idEmpresa)
+      // obtenemos la empresa de la oferta laboral
+      const empresa = await this.repositorioEmpresa.findOne({
+        where: { uuid: datos.idEmpresa },
+      })
+      // asignamos todos los datos de la oferta laboral y los insertamos
       ofertaLaboral.uuid = datos.id
       ofertaLaboral.empresa = empresa
       ofertaLaboral.cargo = datos.cargo
@@ -36,9 +40,10 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       ofertaLaboral.turno = datos.turno
       await this.repositorioOferta.insert(ofertaLaboral)
     } catch (error) {
-      throw new ExcepcionAplicacion(
+      // En caso de que el insert falle debido a que ya existe la oferta laboral
+      throw new OfertaLaboralYaExiste(
         datos,
-        'No se ha podido guardar la oferta laboral.',
+        'La oferta laboral ya se encuentra registrada.',
       )
     }
   }

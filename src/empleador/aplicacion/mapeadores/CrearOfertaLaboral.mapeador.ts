@@ -13,6 +13,7 @@ import { CrearOfertaLaboralEntidadDTO } from '../dto/CrearOfertaLaboral.dto'
 import { PersistirOfertaLaboralDTO } from '../puertos/IRepositorioOfertaLaboral'
 
 export class CrearOfertaLaboralMapeador {
+  // Mapear DTO de solicitud del servicio a la entidad de dominio
   public static solicitudEntidad(solicitud: CrearOfertaLaboralEntidadDTO) {
     const datos: DatosOfertaLaboral = {
       identificador: Identificador.crear(solicitud.id),
@@ -32,6 +33,7 @@ export class CrearOfertaLaboralMapeador {
     return OfertaLaboral.crear(datos)
   }
 
+  // Mapear entidad de dominio a los datos requeridos por la interfaz de persistencia
   public static entidadPersistencia(
     entidad: OfertaLaboral,
     idEmpresa: string,
@@ -44,7 +46,7 @@ export class CrearOfertaLaboralMapeador {
       duracionEstimada: entidad.obtenerDuracion().obtenerDuracion(),
       escalaDuracion: entidad.obtenerDuracion().obtenerEscala(),
       estado: entidad.obtenerEstado().obtenerEstado(),
-      fechaPublicacion: entidad.obtenerFechaModificacion().obtenerFecha(),
+      fechaPublicacion: entidad.obtenerFechaPublicacion().obtenerFecha(),
       numeroVacantes: entidad.obtenerNumeroVacantes().obtenerNumero(),
       sueldo: entidad.obtenerSueldo().obtenerSueldo(),
       turno: entidad.obtenerTurno().obtenerTurno(),

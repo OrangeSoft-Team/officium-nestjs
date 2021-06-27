@@ -3,7 +3,7 @@ import { NumeroVacantesOferta } from '../../values/oferta/NumeroVacantesOferta'
 
 export class NumeroVacantesOfertaInvalido extends Excepcion {
   public constructor(valor: NumeroVacantesOferta, error: string) {
-    super(valor, error, 'NumeroVacantesOfertaInvalida')
+    super(valor, error, 'NumeroVacantesOfertaInvalido')
   }
 }
 
