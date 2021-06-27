@@ -6,6 +6,10 @@ export class Identificador extends ValueObject {
     super()
   }
 
+  public obtenerId() {
+    return this.id
+  }
+
   public esIgual(identificador: Identificador): boolean {
     return this.id == identificador.id
   }

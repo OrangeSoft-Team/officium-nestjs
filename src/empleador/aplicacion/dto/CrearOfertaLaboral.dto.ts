@@ -1,5 +1,5 @@
-export interface CrearOfertaLaboralEmpresaApiDTO {
-  uuidEmpresa: string
+export interface CrearOfertaLaboralSolicitudDTO {
+  idEmpresa: string
   titulo: string
   cargo: string
   sueldo: number
@@ -8,4 +8,9 @@ export interface CrearOfertaLaboralEmpresaApiDTO {
   duracionEstimadaEscala: 'hora' | 'día' | 'semana' | 'mes'
   turnoTrabajo: 'diurno' | 'nocturno' | 'mixto'
   numeroVacantes: number
+}
+
+export interface CrearOfertaLaboralEntidadDTO
+  extends CrearOfertaLaboralSolicitudDTO {
+  id: string
 }
