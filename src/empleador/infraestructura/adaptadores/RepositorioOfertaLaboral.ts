@@ -21,7 +21,9 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async crear(datos: PersistirOfertaLaboralDTO): Promise<void> {
     try {
       const ofertaLaboral = new OfertaLaboralORM()
-      const empresa = await this.repositorioEmpresa.findOne(datos.idEmpresa)
+      const empresa = await this.repositorioEmpresa.findOne({
+        where: { uuid: datos.idEmpresa },
+      })
       ofertaLaboral.uuid = datos.id
       ofertaLaboral.empresa = empresa
       ofertaLaboral.cargo = datos.cargo

@@ -18,7 +18,9 @@ export class RepositorioEmpresa implements IRepositorioEmpresa {
 
   public async existe(solicitud: IdentificadorDTO): Promise<EmpresaExisteDTO> {
     try {
-      const empresa = await this.repositorioEmpresa.findOne(solicitud.id)
+      const empresa = await this.repositorioEmpresa.findOne({
+        where: { uuid: solicitud.id },
+      })
       return { existe: empresa?.uuid ? true : false }
     } catch (error) {
       throw new ExcepcionAplicacion(

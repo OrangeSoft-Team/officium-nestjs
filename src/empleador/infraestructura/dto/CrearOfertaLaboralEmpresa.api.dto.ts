@@ -5,7 +5,7 @@ export interface CrearOfertaLaboralEmpresaApiDTO {
   sueldo: number
   descripcion: string
   duracionEstimadaValor: number
-  duracionEstimadaEscala: string
-  turnoTrabajo: string
+  duracionEstimadaEscala: 'hora' | 'día' | 'semana' | 'mes'
+  turnoTrabajo: 'diurno' | 'nocturno' | 'mixto'
   numeroVacantes: number
 }
