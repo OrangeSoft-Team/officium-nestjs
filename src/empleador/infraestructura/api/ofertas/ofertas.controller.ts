@@ -15,10 +15,13 @@ export class ControladorOfertasLaborales {
   public async crearOfertaLaboral(
     @Body() dto: CrearOfertaLaboralEmpresaApiDTO,
   ) {
+    // Mapeamos el dto de infraestructura al dto de capa de aplicación requerido
     const dtoSolicitud = CrearOfertaLaboralAPIMapeador.httpSolicitud(dto)
+    // Realizamos la solicitud con el dto mapeado
     const solicitud = await this.servicioOfertasLaborales.crearOfertaLaboral(
       dtoSolicitud,
     )
+    // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion: ExcepcionAplicacion = solicitud.error
       const http = EmpleadorErrorHttpMapeador.obtenerCodigoHttp(
@@ -33,7 +36,7 @@ export class ControladorOfertasLaborales {
         http,
       )
     }
-
+    // En caso de exito
     return
   }
 }

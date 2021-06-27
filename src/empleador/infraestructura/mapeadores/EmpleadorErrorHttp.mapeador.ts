@@ -43,10 +43,12 @@ const codigos = [
 ]
 
 export class EmpleadorErrorHttpMapeador {
+  // Obtener codigo HTTP del error obtenido
   public static obtenerCodigoHttp(nombre: string) {
     for (const codigo of codigos) {
       if (codigo.nombres.includes(nombre)) return codigo.http
     }
+    // Si el error no esta contemplado, retornar un 500 como fallback
     return HttpStatus.INTERNAL_SERVER_ERROR
   }
 }

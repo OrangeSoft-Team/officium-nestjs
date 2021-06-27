@@ -6,12 +6,15 @@ import { LongitudInvalidaTituloOferta } from '../../../src/empleador/dominio/exc
 import { SueldoOfertaInvalido } from '../../../src/empleador/dominio/excepciones/oferta/SueldoOferta.excepciones'
 import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/EmpresaNoExiste'
 
+// Mock del repositorio de persistencia de Empresas
 jest.mock(
   '../../../src/empleador/infraestructura/adaptadores/RepositorioEmpresa',
 )
+// Mock del repositorio de persistencia de Oferta Laboral
 jest.mock(
   '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral',
 )
+// Mock del servicio generador de identificadores unicos
 jest.mock(
   '../../../src/comun/infraestructura/adaptadores/GeneradorIdentificadorUUID',
 )
@@ -23,6 +26,7 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
   let casoUso: CrearOfertaLaboral
 
   beforeEach(() => {
+    // Para cada prueba generamos los mock de los servicios necesarios
     mockRepositorioEmpresa = new RepositorioEmpresa(null)
     mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
     mockGeneradorIdentificador = new GeneradorIdentificadorUUID()

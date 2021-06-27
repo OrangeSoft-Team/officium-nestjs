@@ -43,8 +43,10 @@ export class CrearOfertaLaboral {
         ),
       )
 
+      // Si todo sale bien, retornamos un OK
       return Resultado.ok<any>(null)
     } catch (error) {
+      // En caso de algun error, obtenemos los datos de la excepcion y los retornamos como FALLA
       const err: Excepcion = error
       return Resultado.falla<Excepcion>(err)
     }

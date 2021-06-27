@@ -18,11 +18,13 @@ export class RepositorioEmpresa implements IRepositorioEmpresa {
 
   public async existe(solicitud: IdentificadorDTO): Promise<EmpresaExisteDTO> {
     try {
+      // Obtenemos la empresa de la base de datos para verificar su existencia
       const empresa = await this.repositorioEmpresa.findOne({
         where: { uuid: solicitud.id },
       })
       return { existe: empresa?.uuid ? true : false }
     } catch (error) {
+      // Si ocurre un error al ejecutar la solicitud
       throw new ExcepcionAplicacion(
         null,
         'No se ha podido verificar la existencia de la empresa.',

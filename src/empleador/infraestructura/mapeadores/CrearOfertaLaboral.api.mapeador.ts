@@ -2,6 +2,7 @@ import { CrearOfertaLaboralSolicitudDTO } from '../../aplicacion/dto/CrearOferta
 import { CrearOfertaLaboralEmpresaApiDTO } from '../dto/CrearOfertaLaboralEmpresa.api.dto'
 
 export class CrearOfertaLaboralAPIMapeador {
+  // Mapear DTO http de infraestructura a DTO requerido por el servicio de capa de aplicacion
   public static httpSolicitud(
     datos: CrearOfertaLaboralEmpresaApiDTO,
   ): CrearOfertaLaboralSolicitudDTO {

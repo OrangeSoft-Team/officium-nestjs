@@ -19,6 +19,7 @@ export class ServicioOfertasLaborales {
     @InjectRepository(OfertaLaboralORM)
     private readonly repositorioOfertaLaboral: Repository<OfertaLaboralORM>,
   ) {
+    // generamos los adaptadores que debemos inyectar al caso de uso para que pueda funcionar
     this.servicioCrearOfertaLaboral = new CrearOfertaLaboral(
       new RepositorioOfertaLaboral(
         repositorioOfertaLaboral,
@@ -29,6 +30,7 @@ export class ServicioOfertasLaborales {
     )
   }
 
+  // Caso de uso 8.1 Empleador: Crear Oferta Laboral
   public async crearOfertaLaboral(dto: CrearOfertaLaboralSolicitudDTO) {
     return await this.servicioCrearOfertaLaboral.ejecutar(dto)
   }

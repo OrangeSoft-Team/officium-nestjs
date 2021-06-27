@@ -21,9 +21,11 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async crear(datos: PersistirOfertaLaboralDTO): Promise<void> {
     try {
       const ofertaLaboral = new OfertaLaboralORM()
+      // obtenemos la empresa de la oferta laboral
       const empresa = await this.repositorioEmpresa.findOne({
         where: { uuid: datos.idEmpresa },
       })
+      // asignamos todos los datos de la oferta laboral y los insertamos
       ofertaLaboral.uuid = datos.id
       ofertaLaboral.empresa = empresa
       ofertaLaboral.cargo = datos.cargo
@@ -38,6 +40,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       ofertaLaboral.turno = datos.turno
       await this.repositorioOferta.insert(ofertaLaboral)
     } catch (error) {
+      // En caso de que el insert falle debido a que ya existe la oferta laboral
       throw new OfertaLaboralYaExiste(
         datos,
         'La oferta laboral ya se encuentra registrada.',
