@@ -4,7 +4,7 @@ import {
   TurnoOfertaInvalido,
 } from '../../excepciones/oferta/TurnoOferta.excepciones'
 
-type TURNOS = 'diurno' | 'nocturno' | 'mixto'
+type TURNOS = 'diurno' | 'nocturno' | 'mixto' | string
 export class TurnoOferta extends ValueObject {
   private constructor(private readonly turno: TURNOS) {
     super()

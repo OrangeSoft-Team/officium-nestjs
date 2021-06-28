@@ -1,4 +1,4 @@
-export interface PersistirOfertaLaboralDTO {
+export interface OfertaLaboralPersistenciaDTO {
   id: string
   titulo: string
   fechaPublicacion: Date
@@ -14,6 +14,14 @@ export interface PersistirOfertaLaboralDTO {
   idEmpresa: string
 }
 
+export interface IdentificadorEmpresaDTO {
+  idEmpresa: string
+}
+
 export interface IRepositorioOfertaLaboral {
-  crear(datos: PersistirOfertaLaboralDTO): Promise<void>
+  crear(datos: OfertaLaboralPersistenciaDTO): Promise<void>
+
+  obtenerOfertasEmpresa(
+    solicitud: IdentificadorEmpresaDTO,
+  ): Promise<OfertaLaboralPersistenciaDTO[]>
 }

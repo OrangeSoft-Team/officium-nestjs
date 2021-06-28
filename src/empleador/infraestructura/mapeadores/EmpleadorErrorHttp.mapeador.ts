@@ -1,8 +1,12 @@
-import { HttpStatus } from '@nestjs/common'
+import { HttpException, HttpStatus } from '@nestjs/common'
+import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
+
+type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 const codigos = [
   {
     http: HttpStatus.BAD_REQUEST,
+    metodos: ['POST'],
     nombres: [
       'CargoOfertaVacio',
       'LongitudInvalidaCargoOferta',
@@ -34,21 +38,42 @@ const codigos = [
   },
   {
     http: HttpStatus.NOT_FOUND,
+    metodos: ['GET', 'POST'],
     nombres: ['EmpresaNoExiste'],
   },
   {
     http: HttpStatus.INTERNAL_SERVER_ERROR,
+    metodos: ['GET', 'POST'],
     nombres: ['ExcepcionAplicacion', 'Excepcion', 'Error'],
   },
 ]
 
 export class EmpleadorErrorHttpMapeador {
   // Obtener codigo HTTP del error obtenido
-  public static obtenerCodigoHttp(nombre: string) {
+  public static manejarExcepcionEmpleador(
+    excepcion: ExcepcionAplicacion,
+    metodo: METODOS,
+  ) {
     for (const codigo of codigos) {
-      if (codigo.nombres.includes(nombre)) return codigo.http
+      if (
+        codigo.nombres.includes(excepcion.getError().nombre) &&
+        codigo.metodos.includes(metodo)
+      )
+        throw new HttpException(
+          {
+            error: excepcion.getError().error,
+            nombre: excepcion.getError().nombre,
+          },
+          codigo.http,
+        )
     }
     // Si el error no esta contemplado, retornar un 500 como fallback
-    return HttpStatus.INTERNAL_SERVER_ERROR
+    throw new HttpException(
+      {
+        error: 'No se ha podido procesar la solicitud.',
+        nombre: 'ErrorProcesandoSolicitud',
+      },
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    )
   }
 }
