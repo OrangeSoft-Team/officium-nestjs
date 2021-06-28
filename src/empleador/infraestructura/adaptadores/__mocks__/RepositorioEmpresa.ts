@@ -6,6 +6,6 @@ import {
 
 export class RepositorioEmpresa implements IRepositorioEmpresa {
   public async existe(solicitud: IdentificadorDTO): Promise<EmpresaExisteDTO> {
-    return { existe: solicitud?.id == '1' }
+    return { existe: solicitud?.id == '1' || solicitud?.id == '3' }
   }
 }
