@@ -34,7 +34,7 @@ export class CorreoElectronico extends ValueObject {
     if (correo.length > 320)
       throw new LongitudInvalidaCorreoElectronico(
         correoElectronico,
-        'El correo electrónico debe contener como máximo 40 caracteres.',
+        'El correo electrónico debe contener como máximo 320 caracteres.',
       )
     // Debe ser un formato valido
     if (
