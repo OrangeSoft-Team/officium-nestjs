@@ -19,7 +19,7 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
   it('Deberia crear una oferta laboral con todos los datos validos', () => {
     // Realizamos solicitud al endpoint POST del caso de uso y esperamos un codigo CREATED
     return request(app.getHttpServer())
-      .post('/empleador/ofertas_laborales')
+      .post('/api/empleador/ofertas_laborales')
       .send({
         uuidEmpresa: '1',
         titulo: 'Desarrollador en Python',
@@ -38,7 +38,7 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
   it('Deberia retornar un error 404 debido a que no existe la empresa especificada', () => {
     // Realizamos solicitud al endpoint POST del caso de uso y esperamos un codigo NOT_FOUND
     return request(app.getHttpServer())
-      .post('/empleador/ofertas_laborales')
+      .post('/api/empleador/ofertas_laborales')
       .send({
         uuidEmpresa: '0',
         titulo: 'Desarrollador en Python',
@@ -53,7 +53,6 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
       })
       .expect(HttpStatus.NOT_FOUND)
       .expect({
-        codigo: HttpStatus.NOT_FOUND,
         nombre: 'EmpresaNoExiste',
         error: 'La empresa no se encuentra registrada en el sistema.',
       })
@@ -62,7 +61,7 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
   it('Deberia retornar un error 400 debido a que se coloca un titulo muy corto', () => {
     // Realizamos solicitud al endpoint POST del caso de uso y esperamos un codigo BAD_REQUEST
     return request(app.getHttpServer())
-      .post('/empleador/ofertas_laborales')
+      .post('/api/empleador/ofertas_laborales')
       .send({
         uuidEmpresa: '1',
         titulo: 'Des',
@@ -77,7 +76,6 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
       })
       .expect(HttpStatus.BAD_REQUEST)
       .expect({
-        codigo: HttpStatus.BAD_REQUEST,
         nombre: 'LongitudInvalidaTituloOferta',
         error:
           'El titulo de la oferta laboral debe contener como mínimo 4 caracteres.',

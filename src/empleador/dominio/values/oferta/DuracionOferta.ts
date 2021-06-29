@@ -7,7 +7,7 @@ import {
   EscalaDuracionOfertaInvalida,
 } from '../../excepciones/oferta/DuracionOferta.excepciones'
 
-type ESCALAS = 'hora' | 'día' | 'semana' | 'mes'
+type ESCALAS = 'hora' | 'día' | 'semana' | 'mes' | string
 
 export class DuracionOferta extends ValueObject {
   private constructor(

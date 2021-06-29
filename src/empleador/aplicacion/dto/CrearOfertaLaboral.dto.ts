@@ -5,8 +5,8 @@ export interface CrearOfertaLaboralSolicitudDTO {
   sueldo: number
   descripcion: string
   duracionEstimadaValor: number
-  duracionEstimadaEscala: 'hora' | 'día' | 'semana' | 'mes'
-  turnoTrabajo: 'diurno' | 'nocturno' | 'mixto'
+  duracionEstimadaEscala: string
+  turnoTrabajo: string
   numeroVacantes: number
 }
 

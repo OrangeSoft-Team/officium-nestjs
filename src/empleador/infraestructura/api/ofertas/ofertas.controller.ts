@@ -1,15 +1,42 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { CrearOfertaLaboralEmpresaApiDTO } from '../../dto/CrearOfertaLaboralEmpresa.api.dto'
 import { CrearOfertaLaboralAPIMapeador } from '../../mapeadores/CrearOfertaLaboral.api.mapeador'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadorErrorHttpMapeador } from '../../mapeadores/EmpleadorErrorHttp.mapeador'
+import { VerOfertasLaboralesActivasAPIMapeador } from '../../mapeadores/VerOfertasLaboralesActivas.api.mapeador'
+import { VerOfertasLaboralesActivasRespuestaDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 
-@Controller('empleador/ofertas_laborales')
+@Controller('api/empleador/ofertas_laborales')
 export class ControladorOfertasLaborales {
   public constructor(
     private readonly servicioOfertasLaborales: ServicioOfertasLaborales,
   ) {}
+
+  @Get(':uuid_empresa')
+  public async obtenerOfertasLaboralesActivas(
+    @Param('uuid_empresa') uuidEmpresa: string,
+  ) {
+    // Mapeamos la solicitud al dto del caso de uso de aplicación requerido
+    const dtoSolicitud =
+      VerOfertasLaboralesActivasAPIMapeador.httpSolicitud(uuidEmpresa)
+    // Realizamos la solicitud con el dto mapeado
+    const solicitud =
+      await this.servicioOfertasLaborales.obtenerOfertasLaboralesActivas(
+        dtoSolicitud,
+      )
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      EmpleadorErrorHttpMapeador.manejarExcepcionEmpleador(excepcion, 'GET')
+    }
+
+    // En caso de exito mapeamos la respuesta del servicio al dto definido por la API y retornamos la data
+    return VerOfertasLaboralesActivasAPIMapeador.respuestaHttp(
+      <VerOfertasLaboralesActivasRespuestaDTO[]>solicitud.valor,
+    )
+  }
 
   @Post()
   public async crearOfertaLaboral(
@@ -23,18 +50,8 @@ export class ControladorOfertasLaborales {
     )
     // En caso de error
     if (!solicitud.esExitoso) {
-      const excepcion: ExcepcionAplicacion = solicitud.error
-      const http = EmpleadorErrorHttpMapeador.obtenerCodigoHttp(
-        excepcion.getError().nombre,
-      )
-      throw new HttpException(
-        {
-          codigo: http,
-          nombre: excepcion.getError().nombre,
-          error: excepcion.getError().error,
-        },
-        http,
-      )
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      EmpleadorErrorHttpMapeador.manejarExcepcionEmpleador(excepcion, 'POST')
     }
     // En caso de exito
     return
