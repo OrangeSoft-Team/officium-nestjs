@@ -14,7 +14,7 @@ export interface DatosEmpresa {
   telefono: NumeroTelefonico
   direccion: Direccion
   estado: EstadoEmpresa
-  ofertasLaborales: OfertaLaboral[]
+  ofertasLaborales?: OfertaLaboral[]
 }
 
 export class Empresa extends Entidad {

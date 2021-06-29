@@ -10,7 +10,7 @@ import { SueldoOferta } from '../../dominio/values/oferta/SueldoOferta'
 import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { TurnoOferta } from '../../dominio/values/oferta/TurnoOferta'
 import { CrearOfertaLaboralEntidadDTO } from '../dto/CrearOfertaLaboral.dto'
-import { PersistirOfertaLaboralDTO } from '../puertos/IRepositorioOfertaLaboral'
+import { OfertaLaboralPersistenciaDTO } from '../puertos/IRepositorioOfertaLaboral'
 
 export class CrearOfertaLaboralMapeador {
   // Mapear DTO de solicitud del servicio a la entidad de dominio
@@ -37,7 +37,7 @@ export class CrearOfertaLaboralMapeador {
   public static entidadPersistencia(
     entidad: OfertaLaboral,
     idEmpresa: string,
-  ): PersistirOfertaLaboralDTO {
+  ): OfertaLaboralPersistenciaDTO {
     return {
       id: entidad.obtenerIdentificador().obtenerId(),
       cargo: entidad.obtenerCargo().obtenerCargo(),

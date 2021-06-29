@@ -32,7 +32,7 @@ export class CodigoPostalDireccion extends ValueObject {
     if (codigo.length > 10)
       throw new LongitudInvalidaCodigoPostalDireccion(
         codigoPostalDireccion,
-        'El código postal de la dirección debe contener como máximo 256 caracteres.',
+        'El código postal de la dirección debe contener como máximo 10 caracteres.',
       )
     return codigoPostalDireccion
   }
