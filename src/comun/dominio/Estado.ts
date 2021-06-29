@@ -6,16 +6,24 @@ import { NombreEstado } from './values/NombreEstado'
 export interface DatosEstado {
   identificador: Identificador
   nombre: NombreEstado
-  ciudades: Ciudad[]
+  ciudades?: Ciudad[]
 }
 
 export class Estado extends Entidad {
   private constructor(
     identificador: Identificador,
     private nombre: NombreEstado,
-    private ciudades: Ciudad[],
+    private ciudades?: Ciudad[],
   ) {
     super(identificador)
+  }
+
+  // getters
+  public obtenerNombre() {
+    return this.nombre
+  }
+  public obtenerCiudades() {
+    return this.ciudades
   }
 
   public static crear(datos: DatosEstado): Estado {

@@ -9,6 +9,11 @@ export class NombreCiudad extends ValueObject {
     super()
   }
 
+  // getters
+  public obtenerNombre() {
+    return this.nombre
+  }
+
   public esIgual(nombreCiudad: NombreCiudad): boolean {
     return this.nombre == nombreCiudad.nombre
   }
