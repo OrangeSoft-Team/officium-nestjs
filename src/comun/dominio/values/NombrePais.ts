@@ -13,6 +13,11 @@ export class NombrePais extends ValueObject {
     return this.nombre == nombrePais.nombre
   }
 
+  // getters
+  public obtenerNombre() {
+    return this.nombre
+  }
+
   public static crear(nombre: string): NombrePais {
     // No debe ser vacio
     if (nombre == null || nombre == undefined || nombre == '')

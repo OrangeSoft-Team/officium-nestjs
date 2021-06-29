@@ -15,6 +15,11 @@ export class Ciudad extends Entidad {
     super(identificador)
   }
 
+  // getters
+  public obtenerNombre() {
+    return this.nombre
+  }
+
   public static crear(datos: DatosCiudad): Ciudad {
     return new Ciudad(datos.identificador, datos.nombre)
   }
