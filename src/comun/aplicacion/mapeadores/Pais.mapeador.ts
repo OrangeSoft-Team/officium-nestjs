@@ -4,8 +4,10 @@ import { NombrePais } from '../../dominio/values/NombrePais'
 import { ObtenerPaisesRespuestaDTO } from '../dto/ObtenerPaises.dto'
 import { PaisPersistenciaDTO } from '../puertos/IRepositorioPaises'
 
-export class ObtenerPaisesMapeador {
-  public static persitenciaEntidades(datos: PaisPersistenciaDTO[]): Pais[] {
+export class PaisMapeador {
+  public static transformarPersistenciaEnEntidades(
+    datos: PaisPersistenciaDTO[],
+  ): Pais[] {
     return datos.map((pais) =>
       Pais.crear({
         identificador: Identificador.crear(pais.id),
@@ -14,7 +16,7 @@ export class ObtenerPaisesMapeador {
     )
   }
 
-  public static entidadesRespuesta(
+  public static transformarEntidadesEnRespuesta(
     paises: Pais[],
   ): ObtenerPaisesRespuestaDTO[] {
     return paises.map((pais) => {

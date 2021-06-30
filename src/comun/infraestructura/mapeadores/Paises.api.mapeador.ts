@@ -1,11 +1,11 @@
 import { ObtenerPaisesRespuestaDTO } from '../../aplicacion/dto/ObtenerPaises.dto'
 import { ObtenerPaisesApiDTO } from '../dto/ObtenerPaises.api.dto'
 
-export class ObtenerPaisesAPIMapeador {
-  public static respuestaHttp(
-    respuesta: ObtenerPaisesRespuestaDTO[],
+export class PaisAPIMapeador {
+  public static transformarRespuestaObtenerPaises(
+    paises: ObtenerPaisesRespuestaDTO[],
   ): ObtenerPaisesApiDTO[] {
-    return respuesta.map((pais) => {
+    return paises.map((pais) => {
       return {
         uuidPais: pais.id,
         nombrePais: pais.nombre,

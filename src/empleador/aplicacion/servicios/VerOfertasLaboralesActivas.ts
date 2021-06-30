@@ -3,11 +3,11 @@ import { Excepcion } from '../../../comun/dominio/Excepcion'
 import { OfertaLaboral } from '../../dominio/OfertaLaboral'
 import { EstadoOferta } from '../../dominio/values/oferta/EstadoOferta'
 import {
-  VerOfertasLaboralesActivasRespuestaDTO,
   VerOfertasLaboralesActivasSolicitudDTO,
+  VerOfertasLaboralesActivasRespuestaDTO,
 } from '../dto/VerOfertasLaborales.dto'
 import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
-import { VerOfertasLaboralesActivasMapeador } from '../mapeadores/VerOfertasLaboralesActivas.mapeador'
+import { OfertaLaboralMapeador } from '../mapeadores/OfertaLaboral.mapeador'
 import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
 import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
 
@@ -36,7 +36,7 @@ export class VerOfertasLaboralesActivas {
 
       // Mapeamos a entidades de dominio
       let ofertasLaborales: OfertaLaboral[] =
-        VerOfertasLaboralesActivasMapeador.persitenciaEntidades(datos)
+        OfertaLaboralMapeador.transformarPersistenciaEnEntidades(datos)
 
       // Eliminamos las ofertas laborales que no se encuentren activas
       const estadoOfertaPublicado = EstadoOferta.crear('publicado')
@@ -46,7 +46,9 @@ export class VerOfertasLaboralesActivas {
 
       // Mapeamos las entidades al DTO de respuesta
       const dtoRespuesta: VerOfertasLaboralesActivasRespuestaDTO[] =
-        VerOfertasLaboralesActivasMapeador.entidadesRespuesta(ofertasLaborales)
+        OfertaLaboralMapeador.transformarEntidadesEnRespuestasBasicas(
+          ofertasLaborales,
+        )
 
       // En caso de exito retornamos el dto
       return Resultado.ok<VerOfertasLaboralesActivasRespuestaDTO[]>(

@@ -1,21 +1,21 @@
 import {
-  ObtenerCiudadesSolicitudDTO,
   ObtenerCiudadesRespuestaDTO,
+  ObtenerCiudadesSolicitudDTO,
 } from '../../aplicacion/dto/ObtenerCiudades.dto'
 import { ObtenerCiudadesApiDTO } from '../dto/ObtenerCiudades.api.dto'
 
-export class ObtenerCiudadesAPIMapeador {
-  public static httpSolicitud(
+export class CiudadAPIMapeador {
+  public static transformarSolicitudHttpObtenerCiudades(
     idPais: string,
     idEstado: string,
   ): ObtenerCiudadesSolicitudDTO {
     return { idPais, idEstado }
   }
 
-  public static respuestaHttp(
-    respuesta: ObtenerCiudadesRespuestaDTO[],
+  public static transformarRespuestaObtenerCiudades(
+    ciudades: ObtenerCiudadesRespuestaDTO[],
   ): ObtenerCiudadesApiDTO[] {
-    return respuesta.map((ciudad) => {
+    return ciudades.map((ciudad) => {
       return {
         uuidCiudad: ciudad.idCiudad,
         uuidEstado: ciudad.idEstado,

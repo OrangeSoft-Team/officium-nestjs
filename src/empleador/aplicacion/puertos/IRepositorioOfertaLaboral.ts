@@ -1,5 +1,6 @@
 export interface OfertaLaboralPersistenciaDTO {
   id: string
+  idEmpresa?: string
   titulo: string
   fechaPublicacion: Date
   fechaModificacion?: Date
@@ -11,10 +12,14 @@ export interface OfertaLaboralPersistenciaDTO {
   turno: string
   numeroVacantes: number
   estado: string
-  idEmpresa: string
 }
 
 export interface IdentificadorEmpresaDTO {
+  idEmpresa: string
+}
+
+export interface IdentificadorOfertaLaboralDTO {
+  idOfertaLaboral: string
   idEmpresa: string
 }
 
@@ -24,4 +29,8 @@ export interface IRepositorioOfertaLaboral {
   obtenerOfertasEmpresa(
     solicitud: IdentificadorEmpresaDTO,
   ): Promise<OfertaLaboralPersistenciaDTO[]>
+
+  obtenerOferta(
+    solicitud: IdentificadorOfertaLaboralDTO,
+  ): Promise<OfertaLaboralPersistenciaDTO>
 }

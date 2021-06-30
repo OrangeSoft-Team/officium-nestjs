@@ -5,8 +5,8 @@ import {
 } from '../dto/ObtenerCiudades.dto'
 import { EstadoNoExiste } from '../excepciones/EstadoNoExiste'
 import { PaisNoExiste } from '../excepciones/PaisNoExiste'
-import { ObtenerCiudadesMapeador } from '../mapeadores/ObtenerCiudades.mapeador'
-import { ObtenerEstadosMapeador } from '../mapeadores/ObtenerEstados.mapeador'
+import { CiudadMapeador } from '../mapeadores/Ciudad.mapeador'
+import { EstadoMapeador } from '../mapeadores/Estado.mapeador'
 import { IRepositorioCiudades } from '../puertos/IRepositorioCiudades'
 import { IRepositorioEstados } from '../puertos/IRepositorioEstados'
 import { IRepositorioPaises } from '../puertos/IRepositorioPaises'
@@ -37,7 +37,7 @@ export class ObtenerCiudades {
       })
 
       // Mapeamos los estados de persistencia a entidades de dominio
-      const estados = await ObtenerEstadosMapeador.persitenciaEntidades(
+      const estados = await EstadoMapeador.transformarPersistenciaEnEntidades(
         datosEstados,
       )
 
@@ -59,13 +59,13 @@ export class ObtenerCiudades {
       })
 
       // Mapeamos los datos de persistencia a entidades de dominio
-      const ciudades = await ObtenerCiudadesMapeador.persitenciaEntidades(
+      const ciudades = await CiudadMapeador.transformarPersistenciaEnEntidades(
         datosCiudades,
       )
 
       // Mapeamos las entidades de dominio a la respuesta de la solicitud
       const respuesta: ObtenerCiudadesRespuestaDTO[] =
-        ObtenerCiudadesMapeador.entidadesRespuesta(
+        CiudadMapeador.transformarEntidadesEnRespuesta(
           ciudades,
           solicitud.idPais,
           solicitud.idEstado,

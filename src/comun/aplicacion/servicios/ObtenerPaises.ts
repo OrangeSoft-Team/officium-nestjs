@@ -1,6 +1,6 @@
 import { Excepcion } from '../../dominio/Excepcion'
 import { ObtenerPaisesRespuestaDTO } from '../dto/ObtenerPaises.dto'
-import { ObtenerPaisesMapeador } from '../mapeadores/ObtenerPaises.mapeador'
+import { PaisMapeador } from '../mapeadores/Pais.mapeador'
 import { IRepositorioPaises } from '../puertos/IRepositorioPaises'
 import { Resultado } from '../Resultado'
 
@@ -13,11 +13,13 @@ export class ObtenerPaises {
       const datos = await this.repositorioPaises.obtenerTodos()
 
       // Mapeamos los datos de persistencia a entidades de dominio
-      const paises = await ObtenerPaisesMapeador.persitenciaEntidades(datos)
+      const paises = await PaisMapeador.transformarPersistenciaEnEntidades(
+        datos,
+      )
 
       // Mapeamos las entidades de dominio a la respuesta de la solicitud
       const respuesta: ObtenerPaisesRespuestaDTO[] =
-        ObtenerPaisesMapeador.entidadesRespuesta(paises)
+        PaisMapeador.transformarEntidadesEnRespuesta(paises)
 
       // En caso de que todo salga bien, retornamos un OK con los datos
       return Resultado.ok<ObtenerPaisesRespuestaDTO[]>(respuesta)

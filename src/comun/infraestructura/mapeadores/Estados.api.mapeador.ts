@@ -4,15 +4,17 @@ import {
 } from '../../aplicacion/dto/ObtenerEstados.dto'
 import { ObtenerEstadosApiDTO } from '../dto/ObtenerEstados.api.dto'
 
-export class ObtenerEstadosAPIMapeador {
-  public static httpSolicitud(idPais: string): ObtenerEstadosSolicitudDTO {
+export class EstadoAPIMapeador {
+  public static transformarSolicitudHttpObtenerEstados(
+    idPais: string,
+  ): ObtenerEstadosSolicitudDTO {
     return { idPais }
   }
 
-  public static respuestaHttp(
-    respuesta: ObtenerEstadosRespuestaDTO[],
+  public static transformarRespuestaObtenerEstados(
+    estados: ObtenerEstadosRespuestaDTO[],
   ): ObtenerEstadosApiDTO[] {
-    return respuesta.map((estado) => {
+    return estados.map((estado) => {
       return {
         uuidPais: estado.idPais,
         uuidEstado: estado.idEstado,

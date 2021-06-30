@@ -1,7 +1,8 @@
 import { RepositorioEmpresa } from '../../../src/empleador/infraestructura/adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { VerOfertasLaboralesActivas } from '../../../src/empleador/aplicacion/servicios/VerOfertasLaboralesActivas'
+import { VerDetalleOfertaLaboral } from '../../../src/empleador/aplicacion/servicios/VerDetalleOfertaLaboral'
 import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/EmpresaNoExiste'
+import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
 
 // Mock del repositorio de persistencia de Empresas
 jest.mock(
@@ -15,44 +16,46 @@ jest.mock(
 describe('Empleador: Ver todas las ofertas laborales activas de la empresa', () => {
   let mockRepositorioEmpresa: RepositorioEmpresa
   let mockRepositorioOfertaLaboral: RepositorioOfertaLaboral
-  let casoUso: VerOfertasLaboralesActivas
+  let casoUso: VerDetalleOfertaLaboral
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
     mockRepositorioEmpresa = new RepositorioEmpresa(null)
     mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
-    casoUso = new VerOfertasLaboralesActivas(
-      mockRepositorioOfertaLaboral,
+    casoUso = new VerDetalleOfertaLaboral(
       mockRepositorioEmpresa,
+      mockRepositorioOfertaLaboral,
     )
   })
 
-  it('Debe obtener una oferta laboral con sus datos para una empresa valida', () => {
+  it('Debe obtener una oferta laboral con todos sus detalles cuando existe', () => {
     const resultado = casoUso.ejecutar({
       idEmpresa: '1',
+      idOferta: '7453dc15-7ff2-4c37-9455-de661a5275b1',
     })
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
-      expect(res.valor).toHaveLength(1)
-      expect(res.valor).toStrictEqual([
-        {
-          cargo: 'Conserje',
-          duracionEstimadaEscala: 'mes',
-          duracionEstimadaValor: 12,
-          fechaPublicacion: new Date('11-09-2020'),
-          id: 'c70ed168-98fe-4438-ad5c-006348a59e41',
-          numeroVacantes: 1,
-          sueldo: 15000,
-          titulo: 'Conserje a tiempo completo',
-          turnoTrabajo: 'mixto',
-        },
-      ])
+      expect(res.valor).toStrictEqual({
+        id: '7453dc15-7ff2-4c37-9455-de661a5275b1',
+        titulo: 'Desarrollador en Python',
+        fechaPublicacion: new Date('06-06-2020'),
+        fechaModificacion: new Date('06-08-2020'),
+        cargo: 'Desarrollador',
+        sueldo: 50000,
+        descripcion:
+          'Se busca desarrollador en python moderno con amplios conocimientos en los principios SOLID.',
+        duracionEstimadaEscala: 'mes',
+        duracionEstimadaValor: 1,
+        turno: 'diurno',
+        numeroVacantes: 1,
+      })
     })
   })
 
   it('Debe rechazar la ejecución debido a que la empresa no existe', () => {
     const resultado = casoUso.ejecutar({
       idEmpresa: '2',
+      idOferta: '7453dc15-7ff2-4c37-9455-de661a5275b1',
     })
     return resultado.then((res) => {
       expect(res.esExitoso).toBeFalsy()
@@ -60,13 +63,14 @@ describe('Empleador: Ver todas las ofertas laborales activas de la empresa', () 
     })
   })
 
-  it('Debe retornar un arreglo vacio para una empresa sin ofertas laborales', () => {
+  it('Debe rechazar la ejecución debido a que no existe una oferta laboral con esos datos para la empresa', () => {
     const resultado = casoUso.ejecutar({
       idEmpresa: '3',
+      idOferta: '7453dc15-7ff2-4c37-9455-de661a5275b1',
     })
     return resultado.then((res) => {
-      expect(res.esExitoso).toBeTruthy()
-      expect(res.valor).toHaveLength(0)
+      expect(res.esExitoso).toBeFalsy()
+      expect(res.error).toBeInstanceOf(OfertaLaboralNoExiste)
     })
   })
 })

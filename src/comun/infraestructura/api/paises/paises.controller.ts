@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common'
-import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { ObtenerPaisesRespuestaDTO } from '../../../aplicacion/dto/ObtenerPaises.dto'
+import { ExcepcionAplicacion } from '../../../aplicacion/ExcepcionAplicacion'
 import { ComunErrorHttpMapeador } from '../../mapeadores/ComunErrorHttp.mapeador'
-import { ObtenerPaisesAPIMapeador } from '../../mapeadores/ObtenerPaises.api.mapeador'
+import { PaisAPIMapeador } from '../../mapeadores/Paises.api.mapeador'
 import { ServicioPaises } from './paises.service'
 
 @Controller('api/ubicacion/paises')
@@ -21,7 +21,7 @@ export class ControladorPaises {
     }
 
     // En caso de exito mapeamos la respuesta del servicio al dto definido por la API y retornamos la data
-    return ObtenerPaisesAPIMapeador.respuestaHttp(
+    return PaisAPIMapeador.transformarRespuestaObtenerPaises(
       <ObtenerPaisesRespuestaDTO[]>solicitud.valor,
     )
   }
