@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ModuloEmpleador } from '../../empleador/infraestructura/api/empleador.module'
 import { ModuloUbicaciones } from './api/ubicaciones.module'
@@ -10,13 +11,14 @@ import { PaisORM } from './persistencia/Pais.orm'
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
+      host: process.env.RUTA_BD,
+      port: parseInt(process.env.PUERTO_BD),
+      username: process.env.USUARIO_BD,
+      password: process.env.CLAVE_BD,
+      database: process.env.NOMBRE_BD,
       entities: [EmpresaORM, OfertaLaboralORM, PaisORM, EstadoORM, CiudadORM],
       synchronize: true,
     }),
