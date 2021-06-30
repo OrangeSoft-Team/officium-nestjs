@@ -7,7 +7,7 @@ import {
   EscalaDuracionOfertaInvalida,
 } from '../../excepciones/oferta/DuracionOferta.excepciones'
 
-type ESCALAS = 'hora' | 'día' | 'semana' | 'mes'
+type ESCALAS = 'hora' | 'día' | 'semana' | 'mes' | string
 
 export class DuracionOferta extends ValueObject {
   private constructor(
@@ -15,6 +15,14 @@ export class DuracionOferta extends ValueObject {
     private readonly escala: ESCALAS,
   ) {
     super()
+  }
+
+  public obtenerDuracion() {
+    return this.duracion
+  }
+
+  public obtenerEscala() {
+    return this.escala
   }
 
   public esIgual(duracionOferta: DuracionOferta): boolean {

@@ -8,6 +8,10 @@ export class CargoOferta extends ValueObject {
   private constructor(private readonly cargo: string) {
     super()
   }
+  
+  public obtenerCargo() {
+    return this.cargo
+  }
 
   public esIgual(cargoOferta: CargoOferta): boolean {
     return this.cargo == cargoOferta.cargo

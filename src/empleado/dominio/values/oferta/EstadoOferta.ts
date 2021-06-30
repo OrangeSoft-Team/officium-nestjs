@@ -4,11 +4,15 @@ import {
   EstadoOfertaVacio,
 } from '../../excepciones/oferta/EstadoOferta.excepciones'
 
-type ESTADOS = 'publicado' | 'cancelado'
+type ESTADOS = 'publicado' | 'cancelado' | string
 
 export class EstadoOferta extends ValueObject {
   private constructor(private readonly estado: ESTADOS) {
     super()
+  }
+
+  public obtenerEstado() {
+    return this.estado
   }
 
   public esIgual(estadoOferta: EstadoOferta): boolean {
