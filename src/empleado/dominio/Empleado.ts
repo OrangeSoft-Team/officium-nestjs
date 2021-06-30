@@ -1,4 +1,3 @@
-import { Direccion } from 'src/comun/dominio/Direccion'
 import { Entidad } from 'src/comun/dominio/Entidad'
 import { CalleDireccion } from 'src/comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from 'src/comun/dominio/values/CodigoPostalDireccion'

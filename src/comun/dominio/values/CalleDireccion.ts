@@ -9,6 +9,10 @@ export class CalleDireccion extends ValueObject {
     super()
   }
 
+  public obtenerCalle(){
+    return this.calle
+  }
+
   public esIgual(calleDireccion: CalleDireccion): boolean {
     return this.calle == calleDireccion.calle
   }

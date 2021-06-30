@@ -9,6 +9,10 @@ export class CodigoPostalDireccion extends ValueObject {
     super()
   }
 
+  obtenerCodigoPostal(){
+    this.codigo
+  }
+
   public esIgual(codigoPostalDireccion: CodigoPostalDireccion): boolean {
     return this.codigo == codigoPostalDireccion.codigo
   }

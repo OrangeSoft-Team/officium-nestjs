@@ -1,10 +1,10 @@
 import {
   IRepositorioOfertaLaboral,
-  OfertaLaboralPersistenciaDTO,
+  ConsultarOfertaLaboralPersistenciaDTO,
 } from '../../../aplicacion/puertos/IRepositorioOfertaLaboral'
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
- public async listar(): Promise<OfertaLaboralPersistenciaDTO[]> {
+ public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
     return [
       {
         id: '7453dc15-7ff2-4c37-9455-de661a5275b1',

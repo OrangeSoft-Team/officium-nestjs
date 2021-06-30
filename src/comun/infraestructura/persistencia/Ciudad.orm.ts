@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm'
+import { DireccionORM } from './Direccion.orm'
 import { EstadoORM } from './Estado.orm'
 
 @Entity()
@@ -11,4 +12,8 @@ export class CiudadORM {
 
   @ManyToOne(() => EstadoORM, (estado) => estado.ciudades)
   estado: EstadoORM
+
+  @OneToMany(() => DireccionORM, (direccion) => direccion.uuid)
+  direcciones: DireccionORM[]
 }
+

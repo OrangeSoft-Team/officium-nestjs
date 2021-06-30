@@ -1,8 +1,8 @@
-import { Body, Controller, HttpException, Get } from '@nestjs/common'
+import {Controller, Get, Param } from '@nestjs/common'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
-import { ConsultarOfertasLaboralesMapeador } from '../../mapeadores/ConsultarOfertasLaborales.api.mapeador'
+import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
 import { ConsultarOfertasLaboralesDTO } from 'src/empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
 
 
@@ -25,7 +25,29 @@ export class ControladorOfertasLaborales {
     }
 
     //En caso de éxito
-    return ConsultarOfertasLaboralesMapeador.respuestaHttp(
+    return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
+      <ConsultarOfertasLaboralesDTO[]>solicitud.valor,
+    )
+  }
+
+  @Get(':uuid_oferta_laboral')
+  public async VerDetallesOfertaLaboral( 
+    @Param('uuid_empresa') uuidEmpresa: string,
+    ) {
+
+    //Creamos el DTO de solicitud
+    const dto = OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidEmpresa)
+    // Realizamos la solicitud al servicio
+    const solicitud = await this.servicioOfertasLaborales.VerDetallesOfertaLaboral(dto)
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      EmpleadoErrorHttpMapeador.manejarExcepcionEmpleado(excepcion, 'GET')
+    }
+
+    //En caso de éxito
+    return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
       <ConsultarOfertasLaboralesDTO[]>solicitud.valor,
     )
   }

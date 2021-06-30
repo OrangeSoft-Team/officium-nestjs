@@ -2,7 +2,7 @@ import { Resultado } from '../../../comun/aplicacion/Resultado'
 import { EstadoOferta } from '../../dominio/values/oferta/EstadoOferta'
 import { Excepcion } from '../../../comun/dominio/Excepcion'
 import { ConsultarOfertasLaboralesDTO } from '../dto/ConsultarOfertasLaborales.dto'
-import { ConsultarOfertaRespuestaMapeador } from '../mapeadores/ConsultarOfertasLaborales.mapeador'
+import { OfertaLaboralMapeador } from '../mapeadores/OfertaLaboral.mapeador'
 import { IRepositorioOfertaLaboral} from '../puertos/IRepositorioOfertaLaboral'
 
 
@@ -17,7 +17,7 @@ export class ConsultarOfertasLaborales {
         const lista = await this.repositorioOfertaLaboral.listar()
 
         //Se compara lo obtenido con el dominio y se retorna
-        let ofertasLaborales = lista.map((listadoOfertas) => ConsultarOfertaRespuestaMapeador.MapConsultaDominioOferta(listadoOfertas))
+        let ofertasLaborales = lista.map((listadoOfertas) => OfertaLaboralMapeador.MapConsultaDominioOferta(listadoOfertas))
 
         //Se filtran las publicaciones activas
         const estadoOfertaPublicado = EstadoOferta.crear('publicado')
@@ -26,7 +26,7 @@ export class ConsultarOfertasLaborales {
         )
 
         //Mapeamos para respuesta
-        const dtoConsulta = ofertasLaborales.map((listadoOfertas) => ConsultarOfertaRespuestaMapeador.MapConsultaRespuestaOferta(listadoOfertas))
+        const dtoConsulta = ofertasLaborales.map((listadoOfertas) => OfertaLaboralMapeador.MapConsultaRespuestaOferta(listadoOfertas))
         
         //Se retorna el DTO
         return Resultado.ok<ConsultarOfertasLaboralesDTO[]>(
