@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { ObtenerEstadosRespuestaDTO } from '../../../aplicacion/dto/ObtenerEstados.dto'
+import { ExcepcionAplicacion } from '../../../aplicacion/ExcepcionAplicacion'
 import { ComunErrorHttpMapeador } from '../../mapeadores/ComunErrorHttp.mapeador'
-import { ObtenerEstadosAPIMapeador } from '../../mapeadores/ObtenerEstados.api.mapeador'
+import { EstadoAPIMapeador } from '../../mapeadores/Estados.api.mapeador'
 import { ServicioEstados } from './estados.service'
 
 @Controller('api/ubicacion/paises/:uuid_pais/estados')
@@ -12,7 +12,8 @@ export class ControladorEstados {
   @Get('')
   public async obtenerPorPais(@Param('uuid_pais') uuidPais: string) {
     // Mapeamos la solicitud al dto del caso de uso de aplicación requerido
-    const dtoSolicitud = ObtenerEstadosAPIMapeador.httpSolicitud(uuidPais)
+    const dtoSolicitud =
+      EstadoAPIMapeador.transformarSolicitudHttpObtenerEstados(uuidPais)
     // Realizamos la solicitud
     const solicitud = await this.servicioEstados.obtenerPorPais(dtoSolicitud)
 
@@ -23,7 +24,7 @@ export class ControladorEstados {
     }
 
     // En caso de exito mapeamos la respuesta del servicio al dto definido por la API y retornamos la data
-    return ObtenerEstadosAPIMapeador.respuestaHttp(
+    return EstadoAPIMapeador.transformarRespuestaObtenerEstados(
       <ObtenerEstadosRespuestaDTO[]>solicitud.valor,
     )
   }

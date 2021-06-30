@@ -3,7 +3,7 @@ import { Resultado } from '../../../comun/aplicacion/Resultado'
 import { Excepcion } from '../../../comun/dominio/Excepcion'
 import { CrearOfertaLaboralSolicitudDTO } from '../dto/CrearOfertaLaboral.dto'
 import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
-import { CrearOfertaLaboralMapeador } from '../mapeadores/CrearOfertaLaboral.mapeador'
+import { OfertaLaboralMapeador } from '../mapeadores/OfertaLaboral.mapeador'
 import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
 import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
 
@@ -30,14 +30,14 @@ export class CrearOfertaLaboral {
       const id = this.servicioIdentificador.generarIdentificador().id
 
       // Creamos la oferta laboral con el identificador y los datos de la solicitud
-      const ofertaLaboral = CrearOfertaLaboralMapeador.solicitudEntidad({
+      const ofertaLaboral = OfertaLaboralMapeador.crearEntidadPorSolicitud({
         id,
         ...solicitud,
       })
 
       // Persistimos la oferta laboral
       await this.repositorioOfertaLaboral.crear(
-        CrearOfertaLaboralMapeador.entidadPersistencia(
+        OfertaLaboralMapeador.transformarEntidadEnPersistencia(
           ofertaLaboral,
           solicitud.idEmpresa,
         ),

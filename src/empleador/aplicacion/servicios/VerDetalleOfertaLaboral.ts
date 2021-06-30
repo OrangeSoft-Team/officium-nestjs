@@ -1,12 +1,12 @@
 import { Resultado } from '../../../comun/aplicacion/Resultado'
 import { Excepcion } from '../../../comun/dominio/Excepcion'
 import {
-  VerDetalleOfertaLaboralRespuestaDTO,
   VerDetalleOfertaLaboralSolicitudDTO,
+  VerDetalleOfertaLaboralRespuestaDTO,
 } from '../dto/VerDetalleOfertaLaboral.dto'
 import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
 import { OfertaLaboralNoExiste } from '../excepciones/OfertaLaboralNoExiste'
-import { VerDetalleOfertaLaboralMapeador } from '../mapeadores/VerDetalleOfertaLaboral.mapeador'
+import { OfertaLaboralMapeador } from '../mapeadores/OfertaLaboral.mapeador'
 import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
 import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
 
@@ -42,10 +42,12 @@ export class VerDetalleOfertaLaboral {
         )
 
       // Verificamos los datos con el dominio
-      const oferta = VerDetalleOfertaLaboralMapeador.persistenciaEntidad(datos)
+      const oferta =
+        OfertaLaboralMapeador.transformarPersistenciaEnEntidad(datos)
 
       // Preparamos el DTO de respuesta
-      const respuesta = VerDetalleOfertaLaboralMapeador.entidadRespuesta(oferta)
+      const respuesta =
+        OfertaLaboralMapeador.transformarEntidadEnRespuestaDetallada(oferta)
 
       // En caso de que todo salga bien, retornamos un OK con los datos
       return Resultado.ok<VerDetalleOfertaLaboralRespuestaDTO>(respuesta)

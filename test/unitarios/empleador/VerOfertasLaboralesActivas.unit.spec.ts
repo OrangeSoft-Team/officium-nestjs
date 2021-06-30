@@ -36,7 +36,7 @@ describe('Empleador: Ver todas las ofertas laborales activas de la empresa', () 
       expect(res.valor).toHaveLength(1)
       expect(res.valor).toStrictEqual([
         {
-          cargo: 'Conserje a tiempo completo',
+          cargo: 'Conserje',
           duracionEstimadaEscala: 'mes',
           duracionEstimadaValor: 12,
           fechaPublicacion: new Date('11-09-2020'),

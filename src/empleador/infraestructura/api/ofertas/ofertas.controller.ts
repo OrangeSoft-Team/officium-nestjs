@@ -1,13 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
-import { CrearOfertaLaboralEmpresaApiDTO } from '../../dto/CrearOfertaLaboralEmpresa.api.dto'
-import { CrearOfertaLaboralAPIMapeador } from '../../mapeadores/CrearOfertaLaboral.api.mapeador'
-import { ServicioOfertasLaborales } from './ofertas.service'
-import { EmpleadorErrorHttpMapeador } from '../../mapeadores/EmpleadorErrorHttp.mapeador'
-import { VerOfertasLaboralesActivasAPIMapeador } from '../../mapeadores/VerOfertasLaboralesActivas.api.mapeador'
-import { VerOfertasLaboralesActivasRespuestaDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
+import { Controller, Get, Param, Post, Body } from '@nestjs/common'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { VerDetalleOfertaLaboralRespuestaDTO } from '../../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
-import { VerDetalleOfertaLaboralAPIMapeador } from '../../mapeadores/VerDetalleOfertaLaboral.api.mapeador'
+import { VerOfertasLaboralesActivasRespuestaDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
+import { CrearOfertaLaboralEmpresaApiDTO } from '../../dto/CrearOfertaLaboralEmpresa.api.dto'
+import { EmpleadorErrorHttpMapeador } from '../../mapeadores/EmpleadorErrorHttp.mapeador'
+import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
+import { ServicioOfertasLaborales } from './ofertas.service'
 
 @Controller('api/empleador/ofertas_laborales')
 export class ControladorOfertasLaborales {
@@ -21,7 +19,9 @@ export class ControladorOfertasLaborales {
   ) {
     // Mapeamos la solicitud al dto del caso de uso de aplicación requerido
     const dtoSolicitud =
-      VerOfertasLaboralesActivasAPIMapeador.httpSolicitud(uuidEmpresa)
+      OfertaLaboralAPIMapeador.transformarSolicitudHttpVerOfertasLaboralesActivas(
+        uuidEmpresa,
+      )
     // Realizamos la solicitud con el dto mapeado
     const solicitud =
       await this.servicioOfertasLaborales.obtenerOfertasLaboralesActivas(
@@ -35,7 +35,7 @@ export class ControladorOfertasLaborales {
     }
 
     // En caso de exito mapeamos la respuesta del servicio al dto definido por la API y retornamos la data
-    return VerOfertasLaboralesActivasAPIMapeador.respuestaHttp(
+    return OfertaLaboralAPIMapeador.transformarRespuestaVerOfertasLaboralesActivas(
       <VerOfertasLaboralesActivasRespuestaDTO[]>solicitud.valor,
     )
   }
@@ -46,10 +46,11 @@ export class ControladorOfertasLaborales {
     @Param('uuid_oferta_laboral') uuidOfertaLaboral: string,
   ) {
     // Mapeamos la solicitud al dto del caso de uso de aplicación requerido
-    const dtoSolicitud = VerDetalleOfertaLaboralAPIMapeador.httpSolicitud(
-      uuidEmpresa,
-      uuidOfertaLaboral,
-    )
+    const dtoSolicitud =
+      OfertaLaboralAPIMapeador.transformarSolicitudHttpVerDetalleOfertaLaboral(
+        uuidEmpresa,
+        uuidOfertaLaboral,
+      )
 
     // Realizamos la solicitud con el dto mapeado
     const solicitud =
@@ -62,7 +63,7 @@ export class ControladorOfertasLaborales {
     }
 
     // En caso de exito mapeamos la respuesta del servicio al dto definido por la API y retornamos la data
-    return VerDetalleOfertaLaboralAPIMapeador.respuestaHttp(
+    return OfertaLaboralAPIMapeador.transformarRespuestaVerDetalleOfertaLaboral(
       <VerDetalleOfertaLaboralRespuestaDTO>solicitud.valor,
     )
   }
@@ -72,7 +73,8 @@ export class ControladorOfertasLaborales {
     @Body() dto: CrearOfertaLaboralEmpresaApiDTO,
   ) {
     // Mapeamos el dto de infraestructura al dto de capa de aplicación requerido
-    const dtoSolicitud = CrearOfertaLaboralAPIMapeador.httpSolicitud(dto)
+    const dtoSolicitud =
+      OfertaLaboralAPIMapeador.transformarSolicitudHttpCrearOfertaLaboral(dto)
     // Realizamos la solicitud con el dto mapeado
     const solicitud = await this.servicioOfertasLaborales.crearOfertaLaboral(
       dtoSolicitud,

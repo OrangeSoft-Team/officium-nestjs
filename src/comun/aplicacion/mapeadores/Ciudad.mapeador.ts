@@ -4,8 +4,10 @@ import { NombreCiudad } from '../../dominio/values/NombreCiudad'
 import { ObtenerCiudadesRespuestaDTO } from '../dto/ObtenerCiudades.dto'
 import { CiudadPersistenciaDTO } from '../puertos/IRepositorioCiudades'
 
-export class ObtenerCiudadesMapeador {
-  public static persitenciaEntidades(datos: CiudadPersistenciaDTO[]): Ciudad[] {
+export class CiudadMapeador {
+  public static transformarPersistenciaEnEntidades(
+    datos: CiudadPersistenciaDTO[],
+  ): Ciudad[] {
     return datos.map((ciudad) =>
       Ciudad.crear({
         identificador: Identificador.crear(ciudad.idCiudad),
@@ -14,7 +16,7 @@ export class ObtenerCiudadesMapeador {
     )
   }
 
-  public static entidadesRespuesta(
+  public static transformarEntidadesEnRespuesta(
     ciudades: Ciudad[],
     idPais: string,
     idEstado: string,
