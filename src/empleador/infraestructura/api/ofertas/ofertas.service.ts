@@ -5,8 +5,10 @@ import { GeneradorIdentificadorUUID } from '../../../../comun/infraestructura/ad
 import { EmpresaORM } from '../../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { CrearOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/CrearOfertaLaboral.dto'
+import { VerDetalleOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
 import { VerOfertasLaboralesActivasSolicitudDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
 import { CrearOfertaLaboral } from '../../../aplicacion/servicios/CrearOfertaLaboral'
+import { VerDetalleOfertaLaboral } from '../../../aplicacion/servicios/VerDetalleOfertaLaboral'
 import { VerOfertasLaboralesActivas } from '../../../aplicacion/servicios/VerOfertasLaboralesActivas'
 import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
@@ -18,6 +20,7 @@ export class ServicioOfertasLaborales {
   private readonly generadorIdentificador: GeneradorIdentificadorUUID
   private readonly servicioCrearOfertaLaboral: CrearOfertaLaboral
   private readonly servicioVerOfertasLaboralesActivas: VerOfertasLaboralesActivas
+  private readonly servicioVerDetalleOfertaLaboral: VerDetalleOfertaLaboral
 
   public constructor(
     @InjectRepository(OfertaLaboralORM)
@@ -42,6 +45,10 @@ export class ServicioOfertasLaborales {
       this.repositorioOfertaLaboral,
       this.repositorioEmpresa,
     )
+    this.servicioVerDetalleOfertaLaboral = new VerDetalleOfertaLaboral(
+      this.repositorioEmpresa,
+      this.repositorioOfertaLaboral,
+    )
   }
 
   // Caso de uso 7.1 Empleador: Ver Ofertas Laborales Activas
@@ -54,5 +61,12 @@ export class ServicioOfertasLaborales {
   // Caso de uso 8.1 Empleador: Crear Oferta Laboral
   public async crearOfertaLaboral(dto: CrearOfertaLaboralSolicitudDTO) {
     return await this.servicioCrearOfertaLaboral.ejecutar(dto)
+  }
+
+  // Caso de uso 8.5 Empleador: Ver detalle de oferta laboral
+  public async verDetalleOfertaLaboral(
+    dto: VerDetalleOfertaLaboralSolicitudDTO,
+  ) {
+    return await this.servicioVerDetalleOfertaLaboral.ejecutar(dto)
   }
 }
