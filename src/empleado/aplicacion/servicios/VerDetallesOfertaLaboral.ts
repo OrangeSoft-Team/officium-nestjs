@@ -15,13 +15,12 @@ export class VerDetallesOfertaLaboral {
 
   public async ejecutar(peticion: VerDetallesOfertaLaboralPeticionDTO) {
     try {
-
       //Se usa el metodo de la interfaz para buscar la oferta
       const datos = await this.repositorioOfertaLaboral.buscarOferta({
         id: peticion.idOferta,
       })
 
-      //Comprobamos si trae registro 
+      //Comprobamos si trae registro
       if (datos?.id != peticion.idOferta)
         throw new OfertaLaboralNoExiste(
           peticion.idOferta,

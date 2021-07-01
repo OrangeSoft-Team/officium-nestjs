@@ -39,7 +39,7 @@ const codigos = [
   {
     http: HttpStatus.NOT_FOUND,
     metodos: ['GET', 'POST'],
-    nombres: ['EmpresaNoExiste'],
+    nombres: ['EmpresaNoExiste', 'OfertaLaboralNoExiste'],
   },
   {
     http: HttpStatus.INTERNAL_SERVER_ERROR,

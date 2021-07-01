@@ -15,9 +15,8 @@ export class DireccionORM {
   codigoPostal: string
 
   @ManyToOne(() => CiudadORM, (ciudad) => ciudad.direcciones)
-  Ciudad: CiudadORM
+  ciudad: CiudadORM
 
   @OneToMany(() => EmpresaORM, (empresa) => empresa.uuid)
   empresas: EmpresaORM[]
-
 }

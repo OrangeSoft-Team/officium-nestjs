@@ -9,6 +9,7 @@ import {
   VerDetallesOfertaLaboralPersistenciaDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
 import { Repository } from 'typeorm'
+import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
 
 @Injectable()
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
@@ -46,11 +47,14 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     try {
       //Se busca el registro en persistencia
       const detalleOferta = await this.repositorioOferta
-      .createQueryBuilder('oferta')
-      .innerJoinAndSelect('oferta.empresa','empresa')
-      .where('oferta.id = :id', {id: peticion.id})
-      .getOne()
-      //Se arma el objeto de retorno
+        .createQueryBuilder('oferta')
+        .innerJoinAndSelect('oferta.empresa', 'empresa')
+        .innerJoinAndSelect('empresa.direccion', 'direccion')
+        .innerJoinAndSelect('direccion.ciudad', 'ciudad')
+        .where('oferta.uuid = :uuid', { uuid: peticion.id })
+        .getOneOrFail()
+
+      // Se arma el objeto de retorno
       return {
         id: detalleOferta.uuid,
         titulo: detalleOferta.titulo,
@@ -68,13 +72,10 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
         nombreEmpresa: detalleOferta.empresa.nombre,
         calleEmpresa: detalleOferta.empresa.direccion.calle,
         codigoPostalEmpresa: detalleOferta.empresa.direccion.codigoPostal,
-        ciudadEmpresa: detalleOferta.empresa.direccion.Ciudad.nombre,
+        ciudadEmpresa: detalleOferta.empresa.direccion.ciudad.nombre,
       }
-    } catch {
-      throw new ExcepcionAplicacion(
-        null,
-        'No se ha podido procesar la solicitud.',
-      )
+    } catch (error) {
+      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
     }
   }
 }

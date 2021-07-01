@@ -107,7 +107,7 @@ export class OfertaLaboralMapeador {
       id: oferta.identificador.obtenerId(),
       titulo: oferta.titulo.obtenerTitulo(),
       fechaPublicacion: oferta.fechaPublicacion.obtenerFecha(),
-      fechaModificacion: oferta.fechaModificacion.obtenerFecha(),
+      fechaModificacion: oferta.fechaModificacion?.obtenerFecha(),
       cargo: oferta.cargo.obtenerCargo(),
       sueldo: oferta.sueldo.obtenerSueldo(),
       descripcion: oferta.descripcion.obtenerDescripcion(),

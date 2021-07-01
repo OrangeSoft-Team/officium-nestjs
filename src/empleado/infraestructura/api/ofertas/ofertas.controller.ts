@@ -32,11 +32,11 @@ export class ControladorOfertasLaborales {
 
   @Get(':uuid_oferta_laboral')
   public async VerDetallesOfertaLaboral(
-    @Param('uuid_empresa') uuidEmpresa: string,
+    @Param('uuid_oferta_laboral') uuidOferta: string,
   ) {
     //Creamos el DTO de solicitud
     const dto =
-      OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidEmpresa)
+      OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidOferta)
     // Realizamos la solicitud al servicio
     const solicitud =
       await this.servicioOfertasLaborales.VerDetallesOfertaLaboral(dto)

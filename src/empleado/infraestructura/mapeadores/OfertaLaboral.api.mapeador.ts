@@ -44,7 +44,9 @@ export class OfertaLaboralAPIMapeador {
       uuid: oferta.id,
       titulo: oferta.titulo,
       fechaPublicacion: MapeadorFecha.formatear(oferta.fechaPublicacion),
-      fechaModificacion: MapeadorFecha.formatear(oferta.fechaModificacion),
+      fechaModificacion: oferta.fechaModificacion
+        ? MapeadorFecha.formatear(oferta.fechaModificacion)
+        : null,
       cargo: oferta.cargo,
       sueldo: oferta.sueldo,
       descripcion: oferta.descripcion,

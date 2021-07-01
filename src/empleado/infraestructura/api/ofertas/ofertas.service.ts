@@ -24,6 +24,9 @@ export class ServicioOfertasLaborales {
     this.servicioConsultarOfertasLaborales = new ConsultarOfertasLaborales(
       this.repositorioOfertaLaboral,
     )
+    this.servicioVerDetallesOfertaLaboral = new VerDetallesOfertaLaboral(
+      this.repositorioOfertaLaboral,
+    )
   }
 
   // Caso de uso 11.1 Empleado: Consultar Ofertas Laborales
