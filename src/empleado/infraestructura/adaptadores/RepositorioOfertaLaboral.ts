@@ -45,14 +45,11 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ): Promise<VerDetallesOfertaLaboralPersistenciaDTO> {
     try {
       //Se busca el registro en persistencia
-      const detalle = await this.repositorioOferta
+      const detalleOferta = await this.repositorioOferta
       .createQueryBuilder('oferta')
       .innerJoinAndSelect('oferta.empresa','empresa')
       .where('oferta.id = :id', {id: peticion.id})
       .getOne()
-      const detalleOferta = await this.repositorioOferta.findOne({
-        where: { uuid: peticion.id },
-      })
       //Se arma el objeto de retorno
       return {
         id: detalleOferta.uuid,
