@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { ModuloAdministrador } from '../../administrador/infraestructura/api/administrador.module'
 import { ModuloEmpleado } from '../../empleado/infraestructura/api/empleado.module'
 import { ModuloEmpleador } from '../../empleador/infraestructura/api/empleador.module'
 import { ModuloUbicaciones } from './api/ubicaciones.module'
@@ -38,6 +39,7 @@ import { PostulacionOfertaORM } from './persistencia/PostulacionOferta.orm'
     ModuloEmpleador,
     ModuloUbicaciones,
     ModuloEmpleado,
+    ModuloAdministrador
   ],
   controllers: [],
   providers: [],
