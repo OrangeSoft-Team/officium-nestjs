@@ -10,6 +10,7 @@ import { NumeroVacantesOferta } from './values/oferta/NumeroVacantesOferta'
 import { SueldoOferta } from './values/oferta/SueldoOferta'
 import { TituloOferta } from './values/oferta/TituloOferta'
 import { TurnoOferta } from './values/oferta/TurnoOferta'
+import { PostulacionOferta } from './PostulacionOferta'
 
 export interface DatosOfertaLaboral {
   identificador: Identificador
@@ -23,6 +24,7 @@ export interface DatosOfertaLaboral {
   numeroVacantes: NumeroVacantesOferta
   sueldo: SueldoOferta
   fechaModificacion?: FechaModificacionOferta
+  postulaciones?: PostulacionOferta[]
 }
 
 export class OfertaLaboral extends Entidad {
@@ -38,6 +40,7 @@ export class OfertaLaboral extends Entidad {
     private numeroVacantes: NumeroVacantesOferta,
     private sueldo: SueldoOferta,
     private fechaModificacion?: FechaModificacionOferta,
+    private postulaciones?: PostulacionOferta[],
   ) {
     super(identificador)
   }

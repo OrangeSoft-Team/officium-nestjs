@@ -36,9 +36,18 @@ export interface VerDetallesOfertaLaboralPersistenciaDTO {
   ciudadEmpresa: string
 }
 
+export interface IdentificadorOfertaLaboralDTO {
+  idOferta: string
+}
+
+export interface OfertaLaboralExisteDTO {
+  existe: boolean
+}
+
 export interface IRepositorioOfertaLaboral {
   listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]>
   buscarOferta(
     peticion: IdentificadorDTO,
   ): Promise<VerDetallesOfertaLaboralPersistenciaDTO>
+  existe(dto: IdentificadorOfertaLaboralDTO): Promise<OfertaLaboralExisteDTO>
 }
