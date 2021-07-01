@@ -1,12 +1,12 @@
-export interface ConsultarOfertasLaboralesDTO {
-  id: string
+export interface ConsultarOfertasLaboralesAPIDTO {
+  uuid: string
   titulo: string
-  fecha: Date
+  fechaPublicacion: string
   cargo: string
   sueldo: number
   duracionEstimadaValor: number
   duracionEstimadaEscala: string
   turnoTrabajo: string
   numeroVacantes: number
-  nombreEmpresa: string
+  empresaNombre: string
 }

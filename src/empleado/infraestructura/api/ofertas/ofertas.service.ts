@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { VerDetallesOfertaLaboralPeticionDTO } from 'src/empleado/aplicacion/dto/VerDetallesOfertaLaboral.dto'
-import { ConsultarOfertasLaborales } from 'src/empleado/aplicacion/servicios/ConsultarOfertasLaborales'
-import { VerDetallesOfertaLaboral } from 'src/empleado/aplicacion/servicios/VerDetallesOfertaLaboral'
+import { VerDetallesOfertaLaboralPeticionDTO } from '../../../../empleado/aplicacion/dto/VerDetallesOfertaLaboral.dto'
+import { ConsultarOfertasLaborales } from '../../../../empleado/aplicacion/servicios/ConsultarOfertasLaborales'
+import { VerDetallesOfertaLaboral } from '../../../../empleado/aplicacion/servicios/VerDetallesOfertaLaboral'
 import { Repository } from 'typeorm'
 import { OfertaLaboralORM } from '../../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
@@ -19,10 +19,10 @@ export class ServicioOfertasLaborales {
   ) {
     // generamos los adaptadores que debemos inyectar al caso de uso para que pueda funcionar
     this.repositorioOfertaLaboral = new RepositorioOfertaLaboral(
-      this.ofertaLaboralORM
+      this.ofertaLaboralORM,
     )
     this.servicioConsultarOfertasLaborales = new ConsultarOfertasLaborales(
-      this.repositorioOfertaLaboral
+      this.repositorioOfertaLaboral,
     )
   }
 
@@ -30,7 +30,11 @@ export class ServicioOfertasLaborales {
   public async ConsultarOfertasLaborales() {
     return await this.servicioConsultarOfertasLaborales.ejecutar()
   }
-  public async VerDetallesOfertaLaboral(dto: VerDetallesOfertaLaboralPeticionDTO) {
+
+  // Caso de uso 12.1 Empleado: Ver Detalles Oferta Laboral
+  public async VerDetallesOfertaLaboral(
+    dto: VerDetallesOfertaLaboralPeticionDTO,
+  ) {
     return await this.servicioVerDetallesOfertaLaboral.ejecutar(dto)
   }
 }

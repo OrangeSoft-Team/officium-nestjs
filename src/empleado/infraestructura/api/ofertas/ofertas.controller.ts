@@ -1,10 +1,10 @@
-import {Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Param } from '@nestjs/common'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
-import { ConsultarOfertasLaboralesDTO } from 'src/empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
-
+import { ConsultarOfertasLaboralesDTO } from '../../../../empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
+import { VerDetallesOfertaLaboralDTO } from '../../../../empleado/aplicacion/dto/VerDetallesOfertaLaboral.dto'
 
 @Controller('api/empleado/ofertas_laborales')
 export class ControladorOfertasLaborales {
@@ -13,10 +13,10 @@ export class ControladorOfertasLaborales {
   ) {}
 
   @Get()
-  public async ConsultarOfertasLaborales() 
-  {
+  public async ConsultarOfertasLaborales() {
     // Realizamos la solicitud al servicio
-    const solicitud = await this.servicioOfertasLaborales.ConsultarOfertasLaborales()
+    const solicitud =
+      await this.servicioOfertasLaborales.ConsultarOfertasLaborales()
 
     // En caso de error
     if (!solicitud.esExitoso) {
@@ -31,14 +31,15 @@ export class ControladorOfertasLaborales {
   }
 
   @Get(':uuid_oferta_laboral')
-  public async VerDetallesOfertaLaboral( 
+  public async VerDetallesOfertaLaboral(
     @Param('uuid_empresa') uuidEmpresa: string,
-    ) {
-
+  ) {
     //Creamos el DTO de solicitud
-    const dto = OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidEmpresa)
+    const dto =
+      OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidEmpresa)
     // Realizamos la solicitud al servicio
-    const solicitud = await this.servicioOfertasLaborales.VerDetallesOfertaLaboral(dto)
+    const solicitud =
+      await this.servicioOfertasLaborales.VerDetallesOfertaLaboral(dto)
 
     // En caso de error
     if (!solicitud.esExitoso) {
@@ -47,8 +48,8 @@ export class ControladorOfertasLaborales {
     }
 
     //En caso de éxito
-    return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
-      <ConsultarOfertasLaboralesDTO[]>solicitud.valor,
+    return OfertaLaboralAPIMapeador.VerDetallesOfertaRespuestaHttp(
+      <VerDetallesOfertaLaboralDTO>solicitud.valor,
     )
   }
 }

@@ -1,4 +1,4 @@
-import { IdentificadorDTO } from "src/comun/aplicacion/dto/Identificador.dto";
+import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
 
 export interface ConsultarOfertaLaboralPersistenciaDTO {
   id: string
@@ -16,7 +16,6 @@ export interface ConsultarOfertaLaboralPersistenciaDTO {
   nombreEmpresa: string
 }
 
-
 export interface VerDetallesOfertaLaboralPersistenciaDTO {
   id: string
   titulo: string
@@ -30,15 +29,16 @@ export interface VerDetallesOfertaLaboralPersistenciaDTO {
   turno: string
   numeroVacantes: number
   estado: string
+  uuidEmpresa: string
   nombreEmpresa: string
   calleEmpresa: string
   codigoPostalEmpresa: string
   ciudadEmpresa: string
 }
 
-
 export interface IRepositorioOfertaLaboral {
   listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]>
-  buscarOferta(peticion: IdentificadorDTO): Promise<VerDetallesOfertaLaboralPersistenciaDTO>
-
+  buscarOferta(
+    peticion: IdentificadorDTO,
+  ): Promise<VerDetallesOfertaLaboralPersistenciaDTO>
 }

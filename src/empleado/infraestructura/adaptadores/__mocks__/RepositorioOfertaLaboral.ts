@@ -1,10 +1,37 @@
+import { IdentificadorDTO } from '../../../../comun/aplicacion/dto/Identificador.dto'
 import {
   IRepositorioOfertaLaboral,
   ConsultarOfertaLaboralPersistenciaDTO,
+  VerDetallesOfertaLaboralPersistenciaDTO,
 } from '../../../aplicacion/puertos/IRepositorioOfertaLaboral'
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
- public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
+  public async buscarOferta(
+    peticion: IdentificadorDTO,
+  ): Promise<VerDetallesOfertaLaboralPersistenciaDTO> {
+    return {
+      id: '7453dc15-7ff2-4c37-9455-de661a5275b1',
+      titulo: 'Desarrollador en Python',
+      fechaPublicacion: new Date('06-06-2020'),
+      fechaModificacion: new Date('06-08-2020'),
+      cargo: 'Desarrollador',
+      sueldo: 50000,
+      descripcion:
+        'Se busca desarrollador en python moderno con amplios conocimientos en los principios SOLID.',
+      duracionEstimada: 1,
+      escalaDuracion: 'mes',
+      turno: 'diurno',
+      numeroVacantes: 1,
+      estado: 'publicado',
+      uuidEmpresa: '35b59754-d9fd-11eb-b8bc-0242ac130003',
+      nombreEmpresa: 'Officium',
+      calleEmpresa: 'Av el Ejército, callejón Machado',
+      codigoPostalEmpresa: '3312',
+      ciudadEmpresa: 'Caracas',
+    }
+  }
+
+  public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
     return [
       {
         id: '7453dc15-7ff2-4c37-9455-de661a5275b1',
@@ -38,6 +65,5 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
         nombreEmpresa: 'Acme',
       },
     ]
-  } 
- }  
-
+  }
+}

@@ -60,7 +60,10 @@ export class NombreCompletoEmpleado extends ValueObject {
         'El primer apellido del empleado debe tener entre 4 y 40 caracteres.',
       )
 
-    if (nombres.segundoApellido.length < 4 || nombres.segundoApellido.length > 40)
+    if (
+      nombres.segundoApellido.length < 4 ||
+      nombres.segundoApellido.length > 40
+    )
       throw new LongitudInvalidaNombreEmpleado(
         nombresEmpleado,
         'El segundo apellido del empleado debe tener entre 4 y 40 caracteres.',

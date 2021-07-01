@@ -33,7 +33,7 @@ const codigos = [
       'TituloOfertaVacio',
       'TurnoOfertaVacio',
       'TurnoOfertaInvalido',
-      'OfertaLaboralYaExiste',
+      'OfertaLaboralNoExiste',
     ],
   },
   {

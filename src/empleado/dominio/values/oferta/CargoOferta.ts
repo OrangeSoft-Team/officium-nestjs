@@ -8,7 +8,7 @@ export class CargoOferta extends ValueObject {
   private constructor(private readonly cargo: string) {
     super()
   }
-  
+
   public obtenerCargo() {
     return this.cargo
   }
