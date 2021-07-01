@@ -3,9 +3,17 @@ import {
   IRepositorioOfertaLaboral,
   ConsultarOfertaLaboralPersistenciaDTO,
   VerDetallesOfertaLaboralPersistenciaDTO,
+  IdentificadorOfertaLaboralDTO,
+  OfertaLaboralExisteDTO,
 } from '../../../aplicacion/puertos/IRepositorioOfertaLaboral'
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
+  public async existe(
+    dto: IdentificadorOfertaLaboralDTO,
+  ): Promise<OfertaLaboralExisteDTO> {
+    return { existe: dto.idOferta == '79bff1ce-5487-4e57-bb06-3f1b17991271' }
+  }
+
   public async buscarOferta(
     peticion: IdentificadorDTO,
   ): Promise<VerDetallesOfertaLaboralPersistenciaDTO> {

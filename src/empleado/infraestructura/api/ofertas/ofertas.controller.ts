@@ -1,10 +1,12 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
-import { ConsultarOfertasLaboralesDTO } from '../../../../empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
-import { VerDetallesOfertaLaboralDTO } from '../../../../empleado/aplicacion/dto/VerDetallesOfertaLaboral.dto'
+import { ConsultarOfertasLaboralesDTO } from '../../../aplicacion/dto/ConsultarOfertasLaborales.dto'
+import { VerDetallesOfertaLaboralDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboral.dto'
+import { AplicarOfertaLaboralEmpleadoApiDTO } from '../../dto/AplicarOfertaLaboralEmpleado.api.dto'
+import { PostulacionOfertaAPIMapeador } from '../../mapeadores/PostulacionOferta.api.mapeador'
 
 @Controller('api/empleado/ofertas_laborales')
 export class ControladorOfertasLaborales {
@@ -51,5 +53,30 @@ export class ControladorOfertasLaborales {
     return OfertaLaboralAPIMapeador.VerDetallesOfertaRespuestaHttp(
       <VerDetallesOfertaLaboralDTO>solicitud.valor,
     )
+  }
+
+  @Post(':uuid_oferta_laboral')
+  public async PostularseParaOfertaLaboral(
+    @Param('uuid_oferta_laboral') uuidOferta: string,
+    @Body() dto: AplicarOfertaLaboralEmpleadoApiDTO,
+  ) {
+    //Creamos el DTO de solicitud
+    const dtoSolicitud =
+      PostulacionOfertaAPIMapeador.transformarSolicitudHttpPostularseOferta(
+        dto,
+        uuidOferta,
+      )
+    // Realizamos la solicitud al servicio
+    const solicitud =
+      await this.servicioOfertasLaborales.postularseOfertLaboral(dtoSolicitud)
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      EmpleadoErrorHttpMapeador.manejarExcepcionEmpleado(excepcion, 'POST')
+    }
+
+    //En caso de éxito
+    return
   }
 }

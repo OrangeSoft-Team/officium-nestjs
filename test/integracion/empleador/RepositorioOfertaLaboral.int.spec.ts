@@ -4,8 +4,14 @@ import {
   getRepository,
   Repository,
 } from 'typeorm'
+import { CiudadORM } from '../../../src/comun/infraestructura/persistencia/Ciudad.orm'
+import { DireccionORM } from '../../../src/comun/infraestructura/persistencia/Direccion.orm'
+import { EmpleadoORM } from '../../../src/comun/infraestructura/persistencia/Empleado.orm'
 import { EmpresaORM } from '../../../src/comun/infraestructura/persistencia/Empresa.orm'
+import { EstadoORM } from '../../../src/comun/infraestructura/persistencia/Estado.orm'
 import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
+import { PaisORM } from '../../../src/comun/infraestructura/persistencia/Pais.orm'
+import { PostulacionOfertaORM } from '../../../src/comun/infraestructura/persistencia/PostulacionOferta.orm'
 import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
 import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralYaExiste'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
@@ -27,7 +33,7 @@ const oferta_prueba = {
   idEmpresa: '38e33e61-c75c-4190-86ac-c77124381214',
 }
 
-const empresa_pruba = {
+const empresa_prueba = {
   uuid: '38e33e61-c75c-4190-86ac-c77124381214',
   codigoPostal: '1060',
   direccionCalle: 'Avenida testing',
@@ -50,7 +56,16 @@ describe('Repositorio de persistencia Empleador: Ofertas Laborales', () => {
       username: 'postgres',
       password: 'postgres',
       database: 'officium_test',
-      entities: [OfertaLaboralORM, EmpresaORM],
+      entities: [
+        OfertaLaboralORM,
+        EmpresaORM,
+        PostulacionOfertaORM,
+        EmpleadoORM,
+        DireccionORM,
+        CiudadORM,
+        EstadoORM,
+        PaisORM,
+      ],
       synchronize: true,
     })
 
@@ -63,7 +78,7 @@ describe('Repositorio de persistencia Empleador: Ofertas Laborales', () => {
     await empresaORM.delete('38e33e61-c75c-4190-86ac-c77124381214')
 
     // Insertamos empresa de prueba
-    await empresaORM.insert(empresa_pruba)
+    await empresaORM.insert(empresa_prueba)
 
     // Instanciamos al repositorio a prubar (Subject under testing)
     repositorioOfertaLaboral = new RepositorioOfertaLaboral(

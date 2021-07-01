@@ -70,6 +70,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
         uuid: datos.id,
         empresa,
         ...datos,
+        postulaciones: [],
         fechaModificacion: datos?.fechaModificacion,
       }
       await this.repositorioOferta.insert(ofertaLaboral)
