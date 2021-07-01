@@ -16,4 +16,3 @@ export class CiudadORM {
   @OneToMany(() => DireccionORM, (direccion) => direccion.uuid)
   direcciones: DireccionORM[]
 }
-

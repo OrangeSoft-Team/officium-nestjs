@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm'
 import { EmpresaORM } from './Empresa.orm'
+import { PostulacionOfertaORM } from './PostulacionOferta.orm'
 
 @Entity()
 export class OfertaLaboralORM {
@@ -41,4 +42,7 @@ export class OfertaLaboralORM {
 
   @ManyToOne(() => EmpresaORM, (empresa) => empresa.ofertasLaborales)
   empresa: EmpresaORM
+
+  @OneToMany(() => PostulacionOfertaORM, (postulacion) => postulacion.oferta)
+  postulaciones: PostulacionOfertaORM[]
 }

@@ -1,5 +1,3 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
 import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
 import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
@@ -7,21 +5,31 @@ import {
   IRepositorioOfertaLaboral,
   ConsultarOfertaLaboralPersistenciaDTO,
   VerDetallesOfertaLaboralPersistenciaDTO,
+  IdentificadorOfertaLaboralDTO,
+  OfertaLaboralExisteDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
-import { Repository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
 
-@Injectable()
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
-  public constructor(
-    @InjectRepository(OfertaLaboralORM)
-    private readonly repositorioOferta: Repository<OfertaLaboralORM>,
-  ) {}
+  public async existe(
+    dto: IdentificadorOfertaLaboralDTO,
+  ): Promise<OfertaLaboralExisteDTO> {
+    try {
+      const oferta = await getRepository(OfertaLaboralORM).findOne({
+        where: { uuid: dto.idOferta },
+      })
+
+      return { existe: oferta?.uuid ? true : false }
+    } catch {
+      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
+    }
+  }
 
   public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
     try {
       //Implementacion del repositorio, se hace el listado a persistencia
-      const listadoOfertas = await this.repositorioOferta
+      const listadoOfertas = await getRepository(OfertaLaboralORM)
         .createQueryBuilder('oferta')
         .innerJoinAndSelect('oferta.empresa', 'empresa')
         .getMany()
@@ -46,7 +54,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ): Promise<VerDetallesOfertaLaboralPersistenciaDTO> {
     try {
       //Se busca el registro en persistencia
-      const detalleOferta = await this.repositorioOferta
+      const detalleOferta = await getRepository(OfertaLaboralORM)
         .createQueryBuilder('oferta')
         .innerJoinAndSelect('oferta.empresa', 'empresa')
         .innerJoinAndSelect('empresa.direccion', 'direccion')
