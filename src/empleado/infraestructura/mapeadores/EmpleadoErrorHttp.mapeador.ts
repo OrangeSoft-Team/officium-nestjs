@@ -33,13 +33,13 @@ const codigos = [
       'TituloOfertaVacio',
       'TurnoOfertaVacio',
       'TurnoOfertaInvalido',
-      'OfertaLaboralYaExiste',
+      'OfertaLaboralNoExiste',
     ],
   },
   {
     http: HttpStatus.NOT_FOUND,
     metodos: ['GET', 'POST'],
-    nombres: ['EmpresaNoExiste'],
+    nombres: ['EmpresaNoExiste', 'OfertaLaboralNoExiste'],
   },
   {
     http: HttpStatus.INTERNAL_SERVER_ERROR,

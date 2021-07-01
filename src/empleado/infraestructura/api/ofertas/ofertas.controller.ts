@@ -1,10 +1,10 @@
-import { Body, Controller, HttpException, Get } from '@nestjs/common'
+import { Controller, Get, Param } from '@nestjs/common'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
-import { ConsultarOfertasLaboralesMapeador } from '../../mapeadores/ConsultarOfertasLaborales.api.mapeador'
-import { ConsultarOfertasLaboralesDTO } from 'src/empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
-
+import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
+import { ConsultarOfertasLaboralesDTO } from '../../../../empleado/aplicacion/dto/ConsultarOfertasLaborales.dto'
+import { VerDetallesOfertaLaboralDTO } from '../../../../empleado/aplicacion/dto/VerDetallesOfertaLaboral.dto'
 
 @Controller('api/empleado/ofertas_laborales')
 export class ControladorOfertasLaborales {
@@ -13,10 +13,10 @@ export class ControladorOfertasLaborales {
   ) {}
 
   @Get()
-  public async ConsultarOfertasLaborales() 
-  {
+  public async ConsultarOfertasLaborales() {
     // Realizamos la solicitud al servicio
-    const solicitud = await this.servicioOfertasLaborales.ConsultarOfertasLaborales()
+    const solicitud =
+      await this.servicioOfertasLaborales.ConsultarOfertasLaborales()
 
     // En caso de error
     if (!solicitud.esExitoso) {
@@ -25,8 +25,31 @@ export class ControladorOfertasLaborales {
     }
 
     //En caso de éxito
-    return ConsultarOfertasLaboralesMapeador.respuestaHttp(
+    return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
       <ConsultarOfertasLaboralesDTO[]>solicitud.valor,
+    )
+  }
+
+  @Get(':uuid_oferta_laboral')
+  public async VerDetallesOfertaLaboral(
+    @Param('uuid_oferta_laboral') uuidOferta: string,
+  ) {
+    //Creamos el DTO de solicitud
+    const dto =
+      OfertaLaboralAPIMapeador.VerDetallesOfertaPeticionHttp(uuidOferta)
+    // Realizamos la solicitud al servicio
+    const solicitud =
+      await this.servicioOfertasLaborales.VerDetallesOfertaLaboral(dto)
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      EmpleadoErrorHttpMapeador.manejarExcepcionEmpleado(excepcion, 'GET')
+    }
+
+    //En caso de éxito
+    return OfertaLaboralAPIMapeador.VerDetallesOfertaRespuestaHttp(
+      <VerDetallesOfertaLaboralDTO>solicitud.valor,
     )
   }
 }

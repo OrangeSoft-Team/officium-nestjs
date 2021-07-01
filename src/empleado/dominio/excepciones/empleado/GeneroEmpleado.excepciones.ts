@@ -1,4 +1,4 @@
-import { Excepcion } from 'src/comun/dominio/Excepcion'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
 import { GeneroEmpleado } from '../../values/empleado/GeneroEmpleado'
 
 export class GeneroEmpleadoVacio extends Excepcion {

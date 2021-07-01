@@ -28,7 +28,7 @@ export class FechaNacimientoEmpleado extends ValueObject {
         fecha,
         'La fecha de nacimiento del empleado no es una fecha valida.',
       )
-    
+
     const fechaNacimiento = new FechaNacimientoEmpleado(fecha)
 
     // la edad debe ser mayor a 18
