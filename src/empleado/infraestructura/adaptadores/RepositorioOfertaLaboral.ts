@@ -20,7 +20,10 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
     try {
       //Implementacion del repositorio, se hace el listado a persistencia
-      const listadoOfertas = await this.repositorioOferta.find()
+      const listadoOfertas = await this.repositorioOferta
+        .createQueryBuilder('oferta')
+        .innerJoinAndSelect('oferta.empresa', 'empresa')
+        .getMany()
       return listadoOfertas.map((oferta) => {
         return {
           id: oferta.uuid,
@@ -42,6 +45,11 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ): Promise<VerDetallesOfertaLaboralPersistenciaDTO> {
     try {
       //Se busca el registro en persistencia
+      const detalle = await this.repositorioOferta
+      .createQueryBuilder('oferta')
+      .innerJoinAndSelect('oferta.empresa','empresa')
+      .where('oferta.id = :id', {id: peticion.id})
+      .getOne()
       const detalleOferta = await this.repositorioOferta.findOne({
         where: { uuid: peticion.id },
       })
