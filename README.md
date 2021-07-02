@@ -47,7 +47,7 @@ Adicionalmente, se utilizan las siguientes plantillas para el repositorio:
 | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="24"> | Manejador de base de datos | PostgreSQL | https://www.postgresql.org/download/     | 13.1    |
 | <img src="https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" width="24">         | Framework                  | Nest.js    | https://docs.nestjs.com/#installation    | 7.16.5  |
 | <img src="https://avatars.githubusercontent.com/u/32196900?s=400&v=4" width="24">                                                           | Testing                    | Jest       | https://jestjs.io/docs/getting-started   | 26.6.3  |
-| <img src="https://prettier.io/icon.png" width="24">                                                                                         | Prettier                   | Linter     | https://prettier.io/docs/en/install.html | 7.1.1   |
+| <img src="https://prettier.io/icon.png" width="24">                                                                                         | Linter                     | Prettier   | https://prettier.io/docs/en/install.html | 7.1.1   |
 
 ### :wrench: Instalación de la Aplicación
 
@@ -108,6 +108,10 @@ Esta aplicación consta de tres tipos de pruebas automatizables ejecutables, las
 
   `npm run test:acp`
 
+- Ejecutar archivos especifico:
+
+  `jest rutaArchivo/rutaCarpeta`
+
 ### :mag_right: Referencias
 
 ---
@@ -122,3 +126,4 @@ Esta aplicación consta de tres tipos de pruebas automatizables ejecutables, las
 - [Implementación de "Arquitectura Hexagonal" y explicación de conceptos utilizando código Dart](https://pub.dev/packages/flutter_clean_architecture)
 - [Pruebas de integración de la base de datos utilizando Nest.js](https://medium.com/@salmon.3e/integration-testing-with-nestjs-and-typeorm-2ac3f77e7628)
 - [Probar PostgreSQL, Nest.js y autentificación utilizando E2E testing](https://firxworx.com/blog/coding/nestjs-integration-and-e2e-tests-with-typeorm-postgres-and-jwt/)
+- [Prueba E2E utilizando una base de datos de testing](https://github.com/igern/Nestjs-Typeorm-e2e-testing/blob/master/test/app.e2e-spec.ts)
