@@ -1,13 +1,7 @@
 import { ConfigModule } from '@nestjs/config'
 import { Connection, createConnection, getRepository } from 'typeorm'
-import { CiudadORM } from '../../../src/comun/infraestructura/persistencia/Ciudad.orm'
-import { DireccionORM } from '../../../src/comun/infraestructura/persistencia/Direccion.orm'
-import { EmpleadoORM } from '../../../src/comun/infraestructura/persistencia/Empleado.orm'
 import { EmpresaORM } from '../../../src/comun/infraestructura/persistencia/Empresa.orm'
-import { EstadoORM } from '../../../src/comun/infraestructura/persistencia/Estado.orm'
 import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { PaisORM } from '../../../src/comun/infraestructura/persistencia/Pais.orm'
-import { PostulacionOfertaORM } from '../../../src/comun/infraestructura/persistencia/PostulacionOferta.orm'
 import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
 import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralYaExiste'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
@@ -52,18 +46,9 @@ describe('Repositorio de persistencia Empleador: Ofertas Laborales', () => {
       username: process.env.USUARIO_BD_TESTING,
       password: process.env.CLAVE_BD_TESTING,
       database: process.env.NOMBRE_BD_TESTING,
+      entities: ['src/comun/infraestructura/persistencia/*'],
       synchronize: true,
       dropSchema: true,
-      entities: [
-        PaisORM,
-        CiudadORM,
-        EstadoORM,
-        DireccionORM,
-        EmpleadoORM,
-        PostulacionOfertaORM,
-        OfertaLaboralORM,
-        EmpresaORM,
-      ],
     })
 
     // Insertamos empresa de prueba

@@ -4,14 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ModuloEmpleado } from '../../empleado/infraestructura/api/empleado.module'
 import { ModuloEmpleador } from '../../empleador/infraestructura/api/empleador.module'
 import { ModuloUbicaciones } from './api/ubicaciones.module'
-import { CiudadORM } from './persistencia/Ciudad.orm'
-import { DireccionORM } from './persistencia/Direccion.orm'
-import { EmpleadoORM } from './persistencia/Empleado.orm'
-import { EmpresaORM } from './persistencia/Empresa.orm'
-import { EstadoORM } from './persistencia/Estado.orm'
-import { OfertaLaboralORM } from './persistencia/OfertaLaboral.orm'
-import { PaisORM } from './persistencia/Pais.orm'
-import { PostulacionOfertaORM } from './persistencia/PostulacionOferta.orm'
 
 @Module({
   imports: [
@@ -23,16 +15,7 @@ import { PostulacionOfertaORM } from './persistencia/PostulacionOferta.orm'
       username: process.env.USUARIO_BD,
       password: process.env.CLAVE_BD,
       database: process.env.NOMBRE_BD,
-      entities: [
-        EmpresaORM,
-        OfertaLaboralORM,
-        PaisORM,
-        EstadoORM,
-        CiudadORM,
-        DireccionORM,
-        EmpleadoORM,
-        PostulacionOfertaORM,
-      ],
+      entities: ['dist/comun/infraestructura/persistencia/*'],
       synchronize: true,
     }),
     ModuloEmpleador,

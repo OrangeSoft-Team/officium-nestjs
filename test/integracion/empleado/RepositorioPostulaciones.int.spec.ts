@@ -18,7 +18,7 @@ import { RepositorioPostulaciones } from '../../../src/empleado/infraestructura/
 async function crearDatosPrueba() {
   let pais = new PaisORM()
   pais = {
-    uuid: '3e4ab19b-ae50-440a-b40f-60f286c48873',
+    uuid: '57980453-ae50-440a-b40f-60f286c48873',
     nombre: 'Colombia',
     estados: [],
   }
@@ -26,7 +26,7 @@ async function crearDatosPrueba() {
 
   let estado = new EstadoORM()
   estado = {
-    uuid: '1f661ce1-7304-4e88-a1fb-a530f08b66d8',
+    uuid: '54305646-7304-4e88-a1fb-a530f08b66d8',
     nombre: 'Arauca',
     pais,
     ciudades: [],
@@ -113,18 +113,9 @@ describe('Repositorio de persistencia Empleado: Postulaciones', () => {
       username: process.env.USUARIO_BD_TESTING,
       password: process.env.CLAVE_BD_TESTING,
       database: process.env.NOMBRE_BD_TESTING,
+      entities: ['src/comun/infraestructura/persistencia/*'],
       synchronize: true,
       dropSchema: true,
-      entities: [
-        PaisORM,
-        CiudadORM,
-        EstadoORM,
-        DireccionORM,
-        EmpleadoORM,
-        PostulacionOfertaORM,
-        OfertaLaboralORM,
-        EmpresaORM,
-      ],
     })
 
     // Insertamos empresa, empleado y oferta de prueba
