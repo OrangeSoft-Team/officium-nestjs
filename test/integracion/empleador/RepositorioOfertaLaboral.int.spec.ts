@@ -1,17 +1,7 @@
-import {
-  Connection,
-  createConnection,
-  getRepository,
-  Repository,
-} from 'typeorm'
-import { CiudadORM } from '../../../src/comun/infraestructura/persistencia/Ciudad.orm'
-import { DireccionORM } from '../../../src/comun/infraestructura/persistencia/Direccion.orm'
-import { EmpleadoORM } from '../../../src/comun/infraestructura/persistencia/Empleado.orm'
+import { ConfigModule } from '@nestjs/config'
+import { Connection, createConnection, getRepository } from 'typeorm'
 import { EmpresaORM } from '../../../src/comun/infraestructura/persistencia/Empresa.orm'
-import { EstadoORM } from '../../../src/comun/infraestructura/persistencia/Estado.orm'
 import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { PaisORM } from '../../../src/comun/infraestructura/persistencia/Pais.orm'
-import { PostulacionOfertaORM } from '../../../src/comun/infraestructura/persistencia/PostulacionOferta.orm'
 import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
 import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralYaExiste'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
@@ -43,47 +33,31 @@ const empresa_prueba = {
 
 describe('Repositorio de persistencia Empleador: Ofertas Laborales', () => {
   let conexionBD: Connection
-  let ofertaLaboralORM: Repository<OfertaLaboralORM>
-  let empresaORM: Repository<EmpresaORM>
   let repositorioOfertaLaboral: RepositorioOfertaLaboral
 
   beforeAll(async () => {
+    // Configuramos para que las variables de entorno se encuentren disponibles
+    ConfigModule.forRoot()
     // Generamos una conexión a la base de datos de testing
     conexionBD = await createConnection({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'officium_test',
-      entities: [
-        OfertaLaboralORM,
-        EmpresaORM,
-        PostulacionOfertaORM,
-        EmpleadoORM,
-        DireccionORM,
-        CiudadORM,
-        EstadoORM,
-        PaisORM,
-      ],
+      type: <any>process.env.TIPO_BD_TESTING,
+      host: process.env.RUTA_BD_TESTING,
+      port: parseInt(process.env.PUERTO_BD_TESTING),
+      username: process.env.USUARIO_BD_TESTING,
+      password: process.env.CLAVE_BD_TESTING,
+      database: process.env.NOMBRE_BD_TESTING,
+      entities: ['src/comun/infraestructura/persistencia/*'],
       synchronize: true,
+      dropSchema: true,
     })
 
-    // Creamos los repositorios del ORM
-    ofertaLaboralORM = getRepository(OfertaLaboralORM)
-    empresaORM = getRepository(EmpresaORM)
-
-    // Eliminamos datos de prueba anteriores
-    await ofertaLaboralORM.delete('7453dc15-7ff2-4c37-9455-de661a5275b1')
-    await empresaORM.delete('38e33e61-c75c-4190-86ac-c77124381214')
-
     // Insertamos empresa de prueba
-    await empresaORM.insert(empresa_prueba)
+    await getRepository(EmpresaORM).insert(empresa_prueba)
 
     // Instanciamos al repositorio a prubar (Subject under testing)
     repositorioOfertaLaboral = new RepositorioOfertaLaboral(
-      ofertaLaboralORM,
-      empresaORM,
+      getRepository(OfertaLaboralORM),
+      getRepository(EmpresaORM),
     )
   })
 
