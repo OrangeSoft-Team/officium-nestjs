@@ -57,7 +57,7 @@ Para realizar la instalación de la aplicación, es necesario realizar los sigui
 
 - Previo a la instalación de la aplicación, debe crear 2 bases de datos, para la misma, una base de datos de producción y una base de datos de testing.
 
-  > El sistema provee soporte "out of the box" para PostgreSQL y SQLite, en el cual se recomienda utilizar PostgreSQL para la base de datos de producción y SQLite para la base de datos de testing (ya que la misma no requiere de muchos usuarios concurrentes y solo almacena datos temporalmente). Se pueden agregar otros tipos de bases de datos, pero requerirá la instalación de sus librerías JavaScript/TypeScript respectivas.
+  > El sistema provee soporte "out of the box" para PostgreSQL y SQLite. Se pueden agregar otros tipos de bases de datos, pero requerirá la instalación de sus librerías JavaScript/TypeScript respectivas.
 
   > **NOTA:** En caso de usar PostgreSQL, cree la base de datos previamente.
 
