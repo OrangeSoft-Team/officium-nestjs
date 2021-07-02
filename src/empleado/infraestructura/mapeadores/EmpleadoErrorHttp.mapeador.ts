@@ -35,6 +35,7 @@ const codigos = [
       'TurnoOfertaInvalido',
       'OfertaLaboralYaExiste',
       'LongitudInvalidaComentarioPostulacion',
+      'PostulacionNoExiste',
     ],
   },
   {

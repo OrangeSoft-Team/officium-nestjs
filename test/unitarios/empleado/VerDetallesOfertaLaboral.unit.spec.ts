@@ -13,7 +13,7 @@ describe('empleado: Ver Detalles de Oferta laboral suministrada', () => {
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null)
+    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
     casoUso = new VerDetallesOfertaLaboral(
       mockRepositorioOfertaLaboral,
     )
