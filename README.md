@@ -55,10 +55,21 @@ Adicionalmente, se utilizan las siguientes plantillas para el repositorio:
 
 Para realizar la instalación de la aplicación, es necesario realizar los siguientes pasos:
 
+- Previo a la instalación de la aplicación, debe crear 2 bases de datos, para la misma, una base de datos de producción y una base de datos de testing.
+
+  > El sistema provee soporte "out of the box" para PostgreSQL y SQLite, en el cual se recomienda utilizar PostgreSQL para la base de datos de producción y SQLite para la base de datos de testing (ya que la misma no requiere de muchos usuarios concurrentes y solo almacena datos temporalmente). Se pueden agregar otros tipos de bases de datos, pero requerirá la instalación de sus librerías JavaScript/TypeScript respectivas.
+
+  > **NOTA:** En caso de usar PostgreSQL, cree la base de datos previamente.
+
 - Cree una copia local del repositorio en su dispositivo.
 
-- Luego, ejecute el siguiente comando dentro de la carpeta para obtener el stack tecnológico de frameworks y librerías de las cuales depende la aplicación:
+- Luego de descargar el repositorio, cambie el nombre del archivo `ejemplo.env` a `.env`, en este deberá colocar los datos de la base de datos de producción y la base de datos de pruebas o testing.
+
+- Luego, ejecute el siguiente comando dentro de la carpeta para obtener el stack tecnológico de frameworks y librerías de las cuales depende la infraestructura de la aplicación:
   `npm install`
+
+- Opcionalmente puede ejecutar el comando (en caso de que no se detecte el framework de testing al momento de ejecutarlos):
+  `npm install -g jest`
 
 ### :hammer: Construcción de la Aplicación (build)
 

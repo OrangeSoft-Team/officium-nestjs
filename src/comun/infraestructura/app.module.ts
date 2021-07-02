@@ -17,7 +17,7 @@ import { PostulacionOfertaORM } from './persistencia/PostulacionOferta.orm'
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: <any>process.env.TIPO_BD,
       host: process.env.RUTA_BD,
       port: parseInt(process.env.PUERTO_BD),
       username: process.env.USUARIO_BD,
