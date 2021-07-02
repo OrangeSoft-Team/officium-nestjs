@@ -1,10 +1,10 @@
-import { Resultado } from "../../../comun/aplicacion/Resultado";
-import { Excepcion } from "../../../comun/dominio/Excepcion";
-import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from "../dto/ConsultarPostulaciones.dto";
-import { EmpleadoNoExiste } from "../excepciones/EmpleadoNoExiste";
-import { PostulacionOfertaMapeador } from "../mapeadores/PostulacionOferta.mapeador";
-import { IRepositorioEmpleado } from "../puertos/IRepositorioEmpleado";
-import { IRepositorioPostulaciones } from "../puertos/IRepositorioPostulaciones";
+import { Resultado } from "../../../../comun/aplicacion/Resultado";
+import { Excepcion } from "../../../../comun/dominio/Excepcion";
+import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from "../../dto/postulacion/ConsultarPostulaciones.dto";
+import { EmpleadoNoExiste } from "../../excepciones/empleado/EmpleadoNoExiste";
+import { PostulacionOfertaMapeador } from "../../mapeadores/PostulacionOferta.mapeador";
+import { IRepositorioEmpleado } from "../../puertos/IRepositorioEmpleado";
+import { IRepositorioPostulaciones } from "../../puertos/IRepositorioPostulaciones";
 
 export class ConsultarPostulaciones{
     constructor(private readonly repositorioPostulaciones: IRepositorioPostulaciones,

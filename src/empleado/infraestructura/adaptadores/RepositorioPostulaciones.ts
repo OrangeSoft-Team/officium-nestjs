@@ -3,10 +3,10 @@ import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dt
 import { EmpleadoORM } from '../../../comun/infraestructura/persistencia/Empleado.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { PostulacionOfertaORM } from '../../../comun/infraestructura/persistencia/PostulacionOferta.orm'
-import { EmpleadoNoExiste } from '../../aplicacion/excepciones/EmpleadoNoExiste'
-import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
-import { PostulacionNoExiste } from '../../aplicacion/excepciones/PostulacionNoExiste'
-import { PostulacionOfertaYaExiste } from '../../aplicacion/excepciones/PostulacionOfertaYaExiste'
+import { EmpleadoNoExiste } from '../../aplicacion/excepciones/empleado/EmpleadoNoExiste'
+import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
+import { PostulacionNoExiste } from '../../aplicacion/excepciones/postulacion/PostulacionNoExiste'
+import { PostulacionOfertaYaExiste } from '../../aplicacion/excepciones/postulacion/PostulacionOfertaYaExiste'
 import {
   ConsultarPostulacionesPersistenciaDTO,
   IRepositorioPostulaciones,

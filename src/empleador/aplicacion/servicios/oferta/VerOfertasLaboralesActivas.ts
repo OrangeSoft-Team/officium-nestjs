@@ -1,15 +1,15 @@
-import { Resultado } from '../../../comun/aplicacion/Resultado'
-import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { OfertaLaboral } from '../../dominio/OfertaLaboral'
-import { EstadoOferta } from '../../dominio/values/oferta/EstadoOferta'
+import { Resultado } from '../../../../comun/aplicacion/Resultado'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
+import { OfertaLaboral } from '../../../dominio/OfertaLaboral'
+import { EstadoOferta } from '../../../dominio/values/oferta/EstadoOferta'
 import {
   VerOfertasLaboralesActivasSolicitudDTO,
   VerOfertasLaboralesActivasRespuestaDTO,
-} from '../dto/VerOfertasLaborales.dto'
-import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
-import { OfertaLaboralMapeador } from '../mapeadores/OfertaLaboral.mapeador'
-import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
-import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
+} from '../../dto/oferta/VerOfertasLaborales.dto'
+import { EmpresaNoExiste } from '../../excepciones/empresa/EmpresaNoExiste'
+import { OfertaLaboralMapeador } from '../../mapeadores/OfertaLaboral.mapeador'
+import { IRepositorioEmpresa } from '../../puertos/IRepositorioEmpresa'
+import { IRepositorioOfertaLaboral } from '../../puertos/IRepositorioOfertaLaboral'
 
 export class VerOfertasLaboralesActivas {
   public constructor(

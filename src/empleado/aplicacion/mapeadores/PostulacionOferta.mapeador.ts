@@ -6,8 +6,8 @@ import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { ComentarioPostulacion } from '../../dominio/values/postulacion/ComentarioPostulacion'
 import { EstadoPostulacion } from '../../dominio/values/postulacion/EstadoPostulacion'
 import { FechaPostulacion } from '../../dominio/values/postulacion/FechaPostulacion'
-import { ConsultarPostulacionesDTO, DominioPostulacionDTO } from '../dto/ConsultarPostulaciones.dto'
-import { PostularseOfertaLaboralSolicitudDTO } from '../dto/PostularseOfertaLaboral.dto'
+import { ConsultarPostulacionesDTO, DominioPostulacionDTO } from '../dto/postulacion/ConsultarPostulaciones.dto'
+import { PostularseOfertaLaboralSolicitudDTO } from '../dto/postulacion/PostularseOfertaLaboral.dto'
 import { ConsultarPostulacionesPersistenciaDTO, PostulacionOfertaPersistenciaDTO } from '../puertos/IRepositorioPostulaciones'
 
 export class PostulacionOfertaMapeador {

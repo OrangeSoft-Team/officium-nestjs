@@ -1,6 +1,6 @@
 import { RepositorioPostulaciones } from '../../../src/empleado/infraestructura/adaptadores/RepositorioPostulaciones'
 import { RepositorioEmpleado } from '../../../src/empleado/infraestructura/adaptadores/RepositorioEmpleado'
-import { ConsultarPostulaciones } from '../../../src/empleado/aplicacion/servicios/ConsultarPostulaciones'
+import { ConsultarPostulaciones } from '../../../src/empleado/aplicacion/servicios/postulacion/ConsultarPostulaciones'
 
 
 // Mock del repositorio de persistencia de Postulaciones

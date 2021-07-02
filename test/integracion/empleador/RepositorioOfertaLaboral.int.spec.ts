@@ -2,8 +2,8 @@ import { ConfigModule } from '@nestjs/config'
 import { Connection, createConnection, getRepository } from 'typeorm'
 import { EmpresaORM } from '../../../src/comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
-import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralYaExiste'
+import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
+import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/oferta/OfertaLaboralYaExiste'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
 
 const oferta_prueba = {

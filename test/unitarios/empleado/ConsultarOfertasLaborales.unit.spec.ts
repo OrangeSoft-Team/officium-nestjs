@@ -1,5 +1,5 @@
 import { RepositorioOfertaLaboral } from '../../../src/empleado/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { ConsultarOfertasLaborales } from '../../../src/empleado/aplicacion/servicios/ConsultarOfertasLaborales'
+import { ConsultarOfertasLaborales } from '../../../src/empleado/aplicacion/servicios/oferta/ConsultarOfertasLaborales'
 
 
 // Mock del repositorio de persistencia de Oferta Laboral

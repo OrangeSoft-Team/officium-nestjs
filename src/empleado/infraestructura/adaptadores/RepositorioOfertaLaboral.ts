@@ -9,7 +9,7 @@ import {
   OfertaLaboralExisteDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
 import { getRepository } from 'typeorm'
-import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
+import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async existe(

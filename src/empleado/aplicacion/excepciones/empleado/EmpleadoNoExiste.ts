@@ -1,4 +1,4 @@
-import { Excepcion } from '../../../comun/dominio/Excepcion'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
 
 export class EmpleadoNoExiste extends Excepcion {
   public constructor(valor: any, error: string) {

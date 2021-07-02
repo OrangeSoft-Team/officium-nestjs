@@ -1,11 +1,11 @@
 import { MapeadorFecha } from '../../../comun/infraestructura/mapeadores/Fecha.mapeador'
-import { ConsultarOfertasLaboralesDTO } from '../../aplicacion/dto/ConsultarOfertasLaborales.dto'
+import { ConsultarOfertasLaboralesDTO } from '../../aplicacion/dto/oferta/ConsultarOfertasLaborales.dto'
 import {
   VerDetallesOfertaLaboralDTO,
   VerDetallesOfertaLaboralPeticionDTO,
-} from '../../aplicacion/dto/VerDetallesOfertaLaboral.dto'
-import { ConsultarOfertasLaboralesAPIDTO } from '../dto/ConsultarOfertasLaborales.api.dto'
-import { VerDetallesOfertaLaboralAPIDTO } from '../dto/VerDetalllesOfertaLaboral.api.dto'
+} from '../../aplicacion/dto/oferta/VerDetallesOfertaLaboral.dto'
+import { ConsultarOfertasLaboralesAPIDTO } from '../dto/oferta/ConsultarOfertasLaborales.api.dto'
+import { VerDetallesOfertaLaboralAPIDTO } from '../dto/oferta/VerDetalllesOfertaLaboral.api.dto'
 
 export class OfertaLaboralAPIMapeador {
   public static ConsultarOfertasRespuestaHttp(

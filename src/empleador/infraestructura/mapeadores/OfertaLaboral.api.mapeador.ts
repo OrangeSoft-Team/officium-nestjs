@@ -1,16 +1,16 @@
 import { MapeadorFecha } from '../../../comun/infraestructura/mapeadores/Fecha.mapeador'
-import { CrearOfertaLaboralSolicitudDTO } from '../../aplicacion/dto/CrearOfertaLaboral.dto'
+import { CrearOfertaLaboralSolicitudDTO } from '../../aplicacion/dto/oferta/CrearOfertaLaboral.dto'
 import {
   VerDetalleOfertaLaboralRespuestaDTO,
   VerDetalleOfertaLaboralSolicitudDTO,
-} from '../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
+} from '../../aplicacion/dto/oferta/VerDetalleOfertaLaboral.dto'
 import {
   VerOfertasLaboralesActivasRespuestaDTO,
   VerOfertasLaboralesActivasSolicitudDTO,
-} from '../../aplicacion/dto/VerOfertasLaborales.dto'
-import { CrearOfertaLaboralEmpresaApiDTO } from '../dto/CrearOfertaLaboralEmpresa.api.dto'
-import { DetalleOfertaLaboralEmpresaApiDTO } from '../dto/VerDetalleOfertaLaboral.api.dto'
-import { OfertasLaboralesActivasEmpresaApiDTO } from '../dto/VerOfertasLaboralesActivasEmpresa.api.dto'
+} from '../../aplicacion/dto/oferta/VerOfertasLaborales.dto'
+import { CrearOfertaLaboralEmpresaApiDTO } from '../dto/oferta/CrearOfertaLaboralEmpresa.api.dto'
+import { DetalleOfertaLaboralEmpresaApiDTO } from '../dto/oferta/VerDetalleOfertaLaboral.api.dto'
+import { OfertasLaboralesActivasEmpresaApiDTO } from '../dto/oferta/VerOfertasLaboralesActivasEmpresa.api.dto'
 
 export class OfertaLaboralAPIMapeador {
   // Mapear solicitud http para crear una oferta al DTO de capa de aplicación

@@ -1,5 +1,5 @@
 import { IdentificadorDTO } from "../../../comun/aplicacion/dto/Identificador.dto";
-import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from "../dto/ConsultarPostulaciones.dto";
+import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from "../dto/postulacion/ConsultarPostulaciones.dto";
 
 export interface PostulacionOfertaPersistenciaDTO {
   id: string

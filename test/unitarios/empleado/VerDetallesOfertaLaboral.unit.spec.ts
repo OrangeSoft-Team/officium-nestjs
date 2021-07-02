@@ -1,5 +1,5 @@
 import { RepositorioOfertaLaboral } from '../../../src/empleado/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { VerDetallesOfertaLaboral } from '../../../src/empleado/aplicacion/servicios/VerDetallesOfertaLaboral'
+import { VerDetallesOfertaLaboral } from '../../../src/empleado/aplicacion/servicios/oferta/VerDetallesOfertaLaboral'
 
 
 // Mock del repositorio de persistencia de Oferta Laboral

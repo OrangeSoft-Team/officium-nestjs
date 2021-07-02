@@ -3,9 +3,9 @@ import { ServicioOfertasLaborales } from './ofertas.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
-import { ConsultarOfertasLaboralesDTO } from '../../../aplicacion/dto/ConsultarOfertasLaborales.dto'
-import { VerDetallesOfertaLaboralDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboral.dto'
-import { AplicarOfertaLaboralEmpleadoApiDTO } from '../../dto/AplicarOfertaLaboralEmpleado.api.dto'
+import { ConsultarOfertasLaboralesDTO } from '../../../aplicacion/dto/oferta/ConsultarOfertasLaborales.dto'
+import { VerDetallesOfertaLaboralDTO } from '../../../aplicacion/dto/oferta/VerDetallesOfertaLaboral.dto'
+import { AplicarOfertaLaboralEmpleadoApiDTO } from '../../dto/oferta/AplicarOfertaLaboralEmpleado.api.dto'
 import { PostulacionOfertaAPIMapeador } from '../../mapeadores/PostulacionOferta.api.mapeador'
 
 @Controller('api/empleado/ofertas_laborales')

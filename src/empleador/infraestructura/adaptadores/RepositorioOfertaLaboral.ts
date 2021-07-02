@@ -4,8 +4,8 @@ import { Repository } from 'typeorm'
 import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
 import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { EmpresaNoExiste } from '../../aplicacion/excepciones/EmpresaNoExiste'
-import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/OfertaLaboralYaExiste'
+import { EmpresaNoExiste } from '../../aplicacion/excepciones/empresa/EmpresaNoExiste'
+import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/oferta/OfertaLaboralYaExiste'
 import {
   IdentificadorEmpresaDTO,
   IdentificadorOfertaLaboralDTO,

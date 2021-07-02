@@ -1,13 +1,13 @@
-import { IServicioIdentificador } from '../../../comun/aplicacion/puertos/IServicioIdentificador'
-import { Resultado } from '../../../comun/aplicacion/Resultado'
-import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { PostularseOfertaLaboralSolicitudDTO } from '../dto/PostularseOfertaLaboral.dto'
-import { EmpleadoNoExiste } from '../excepciones/EmpleadoNoExiste'
-import { OfertaLaboralNoExiste } from '../excepciones/OfertaLaboralNoExiste'
-import { PostulacionOfertaMapeador } from '../mapeadores/PostulacionOferta.mapeador'
-import { IRepositorioEmpleado } from '../puertos/IRepositorioEmpleado'
-import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
-import { IRepositorioPostulaciones } from '../puertos/IRepositorioPostulaciones'
+import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
+import { Resultado } from '../../../../comun/aplicacion/Resultado'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
+import { PostularseOfertaLaboralSolicitudDTO } from '../../dto/postulacion/PostularseOfertaLaboral.dto'
+import { EmpleadoNoExiste } from '../../excepciones/empleado/EmpleadoNoExiste'
+import { OfertaLaboralNoExiste } from '../../excepciones/oferta/OfertaLaboralNoExiste'
+import { PostulacionOfertaMapeador } from '../../mapeadores/PostulacionOferta.mapeador'
+import { IRepositorioEmpleado } from '../../puertos/IRepositorioEmpleado'
+import { IRepositorioOfertaLaboral } from '../../puertos/IRepositorioOfertaLaboral'
+import { IRepositorioPostulaciones } from '../../puertos/IRepositorioPostulaciones'
 
 export class PostularseOfertaLaboral {
   public constructor(

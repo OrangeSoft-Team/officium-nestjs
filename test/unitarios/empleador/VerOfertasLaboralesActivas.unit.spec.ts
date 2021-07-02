@@ -1,7 +1,7 @@
 import { RepositorioEmpresa } from '../../../src/empleador/infraestructura/adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { VerOfertasLaboralesActivas } from '../../../src/empleador/aplicacion/servicios/VerOfertasLaboralesActivas'
-import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/EmpresaNoExiste'
+import { VerOfertasLaboralesActivas } from '../../../src/empleador/aplicacion/servicios/oferta/VerOfertasLaboralesActivas'
+import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/empresa/EmpresaNoExiste'
 
 // Mock del repositorio de persistencia de Empresas
 jest.mock(
