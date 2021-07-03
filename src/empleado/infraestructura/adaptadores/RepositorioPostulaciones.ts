@@ -14,17 +14,19 @@ import {
 } from '../../aplicacion/puertos/IRepositorioPostulaciones'
 
 export class RepositorioPostulaciones implements IRepositorioPostulaciones {
+  public async consultar(
+    peticion: IdentificadorDTO,
+  ): Promise<ConsultarPostulacionesPersistenciaDTO[]> {
+    try {
+      const postulaciones = await getRepository(PostulacionOfertaORM)
+        .createQueryBuilder('postulacion')
+        .innerJoinAndSelect('postulacion.oferta', 'oferta')
+        .innerJoinAndSelect('oferta.empresa', 'empresa')
+        .innerJoinAndSelect('postulacion.empleado', 'empleado')
+        .where('empleado.uuid = :uuid', { uuid: peticion.id })
+        .getMany()
 
-  public async consultar(peticion: IdentificadorDTO): Promise<ConsultarPostulacionesPersistenciaDTO[]> {
-    try{
-      const postulaciones = await getRepository(PostulacionOfertaORM).createQueryBuilder('postulacion')
-      .innerJoinAndSelect('postulacion.oferta','oferta')
-      .innerJoinAndSelect('oferta.empresa','empresa')
-      .innerJoinAndSelect('postulacion.empleado','empleado')
-      .where('empleado.uuid = :uuid', {uuid: peticion.id})
-      .getMany()
-
-      return postulaciones.map((postulacion)=>{
+      return postulaciones.map((postulacion) => {
         return {
           uuid: postulacion.uuid,
           uuidOfertaLaboral: postulacion.oferta.uuid,
@@ -36,14 +38,10 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
           comentario: postulacion.comentario,
         }
       })
-    }
-    catch(error){
+    } catch (error) {
       throw new PostulacionNoExiste(null, 'La postulacion no existe.')
-
     }
-
   }
-
 
   public async crear(datos: PostulacionOfertaPersistenciaDTO): Promise<void> {
     let oferta: OfertaLaboralORM

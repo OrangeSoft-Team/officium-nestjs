@@ -1,31 +1,17 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
 import { RepositorioPaises } from '../../adaptadores/RepositorioPaises'
-import { PaisORM } from '../../persistencia/Pais.orm'
-import { EstadoORM } from '../../persistencia/Estado.orm'
 import { RepositorioEstados } from '../../adaptadores/RepositorioEstados'
 import { ObtenerEstadosSolicitudDTO } from '../../../aplicacion/dto/ObtenerEstados.dto'
 import { ObtenerEstados } from '../../../aplicacion/servicios/ObtenerEstados'
 
-@Injectable()
 export class ServicioEstados {
   private readonly repositorioPaises: RepositorioPaises
   private readonly repositorioEstados: RepositorioEstados
   private readonly servicioObtenerEstados: ObtenerEstados
 
-  public constructor(
-    @InjectRepository(PaisORM)
-    private readonly paisORM: Repository<PaisORM>,
-    @InjectRepository(EstadoORM)
-    private readonly estadoORM: Repository<EstadoORM>,
-  ) {
+  public constructor() {
     // Repositorios de datos y adaptadores inyectables en los servicios/casos de uso
-    this.repositorioPaises = new RepositorioPaises(this.paisORM)
-    this.repositorioEstados = new RepositorioEstados(
-      this.paisORM,
-      this.estadoORM,
-    )
+    this.repositorioPaises = new RepositorioPaises()
+    this.repositorioEstados = new RepositorioEstados()
     // Servicios/casos de uso de aplicación
     this.servicioObtenerEstados = new ObtenerEstados(
       this.repositorioEstados,

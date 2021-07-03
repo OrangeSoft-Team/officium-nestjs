@@ -1,6 +1,4 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { IdentificadorDTO } from '../../aplicacion/dto/Identificador.dto'
 import { ExcepcionAplicacion } from '../../aplicacion/ExcepcionAplicacion'
 import {
@@ -10,17 +8,11 @@ import {
 } from '../../aplicacion/puertos/IRepositorioPaises'
 import { PaisORM } from '../persistencia/Pais.orm'
 
-@Injectable()
 export class RepositorioPaises implements IRepositorioPaises {
-  public constructor(
-    @InjectRepository(PaisORM)
-    private readonly repositorioPais: Repository<PaisORM>,
-  ) {}
-
   public async existe(solicitud: IdentificadorDTO): Promise<PaisExisteDTO> {
     try {
       // Obtenemos el pais de la base de datos para verificar su existencia
-      const pais = await this.repositorioPais.findOne({
+      const pais = await getRepository(PaisORM).findOne({
         where: { uuid: solicitud.id },
       })
       return { existe: pais?.uuid ? true : false }
@@ -35,7 +27,7 @@ export class RepositorioPaises implements IRepositorioPaises {
 
   public async obtenerTodos(): Promise<PaisPersistenciaDTO[]> {
     try {
-      const paises = await this.repositorioPais.find()
+      const paises = await getRepository(PaisORM).find()
       return paises.map((pais) => {
         return {
           id: pais.uuid,

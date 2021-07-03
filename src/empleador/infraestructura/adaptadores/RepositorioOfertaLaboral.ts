@@ -1,6 +1,4 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
 import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
@@ -13,24 +11,18 @@ import {
   OfertaLaboralPersistenciaDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
 
-@Injectable()
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
-  public constructor(
-    @InjectRepository(OfertaLaboralORM)
-    private readonly repositorioOferta: Repository<OfertaLaboralORM>,
-    @InjectRepository(EmpresaORM)
-    private readonly repositorioEmpresa: Repository<EmpresaORM>,
-  ) {}
-
   public async obtenerOfertasEmpresa(
     solicitud: IdentificadorEmpresaDTO,
   ): Promise<OfertaLaboralPersistenciaDTO[]> {
     try {
       // Obtenemos a la empresa involucrada
-      const empresa = await this.repositorioEmpresa.findOne({
+      const empresa = await getRepository(EmpresaORM).findOne({
         where: { uuid: solicitud.idEmpresa },
       })
-      const ofertas = await this.repositorioOferta.find({ where: { empresa } })
+      const ofertas = await await getRepository(OfertaLaboralORM).find({
+        where: { empresa },
+      })
       // retornamos la oferta
       return ofertas.map((oferta) => {
         return {
@@ -54,7 +46,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
 
     try {
       // obtenemos la empresa de la oferta laboral
-      empresa = await this.repositorioEmpresa.findOneOrFail({
+      empresa = await getRepository(EmpresaORM).findOneOrFail({
         where: { uuid: datos.idEmpresa },
       })
     } catch (error) {
@@ -73,7 +65,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
         postulaciones: [],
         fechaModificacion: datos?.fechaModificacion,
       }
-      await this.repositorioOferta.insert(ofertaLaboral)
+      await await getRepository(OfertaLaboralORM).insert(ofertaLaboral)
     } catch (error) {
       // En caso de que el insert falle debido a que ya existe la oferta laboral
       throw new OfertaLaboralYaExiste(
@@ -88,13 +80,15 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ): Promise<OfertaLaboralPersistenciaDTO> {
     try {
       // obtenemos la empresa
-      const empresa = await this.repositorioEmpresa.findOne({
+      const empresa = await getRepository(EmpresaORM).findOne({
         where: { uuid: solicitud.idEmpresa },
       })
       // obtenemos la oferta laboral
-      const ofertaLaboral = await this.repositorioOferta.findOne({
-        where: { uuid: solicitud.idOfertaLaboral, empresa },
-      })
+      const ofertaLaboral = await await getRepository(OfertaLaboralORM).findOne(
+        {
+          where: { uuid: solicitud.idOfertaLaboral, empresa },
+        },
+      )
 
       if (!ofertaLaboral) return null
 

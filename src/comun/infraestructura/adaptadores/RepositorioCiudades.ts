@@ -1,6 +1,4 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { IdentificadorDTO } from '../../aplicacion/dto/Identificador.dto'
 import { ExcepcionAplicacion } from '../../aplicacion/ExcepcionAplicacion'
 import {
@@ -10,24 +8,18 @@ import {
 import { CiudadORM } from '../persistencia/Ciudad.orm'
 import { EstadoORM } from '../persistencia/Estado.orm'
 
-@Injectable()
 export class RepositorioCiudades implements IRepositorioCiudades {
-  public constructor(
-    @InjectRepository(EstadoORM)
-    private readonly repositorioEstado: Repository<EstadoORM>,
-    @InjectRepository(CiudadORM)
-    private readonly repositorioCiudad: Repository<CiudadORM>,
-  ) {}
-
   public async obtenerPorEstado(
     solicitud: IdentificadorDTO,
   ): Promise<CiudadPersistenciaDTO[]> {
     try {
       // Obtenemos al estado involucrado
-      const estado = await this.repositorioEstado.findOne({
+      const estado = await getRepository(EstadoORM).findOne({
         where: { uuid: solicitud.id },
       })
-      const ciudades = await this.repositorioCiudad.find({ where: { estado } })
+      const ciudades = await getRepository(CiudadORM).find({
+        where: { estado },
+      })
       // retornamos las ciudades
       return ciudades.map((ciudad) => {
         return {
