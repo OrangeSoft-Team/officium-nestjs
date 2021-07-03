@@ -4,8 +4,8 @@ import { CorreoElectronico } from '../../comun/dominio/values/CorreoElectronico'
 import { Identificador } from '../../comun/dominio/values/Identificador'
 import { NumeroTelefonico } from '../../comun/dominio/values/NumeroTelefonico'
 import { OfertaLaboral } from './OfertaLaboral'
-import { EstadoEmpresa } from './values/Empresa/EstadoEmpresa'
-import { NombreEmpresa } from './values/Empresa/NombreEmpresa'
+import { EstadoEmpresa } from './values/empresa/EstadoEmpresa'
+import { NombreEmpresa } from './values/empresa/NombreEmpresa'
 
 export interface DatosEmpresa {
   identificador: Identificador
