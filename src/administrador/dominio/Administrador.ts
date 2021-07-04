@@ -5,11 +5,11 @@ import { Direccion } from '../../comun/dominio/Direccion'
 //import { PostulacionOferta } from './PostulacionOferta'
 import { FechaNacimientoAdministrador } from './values/administrador/FechaNacimientoAdministrador'
 import { GeneroAdministrador } from './values/administrador/GeneroAdministrador'
-import { NombreCompletoAdministrador } from './values/administrador/NombreCompletoAdministrador'
+import { NombreCompletoAdministrador } from './values/administrador/NombreCompletoAdministrador';
 
 export interface DatosAdministrador {
   identificador: Identificador
-  nombreCompletoEmpleado: NombreCompletoAdministrador
+  NombreCompletoAdministrador: NombreCompletoAdministrador
   genero: GeneroAdministrador
   direccion: Direccion
   numero: NumeroTelefonico
@@ -19,7 +19,7 @@ export interface DatosAdministrador {
 export class Administrador extends Entidad {
   private constructor(
     identificador: Identificador,
-    private nombreCompletoEmpleado: NombreCompletoAdministrador,
+    private NombreCompletoAdministrador: NombreCompletoAdministrador,
     private genero: GeneroAdministrador,
     private direccion: Direccion,
     private numero: NumeroTelefonico,
@@ -30,7 +30,7 @@ export class Administrador extends Entidad {
   public static crear(datos: DatosAdministrador): Administrador {
     return new Administrador(
       datos.identificador,
-      datos.nombreCompletoEmpleado,
+      datos.NombreCompletoAdministrador,
       datos.genero,
       datos.direccion,
       datos.numero,
