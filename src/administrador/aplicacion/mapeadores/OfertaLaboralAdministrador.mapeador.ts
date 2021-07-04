@@ -11,23 +11,23 @@ import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { TurnoOferta } from '../../dominio/values/oferta/TurnoOferta'
 import { DatosOfertaLaboral } from '../../dominio/OfertaLaboral'
 import { CrearOfertaLaboralAdministradorEntidadDTO } from '../dto/CrearOfertaLaboralAdministrador.dto'
-
 import { OfertaLaboralPersistenciaDTO } from '../puertos/IRepositorioOfertaLaboral'
-//import { ConsultarOfertasLaboralesDTO } from '../dto/ConsultarOfertasLaborales.dto'
-/*import {
-  ConsultarOfertaLaboralPersistenciaDTO,
-  VerDetallesOfertaLaboralPersistenciaDTO,
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.dto'
+import {
+  ConsultarOfertaLaboralPersistenciaDTO
 } from '../puertos/IRepositorioOfertaLaboral'
-*/
 import { FechaModificacionOferta } from '../../dominio/values/oferta/FechaModificacionOferta'
 import { NombreEmpresa } from '../../dominio/values/Empresa/NombreEmpresa'
-/*import {
-  DominioDetallesOfertaLaboralDTO,
-  VerDetallesOfertaLaboralDTO,
-} from '../dto/VerDetallesOfertaLaboral.dto'*/
 import { CalleDireccion } from '../../../comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from '../../../comun/dominio/values/CodigoPostalDireccion'
 import { NombreCiudad } from '../../../comun/dominio/values/NombreCiudad'
+
+
+/* import {
+  DominioDetallesOfertaLaboralDTO,
+  VerDetallesOfertaLaboralDTO,
+} from '../dto/VerDetallesOfertaLaboral.dto';
+ */
 
 export class OfertaLaboralAdministradorMapeador{
 
@@ -108,7 +108,7 @@ export class OfertaLaboralAdministradorMapeador{
   }
 
 
- /*  public static MapConsultaDominioOferta(
+  public static MapConsultaDominioOferta(
     oferta: ConsultarOfertaLaboralPersistenciaDTO,
   ): DatosOfertaLaboral & { nombreEmpresa: NombreEmpresa } {
     //Mapea la respuesta al dominio para validar los valores
@@ -131,11 +131,11 @@ export class OfertaLaboralAdministradorMapeador{
         : null,
       nombreEmpresa: NombreEmpresa.crear(oferta.nombreEmpresa),
     }
-  } */
+  } 
 
-  /* public static MapConsultaRespuestaOferta(
+  public static MapConsultaRespuestaOferta(
     oferta: DatosOfertaLaboral & { nombreEmpresa: NombreEmpresa },
-  ): ConsultarOfertasLaboralesDTO {
+  ): ConsultarOfertasLaboralesAdministradorDTO {
     const ofertas = OfertaLaboral.crear(oferta)
     return {
       id: ofertas.obtenerIdentificador().obtenerId(),
@@ -149,7 +149,7 @@ export class OfertaLaboralAdministradorMapeador{
       turnoTrabajo: ofertas.obtenerTurno().obtenerTurno(),
       nombreEmpresa: oferta.nombreEmpresa.obtenerNombre(),
     }
-  } */
+  } 
 
   /* public static MapDetalleDominioOferta(
     oferta: VerDetallesOfertaLaboralPersistenciaDTO,
@@ -180,7 +180,7 @@ export class OfertaLaboralAdministradorMapeador{
       ),
       ciudadEmpresa: NombreCiudad.crear(oferta.ciudadEmpresa),
     }
-  } */
+  }  */
 
  /*  public static MapDetalleRespuestaOferta(
     oferta: DatosOfertaLaboral & DominioDetallesOfertaLaboralDTO,
