@@ -50,7 +50,7 @@ const codigos = [
 
 export class AdministradorErrorHttpMapeador {
   // Obtener codigo HTTP del error obtenido
-  public static manejarExcepcionEmpleador(
+  public static manejarExcepcionAdministrador(
     excepcion: ExcepcionAplicacion,
     metodo: METODOS,
   ) {

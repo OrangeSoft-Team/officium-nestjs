@@ -1,4 +1,4 @@
-export interface CrearOfertaLaboralEmpresaApiDTO {
+export interface CrearOfertaLaboralEmpresaAdministradorApiDTO {
   uuidEmpresa: string
   titulo: string
   cargo: string

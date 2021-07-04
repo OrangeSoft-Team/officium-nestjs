@@ -8,10 +8,15 @@ import { EmpresaNoExiste } from '../../aplicacion/excepciones/EmpresaNoExiste'
 import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/OfertaLaboralYaExiste'
 import {
   IdentificadorEmpresaDTO,
+  ConsultarOfertaLaboralPersistenciaDTO,
   IdentificadorOfertaLaboralDTO,
   IRepositorioOfertaLaboral,
   OfertaLaboralPersistenciaDTO,
+  OfertaLaboralExisteDTO
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
+import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
+import { getRepository } from 'typeorm'
+
 
 @Injectable()
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
@@ -22,32 +27,6 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     @InjectRepository(EmpresaORM)
     private readonly repositorioEmpresa: Repository<EmpresaORM>,
   ) {}
-
-  public async obtenerOfertasEmpresa(
-    solicitud: IdentificadorEmpresaDTO,
-  ): Promise<OfertaLaboralPersistenciaDTO[]> {
-    try {
-      // Obtenemos a la empresa involucrada
-      const empresa = await this.repositorioEmpresa.findOne({
-        where: { uuid: solicitud.idEmpresa },
-      })
-      const ofertas = await this.repositorioOferta.find({ where: { empresa } })
-      // retornamos la oferta
-      return ofertas.map((oferta) => {
-        return {
-          id: oferta.uuid,
-          idEmpresa: empresa.uuid,
-          ...oferta,
-        }
-      })
-    } catch (error) {
-      // En caso de que el insert falle debido a que ya existe la oferta laboral
-      throw new ExcepcionAplicacion(
-        null,
-        'No se ha podido procesar la solicitud.',
-      )
-    }
-  } 
 
   public async crear(datos: OfertaLaboralPersistenciaDTO): Promise<void> {
     let empresa: EmpresaORM
@@ -80,6 +59,69 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       throw new OfertaLaboralYaExiste(
         datos,
         'La oferta laboral ya se encuentra registrada.',
+      )
+    }
+  }
+
+  public async existe(
+    dto: IdentificadorOfertaLaboralDTO,
+  ): Promise<OfertaLaboralExisteDTO> {
+    try {
+      const oferta = await getRepository(OfertaLaboralORM).findOne({
+        where: { uuid: dto.idOferta },
+      })
+
+      return { existe: oferta?.uuid ? true : false }
+    } catch {
+      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
+    }
+  }
+
+  public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
+    try {
+      //Implementacion del repositorio, se hace el listado a persistencia
+      const listadoOfertas = await getRepository(OfertaLaboralORM)
+        .createQueryBuilder('oferta')
+        .innerJoinAndSelect('oferta.empresa', 'empresa')
+        .getMany()
+      return listadoOfertas.map((oferta) => {
+        return {
+          id: oferta.uuid,
+          nombreEmpresa: oferta.empresa.nombre,
+          ...oferta,
+        }
+      })
+    } catch (error) {
+      //En caso de alguna falla con la persistencia
+      throw new ExcepcionAplicacion(
+        null,
+        'No se ha podido procesar la solicitud.',
+      )
+    }
+  }
+  
+  public async obtenerOfertasEmpresa(
+    solicitud: IdentificadorEmpresaDTO,
+  ): Promise<OfertaLaboralPersistenciaDTO[]> {
+    try {
+      // Obtenemos a la empresa involucrada
+      const empresa = await this.repositorioEmpresa.findOne({
+        where: { uuid: solicitud.idEmpresa },
+      })
+      const ofertas = await this.repositorioOferta.find({ where: { empresa } })
+      // retornamos la oferta
+      return ofertas.map((oferta) => {
+        return {
+          id: oferta.uuid,
+          idEmpresa: empresa.uuid,
+          ...oferta,
+        }
+      })
+    } catch (error) {
+      // En caso de que el insert falle debido a que ya existe la oferta laboral
+      throw new ExcepcionAplicacion(
+        null,
+        'No se ha podido procesar la solicitud.',
       )
     }
   }

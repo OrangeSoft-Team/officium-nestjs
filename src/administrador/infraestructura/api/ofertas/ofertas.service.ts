@@ -5,13 +5,11 @@ import { GeneradorIdentificadorUUID } from '../../../../comun/infraestructura/ad
 import { EmpresaORM } from '../../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
-//import { VerDetalleOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
-//import { VerOfertasLaboralesActivasSolicitudDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
 import { CrearOfertaLaboralAdministrador } from '../../../aplicacion/servicios/CrearOfertaLaboralAdministrador'
-//import { VerDetalleOfertaLaboral } from '../../../aplicacion/servicios/VerDetalleOfertaLaboral'
-//import { VerOfertasLaboralesActivas } from '../../../aplicacion/servicios/VerOfertasLaboralesActivas'
 import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto';
+import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/ConsultarOfertasLaboralesAdministrador';
 
 @Injectable()
 export class ServicioOfertasLaborales {
@@ -19,8 +17,7 @@ export class ServicioOfertasLaborales {
   private readonly repositorioEmpresa: RepositorioEmpresa
   private readonly generadorIdentificador: GeneradorIdentificadorUUID
   private readonly servicioCrearOfertaLaboral: CrearOfertaLaboralAdministrador
-  //private readonly servicioVerOfertasLaboralesActivas: VerOfertasLaboralesActivas
-  //private readonly servicioVerDetalleOfertaLaboral: VerDetalleOfertaLaboral
+  private readonly servicioConsultarOfertasLaborales: ConsultarOfertasLaborales
 
   public constructor(
     @InjectRepository(OfertaLaboralORM)
@@ -41,20 +38,23 @@ export class ServicioOfertasLaborales {
       this.repositorioEmpresa,
       this.generadorIdentificador,
     )
- /*    this.servicioVerOfertasLaboralesActivas = new VerOfertasLaboralesActivas(
+
+    this.servicioConsultarOfertasLaborales = new ConsultarOfertasLaborales(
       this.repositorioOfertaLaboral,
-      this.repositorioEmpresa,
     )
-    this.servicioVerDetalleOfertaLaboral = new VerDetalleOfertaLaboral(
-      this.repositorioEmpresa,
-      this.repositorioOfertaLaboral,
-    ) */
   }
 
   // Caso de uso 17.2 Administrador: Crear Oferta Laboral
   public async crearOfertaLaboralAdministrador(dto: CrearOfertaLaboralAdministradorSolicitudDTO) {
     return await this.servicioCrearOfertaLaboral.ejecutar(dto)
   }
+
+  // Caso de uso 16.1 Administrador: Consultar Ofertas Laborales
+  public async ConsultarOfertasLaboralesAdministrador() {
+    return await this.servicioConsultarOfertasLaborales.ejecutar()
+  }
+
+ 
 
  
 }
