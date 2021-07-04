@@ -24,15 +24,15 @@ describe('empleado: Consultar todas las ofertas laborales activas', () => {
       expect(res.valor).toStrictEqual([
         {
           id: 'c70ed168-98fe-4438-ad5c-006348a59e41',
-          titulo: 'Conserje a tiempo completo',
+          titulo: 'Gerente de frutería',
           fecha: new Date('11-09-2020'),
-          cargo: 'Conserje a tiempo completo',
-          sueldo: 15000,
+          cargo: 'Gerente',
+          sueldo: 10800,
           duracionEstimadaValor: 12,
           duracionEstimadaEscala: 'mes',
           turnoTrabajo: 'mixto',
           numeroVacantes: 1,
-          nombreEmpresa: 'Acme',
+          nombreEmpresa: 'Kiwiiii',
         },
       ])
     })

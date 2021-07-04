@@ -33,15 +33,23 @@ describe('empleado: Ver las postulaciones de un empleado', () => {
     })
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
-      expect(res.valor).toHaveLength(1)
+      expect(res.valor).toHaveLength(2)
       expect(res.valor).toStrictEqual([
         {
           uuid: '4cfc2a56-dac3-11eb-8d19-0242ac130003',
-          uuidOfertaLaboral: '619a07b2-dac3-11eb-8d19-0242ac130003',
-          tituloOferta: 'Desarrollador en Python',
-          cargoOferta: 'Desarrollador',
-          empresaNombre: 'Officium',
-          comentario: 'comentario de prueba con los caracteres necesarios',
+          uuidOfertaLaboral: '93c91278-dcfd-11eb-ba80-0242ac130004',
+          tituloOferta: 'Contador de un taller de motocicletas',
+          cargoOferta: 'Contador',
+          empresaNombre: 'El Perro Motociclon',
+          comentario: 'Los jueves tengo que buscar a mi hijo al colegio por lo que puede no cumpla horario',
+        },
+        {
+          uuid: '7aacb9ac-dcfd-11eb-ba80-0242ac130004',
+          uuidOfertaLaboral: '7453dc15-7ff2-4c37-9455-de661a5275b1',
+          tituloOferta: 'Cajero en cafetería',
+          cargoOferta: 'Cajero',
+          empresaNombre: 'Cof-Cofee',
+          comentario: 'necesito 1 café cada 3 horas para funcionar',
         },
       ])
     })

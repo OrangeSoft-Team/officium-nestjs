@@ -18,25 +18,25 @@ describe('empleado: Ver Detalles de Oferta laboral suministrada', () => {
 
   it('Debe obtener una oferta laboral con sus datos para una empresa valida', () => {
     const resultado = casoUso.ejecutar({
-      idOferta: '7453dc15-7ff2-4c37-9455-de661a5275b1',
+      idOferta: '93c91278-dcfd-11eb-ba80-0242ac130004',
     })
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
       expect(res.valor).toStrictEqual({
-        id: '7453dc15-7ff2-4c37-9455-de661a5275b1',
-        titulo: 'Desarrollador en Python',
+        id: '93c91278-dcfd-11eb-ba80-0242ac130004',
+        titulo: 'Contador de un taller de motocicletas',
         fechaPublicacion: new Date('06-06-2020'),
         fechaModificacion: new Date('06-08-2020'),
-        cargo: 'Desarrollador',
+        cargo: 'Contador',
         sueldo: 50000,
         descripcion:
-          'Se busca desarrollador en python moderno con amplios conocimientos en los principios SOLID.',
-        duracionEstimadaValor: 1,
-        duracionEstimadaEscala: 'mes',
+          'Se busca persona para llevar cuentas en un taller, con experiencia',
+        duracionEstimadaValor: 8,
+        duracionEstimadaEscala: 'semana',
         turnoTrabajo: 'diurno',
         numeroVacantes: 1,
         uuidEmpresa: '35b59754-d9fd-11eb-b8bc-0242ac130003',
-        nombreEmpresa: 'Officium',
+        nombreEmpresa: 'El Perro Motociclon',
         direccionEmpresa: 'Av el Ejército, callejón Machado, 3312, Caracas',
       })
     })
