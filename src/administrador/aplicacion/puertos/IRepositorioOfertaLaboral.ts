@@ -66,7 +66,8 @@ export interface OfertaLaboralExisteDTO {
 }
 
 export interface IdentificadorOfertaLaboralDTO {
-  idOferta: string
+  idOfertaLaboral: string
+  idEmpresa: string
 }
 
 export interface IRepositorioOfertaLaboral {

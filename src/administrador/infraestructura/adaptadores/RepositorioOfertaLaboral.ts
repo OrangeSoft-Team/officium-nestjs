@@ -55,7 +55,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   ): Promise<OfertaLaboralExisteDTO> {
     try {
       const oferta = await getRepository(OfertaLaboralORM).findOne({
-        where: { uuid: dto.idOferta },
+        where: { uuid: dto.idOfertaLaboral },
       })
 
       return { existe: oferta?.uuid ? true : false }
