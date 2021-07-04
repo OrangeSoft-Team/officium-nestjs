@@ -3,11 +3,12 @@ import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../aplicacion/dt
 import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../dto/oferta/CrearOfertaLaboralEmpresaAdministrador.api.dto'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../../aplicacion/dto/oferta/ConsultarOfertasLaboralesAdministrador.dto'
 import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/oferta/ConsultarOfertasLaboralesAdministrador.api.dto'
-import { VerDetallesOfertaLaboralAdministradorAPIDTO } from '../dto/oferta/VerDetalllesOfertaLaboralAdministrador.api.dto'
+
 import {
   VerDetallesOfertaLaboralAdministradorDTO,
   VerDetallesOfertaLaboralAdministradorPeticionDTO,
 } from '../../aplicacion/dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministradorAPIDTO } from '../dto/VerDetalllesOfertaLaboralAdministrador.api.dto'
 /*
 import {
   VerOfertasLaboralesActivasRespuestaDTO,
