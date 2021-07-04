@@ -18,7 +18,7 @@ import {
   VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
 } from '../puertos/IRepositorioOfertaLaboral'
 import { FechaModificacionOferta } from '../../dominio/values/oferta/FechaModificacionOferta'
-import { NombreEmpresa } from '../../dominio/values/Empresa/NombreEmpresa'
+import { NombreEmpresa } from '../../dominio/values/empresa/NombreEmpresa'
 import { CalleDireccion } from '../../../comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from '../../../comun/dominio/values/CodigoPostalDireccion'
 import { NombreCiudad } from '../../../comun/dominio/values/NombreCiudad'

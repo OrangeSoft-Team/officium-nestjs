@@ -2,7 +2,7 @@ import { CalleDireccion } from '../../../../comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from '../../../../comun/dominio/values/CodigoPostalDireccion'
 import { Identificador } from '../../../../comun/dominio/values/Identificador'
 import { NombreCiudad } from '../../../../comun/dominio/values/NombreCiudad'
-import { NombreEmpresa } from '../../../dominio/values/Empresa/NombreEmpresa'
+import { NombreEmpresa } from '../../../dominio/values/empresa/NombreEmpresa'
 
 export interface VerDetallesOfertaLaboralAdministradorDTO {
   id: string

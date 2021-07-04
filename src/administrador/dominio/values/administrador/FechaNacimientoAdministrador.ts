@@ -3,7 +3,7 @@ import {
   AdministradorMenorDeEdad,
   FechaNacimientoAdministradorInvalida,
   FechaNacimientoAdministradorVacio,
-} from '../../excepciones/Administrador/FechaNacimientoAdministrador.excepciones'
+} from '../../excepciones/administrador/FechaNacimientoAdministrador.excepciones'
 
 export class FechaNacimientoAdministrador extends ValueObject {
   private constructor(private readonly fecha: Date) {
