@@ -52,7 +52,8 @@ Adicionalmente, se utilizan las siguientes plantillas para el repositorio:
 | <img src="https://prettier.io/icon.png" width="24">                                                                                                                                                                                                                                                 | Linter                     | Prettier       | https://prettier.io/docs/en/install.html | 7.1.1   |
 | <img src="https://avatars.githubusercontent.com/u/44036562?s=280&v=4" width="24">                                                                                                                                                                                                                   | CI / CD                    | GitHub Actions | https://github.com/features/actions      | 1.0.0   |
 | <img src="https://camo.githubusercontent.com/fcca6a233a54a037861c99ab17d255d215807e6c0fcdce7d16a1a67814ede820/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d656469612d702e736c69642e65732f75706c6f6164732f3333383935382f696d616765732f313439363334352f7375706572746573742e706e67" width="24"> | Testing E2E                | SuperTest      | https://www.npmjs.com/package/supertest  | 6.1.3   |
-| <img src="https://www.aprendexojo.com/wp-content/uploads/2018/03/Sqlite.png" width="24"> | Manejador de base de datos | SQLite | https://www.npmjs.com/package/sqlite3 | 5.0.2 |
+| <img src="https://www.aprendexojo.com/wp-content/uploads/2018/03/Sqlite.png" width="24">                                                                                                                                                                                                            | Manejador de base de datos | SQLite         | https://www.npmjs.com/package/sqlite3    | 5.0.2   |
+
 ### :wrench: Instalación de la Aplicación
 
 ---
@@ -74,6 +75,8 @@ Para realizar la instalación de la aplicación, es necesario realizar los sigui
 
 - Opcionalmente puede ejecutar el comando (en caso de que no se detecte el framework de testing al momento de ejecutarlos):
   `npm install -g jest`
+
+- Opcionalmente, si se desean datos de prueba, se pueden utilizar los comandos SQL especificados en `datos/datos_prueba.sql` en el manejador de base de datos de su preferencia, para que el sistema contenga algunos datos dummy.
 
 ### :hammer: Construcción de la Aplicación (build)
 
