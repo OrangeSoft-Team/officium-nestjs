@@ -62,7 +62,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async existe(
     dto: IdentificadorOfertaLaboralDTO,
   ): Promise<OfertaLaboralExisteDTO> {
-    return { existe: dto.idOferta == '79bff1ce-5487-4e57-bb06-3f1b17991271' }
+    return { existe: dto.idOfertaLaboral == '79bff1ce-5487-4e57-bb06-3f1b17991271' }
   }
 
   public async obtenerOfertasEmpresa(
