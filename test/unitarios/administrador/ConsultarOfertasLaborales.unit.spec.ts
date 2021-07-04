@@ -26,7 +26,7 @@ describe('Administrador: Consultar todas las ofertas laborales activas', () => {
           id: 'c70ed168-98fe-4438-ad5c-006348a59e41',
           titulo: 'Conserje a tiempo completo',
           fecha: new Date('11-09-2020'),
-          cargo: 'Conserje a tiempo completo',
+          cargo: 'Conserje',
           sueldo: 15000,
           duracionEstimadaValor: 12,
           duracionEstimadaEscala: 'mes',

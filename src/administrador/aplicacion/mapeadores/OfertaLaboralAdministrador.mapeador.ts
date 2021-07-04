@@ -109,7 +109,7 @@ export class OfertaLaboralAdministradorMapeador {
     return {
       identificador: Identificador.crear(oferta.id),
       titulo: TituloOferta.crear(oferta.titulo),
-      cargo: CargoOferta.crear(oferta.titulo),
+      cargo: CargoOferta.crear(oferta.cargo),
       descripcion: DescripcionOferta.crear(oferta.descripcion),
       estado: EstadoOferta.crear(oferta.estado),
       turno: TurnoOferta.crear(oferta.turno),
