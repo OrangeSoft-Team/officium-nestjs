@@ -1,5 +1,8 @@
-import { IdentificadorDTO } from "../../../comun/aplicacion/dto/Identificador.dto";
-import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from "../dto/postulacion/ConsultarPostulaciones.dto";
+import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
+import {
+  ConsultarPostulacionesDTO,
+  ConsultarPostulacionesPeticionDTO,
+} from '../dto/postulacion/ConsultarPostulaciones.dto'
 
 export interface PostulacionOfertaPersistenciaDTO {
   id: string
@@ -23,6 +26,7 @@ export interface ConsultarPostulacionesPersistenciaDTO {
 
 export interface IRepositorioPostulaciones {
   crear(postulacion: PostulacionOfertaPersistenciaDTO): Promise<void>
-  consultar(peticion: IdentificadorDTO): Promise<ConsultarPostulacionesPersistenciaDTO[]>
-
+  consultar(
+    peticion: IdentificadorDTO,
+  ): Promise<ConsultarPostulacionesPersistenciaDTO[]>
 }

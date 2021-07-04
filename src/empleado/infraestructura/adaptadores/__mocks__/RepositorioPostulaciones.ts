@@ -6,7 +6,9 @@ import {
 } from '../../../aplicacion/puertos/IRepositorioPostulaciones'
 
 export class RepositorioPostulaciones implements IRepositorioPostulaciones {
-  public async consultar(peticion: IdentificadorDTO): Promise<ConsultarPostulacionesPersistenciaDTO[]> {
+  public async consultar(
+    peticion: IdentificadorDTO,
+  ): Promise<ConsultarPostulacionesPersistenciaDTO[]> {
     return [
       {
         uuid: '4cfc2a56-dac3-11eb-8d19-0242ac130003',
@@ -19,7 +21,7 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
         comentario: 'comentario de prueba con los caracteres necesarios',
       },
     ]
- }
+  }
   public async crear(
     postulacion: PostulacionOfertaPersistenciaDTO,
   ): Promise<void> {

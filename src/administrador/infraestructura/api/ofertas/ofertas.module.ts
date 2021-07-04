@@ -6,12 +6,7 @@ import { ControladorOfertasLaborales } from './ofertas.controller'
 import { ServicioOfertasLaborales } from './ofertas.service'
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      OfertaLaboralORM,
-      EmpresaORM,
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([OfertaLaboralORM, EmpresaORM])],
   controllers: [ControladorOfertasLaborales],
   providers: [ServicioOfertasLaborales],
 })

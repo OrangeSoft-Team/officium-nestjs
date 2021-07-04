@@ -5,7 +5,7 @@ import { Direccion } from '../../comun/dominio/Direccion'
 //import { PostulacionOferta } from './PostulacionOferta'
 import { FechaNacimientoAdministrador } from './values/administrador/FechaNacimientoAdministrador'
 import { GeneroAdministrador } from './values/administrador/GeneroAdministrador'
-import { NombreCompletoAdministrador } from './values/administrador/NombreCompletoAdministrador';
+import { NombreCompletoAdministrador } from './values/administrador/NombreCompletoAdministrador'
 
 export interface DatosAdministrador {
   identificador: Identificador

@@ -16,10 +16,14 @@ export class ControladorPostulaciones {
     @Param('uuid_empleado') uuidEmpleado: string,
   ) {
     //Creamos el DTO de solicitud
-    const dto = PostulacionOfertaAPIMapeador.transformarSolicitudHttpConsultarPostulaciones(uuidEmpleado)
+    const dto =
+      PostulacionOfertaAPIMapeador.transformarSolicitudHttpConsultarPostulaciones(
+        uuidEmpleado,
+      )
     // Realizamos la solicitud al servicio
-    const solicitud =
-      await this.servicioPostulaciones.ConsultarPostulaciones(dto)
+    const solicitud = await this.servicioPostulaciones.ConsultarPostulaciones(
+      dto,
+    )
 
     // En caso de error
     if (!solicitud.esExitoso) {
@@ -29,9 +33,7 @@ export class ControladorPostulaciones {
 
     //En caso de éxito
     return PostulacionOfertaAPIMapeador.ConsultarPostulacionesRespuestaHttp(
-      <ConsultarPostulacionesDTO[]>solicitud.valor
+      <ConsultarPostulacionesDTO[]>solicitud.valor,
     )
   }
-
-
 }

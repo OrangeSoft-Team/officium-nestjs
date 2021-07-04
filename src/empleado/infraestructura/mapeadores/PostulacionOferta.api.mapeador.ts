@@ -1,4 +1,7 @@
-import { ConsultarPostulacionesDTO, ConsultarPostulacionesPeticionDTO } from '../../aplicacion/dto/postulacion/ConsultarPostulaciones.dto'
+import {
+  ConsultarPostulacionesDTO,
+  ConsultarPostulacionesPeticionDTO,
+} from '../../aplicacion/dto/postulacion/ConsultarPostulaciones.dto'
 import { PostularseOfertaLaboralSolicitudDTO } from '../../aplicacion/dto/postulacion/PostularseOfertaLaboral.dto'
 import { AplicarOfertaLaboralEmpleadoApiDTO } from '../dto/oferta/AplicarOfertaLaboralEmpleado.api.dto'
 import { ConsultarPostulacionesAPIDTO } from '../dto/postulacion/ConsultarPostulaciones.dto'
@@ -20,25 +23,23 @@ export class PostulacionOfertaAPIMapeador {
     idEmpleado: string,
   ): ConsultarPostulacionesPeticionDTO {
     return {
-      uuidEmpleado: idEmpleado
+      uuidEmpleado: idEmpleado,
     }
   }
   public static ConsultarPostulacionesRespuestaHttp(
     datos: ConsultarPostulacionesDTO[],
   ): ConsultarPostulacionesAPIDTO[] {
-    
-    const http = [] 
+    const http = []
     datos.forEach((peticiones) =>
-    http.push({
-      uuid: peticiones.uuid,
-      uuidOfertaLaboral: peticiones.uuidOfertaLaboral,
-      tituloOferta: peticiones.tituloOferta,
-      cargoOferta: peticiones.cargoOferta,
-      empresaNombre: peticiones.empresaNombre,
-      comentario: peticiones.comentario,
-    }),
-  )
+      http.push({
+        uuid: peticiones.uuid,
+        uuidOfertaLaboral: peticiones.uuidOfertaLaboral,
+        tituloOferta: peticiones.tituloOferta,
+        cargoOferta: peticiones.cargoOferta,
+        empresaNombre: peticiones.empresaNombre,
+        comentario: peticiones.comentario,
+      }),
+    )
     return http
   }
-
 }

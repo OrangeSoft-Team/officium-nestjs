@@ -23,14 +23,11 @@ export class ServicioPostulaciones {
 
     this.servicioConsultarPostulaciones = new ConsultarPostulaciones(
       this.repositorioPostulaciones,
-       this.repostiorioEmpleado
-       )
+      this.repostiorioEmpleado,
+    )
   }
 
-
-  public async ConsultarPostulaciones(
-    dto: ConsultarPostulacionesPeticionDTO,
-  ) {
+  public async ConsultarPostulaciones(dto: ConsultarPostulacionesPeticionDTO) {
     return await this.servicioConsultarPostulaciones.ejecutar(dto)
   }
 }

@@ -5,7 +5,7 @@ import {
   OfertaLaboralPersistenciaDTO,
   ConsultarOfertaLaboralAdministradorPersistenciaDTO,
   VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
-  OfertaLaboralExisteDTO
+  OfertaLaboralExisteDTO,
 } from '../../../aplicacion/puertos/IRepositorioOfertaLaboral'
 import { IdentificadorDTO } from '../../../../comun/aplicacion/dto/Identificador.dto'
 
@@ -44,7 +44,6 @@ const ofertas = [
 ]
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
-  
   public async obtenerOferta(
     solicitud: IdentificadorOfertaLaboralDTO,
   ): Promise<OfertaLaboralPersistenciaDTO> {
@@ -97,7 +96,9 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     }
   }
 
-  public async listar(): Promise<ConsultarOfertaLaboralAdministradorPersistenciaDTO[]> {
+  public async listar(): Promise<
+    ConsultarOfertaLaboralAdministradorPersistenciaDTO[]
+  > {
     return [
       {
         id: '7453dc15-7ff2-4c37-9455-de661a5275b1',
@@ -133,5 +134,3 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     ]
   }
 }
-
-
