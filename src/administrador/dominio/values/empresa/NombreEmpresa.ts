@@ -13,6 +13,10 @@ export class NombreEmpresa extends ValueObject {
     return this.nombre == nombreEmpresa.nombre
   }
 
+  public obtenerNombre(): string {
+    return this.nombre
+  }
+
   public static crear(nombre: string): NombreEmpresa {
     // No debe ser vacio
     if (nombre == null || nombre == undefined || nombre == '')
