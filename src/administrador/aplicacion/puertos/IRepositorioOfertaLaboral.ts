@@ -1,3 +1,4 @@
+import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
 
 export interface OfertaLaboralPersistenciaDTO {
   id: string
@@ -15,7 +16,7 @@ export interface OfertaLaboralPersistenciaDTO {
   estado: string
 }
 
-export interface ConsultarOfertaLaboralPersistenciaDTO {
+export interface ConsultarOfertaLaboralAdministradorPersistenciaDTO {
   id: string
   titulo: string
   fechaPublicacion: Date
@@ -29,6 +30,26 @@ export interface ConsultarOfertaLaboralPersistenciaDTO {
   numeroVacantes: number
   estado: string
   nombreEmpresa: string
+}
+
+export interface VerDetallesOfertaLaboralAdministradorPersistenciaDTO {
+  id: string
+  titulo: string
+  fechaPublicacion: Date
+  fechaModificacion?: Date
+  cargo: string
+  sueldo: number
+  descripcion: string
+  duracionEstimada: number
+  escalaDuracion: string
+  turno: string
+  numeroVacantes: number
+  estado: string
+  uuidEmpresa: string
+  nombreEmpresa: string
+  calleEmpresa: string
+  codigoPostalEmpresa: string
+  ciudadEmpresa: string
 }
 
 export interface IdentificadorEmpresaDTO {
@@ -51,7 +72,7 @@ export interface IdentificadorOfertaLaboralDTO {
 export interface IRepositorioOfertaLaboral {
   crear(datos: OfertaLaboralPersistenciaDTO): Promise<void>
 
-  listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]>
+  listar(): Promise<ConsultarOfertaLaboralAdministradorPersistenciaDTO[]>
 
   obtenerOfertasEmpresa(
     solicitud: IdentificadorEmpresaDTO,
@@ -60,6 +81,10 @@ export interface IRepositorioOfertaLaboral {
   obtenerOferta(
     solicitud: IdentificadorOfertaLaboralDTO,
   ): Promise<OfertaLaboralPersistenciaDTO>
+
+  buscarOferta(
+    peticion: IdentificadorDTO,
+  ): Promise<VerDetallesOfertaLaboralAdministradorPersistenciaDTO>
 
   existe(dto: IdentificadorOfertaLaboralDTO): Promise<OfertaLaboralExisteDTO>
 }

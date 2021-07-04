@@ -2,16 +2,18 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { ExcepcionAplicacion } from '../../../comun/aplicacion/ExcepcionAplicacion'
+import { IdentificadorDTO } from '../../../comun/aplicacion/dto/Identificador.dto'
 import { EmpresaORM } from '../../../comun/infraestructura/persistencia/Empresa.orm'
 import { OfertaLaboralORM } from '../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { EmpresaNoExiste } from '../../aplicacion/excepciones/EmpresaNoExiste'
 import { OfertaLaboralYaExiste } from '../../aplicacion/excepciones/OfertaLaboralYaExiste'
 import {
   IdentificadorEmpresaDTO,
-  ConsultarOfertaLaboralPersistenciaDTO,
+  ConsultarOfertaLaboralAdministradorPersistenciaDTO,
   IdentificadorOfertaLaboralDTO,
   IRepositorioOfertaLaboral,
   OfertaLaboralPersistenciaDTO,
+  VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
   OfertaLaboralExisteDTO
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
 import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
@@ -77,7 +79,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     }
   }
 
-  public async listar(): Promise<ConsultarOfertaLaboralPersistenciaDTO[]> {
+  public async listar(): Promise<ConsultarOfertaLaboralAdministradorPersistenciaDTO[]> {
     try {
       //Implementacion del repositorio, se hace el listado a persistencia
       const listadoOfertas = await getRepository(OfertaLaboralORM)
@@ -164,4 +166,42 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       )
     }
   }  
+
+  public async buscarOferta(
+    peticion: IdentificadorDTO,
+  ): Promise<VerDetallesOfertaLaboralAdministradorPersistenciaDTO> {
+    try {
+      //Se busca el registro en persistencia
+      const detalleOferta = await getRepository(OfertaLaboralORM)
+        .createQueryBuilder('oferta')
+        .innerJoinAndSelect('oferta.empresa', 'empresa')
+        .innerJoinAndSelect('empresa.direccion', 'direccion')
+        .innerJoinAndSelect('direccion.ciudad', 'ciudad')
+        .where('oferta.uuid = :uuid', { uuid: peticion.id })
+        .getOneOrFail()
+
+      // Se arma el objeto de retorno
+      return {
+        id: detalleOferta.uuid,
+        titulo: detalleOferta.titulo,
+        fechaPublicacion: detalleOferta.fechaPublicacion,
+        fechaModificacion: detalleOferta.fechaModificacion,
+        cargo: detalleOferta.cargo,
+        sueldo: detalleOferta.sueldo,
+        descripcion: detalleOferta.descripcion,
+        duracionEstimada: detalleOferta.duracionEstimada,
+        escalaDuracion: detalleOferta.escalaDuracion,
+        turno: detalleOferta.turno,
+        numeroVacantes: detalleOferta.numeroVacantes,
+        estado: detalleOferta.estado,
+        uuidEmpresa: detalleOferta.empresa.uuid,
+        nombreEmpresa: detalleOferta.empresa.nombre,
+        calleEmpresa: detalleOferta.empresa.direccion.calle,
+        codigoPostalEmpresa: detalleOferta.empresa.direccion.codigoPostal,
+        ciudadEmpresa: detalleOferta.empresa.direccion.ciudad.nombre,
+      }
+    } catch (error) {
+      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
+    }
+  }
 }

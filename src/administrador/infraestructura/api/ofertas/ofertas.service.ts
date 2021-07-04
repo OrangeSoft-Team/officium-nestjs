@@ -10,6 +10,8 @@ import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto';
 import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/ConsultarOfertasLaboralesAdministrador';
+import { VerDetallesOfertaLaboralAdministradorPeticionDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/VerDetallesOfertaLaboralAdministrador';
 
 @Injectable()
 export class ServicioOfertasLaborales {
@@ -18,6 +20,7 @@ export class ServicioOfertasLaborales {
   private readonly generadorIdentificador: GeneradorIdentificadorUUID
   private readonly servicioCrearOfertaLaboral: CrearOfertaLaboralAdministrador
   private readonly servicioConsultarOfertasLaborales: ConsultarOfertasLaborales
+  private readonly servicioVerDetallesOfertaLaboral: VerDetallesOfertaLaboralAdministrador
 
   public constructor(
     @InjectRepository(OfertaLaboralORM)
@@ -42,9 +45,13 @@ export class ServicioOfertasLaborales {
     this.servicioConsultarOfertasLaborales = new ConsultarOfertasLaborales(
       this.repositorioOfertaLaboral,
     )
+
+    this.servicioVerDetallesOfertaLaboral = new VerDetallesOfertaLaboralAdministrador(
+      this.repositorioOfertaLaboral,
+    )
   }
 
-  // Caso de uso 17.2 Administrador: Crear Oferta Laboral
+  // Caso de uso 17.1 Administrador: Crear Oferta Laboral
   public async crearOfertaLaboralAdministrador(dto: CrearOfertaLaboralAdministradorSolicitudDTO) {
     return await this.servicioCrearOfertaLaboral.ejecutar(dto)
   }
@@ -54,6 +61,12 @@ export class ServicioOfertasLaborales {
     return await this.servicioConsultarOfertasLaborales.ejecutar()
   }
 
+   // Caso de uso 17.2 Administrador: Ver Detalles Oferta Laboral
+   public async VerDetallesOfertaLaboralAdministrador(
+    dto: VerDetallesOfertaLaboralAdministradorPeticionDTO,
+  ) {
+    return await this.servicioVerDetallesOfertaLaboral.ejecutar(dto)
+  }
  
 
  

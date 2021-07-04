@@ -14,20 +14,19 @@ import { CrearOfertaLaboralAdministradorEntidadDTO } from '../dto/CrearOfertaLab
 import { OfertaLaboralPersistenciaDTO } from '../puertos/IRepositorioOfertaLaboral'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.dto'
 import {
-  ConsultarOfertaLaboralPersistenciaDTO
+  ConsultarOfertaLaboralAdministradorPersistenciaDTO,
+  VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
 } from '../puertos/IRepositorioOfertaLaboral'
 import { FechaModificacionOferta } from '../../dominio/values/oferta/FechaModificacionOferta'
 import { NombreEmpresa } from '../../dominio/values/Empresa/NombreEmpresa'
 import { CalleDireccion } from '../../../comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from '../../../comun/dominio/values/CodigoPostalDireccion'
 import { NombreCiudad } from '../../../comun/dominio/values/NombreCiudad'
-
-
-/* import {
-  DominioDetallesOfertaLaboralDTO,
-  VerDetallesOfertaLaboralDTO,
-} from '../dto/VerDetallesOfertaLaboral.dto';
- */
+import {
+  DominioDetallesOfertaLaboralAdministradorDTO,
+  VerDetallesOfertaLaboralAdministradorDTO,
+} from '../dto/VerDetallesOfertaLaboralAdministrador.dto';
+ 
 
 export class OfertaLaboralAdministradorMapeador{
 
@@ -109,7 +108,7 @@ export class OfertaLaboralAdministradorMapeador{
 
 
   public static MapConsultaDominioOferta(
-    oferta: ConsultarOfertaLaboralPersistenciaDTO,
+    oferta: ConsultarOfertaLaboralAdministradorPersistenciaDTO,
   ): DatosOfertaLaboral & { nombreEmpresa: NombreEmpresa } {
     //Mapea la respuesta al dominio para validar los valores
     return {
@@ -151,9 +150,9 @@ export class OfertaLaboralAdministradorMapeador{
     }
   } 
 
-  /* public static MapDetalleDominioOferta(
-    oferta: VerDetallesOfertaLaboralPersistenciaDTO,
-  ): DatosOfertaLaboral & DominioDetallesOfertaLaboralDTO {
+  public static MapDetalleDominioOferta(
+    oferta: VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
+  ): DatosOfertaLaboral & DominioDetallesOfertaLaboralAdministradorDTO {
     //Mapea la respuesta al dominio para validar los valores
     return {
       identificador: Identificador.crear(oferta.id),
@@ -180,11 +179,11 @@ export class OfertaLaboralAdministradorMapeador{
       ),
       ciudadEmpresa: NombreCiudad.crear(oferta.ciudadEmpresa),
     }
-  }  */
+  }  
 
- /*  public static MapDetalleRespuestaOferta(
-    oferta: DatosOfertaLaboral & DominioDetallesOfertaLaboralDTO,
-  ): VerDetallesOfertaLaboralDTO {
+ public static MapDetalleRespuestaOferta(
+    oferta: DatosOfertaLaboral & DominioDetallesOfertaLaboralAdministradorDTO,
+  ): VerDetallesOfertaLaboralAdministradorDTO {
     return {
       id: oferta.identificador.obtenerId(),
       titulo: oferta.titulo.obtenerTitulo(),
@@ -203,7 +202,7 @@ export class OfertaLaboralAdministradorMapeador{
     }
   }
 
-  private static obtenerDireccion(direccion: DominioDetallesOfertaLaboralDTO) {
+  private static obtenerDireccion(direccion: DominioDetallesOfertaLaboralAdministradorDTO) {
     return (
       direccion.calleEmpresa.obtenerCalle() +
       ', ' +
@@ -211,5 +210,5 @@ export class OfertaLaboralAdministradorMapeador{
       ', ' +
       direccion.ciudadEmpresa.obtenerNombre()
     )
-  } */
+  } 
 }

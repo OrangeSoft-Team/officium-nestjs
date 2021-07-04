@@ -5,9 +5,8 @@ import { AdministradorErrorHttpMapeador } from '../../mapeadores/AdministradorEr
 import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
 import { ServicioOfertasLaborales } from './ofertas.service'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto'
-/*import { VerDetalleOfertaLaboralRespuestaDTO } from '../../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
-  import { VerOfertasLaboralesActivasRespuestaDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto' 
-*/
+import { VerDetallesOfertaLaboralAdministradorDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/VerDetallesOfertaLaboralAdministrador';
 
 @Controller('api/personal_administrativo/ofertas_laborales')
 export class ControladorOfertasLaborales {
@@ -53,5 +52,28 @@ export class ControladorOfertasLaborales {
     return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
       <ConsultarOfertasLaboralesAdministradorDTO[]>solicitud.valor,
     )
-  }  
+  } 
+  
+  @Get(':uuid_oferta_laboral')
+  public async VerDetallesOfertaLaboral(
+    @Param('uuid_oferta_laboral') uuidOferta: string,
+  ) {
+    //Creamos el DTO de solicitud
+    const dto =
+      OfertaLaboralAPIMapeador.VerDetallesOfertaAdministradorPeticionHttp(uuidOferta)
+    // Realizamos la solicitud al servicio
+    const solicitud =
+      await this.servicioOfertasLaborales.VerDetallesOfertaLaboralAdministrador(dto)
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <ExcepcionAplicacion>solicitud.error
+      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(excepcion, 'GET')
+    }
+
+    //En caso de éxito
+    return OfertaLaboralAPIMapeador.VerDetallesOfertaAdministradorRespuestaHttp(
+      <VerDetallesOfertaLaboralAdministradorDTO>solicitud.valor,
+    )
+  }
 }

@@ -2,13 +2,13 @@ import { MapeadorFecha } from '../../../comun/infraestructura/mapeadores/Fecha.m
 import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
 import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../dto/CrearOfertaLaboralEmpresaAdministrador.api.dto'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto'
-import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.api.dto'
-/* 
+import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.api.dto' 
+import { VerDetallesOfertaLaboralAdministradorAPIDTO } from '../dto/VerDetalllesOfertaLaboralAdministrador.api.dto'
 import {
-  VerDetalleOfertaLaboralRespuestaDTO,
-  VerDetalleOfertaLaboralSolicitudDTO,
-} from '../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
-
+  VerDetallesOfertaLaboralAdministradorDTO,
+  VerDetallesOfertaLaboralAdministradorPeticionDTO,
+} from '../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
+/*
 import {
   VerOfertasLaboralesActivasRespuestaDTO,
   VerOfertasLaboralesActivasSolicitudDTO,
@@ -54,5 +54,36 @@ export class OfertaLaboralAPIMapeador {
       }),
     )
     return http
+  }
+
+  
+  public static VerDetallesOfertaAdministradorPeticionHttp(
+    uuid_oferta_laboral: string,
+  ): VerDetallesOfertaLaboralAdministradorPeticionDTO {
+    return { idOferta: uuid_oferta_laboral }
+  }
+
+  public static VerDetallesOfertaAdministradorRespuestaHttp(
+    oferta: VerDetallesOfertaLaboralAdministradorDTO,
+  ): VerDetallesOfertaLaboralAdministradorAPIDTO {
+    //Mapea la respuesta del caso de uso al formato que responde el API
+    return {
+      uuid: oferta.id,
+      titulo: oferta.titulo,
+      fechaPublicacion: MapeadorFecha.formatear(oferta.fechaPublicacion),
+      fechaModificacion: oferta.fechaModificacion
+        ? MapeadorFecha.formatear(oferta.fechaModificacion)
+        : null,
+      cargo: oferta.cargo,
+      sueldo: oferta.sueldo,
+      descripcion: oferta.descripcion,
+      duracionEstimadaValor: oferta.duracionEstimadaValor,
+      duracionEstimadaEscala: oferta.duracionEstimadaEscala,
+      turnoTrabajo: oferta.turnoTrabajo,
+      numeroVacantes: oferta.numeroVacantes,
+      uuidEmpresa: oferta.uuidEmpresa,
+      empresaNombre: oferta.nombreEmpresa,
+      direccionEmpresa: oferta.direccionEmpresa,
+    }
   }
 }
