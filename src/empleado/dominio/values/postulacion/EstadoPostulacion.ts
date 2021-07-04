@@ -23,7 +23,6 @@ export class EstadoPostulacion extends ValueObject {
     // no debe estar vacio
     if (estado == null || estado == undefined)
       throw new EstadoPostulacionVacio(
-        estado,
         'El estado de la postulación de la oferta laboral no debe estar vacío.',
       )
 
@@ -32,7 +31,6 @@ export class EstadoPostulacion extends ValueObject {
     // debe ser uno de los siguientes valores
     if (!['aprobada', 'rechazada', 'en proceso'].includes(estado))
       throw new EstadoPostulacionInvalido(
-        estadoPostulacion,
         'El estado de la postulación de la oferta laboral debe ser "aprobada" o "rechazada" o "en proceso".',
       )
 

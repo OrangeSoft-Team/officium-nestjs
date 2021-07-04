@@ -19,7 +19,6 @@ export class GeneroEmpleado extends ValueObject {
     // el Genero no debe ser vacio
     if (genero == null || genero == undefined)
       throw new GeneroEmpleadoVacio(
-        genero,
         'El Genero del empleado no debe estar vacío.',
       )
 
@@ -28,7 +27,6 @@ export class GeneroEmpleado extends ValueObject {
     // el Genero debe ser de los siguientes valores
     if (!['masculino', 'femenino', 'otro'].includes(genero))
       throw new GeneroEmpleadoInvalido(
-        generoEmpleado,
         'El Genero del empleado debe ser "masculino", "femenino" u "otro".',
       )
 

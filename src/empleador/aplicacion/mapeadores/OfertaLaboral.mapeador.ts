@@ -10,9 +10,9 @@ import { NumeroVacantesOferta } from '../../dominio/values/oferta/NumeroVacantes
 import { SueldoOferta } from '../../dominio/values/oferta/SueldoOferta'
 import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { TurnoOferta } from '../../dominio/values/oferta/TurnoOferta'
-import { CrearOfertaLaboralEntidadDTO } from '../dto/CrearOfertaLaboral.dto'
-import { VerDetalleOfertaLaboralRespuestaDTO } from '../dto/VerDetalleOfertaLaboral.dto'
-import { VerOfertasLaboralesActivasRespuestaDTO } from '../dto/VerOfertasLaborales.dto'
+import { CrearOfertaLaboralEntidadDTO } from '../dto/oferta/CrearOfertaLaboral.dto'
+import { VerDetalleOfertaLaboralRespuestaDTO } from '../dto/oferta/VerDetalleOfertaLaboral.dto'
+import { VerOfertasLaboralesActivasRespuestaDTO } from '../dto/oferta/VerOfertasLaborales.dto'
 import { OfertaLaboralPersistenciaDTO } from '../puertos/IRepositorioOfertaLaboral'
 
 export class OfertaLaboralMapeador {

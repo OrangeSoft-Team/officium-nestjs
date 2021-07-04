@@ -1,20 +1,19 @@
 import { Excepcion } from '../Excepcion'
-import { CorreoElectronico } from '../values/CorreoElectronico'
 
 export class CorreoElectronicoVacio extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'CorreoElectronicoVacio')
+  public constructor(error: string) {
+    super(error, 'CorreoElectronicoVacio')
   }
 }
 
 export class LongitudInvalidaCorreoElectronico extends Excepcion {
-  public constructor(valor: CorreoElectronico, error: string) {
-    super(valor, error, 'LongitudInvalidaCorreoElectronico')
+  public constructor(error: string) {
+    super(error, 'LongitudInvalidaCorreoElectronico')
   }
 }
 
 export class FormatoInvalidoCorreoElectronico extends Excepcion {
-  public constructor(valor: CorreoElectronico, error: string) {
-    super(valor, error, 'FormatoInvalidoCorreoElectronico')
+  public constructor(error: string) {
+    super(error, 'FormatoInvalidoCorreoElectronico')
   }
 }

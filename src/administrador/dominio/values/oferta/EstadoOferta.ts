@@ -23,7 +23,6 @@ export class EstadoOferta extends ValueObject {
     // no debe estar vacio
     if (estado == null || estado == undefined)
       throw new EstadoOfertaVacio(
-        estado,
         'El estado de la oferta laboral no debe estar vacío.',
       )
 
@@ -32,7 +31,6 @@ export class EstadoOferta extends ValueObject {
     // debe ser uno de los siguientes valores
     if (!['publicado', 'cancelado'].includes(estado))
       throw new EstadoOfertaInvalido(
-        estadoOferta,
         'El estado de la oferta laboral debe ser "publicado" o "cancelado".',
       )
 

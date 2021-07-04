@@ -9,7 +9,7 @@ import {
   OfertaLaboralExisteDTO,
 } from '../../aplicacion/puertos/IRepositorioOfertaLaboral'
 import { getRepository } from 'typeorm'
-import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/OfertaLaboralNoExiste'
+import { OfertaLaboralNoExiste } from '../../aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 
 export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
   public async existe(
@@ -22,7 +22,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
 
       return { existe: oferta?.uuid ? true : false }
     } catch {
-      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
+      throw new OfertaLaboralNoExiste('La oferta laboral no existe.')
     }
   }
 
@@ -42,10 +42,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       })
     } catch (error) {
       //En caso de alguna falla con la persistencia
-      throw new ExcepcionAplicacion(
-        null,
-        'No se ha podido procesar la solicitud.',
-      )
+      throw new ExcepcionAplicacion('No se ha podido procesar la solicitud.')
     }
   }
 
@@ -83,7 +80,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
         ciudadEmpresa: detalleOferta.empresa.direccion.ciudad.nombre,
       }
     } catch (error) {
-      throw new OfertaLaboralNoExiste(null, 'La oferta laboral no existe.')
+      throw new OfertaLaboralNoExiste('La oferta laboral no existe.')
     }
   }
 }

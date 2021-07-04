@@ -1,7 +1,6 @@
 import { RepositorioPostulaciones } from '../../../src/empleado/infraestructura/adaptadores/RepositorioPostulaciones'
 import { RepositorioEmpleado } from '../../../src/empleado/infraestructura/adaptadores/RepositorioEmpleado'
-import { ConsultarPostulaciones } from '../../../src/empleado/aplicacion/servicios/ConsultarPostulaciones'
-
+import { ConsultarPostulaciones } from '../../../src/empleado/aplicacion/servicios/postulacion/ConsultarPostulaciones'
 
 // Mock del repositorio de persistencia de Postulaciones
 jest.mock(
@@ -23,13 +22,15 @@ describe('empleado: Ver las postulaciones de un empleado', () => {
     mockRepositorioPostulaciones = new RepositorioPostulaciones()
     mockRepositorioEmpleado = new RepositorioEmpleado()
     casoUso = new ConsultarPostulaciones(
-        mockRepositorioPostulaciones,
-        mockRepositorioEmpleado
+      mockRepositorioPostulaciones,
+      mockRepositorioEmpleado,
     )
   })
 
   it('Debe obtener la informacion de postulaciones del empleado suministrado', () => {
-    const resultado = casoUso.ejecutar({uuidEmpleado: '1300b8ee-73a0-42de-8464-ed4998dc9a10'})
+    const resultado = casoUso.ejecutar({
+      uuidEmpleado: '1300b8ee-73a0-42de-8464-ed4998dc9a10',
+    })
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
       expect(res.valor).toHaveLength(1)
@@ -41,7 +42,7 @@ describe('empleado: Ver las postulaciones de un empleado', () => {
           cargoOferta: 'Desarrollador',
           empresaNombre: 'Officium',
           comentario: 'comentario de prueba con los caracteres necesarios',
-        }
+        },
       ])
     })
   })

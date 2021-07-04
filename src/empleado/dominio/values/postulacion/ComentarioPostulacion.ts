@@ -21,7 +21,6 @@ export class ComentarioPostulacion extends ValueObject {
     // No debe ser vacio
     if (comentario == null || comentario == undefined || comentario == '') {
       throw new ComentarioPostulacionVacio(
-        comentario,
         'El comentario de la postulación no debe estar vacio.',
       )
     }
@@ -31,13 +30,11 @@ export class ComentarioPostulacion extends ValueObject {
     // Debe contener al menos 16 caracteres
     if (comentario.length < 16)
       throw new LongitudInvalidaComentarioPostulacion(
-        comentarioPostulacion,
         'El comentario de la postulación de la oferta laboral debe contener como mínimo 16 caracteres.',
       )
     // Debe contener como maximo 256 caracteres
     if (comentario.length > 256)
       throw new LongitudInvalidaComentarioPostulacion(
-        comentarioPostulacion,
         'El comentario de la postulación de la oferta laboral debe contener como máximo 256 caracteres.',
       )
     // Si no hay errores

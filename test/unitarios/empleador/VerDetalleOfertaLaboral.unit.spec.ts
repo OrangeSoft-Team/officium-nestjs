@@ -1,8 +1,8 @@
 import { RepositorioEmpresa } from '../../../src/empleador/infraestructura/adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { VerDetalleOfertaLaboral } from '../../../src/empleador/aplicacion/servicios/VerDetalleOfertaLaboral'
-import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/EmpresaNoExiste'
-import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/OfertaLaboralNoExiste'
+import { VerDetalleOfertaLaboral } from '../../../src/empleador/aplicacion/servicios/oferta/VerDetalleOfertaLaboral'
+import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/empresa/EmpresaNoExiste'
+import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 
 // Mock del repositorio de persistencia de Empresas
 jest.mock(
@@ -20,8 +20,8 @@ describe('Empleador: Ver todas las ofertas laborales activas de la empresa', () 
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioEmpresa = new RepositorioEmpresa(null)
-    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
+    mockRepositorioEmpresa = new RepositorioEmpresa()
+    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
     casoUso = new VerDetalleOfertaLaboral(
       mockRepositorioEmpresa,
       mockRepositorioOfertaLaboral,

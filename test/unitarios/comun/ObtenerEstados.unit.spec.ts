@@ -15,8 +15,8 @@ describe('Común: Obtener todos los paises registrados en el sistema', () => {
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioPaises = new RepositorioPaises(null)
-    mockRepositorioEstados = new RepositorioEstados(null, null)
+    mockRepositorioPaises = new RepositorioPaises()
+    mockRepositorioEstados = new RepositorioEstados()
     casoUso = new ObtenerEstados(mockRepositorioEstados, mockRepositorioPaises)
   })
 

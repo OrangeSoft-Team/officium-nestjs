@@ -21,7 +21,6 @@ export class TituloOferta extends ValueObject {
     // No debe ser vacío
     if (titulo == null || titulo == undefined || titulo == '')
       throw new TituloOfertaVacio(
-        titulo,
         'El titulo de la oferta laboral no puede estar vacío.',
       )
 
@@ -30,13 +29,11 @@ export class TituloOferta extends ValueObject {
     // Debe contener al menos 4 caracteres
     if (titulo.length < 4)
       throw new LongitudInvalidaTituloOferta(
-        tituloOferta,
         'El titulo de la oferta laboral debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como máximo 80 caracteres
     if (titulo.length > 80)
       throw new LongitudInvalidaTituloOferta(
-        tituloOferta,
         'El titulo de la oferta laboral debe contener como máximo 80 caracteres.',
       )
     // Si no hay errores

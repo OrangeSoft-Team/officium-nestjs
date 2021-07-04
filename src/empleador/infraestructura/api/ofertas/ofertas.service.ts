@@ -1,19 +1,13 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
 import { GeneradorIdentificadorUUID } from '../../../../comun/infraestructura/adaptadores/GeneradorIdentificadorUUID'
-import { EmpresaORM } from '../../../../comun/infraestructura/persistencia/Empresa.orm'
-import { OfertaLaboralORM } from '../../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { CrearOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/CrearOfertaLaboral.dto'
-import { VerDetalleOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/VerDetalleOfertaLaboral.dto'
-import { VerOfertasLaboralesActivasSolicitudDTO } from '../../../aplicacion/dto/VerOfertasLaborales.dto'
-import { CrearOfertaLaboral } from '../../../aplicacion/servicios/CrearOfertaLaboral'
-import { VerDetalleOfertaLaboral } from '../../../aplicacion/servicios/VerDetalleOfertaLaboral'
-import { VerOfertasLaboralesActivas } from '../../../aplicacion/servicios/VerOfertasLaboralesActivas'
+import { CrearOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/oferta/CrearOfertaLaboral.dto'
+import { VerDetalleOfertaLaboralSolicitudDTO } from '../../../aplicacion/dto/oferta/VerDetalleOfertaLaboral.dto'
+import { VerOfertasLaboralesActivasSolicitudDTO } from '../../../aplicacion/dto/oferta/VerOfertasLaborales.dto'
+import { CrearOfertaLaboral } from '../../../aplicacion/servicios/oferta/CrearOfertaLaboral'
+import { VerDetalleOfertaLaboral } from '../../../aplicacion/servicios/oferta/VerDetalleOfertaLaboral'
+import { VerOfertasLaboralesActivas } from '../../../aplicacion/servicios/oferta/VerOfertasLaboralesActivas'
 import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
 
-@Injectable()
 export class ServicioOfertasLaborales {
   private readonly repositorioOfertaLaboral: RepositorioOfertaLaboral
   private readonly repositorioEmpresa: RepositorioEmpresa
@@ -22,18 +16,10 @@ export class ServicioOfertasLaborales {
   private readonly servicioVerOfertasLaboralesActivas: VerOfertasLaboralesActivas
   private readonly servicioVerDetalleOfertaLaboral: VerDetalleOfertaLaboral
 
-  public constructor(
-    @InjectRepository(OfertaLaboralORM)
-    private readonly ofertaLaboralORM: Repository<OfertaLaboralORM>,
-    @InjectRepository(EmpresaORM)
-    private readonly empresaORM: Repository<EmpresaORM>,
-  ) {
+  public constructor() {
     // Repositorios de datos y adaptadores inyectables en los servicios/casos de uso
-    this.repositorioOfertaLaboral = new RepositorioOfertaLaboral(
-      this.ofertaLaboralORM,
-      this.empresaORM,
-    )
-    this.repositorioEmpresa = new RepositorioEmpresa(this.empresaORM)
+    this.repositorioOfertaLaboral = new RepositorioOfertaLaboral()
+    this.repositorioEmpresa = new RepositorioEmpresa()
     this.generadorIdentificador = new GeneradorIdentificadorUUID()
     // Servicios/casos de uso de aplicación
     this.servicioCrearOfertaLaboral = new CrearOfertaLaboral(

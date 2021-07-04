@@ -9,7 +9,7 @@ export class CalleDireccion extends ValueObject {
     super()
   }
 
-  public obtenerCalle(){
+  public obtenerCalle() {
     return this.calle
   }
 
@@ -20,7 +20,6 @@ export class CalleDireccion extends ValueObject {
   public static crear(calle: string): CalleDireccion {
     if (calle == null || calle == undefined || calle == '')
       throw new CalleDireccionVacia(
-        calle,
         'La calle de la dirección no puede estar vacío.',
       )
 
@@ -29,13 +28,11 @@ export class CalleDireccion extends ValueObject {
     // Debe contener al menos 4 caracteres
     if (calle.length < 4)
       throw new LongitudInvalidaCalleDireccion(
-        calleDireccion,
         'La calle de la dirección debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como maximo 256 caracteres
     if (calle.length > 256)
       throw new LongitudInvalidaCalleDireccion(
-        calleDireccion,
         'La calle de la dirección debe contener como máximo 256 caracteres.',
       )
 

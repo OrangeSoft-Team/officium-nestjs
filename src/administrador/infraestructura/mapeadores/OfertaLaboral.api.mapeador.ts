@@ -1,13 +1,14 @@
 import { MapeadorFecha } from '../../../comun/infraestructura/mapeadores/Fecha.mapeador'
-import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
-import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../dto/CrearOfertaLaboralEmpresaAdministrador.api.dto'
-import { ConsultarOfertasLaboralesAdministradorDTO } from '../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto'
-import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.api.dto' 
-import { VerDetallesOfertaLaboralAdministradorAPIDTO } from '../dto/VerDetalllesOfertaLaboralAdministrador.api.dto'
+import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../aplicacion/dto/oferta/CrearOfertaLaboralAdministrador.dto'
+import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../dto/oferta/CrearOfertaLaboralEmpresaAdministrador.api.dto'
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../../aplicacion/dto/oferta/ConsultarOfertasLaboralesAdministrador.dto'
+import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/oferta/ConsultarOfertasLaboralesAdministrador.api.dto'
+
 import {
   VerDetallesOfertaLaboralAdministradorDTO,
   VerDetallesOfertaLaboralAdministradorPeticionDTO,
-} from '../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
+} from '../../aplicacion/dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministradorAPIDTO } from '../dto/VerDetalllesOfertaLaboralAdministrador.api.dto'
 /*
 import {
   VerOfertasLaboralesActivasRespuestaDTO,
@@ -56,7 +57,6 @@ export class OfertaLaboralAPIMapeador {
     return http
   }
 
-  
   public static VerDetallesOfertaAdministradorPeticionHttp(
     uuid_oferta_laboral: string,
   ): VerDetallesOfertaLaboralAdministradorPeticionDTO {

@@ -23,7 +23,6 @@ export class ObtenerEstados {
       })
       if (!paisExiste.existe)
         throw new PaisNoExiste(
-          solicitud.idPais,
           'El país no se encuentra registrado en el sistema.',
         )
 

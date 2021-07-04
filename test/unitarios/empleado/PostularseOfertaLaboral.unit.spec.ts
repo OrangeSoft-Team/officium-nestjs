@@ -1,11 +1,11 @@
 import { RepositorioPostulaciones } from '../../../src/empleado/infraestructura/adaptadores/RepositorioPostulaciones'
 import { GeneradorIdentificadorUUID } from '../../../src/comun/infraestructura/adaptadores/GeneradorIdentificadorUUID'
-import { PostularseOfertaLaboral } from '../../../src/empleado/aplicacion/servicios/PostularseOfertaLaboral'
-import { EmpleadoNoExiste } from '../../../src/empleado/aplicacion/excepciones/EmpleadoNoExiste'
+import { PostularseOfertaLaboral } from '../../../src/empleado/aplicacion/servicios/postulacion/PostularseOfertaLaboral'
+import { EmpleadoNoExiste } from '../../../src/empleado/aplicacion/excepciones/empleado/EmpleadoNoExiste'
 import { LongitudInvalidaComentarioPostulacion } from '../../../src/empleado/dominio/excepciones/postulacion/ComentarioPostulacion.excepciones'
 import { RepositorioEmpleado } from '../../../src/empleado/infraestructura/adaptadores/RepositorioEmpleado'
 import { RepositorioOfertaLaboral } from '../../../src/empleado/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { OfertaLaboralNoExiste } from '../../../src/empleado/aplicacion/excepciones/OfertaLaboralNoExiste'
+import { OfertaLaboralNoExiste } from '../../../src/empleado/aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 
 // Mock del repositorio de persistencia de Postulaciones
 jest.mock(

@@ -1,0 +1,37 @@
+name: 'app'
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run build
+  tests-unitarios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run test:unit
+  tests-integracion:
+    runs-on: ubuntu-latest
+    env:
+      TIPO_BD_TESTING: sqlite
+      NOMBRE_BD_TESTING: ci.sqlite
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run test:int
+  tests-aceptacion:
+    runs-on: ubuntu-latest
+    env:
+      TIPO_BD_TESTING: sqlite
+      NOMBRE_BD_TESTING: ci.sqlite
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run test:acp

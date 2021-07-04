@@ -3,7 +3,7 @@ import { ServicioPostulaciones } from './postulaciones.service'
 import { EmpleadoErrorHttpMapeador } from '../../mapeadores/EmpleadoErrorHttp.mapeador'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
 import { PostulacionOfertaAPIMapeador } from '../../mapeadores/PostulacionOferta.api.mapeador'
-import { ConsultarPostulacionesDTO } from '../../../aplicacion/dto/ConsultarPostulaciones.dto'
+import { ConsultarPostulacionesDTO } from '../../../aplicacion/dto/postulacion/ConsultarPostulaciones.dto'
 
 @Controller('api/empleado/postulaciones')
 export class ControladorPostulaciones {

@@ -1,13 +1,13 @@
 import { Excepcion } from '../../../../comun/dominio/Excepcion'
 
 export class FechaPublicacionOfertaVacia extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'FechaPublicacionOfertaVacia')
+  public constructor(error: string) {
+    super(error, 'FechaPublicacionOfertaVacia')
   }
 }
 
 export class FechaPublicacionOfertaInvalida extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'FechaPublicacionOfertaInvalida')
+  public constructor(error: string) {
+    super(error, 'FechaPublicacionOfertaInvalida')
   }
 }

@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { RepositorioPostulaciones } from '../../adaptadores/RepositorioPostulaciones'
 import { RepositorioEmpleado } from '../../adaptadores/RepositorioEmpleado'
-import { ConsultarPostulacionesPeticionDTO } from '../../../aplicacion/dto/ConsultarPostulaciones.dto'
-import { ConsultarPostulaciones } from '../../../aplicacion/servicios/ConsultarPostulaciones'
+import { ConsultarPostulacionesPeticionDTO } from '../../../aplicacion/dto/postulacion/ConsultarPostulaciones.dto'
+import { ConsultarPostulaciones } from '../../../aplicacion/servicios/postulacion/ConsultarPostulaciones'
 import { PostulacionOfertaORM } from '../../../../comun/infraestructura/persistencia/PostulacionOferta.orm'
 
 @Injectable()

@@ -18,14 +18,12 @@ export class FechaNacimientoEmpleado extends ValueObject {
     // la fecha no debe ser vacia
     if (fecha == null || fecha == undefined)
       throw new FechaNacimientoEmpleadoVacio(
-        fecha,
         'La fecha de nacimiento del empleado no debe estar vacía.',
       )
 
     // debe ser una fecha valida
     if (!(fecha instanceof Date))
       throw new FechaNacimientoEmpleadoInvalida(
-        fecha,
         'La fecha de nacimiento del empleado no es una fecha valida.',
       )
 
@@ -33,10 +31,7 @@ export class FechaNacimientoEmpleado extends ValueObject {
 
     // la edad debe ser mayor a 18
     if (new Date().getFullYear() - fecha.getFullYear() < 18)
-      throw new EmpleadoMenorDeEdad(
-        fechaNacimiento,
-        'El empleado no debe ser menor de edad.',
-      )
+      throw new EmpleadoMenorDeEdad('El empleado no debe ser menor de edad.')
 
     return fechaNacimiento
   }

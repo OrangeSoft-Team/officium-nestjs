@@ -1,14 +1,20 @@
 import { Identificador } from '../../../comun/dominio/values/Identificador'
 import { PostulacionOferta } from '../../dominio/PostulacionOferta'
-import { NombreEmpresa } from '../../dominio/values/Empresa/NombreEmpresa'
+import { NombreEmpresa } from '../../dominio/values/empresa/NombreEmpresa'
 import { CargoOferta } from '../../dominio/values/oferta/CargoOferta'
 import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { ComentarioPostulacion } from '../../dominio/values/postulacion/ComentarioPostulacion'
 import { EstadoPostulacion } from '../../dominio/values/postulacion/EstadoPostulacion'
 import { FechaPostulacion } from '../../dominio/values/postulacion/FechaPostulacion'
-import { ConsultarPostulacionesDTO, DominioPostulacionDTO } from '../dto/ConsultarPostulaciones.dto'
-import { PostularseOfertaLaboralSolicitudDTO } from '../dto/PostularseOfertaLaboral.dto'
-import { ConsultarPostulacionesPersistenciaDTO, PostulacionOfertaPersistenciaDTO } from '../puertos/IRepositorioPostulaciones'
+import {
+  ConsultarPostulacionesDTO,
+  DominioPostulacionDTO,
+} from '../dto/postulacion/ConsultarPostulaciones.dto'
+import { PostularseOfertaLaboralSolicitudDTO } from '../dto/postulacion/PostularseOfertaLaboral.dto'
+import {
+  ConsultarPostulacionesPersistenciaDTO,
+  PostulacionOfertaPersistenciaDTO,
+} from '../puertos/IRepositorioPostulaciones'
 
 export class PostulacionOfertaMapeador {
   // Mapear DTO de solicitud para la creación de una postulación
@@ -43,28 +49,31 @@ export class PostulacionOfertaMapeador {
     }
   }
 
-
-  public static MapPostulacionDominio(postulacion: ConsultarPostulacionesPersistenciaDTO): DominioPostulacionDTO {
-      return{ 
-          uuid: Identificador.crear(postulacion.uuid),
-          uuidOfertaLaboral: Identificador.crear(postulacion.uuidOfertaLaboral),
-          tituloOferta: TituloOferta.crear(postulacion.tituloOferta),
-          cargoOferta: CargoOferta.crear(postulacion.cargoOferta),
-          empresaNombre: NombreEmpresa.crear(postulacion.nombreEmpresa),
-          estado: EstadoPostulacion.crear(postulacion.estado),
-          fecha: FechaPostulacion.crear(postulacion.fecha),
-          comentario: ComentarioPostulacion.crear(postulacion.comentario),
-      }
+  public static MapPostulacionDominio(
+    postulacion: ConsultarPostulacionesPersistenciaDTO,
+  ): DominioPostulacionDTO {
+    return {
+      uuid: Identificador.crear(postulacion.uuid),
+      uuidOfertaLaboral: Identificador.crear(postulacion.uuidOfertaLaboral),
+      tituloOferta: TituloOferta.crear(postulacion.tituloOferta),
+      cargoOferta: CargoOferta.crear(postulacion.cargoOferta),
+      empresaNombre: NombreEmpresa.crear(postulacion.nombreEmpresa),
+      estado: EstadoPostulacion.crear(postulacion.estado),
+      fecha: FechaPostulacion.crear(postulacion.fecha),
+      comentario: ComentarioPostulacion.crear(postulacion.comentario),
+    }
   }
 
-  public static MapPostulacionRespuesta(postulacion: DominioPostulacionDTO): ConsultarPostulacionesDTO{
+  public static MapPostulacionRespuesta(
+    postulacion: DominioPostulacionDTO,
+  ): ConsultarPostulacionesDTO {
     return {
       uuid: postulacion.uuid.obtenerId(),
       uuidOfertaLaboral: postulacion.uuidOfertaLaboral.obtenerId(),
       tituloOferta: postulacion.tituloOferta.obtenerTitulo(),
       cargoOferta: postulacion.cargoOferta.obtenerCargo(),
       empresaNombre: postulacion.empresaNombre.obtenerNombre(),
-      comentario: postulacion.comentario.obtenerComentario()
+      comentario: postulacion.comentario.obtenerComentario(),
     }
   }
 }

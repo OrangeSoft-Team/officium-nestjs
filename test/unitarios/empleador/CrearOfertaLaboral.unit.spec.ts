@@ -1,10 +1,10 @@
 import { RepositorioEmpresa } from '../../../src/empleador/infraestructura/adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
 import { GeneradorIdentificadorUUID } from '../../../src/comun/infraestructura/adaptadores/GeneradorIdentificadorUUID'
-import { CrearOfertaLaboral } from '../../../src/empleador/aplicacion/servicios/CrearOfertaLaboral'
+import { CrearOfertaLaboral } from '../../../src/empleador/aplicacion/servicios/oferta/CrearOfertaLaboral'
 import { LongitudInvalidaTituloOferta } from '../../../src/empleador/dominio/excepciones/oferta/TituloOferta.excepciones'
 import { SueldoOfertaInvalido } from '../../../src/empleador/dominio/excepciones/oferta/SueldoOferta.excepciones'
-import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/EmpresaNoExiste'
+import { EmpresaNoExiste } from '../../../src/empleador/aplicacion/excepciones/empresa/EmpresaNoExiste'
 
 // Mock del repositorio de persistencia de Empresas
 jest.mock(
@@ -27,8 +27,8 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioEmpresa = new RepositorioEmpresa(null)
-    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
+    mockRepositorioEmpresa = new RepositorioEmpresa()
+    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
     mockGeneradorIdentificador = new GeneradorIdentificadorUUID()
     casoUso = new CrearOfertaLaboral(
       mockRepositorioOfertaLaboral,

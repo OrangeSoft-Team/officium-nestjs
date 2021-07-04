@@ -3,10 +3,9 @@ import {
   AdministradorMenorDeEdad,
   FechaNacimientoAdministradorInvalida,
   FechaNacimientoAdministradorVacio,
-} from '../../excepciones/Administrador/FechaNacimientoAdministrador.excepciones'
+} from '../../excepciones/administrador/FechaNacimientoAdministrador.excepciones'
 
 export class FechaNacimientoAdministrador extends ValueObject {
-  
   private constructor(private readonly fecha: Date) {
     super()
   }
@@ -19,14 +18,12 @@ export class FechaNacimientoAdministrador extends ValueObject {
     // la fecha no debe ser vacia
     if (fecha == null || fecha == undefined)
       throw new FechaNacimientoAdministradorVacio(
-        fecha,
         'La fecha de nacimiento del Administrador no debe estar vacía.',
       )
 
     // debe ser una fecha valida
     if (!(fecha instanceof Date))
       throw new FechaNacimientoAdministradorInvalida(
-        fecha,
         'La fecha de nacimiento del Administrador no es una fecha valida.',
       )
 
@@ -35,7 +32,6 @@ export class FechaNacimientoAdministrador extends ValueObject {
     // la edad debe ser mayor a 18
     if (new Date().getFullYear() - fecha.getFullYear() < 18)
       throw new AdministradorMenorDeEdad(
-        fechaNacimiento,
         'El Administrador no debe ser menor de edad.',
       )
 

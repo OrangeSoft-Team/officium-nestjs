@@ -1,19 +1,12 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
 import { GeneradorIdentificadorUUID } from '../../../../comun/infraestructura/adaptadores/GeneradorIdentificadorUUID'
-import { EmpresaORM } from '../../../../comun/infraestructura/persistencia/Empresa.orm'
-import { OfertaLaboralORM } from '../../../../comun/infraestructura/persistencia/OfertaLaboral.orm'
-import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
-import { CrearOfertaLaboralAdministrador } from '../../../aplicacion/servicios/CrearOfertaLaboralAdministrador'
+import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../../aplicacion/dto/oferta/CrearOfertaLaboralAdministrador.dto'
+import { CrearOfertaLaboralAdministrador } from '../../../aplicacion/servicios/oferta/CrearOfertaLaboralAdministrador'
 import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
-import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto';
-import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/ConsultarOfertasLaboralesAdministrador';
-import { VerDetallesOfertaLaboralAdministradorPeticionDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
-import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/VerDetallesOfertaLaboralAdministrador';
+import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/oferta/ConsultarOfertasLaboralesAdministrador'
+import { VerDetallesOfertaLaboralAdministradorPeticionDTO } from '../../../aplicacion/dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/oferta/VerDetallesOfertaLaboralAdministrador'
 
-@Injectable()
 export class ServicioOfertasLaborales {
   private readonly repositorioOfertaLaboral: RepositorioOfertaLaboral
   private readonly repositorioEmpresa: RepositorioEmpresa
@@ -22,18 +15,10 @@ export class ServicioOfertasLaborales {
   private readonly servicioConsultarOfertasLaborales: ConsultarOfertasLaborales
   private readonly servicioVerDetallesOfertaLaboral: VerDetallesOfertaLaboralAdministrador
 
-  public constructor(
-    @InjectRepository(OfertaLaboralORM)
-    private readonly ofertaLaboralORM: Repository<OfertaLaboralORM>,
-    @InjectRepository(EmpresaORM)
-    private readonly empresaORM: Repository<EmpresaORM>,
-  ) {
+  public constructor() {
     // Repositorios de datos y adaptadores inyectables en los servicios/casos de uso
-    this.repositorioOfertaLaboral = new RepositorioOfertaLaboral(
-      this.ofertaLaboralORM,
-      this.empresaORM,
-    )
-    this.repositorioEmpresa = new RepositorioEmpresa(this.empresaORM)
+    this.repositorioOfertaLaboral = new RepositorioOfertaLaboral()
+    this.repositorioEmpresa = new RepositorioEmpresa()
     this.generadorIdentificador = new GeneradorIdentificadorUUID()
     // Servicios/casos de uso de aplicación
     this.servicioCrearOfertaLaboral = new CrearOfertaLaboralAdministrador(
@@ -46,13 +31,14 @@ export class ServicioOfertasLaborales {
       this.repositorioOfertaLaboral,
     )
 
-    this.servicioVerDetallesOfertaLaboral = new VerDetallesOfertaLaboralAdministrador(
-      this.repositorioOfertaLaboral,
-    )
+    this.servicioVerDetallesOfertaLaboral =
+      new VerDetallesOfertaLaboralAdministrador(this.repositorioOfertaLaboral)
   }
 
   // Caso de uso 17.1 Administrador: Crear Oferta Laboral
-  public async crearOfertaLaboralAdministrador(dto: CrearOfertaLaboralAdministradorSolicitudDTO) {
+  public async crearOfertaLaboralAdministrador(
+    dto: CrearOfertaLaboralAdministradorSolicitudDTO,
+  ) {
     return await this.servicioCrearOfertaLaboral.ejecutar(dto)
   }
 
@@ -61,13 +47,10 @@ export class ServicioOfertasLaborales {
     return await this.servicioConsultarOfertasLaborales.ejecutar()
   }
 
-   // Caso de uso 17.2 Administrador: Ver Detalles Oferta Laboral
-   public async VerDetallesOfertaLaboralAdministrador(
+  // Caso de uso 17.2 Administrador: Ver Detalles Oferta Laboral
+  public async VerDetallesOfertaLaboralAdministrador(
     dto: VerDetallesOfertaLaboralAdministradorPeticionDTO,
   ) {
     return await this.servicioVerDetallesOfertaLaboral.ejecutar(dto)
   }
- 
-
- 
 }

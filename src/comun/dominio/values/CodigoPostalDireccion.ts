@@ -9,7 +9,7 @@ export class CodigoPostalDireccion extends ValueObject {
     super()
   }
 
-  public obtenerCodigoPostal(){
+  public obtenerCodigoPostal() {
     return this.codigo
   }
 
@@ -20,7 +20,6 @@ export class CodigoPostalDireccion extends ValueObject {
   public static crear(codigo: string): CodigoPostalDireccion {
     if (codigo == null || codigo == undefined || codigo == '')
       throw new CodigoPostalDireccionVacia(
-        codigo,
         'El código postal de la dirección no puede estar vacío.',
       )
 
@@ -29,13 +28,11 @@ export class CodigoPostalDireccion extends ValueObject {
     // Debe contener al menos 1 caracter
     if (codigo.length < 1)
       throw new LongitudInvalidaCodigoPostalDireccion(
-        codigoPostalDireccion,
         'El código postal de la dirección debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como maximo 10 caracteres
     if (codigo.length > 10)
       throw new LongitudInvalidaCodigoPostalDireccion(
-        codigoPostalDireccion,
         'El código postal de la dirección debe contener como máximo 10 caracteres.',
       )
     return codigoPostalDireccion

@@ -27,7 +27,6 @@ export class ObtenerCiudades {
       })
       if (!paisExiste.existe)
         throw new PaisNoExiste(
-          solicitud.idPais,
           'El país no se encuentra registrado en el sistema.',
         )
 
@@ -49,7 +48,6 @@ export class ObtenerCiudades {
         )
       )
         throw new EstadoNoExiste(
-          solicitud.idEstado,
           'El país no posee registrado el estado colocado.',
         )
 

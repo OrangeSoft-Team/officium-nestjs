@@ -8,8 +8,8 @@ import { EstadoORM } from '../../../src/comun/infraestructura/persistencia/Estad
 import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { PaisORM } from '../../../src/comun/infraestructura/persistencia/Pais.orm'
 import { PostulacionOfertaORM } from '../../../src/comun/infraestructura/persistencia/PostulacionOferta.orm'
-import { EmpleadoNoExiste } from '../../../src/empleado/aplicacion/excepciones/EmpleadoNoExiste'
-import { OfertaLaboralNoExiste } from '../../../src/empleado/aplicacion/excepciones/OfertaLaboralNoExiste'
+import { EmpleadoNoExiste } from '../../../src/empleado/aplicacion/excepciones/empleado/EmpleadoNoExiste'
+import { OfertaLaboralNoExiste } from '../../../src/empleado/aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 import { RepositorioPostulaciones } from '../../../src/empleado/infraestructura/adaptadores/RepositorioPostulaciones'
 
 // Inserta en la base de datos los datos de prueba necesarios para el test unitario

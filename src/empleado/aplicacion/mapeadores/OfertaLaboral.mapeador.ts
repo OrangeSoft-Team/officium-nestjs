@@ -10,17 +10,17 @@ import { SueldoOferta } from '../../dominio/values/oferta/SueldoOferta'
 import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { TurnoOferta } from '../../dominio/values/oferta/TurnoOferta'
 import { DatosOfertaLaboral } from '../../dominio/OfertaLaboral'
-import { ConsultarOfertasLaboralesDTO } from '../dto/ConsultarOfertasLaborales.dto'
+import { ConsultarOfertasLaboralesDTO } from '../dto/oferta/ConsultarOfertasLaborales.dto'
 import {
   ConsultarOfertaLaboralPersistenciaDTO,
   VerDetallesOfertaLaboralPersistenciaDTO,
 } from '../puertos/IRepositorioOfertaLaboral'
 import { FechaModificacionOferta } from '../../dominio/values/oferta/FechaModificacionOferta'
-import { NombreEmpresa } from '../../dominio/values/Empresa/NombreEmpresa'
+import { NombreEmpresa } from '../../dominio/values/empresa/NombreEmpresa'
 import {
   DominioDetallesOfertaLaboralDTO,
   VerDetallesOfertaLaboralDTO,
-} from '../dto/VerDetallesOfertaLaboral.dto'
+} from '../dto/oferta/VerDetallesOfertaLaboral.dto'
 import { CalleDireccion } from '../../../comun/dominio/values/CalleDireccion'
 import { CodigoPostalDireccion } from '../../../comun/dominio/values/CodigoPostalDireccion'
 import { NombreCiudad } from '../../../comun/dominio/values/NombreCiudad'

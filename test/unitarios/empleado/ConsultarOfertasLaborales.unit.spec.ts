@@ -1,6 +1,5 @@
 import { RepositorioOfertaLaboral } from '../../../src/empleado/infraestructura/adaptadores/RepositorioOfertaLaboral'
-import { ConsultarOfertasLaborales } from '../../../src/empleado/aplicacion/servicios/ConsultarOfertasLaborales'
-
+import { ConsultarOfertasLaborales } from '../../../src/empleado/aplicacion/servicios/oferta/ConsultarOfertasLaborales'
 
 // Mock del repositorio de persistencia de Oferta Laboral
 jest.mock(
@@ -14,9 +13,7 @@ describe('empleado: Consultar todas las ofertas laborales activas', () => {
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
     mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
-    casoUso = new ConsultarOfertasLaborales(
-      mockRepositorioOfertaLaboral,
-    )
+    casoUso = new ConsultarOfertasLaborales(mockRepositorioOfertaLaboral)
   })
 
   it('Debe obtener una oferta laboral con sus datos para una empresa valida', () => {
