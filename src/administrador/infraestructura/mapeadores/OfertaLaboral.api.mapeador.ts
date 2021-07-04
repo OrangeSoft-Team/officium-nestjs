@@ -2,7 +2,7 @@ import { MapeadorFecha } from '../../../comun/infraestructura/mapeadores/Fecha.m
 import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
 import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../dto/CrearOfertaLaboralEmpresaAdministrador.api.dto'
 import { ConsultarOfertasLaboralesAdministradorDTO } from '../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto'
-import { ConsultarOfertasLaboralesAPIDTO } from '../dto/ConsultarOfertasLaborales.api.dto'
+import { ConsultarOfertasLaboralesAdministradorAPIDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.api.dto'
 /* 
 import {
   VerDetalleOfertaLaboralRespuestaDTO,
@@ -36,7 +36,7 @@ export class OfertaLaboralAPIMapeador {
 
   public static ConsultarOfertasRespuestaHttp(
     datos: ConsultarOfertasLaboralesAdministradorDTO[],
-  ): ConsultarOfertasLaboralesAPIDTO[] {
+  ): ConsultarOfertasLaboralesAdministradorAPIDTO[] {
     //Mapea la respuesta del caso de uso al formato que responde el API
     const http = []
     datos.forEach((oferta) =>

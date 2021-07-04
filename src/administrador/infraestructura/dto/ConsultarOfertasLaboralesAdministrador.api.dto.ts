@@ -1,4 +1,4 @@
-export interface ConsultarOfertasLaboralesAPIDTO {
+export interface ConsultarOfertasLaboralesAdministradorAPIDTO {
   uuid: string
   titulo: string
   fechaPublicacion: string
