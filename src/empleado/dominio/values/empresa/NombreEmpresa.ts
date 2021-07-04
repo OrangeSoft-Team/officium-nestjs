@@ -21,7 +21,6 @@ export class NombreEmpresa extends ValueObject {
     // No debe ser vacio
     if (nombre == null || nombre == undefined || nombre == '')
       throw new NombreEmpresaVacio(
-        nombre,
         'El nombre de la empresa o la empresa no puede estar vacío.',
       )
 
@@ -30,13 +29,11 @@ export class NombreEmpresa extends ValueObject {
     // Debe contener al menos 4 caracteres
     if (nombre.length < 4)
       throw new LongitudInvalidaNombreEmpresa(
-        nombreEmpresa,
         'El nombre de la empresa o la empresa debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como maximo 128 caracteres
     if (nombre.length > 128)
       throw new LongitudInvalidaNombreEmpresa(
-        nombreEmpresa,
         'El nombre de la empresa o la empresa debe contener como máximo 40 caracteres.',
       )
 

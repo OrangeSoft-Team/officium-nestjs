@@ -17,7 +17,9 @@ export class ConsultarOfertasLaborales {
 
       //Se compara lo obtenido con el dominio y se retorna
       let ofertasLaborales = lista.map((listadoOfertas) =>
-        OfertaLaboralAdministradorMapeador.MapConsultaDominioOferta(listadoOfertas),
+        OfertaLaboralAdministradorMapeador.MapConsultaDominioOferta(
+          listadoOfertas,
+        ),
       )
 
       //Se filtran las publicaciones activas
@@ -28,11 +30,15 @@ export class ConsultarOfertasLaborales {
 
       //Mapeamos para respuesta
       const dtoConsulta = ofertasLaborales.map((listadoOfertas) =>
-        OfertaLaboralAdministradorMapeador.MapConsultaRespuestaOferta(listadoOfertas),
+        OfertaLaboralAdministradorMapeador.MapConsultaRespuestaOferta(
+          listadoOfertas,
+        ),
       )
 
       //Se retorna el DTO
-      return Resultado.ok<ConsultarOfertasLaboralesAdministradorDTO[]>(dtoConsulta)
+      return Resultado.ok<ConsultarOfertasLaboralesAdministradorDTO[]>(
+        dtoConsulta,
+      )
     } catch (error) {
       const err: Excepcion = error
       return Resultado.falla<Excepcion>(err)

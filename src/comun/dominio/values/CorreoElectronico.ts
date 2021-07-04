@@ -18,7 +18,6 @@ export class CorreoElectronico extends ValueObject {
     // No debe ser vacio
     if (correo == null || correo == undefined || correo == '')
       throw new CorreoElectronicoVacio(
-        correo,
         'El correo electrónico no puede estar vacío.',
       )
 
@@ -27,13 +26,11 @@ export class CorreoElectronico extends ValueObject {
     // Debe contener al menos 3 caracteres
     if (correo.length < 3)
       throw new LongitudInvalidaCorreoElectronico(
-        correoElectronico,
         'El correo electrónico debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como maximo 320 caracteres
     if (correo.length > 320)
       throw new LongitudInvalidaCorreoElectronico(
-        correoElectronico,
         'El correo electrónico debe contener como máximo 320 caracteres.',
       )
     // Debe ser un formato valido
@@ -43,7 +40,6 @@ export class CorreoElectronico extends ValueObject {
       )
     ) {
       throw new FormatoInvalidoCorreoElectronico(
-        correoElectronico,
         'El correo electrónico debe tener un formato valido, del tipo nombre@dominio.',
       )
     }

@@ -25,7 +25,6 @@ export class PostularseOfertaLaboral {
       })
       if (!ofertaExiste.existe)
         throw new OfertaLaboralNoExiste(
-          null,
           'La oferta laboral no se encuentra registrada.',
         )
 
@@ -34,10 +33,7 @@ export class PostularseOfertaLaboral {
         id: solicitud.idEmpleado,
       })
       if (!empleadoExiste.existe)
-        throw new EmpleadoNoExiste(
-          null,
-          'El empleado no se encuentra registrado.',
-        )
+        throw new EmpleadoNoExiste('El empleado no se encuentra registrado.')
 
       // Mapear solicitud de postulación a una entidad de dominio
       const postulacion = PostulacionOfertaMapeador.crearEntidadPorSolicitud(

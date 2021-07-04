@@ -19,7 +19,6 @@ export class RepositorioPaises implements IRepositorioPaises {
     } catch (error) {
       // Si ocurre un error al ejecutar la solicitud
       throw new ExcepcionAplicacion(
-        null,
         'No se ha podido verificar la existencia del país.',
       )
     }
@@ -36,7 +35,7 @@ export class RepositorioPaises implements IRepositorioPaises {
       })
     } catch (error) {
       // En caso de que haya error
-      throw new ExcepcionAplicacion(null, 'No se ha podido obtener los paises.')
+      throw new ExcepcionAplicacion('No se ha podido obtener los paises.')
     }
   }
 }

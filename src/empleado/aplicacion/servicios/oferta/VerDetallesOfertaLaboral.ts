@@ -23,7 +23,6 @@ export class VerDetallesOfertaLaboral {
       //Comprobamos si trae registro
       if (datos?.id != peticion.idOferta)
         throw new OfertaLaboralNoExiste(
-          peticion.idOferta,
           'No existe ninguna oferta laboral registrada con esos datos.',
         )
 

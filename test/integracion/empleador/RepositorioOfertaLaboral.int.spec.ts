@@ -1,7 +1,6 @@
 import { ConfigModule } from '@nestjs/config'
 import { Connection, createConnection, getRepository } from 'typeorm'
 import { EmpresaORM } from '../../../src/comun/infraestructura/persistencia/Empresa.orm'
-import { OfertaLaboralORM } from '../../../src/comun/infraestructura/persistencia/OfertaLaboral.orm'
 import { OfertaLaboralNoExiste } from '../../../src/empleador/aplicacion/excepciones/oferta/OfertaLaboralNoExiste'
 import { OfertaLaboralYaExiste } from '../../../src/empleador/aplicacion/excepciones/oferta/OfertaLaboralYaExiste'
 import { RepositorioOfertaLaboral } from '../../../src/empleador/infraestructura/adaptadores/RepositorioOfertaLaboral'
@@ -55,10 +54,7 @@ describe('Repositorio de persistencia Empleador: Ofertas Laborales', () => {
     await getRepository(EmpresaORM).insert(empresa_prueba)
 
     // Instanciamos al repositorio a prubar (Subject under testing)
-    repositorioOfertaLaboral = new RepositorioOfertaLaboral(
-      getRepository(OfertaLaboralORM),
-      getRepository(EmpresaORM),
-    )
+    repositorioOfertaLaboral = new RepositorioOfertaLaboral()
   })
 
   it('Debe registrar una nueva oferta laboral con los datos especificados', () => {

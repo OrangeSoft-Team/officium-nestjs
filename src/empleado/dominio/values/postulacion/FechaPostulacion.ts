@@ -21,14 +21,12 @@ export class FechaPostulacion extends ValueObject {
     // no debe estar vacio
     if (fecha == null || fecha == undefined)
       throw new FechaPostulacionVacia(
-        fecha,
         'La fecha de postulación de la oferta laboral no debe estar vacía.',
       )
 
     // debe ser una fecha valida
     if (!(fecha instanceof Date))
       throw new FechaPostulacionInvalida(
-        fecha,
         'La fecha de postulación de la oferta laboral no es una fecha valida.',
       )
 

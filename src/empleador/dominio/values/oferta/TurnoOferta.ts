@@ -22,7 +22,6 @@ export class TurnoOferta extends ValueObject {
     // el turno no debe ser vacio
     if (turno == null || turno == undefined)
       throw new TurnoOfertaVacio(
-        turno,
         'El turno de trabajo de la oferta laboral no debe estar vacío.',
       )
 
@@ -31,7 +30,6 @@ export class TurnoOferta extends ValueObject {
     // el turno debe ser de los siguientes valores
     if (!['diurno', 'nocturno', 'mixto'].includes(turno))
       throw new TurnoOfertaInvalido(
-        turnoOferta,
         'El turno de trabajo de la oferta laboral debe ser "diurno", "nocturno" o "mixto".',
       )
 

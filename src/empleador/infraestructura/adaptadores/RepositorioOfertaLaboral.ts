@@ -33,10 +33,7 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       })
     } catch (error) {
       // En caso de que el insert falle debido a que ya existe la oferta laboral
-      throw new ExcepcionAplicacion(
-        null,
-        'No se ha podido procesar la solicitud.',
-      )
+      throw new ExcepcionAplicacion('No se ha podido procesar la solicitud.')
     }
   }
 
@@ -51,7 +48,6 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
       })
     } catch (error) {
       throw new EmpresaNoExiste(
-        datos.idEmpresa,
         'La empresa especificada no existe en la base de datos.',
       )
     }
@@ -69,7 +65,6 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     } catch (error) {
       // En caso de que el insert falle debido a que ya existe la oferta laboral
       throw new OfertaLaboralYaExiste(
-        datos,
         'La oferta laboral ya se encuentra registrada.',
       )
     }
@@ -110,7 +105,6 @@ export class RepositorioOfertaLaboral implements IRepositorioOfertaLaboral {
     } catch (error) {
       // En caso de que la consulta falle
       throw new ExcepcionAplicacion(
-        solicitud,
         'No se ha podido buscar la oferta laboral de la empresa.',
       )
     }

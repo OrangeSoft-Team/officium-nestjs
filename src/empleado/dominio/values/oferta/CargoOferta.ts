@@ -21,7 +21,6 @@ export class CargoOferta extends ValueObject {
     // No debe ser vacio
     if (cargo == null || cargo == undefined || cargo == '')
       throw new CargoOfertaVacio(
-        cargo,
         'El cargo de la oferta laboral no puede estar vacío.',
       )
 
@@ -30,13 +29,11 @@ export class CargoOferta extends ValueObject {
     // Debe contener al menos 4 caracteres
     if (cargo.length < 4)
       throw new LongitudInvalidaCargoOferta(
-        cargoOferta,
         'El cargo de la oferta laboral debe contener como mínimo 4 caracteres.',
       )
     // Debe contener como maximo 40 caracteres
     if (cargo.length > 40)
       throw new LongitudInvalidaCargoOferta(
-        cargoOferta,
         'El cargo de la oferta laboral debe contener como máximo 40 caracteres.',
       )
     // Si no hay errores

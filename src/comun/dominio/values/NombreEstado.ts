@@ -21,23 +21,18 @@ export class NombreEstado extends ValueObject {
   public static crear(nombre: string): NombreEstado {
     // No debe ser vacio
     if (nombre == null || nombre == undefined || nombre == '')
-      throw new NombreEstadoVacio(
-        nombre,
-        'El nombre del estado no puede estar vacío.',
-      )
+      throw new NombreEstadoVacio('El nombre del estado no puede estar vacío.')
 
     const nombreEstado = new NombreEstado(nombre)
 
     // Debe contener al menos 2 caracteres
     if (nombre.length < 2)
       throw new LongitudInvalidaNombreEstado(
-        nombreEstado,
         'El nombre del estado debe contener como mínimo 2 caracteres.',
       )
     // Debe contener como maximo 128 caracteres
     if (nombre.length > 128)
       throw new LongitudInvalidaNombreEstado(
-        nombreEstado,
         'El nombre del estado debe contener como máximo 128 caracteres.',
       )
     // Si no hay errores

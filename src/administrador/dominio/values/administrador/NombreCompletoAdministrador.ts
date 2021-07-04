@@ -16,7 +16,9 @@ export class NombreCompletoAdministrador extends ValueObject {
     super()
   }
 
-  public esIgual(NombreCompletoAdministrador: NombreCompletoAdministrador): boolean {
+  public esIgual(
+    NombreCompletoAdministrador: NombreCompletoAdministrador,
+  ): boolean {
     return (
       this.nombres.primerNombre ==
         NombreCompletoAdministrador.nombres.primerNombre &&
@@ -33,7 +35,6 @@ export class NombreCompletoAdministrador extends ValueObject {
     // los nombres no deben ser vacios
     if (nombres == null || nombres == undefined)
       throw new NombresAdministradorVacio(
-        nombres,
         'Los nombres del Administrador no pueden estar vacíos.',
       )
 
@@ -42,21 +43,18 @@ export class NombreCompletoAdministrador extends ValueObject {
     // los nombres deben tener una longitud entre 4 y 32 caracteres
     if (nombres.primerNombre.length < 4 || nombres.primerNombre.length > 40)
       throw new LongitudInvalidaNombreAdministrador(
-        nombresAdministrador,
         'El primer nombre del Administrador debe tener entre 4 y 40 caracteres.',
       )
 
     if (nombres.segundoNombre != null && nombres.segundoNombre != undefined) {
       if (nombres.segundoNombre.length < 4 || nombres.segundoNombre.length > 40)
         throw new LongitudInvalidaNombreAdministrador(
-          nombresAdministrador,
           'El segundo nombre del Administrador debe tener entre 4 y 40 caracteres.',
         )
     }
 
     if (nombres.primerApellido.length < 4 || nombres.primerApellido.length > 40)
       throw new LongitudInvalidaNombreAdministrador(
-        nombresAdministrador,
         'El primer apellido del Administrador debe tener entre 4 y 40 caracteres.',
       )
 
@@ -65,7 +63,6 @@ export class NombreCompletoAdministrador extends ValueObject {
       nombres.segundoApellido.length > 40
     )
       throw new LongitudInvalidaNombreAdministrador(
-        nombresAdministrador,
         'El segundo apellido del Administrador debe tener entre 4 y 40 caracteres.',
       )
 

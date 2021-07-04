@@ -31,7 +31,6 @@ export class RepositorioCiudades implements IRepositorioCiudades {
     } catch (error) {
       // En caso de que suceda algun error al obtener las ciudades
       throw new ExcepcionAplicacion(
-        null,
         'No se ha podido obtener las ciudades del estado.',
       )
     }

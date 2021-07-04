@@ -26,7 +26,6 @@ export class RepositorioEmpresa implements IRepositorioEmpresa {
     } catch (error) {
       // Si ocurre un error al ejecutar la solicitud
       throw new ExcepcionAplicacion(
-        null,
         'No se ha podido verificar la existencia de la empresa.',
       )
     }

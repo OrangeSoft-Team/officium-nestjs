@@ -14,7 +14,9 @@ export class CrearOfertaLaboralAdministrador {
     private readonly servicioIdentificador: IServicioIdentificador,
   ) {}
 
-  public async ejecutar(solicitud: CrearOfertaLaboralAdministradorSolicitudDTO) {
+  public async ejecutar(
+    solicitud: CrearOfertaLaboralAdministradorSolicitudDTO,
+  ) {
     try {
       // Verificamos si la empresa existe
       const empresaExiste = await this.repositorioEmpresa.existe({
@@ -22,7 +24,6 @@ export class CrearOfertaLaboralAdministrador {
       })
       if (!empresaExiste.existe)
         throw new EmpresaNoExiste(
-          solicitud.idEmpresa,
           'La empresa no se encuentra registrada en el sistema.',
         )
 
@@ -30,10 +31,11 @@ export class CrearOfertaLaboralAdministrador {
       const id = this.servicioIdentificador.generarIdentificador().id
 
       // Creamos la oferta laboral con el identificador y los datos de la solicitud
-      const ofertaLaboral = OfertaLaboralAdministradorMapeador.crearEntidadPorSolicitud({
-        id,
-        ...solicitud,
-      })
+      const ofertaLaboral =
+        OfertaLaboralAdministradorMapeador.crearEntidadPorSolicitud({
+          id,
+          ...solicitud,
+        })
 
       // Persistimos la oferta laboral
       await this.repositorioOfertaLaboral.crear(

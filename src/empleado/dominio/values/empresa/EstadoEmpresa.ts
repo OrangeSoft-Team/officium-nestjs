@@ -18,7 +18,6 @@ export class EstadoEmpresa extends ValueObject {
   public static crear(estado: ESTADOS): EstadoEmpresa {
     if (estado == null || estado == undefined)
       throw new EstadoEmpresaVacio(
-        estado,
         'El estado de la empresa no puede estar vacío.',
       )
 
@@ -26,7 +25,6 @@ export class EstadoEmpresa extends ValueObject {
 
     if (!['activo', 'inactivo'].includes(estado))
       throw new EstadoEmpresaInvalido(
-        estadoEmpresa,
         'El estado de la empresa debe ser "activo" o "inactivo"',
       )
 

@@ -13,7 +13,9 @@ export class VerDetallesOfertaLaboralAdministrador {
     private readonly repositorioOfertaLaboral: IRepositorioOfertaLaboral,
   ) {}
 
-  public async ejecutar(peticion: VerDetallesOfertaLaboralAdministradorPeticionDTO) {
+  public async ejecutar(
+    peticion: VerDetallesOfertaLaboralAdministradorPeticionDTO,
+  ) {
     try {
       //Se usa el metodo de la interfaz para buscar la oferta
       const datos = await this.repositorioOfertaLaboral.buscarOferta({
@@ -23,15 +25,16 @@ export class VerDetallesOfertaLaboralAdministrador {
       //Comprobamos si trae registro
       if (datos?.id != peticion.idOferta)
         throw new OfertaLaboralNoExiste(
-          peticion.idOferta,
           'No existe ninguna oferta laboral registrada con esos datos.',
         )
 
       //Mapeamos al dominio para comprobar los valores con la logica de negocio
-      const oferta = OfertaLaboralAdministradorMapeador.MapDetalleDominioOferta(datos)
+      const oferta =
+        OfertaLaboralAdministradorMapeador.MapDetalleDominioOferta(datos)
 
       //Mapeamos nuevamente al formato de respuesta y retornamos
-      const respuesta = OfertaLaboralAdministradorMapeador.MapDetalleRespuestaOferta(oferta)
+      const respuesta =
+        OfertaLaboralAdministradorMapeador.MapDetalleRespuestaOferta(oferta)
       return Resultado.ok<VerDetallesOfertaLaboralAdministradorDTO>(respuesta)
     } catch (error) {
       return Resultado.falla<Excepcion>(<Excepcion>error)

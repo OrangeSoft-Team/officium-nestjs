@@ -22,7 +22,6 @@ export class CrearOfertaLaboral {
       })
       if (!empresaExiste.existe)
         throw new EmpresaNoExiste(
-          solicitud.idEmpresa,
           'La empresa no se encuentra registrada en el sistema.',
         )
 

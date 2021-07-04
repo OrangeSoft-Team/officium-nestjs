@@ -24,7 +24,6 @@ export class VerDetalleOfertaLaboral {
       })
       if (!empresaExiste.existe)
         throw new EmpresaNoExiste(
-          solicitud.idEmpresa,
           'La empresa no se encuentra registrada en el sistema.',
         )
 
@@ -37,7 +36,6 @@ export class VerDetalleOfertaLaboral {
       // Verificamos de la existencia de la oferta laboral
       if (datos?.id != solicitud.idOferta)
         throw new OfertaLaboralNoExiste(
-          solicitud.idOferta,
           'Esta empresa no posee ninguna oferta laboral registrada con esos datos.',
         )
 

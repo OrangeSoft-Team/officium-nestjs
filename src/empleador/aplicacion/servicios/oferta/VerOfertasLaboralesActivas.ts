@@ -25,7 +25,6 @@ export class VerOfertasLaboralesActivas {
       })
       if (!empresaExiste.existe)
         throw new EmpresaNoExiste(
-          solicitud.idEmpresa,
           'La empresa no se encuentra registrada en el sistema.',
         )
 

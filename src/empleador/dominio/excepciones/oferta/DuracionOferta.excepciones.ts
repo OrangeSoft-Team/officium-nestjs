@@ -1,32 +1,31 @@
 import { Excepcion } from '../../../../comun/dominio/Excepcion'
-import { DuracionOferta } from '../../values/oferta/DuracionOferta'
 
 export class DuracionOfertaInvalida extends Excepcion {
-  public constructor(valor: DuracionOferta, error: string) {
-    super(valor, error, 'DuracionOfertaInvalida')
+  public constructor(error: string) {
+    super(error, 'DuracionOfertaInvalida')
   }
 }
 
 export class DuracionOfertaNoEsNumero extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'DuracionOfertaNoEsNumero')
+  public constructor(error: string) {
+    super(error, 'DuracionOfertaNoEsNumero')
   }
 }
 
 export class DuracionOfertaVacia extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'DuracionOfertaVacia')
+  public constructor(error: string) {
+    super(error, 'DuracionOfertaVacia')
   }
 }
 
 export class EscalaDuracionOfertaInvalida extends Excepcion {
-  public constructor(valor: DuracionOferta, error: string) {
-    super(valor, error, 'EscalaDuracionOfertaInvalida')
+  public constructor(error: string) {
+    super(error, 'EscalaDuracionOfertaInvalida')
   }
 }
 
 export class EscalaDuracionOfertaVacia extends Excepcion {
-  public constructor(valor: any, error: string) {
-    super(valor, error, 'EscalaDuracionOfertaVacia')
+  public constructor(error: string) {
+    super(error, 'EscalaDuracionOfertaVacia')
   }
 }

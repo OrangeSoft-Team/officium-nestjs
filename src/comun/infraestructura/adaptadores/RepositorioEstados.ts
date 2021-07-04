@@ -29,7 +29,6 @@ export class RepositorioEstados implements IRepositorioEstados {
     } catch (error) {
       // En caso de que suceda algun error al obtener los estados
       throw new ExcepcionAplicacion(
-        null,
         'No se ha podido obtener los estados del país.',
       )
     }

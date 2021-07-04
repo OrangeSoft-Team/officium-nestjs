@@ -39,7 +39,7 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
         }
       })
     } catch (error) {
-      throw new PostulacionNoExiste(null, 'La postulacion no existe.')
+      throw new PostulacionNoExiste('La postulacion no existe.')
     }
   }
 
@@ -54,7 +54,6 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
       })
     } catch (error) {
       throw new OfertaLaboralNoExiste(
-        null,
         'La oferta laboral no se encuentra registrada.',
       )
     }
@@ -64,10 +63,7 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
         where: { uuid: datos.idEmpleado },
       })
     } catch (error) {
-      throw new EmpleadoNoExiste(
-        null,
-        'El empleado no se encuentra registrado.',
-      )
+      throw new EmpleadoNoExiste('El empleado no se encuentra registrado.')
     }
 
     try {
@@ -82,7 +78,6 @@ export class RepositorioPostulaciones implements IRepositorioPostulaciones {
       await getRepository(PostulacionOfertaORM).insert(postulacion)
     } catch (error) {
       throw new PostulacionOfertaYaExiste(
-        null,
         'La postulación a la oferta laboral ya se encuentra registrada.',
       )
     }

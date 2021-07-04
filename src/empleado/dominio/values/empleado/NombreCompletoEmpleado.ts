@@ -33,7 +33,6 @@ export class NombreCompletoEmpleado extends ValueObject {
     // los nombres no deben ser vacios
     if (nombres == null || nombres == undefined)
       throw new NombresEmpleadoVacio(
-        nombres,
         'Los nombres del empleado no pueden estar vacíos.',
       )
 
@@ -42,21 +41,18 @@ export class NombreCompletoEmpleado extends ValueObject {
     // los nombres deben tener una longitud entre 4 y 32 caracteres
     if (nombres.primerNombre.length < 4 || nombres.primerNombre.length > 40)
       throw new LongitudInvalidaNombreEmpleado(
-        nombresEmpleado,
         'El primer nombre del empleado debe tener entre 4 y 40 caracteres.',
       )
 
     if (nombres.segundoNombre != null && nombres.segundoNombre != undefined) {
       if (nombres.segundoNombre.length < 4 || nombres.segundoNombre.length > 40)
         throw new LongitudInvalidaNombreEmpleado(
-          nombresEmpleado,
           'El segundo nombre del empleado debe tener entre 4 y 40 caracteres.',
         )
     }
 
     if (nombres.primerApellido.length < 4 || nombres.primerApellido.length > 40)
       throw new LongitudInvalidaNombreEmpleado(
-        nombresEmpleado,
         'El primer apellido del empleado debe tener entre 4 y 40 caracteres.',
       )
 
@@ -65,7 +61,6 @@ export class NombreCompletoEmpleado extends ValueObject {
       nombres.segundoApellido.length > 40
     )
       throw new LongitudInvalidaNombreEmpleado(
-        nombresEmpleado,
         'El segundo apellido del empleado debe tener entre 4 y 40 caracteres.',
       )
 

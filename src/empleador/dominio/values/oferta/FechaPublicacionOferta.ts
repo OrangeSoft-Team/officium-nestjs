@@ -21,14 +21,12 @@ export class FechaPublicacionOferta extends ValueObject {
     // no debe estar vacio
     if (fecha == null || fecha == undefined)
       throw new FechaPublicacionOfertaVacia(
-        fecha,
         'La fecha de publicación de la oferta no debe estar vacía.',
       )
 
     // debe ser una fecha valida
     if (!(fecha instanceof Date))
       throw new FechaPublicacionOfertaInvalida(
-        fecha,
         'La fecha de publicación de la oferta no es una fecha valida.',
       )
 
