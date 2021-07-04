@@ -1,11 +1,11 @@
-import { IServicioIdentificador } from '../../../comun/aplicacion/puertos/IServicioIdentificador'
-import { Resultado } from '../../../comun/aplicacion/Resultado'
-import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../dto/CrearOfertaLaboralAdministrador.dto'
-import { EmpresaNoExiste } from '../excepciones/EmpresaNoExiste'
-import { OfertaLaboralAdministradorMapeador } from '../mapeadores/OfertaLaboralAdministrador.mapeador'
-import { IRepositorioEmpresa } from '../puertos/IRepositorioEmpresa'
-import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
+import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
+import { Resultado } from '../../../../comun/aplicacion/Resultado'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
+import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../dto/oferta/CrearOfertaLaboralAdministrador.dto'
+import { EmpresaNoExiste } from '../../excepciones/empresa/EmpresaNoExiste'
+import { OfertaLaboralAdministradorMapeador } from '../../mapeadores/OfertaLaboralAdministrador.mapeador'
+import { IRepositorioEmpresa } from '../../puertos/IRepositorioEmpresa'
+import { IRepositorioOfertaLaboral } from '../../puertos/IRepositorioOfertaLaboral'
 
 export class CrearOfertaLaboralAdministrador {
   public constructor(

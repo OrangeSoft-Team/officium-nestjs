@@ -1,20 +1,17 @@
 import { Controller, Get, Param, Post, Body } from '@nestjs/common'
 import { ExcepcionAplicacion } from '../../../../comun/aplicacion/ExcepcionAplicacion'
-import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../../dto/CrearOfertaLaboralEmpresaAdministrador.api.dto'
+import { CrearOfertaLaboralEmpresaAdministradorApiDTO } from '../../dto/oferta/CrearOfertaLaboralEmpresaAdministrador.api.dto'
 import { AdministradorErrorHttpMapeador } from '../../mapeadores/AdministradorErrorHttp.mapeador'
 import { OfertaLaboralAPIMapeador } from '../../mapeadores/OfertaLaboral.api.mapeador'
 import { ServicioOfertasLaborales } from './ofertas.service'
-import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/ConsultarOfertasLaboralesAdministrador.dto'
-import { VerDetallesOfertaLaboralAdministradorDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
-import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/VerDetallesOfertaLaboralAdministrador';
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../../../aplicacion/dto/oferta/ConsultarOfertasLaboralesAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministradorDTO } from '../../../aplicacion/dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
 
 @Controller('api/personal_administrativo/ofertas_laborales')
 export class ControladorOfertasLaborales {
-  
   public constructor(
     private readonly servicioOfertasLaborales: ServicioOfertasLaborales,
   ) {}
-
 
   @Post()
   public async crearOfertaLaboral(
@@ -24,13 +21,17 @@ export class ControladorOfertasLaborales {
     const dtoSolicitud =
       OfertaLaboralAPIMapeador.transformarSolicitudHttpCrearOfertaLaboral(dto)
     // Realizamos la solicitud con el dto mapeado
-    const solicitud = await this.servicioOfertasLaborales.crearOfertaLaboralAdministrador(
-      dtoSolicitud,
-    )
+    const solicitud =
+      await this.servicioOfertasLaborales.crearOfertaLaboralAdministrador(
+        dtoSolicitud,
+      )
     // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion = <ExcepcionAplicacion>solicitud.error
-      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(excepcion, 'POST')
+      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(
+        excepcion,
+        'POST',
+      )
     }
     // En caso de exito
     return
@@ -45,30 +46,40 @@ export class ControladorOfertasLaborales {
     // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion = <ExcepcionAplicacion>solicitud.error
-      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(excepcion, 'GET')
+      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(
+        excepcion,
+        'GET',
+      )
     }
 
     //En caso de éxito
     return OfertaLaboralAPIMapeador.ConsultarOfertasRespuestaHttp(
       <ConsultarOfertasLaboralesAdministradorDTO[]>solicitud.valor,
     )
-  } 
-  
+  }
+
   @Get(':uuid_oferta_laboral')
   public async VerDetallesOfertaLaboral(
     @Param('uuid_oferta_laboral') uuidOferta: string,
   ) {
     //Creamos el DTO de solicitud
     const dto =
-      OfertaLaboralAPIMapeador.VerDetallesOfertaAdministradorPeticionHttp(uuidOferta)
+      OfertaLaboralAPIMapeador.VerDetallesOfertaAdministradorPeticionHttp(
+        uuidOferta,
+      )
     // Realizamos la solicitud al servicio
     const solicitud =
-      await this.servicioOfertasLaborales.VerDetallesOfertaLaboralAdministrador(dto)
+      await this.servicioOfertasLaborales.VerDetallesOfertaLaboralAdministrador(
+        dto,
+      )
 
     // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion = <ExcepcionAplicacion>solicitud.error
-      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(excepcion, 'GET')
+      AdministradorErrorHttpMapeador.manejarExcepcionAdministrador(
+        excepcion,
+        'GET',
+      )
     }
 
     //En caso de éxito

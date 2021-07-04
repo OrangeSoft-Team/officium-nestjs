@@ -1,11 +1,11 @@
 import { GeneradorIdentificadorUUID } from '../../../../comun/infraestructura/adaptadores/GeneradorIdentificadorUUID'
-import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../../aplicacion/dto/CrearOfertaLaboralAdministrador.dto'
-import { CrearOfertaLaboralAdministrador } from '../../../aplicacion/servicios/CrearOfertaLaboralAdministrador'
+import { CrearOfertaLaboralAdministradorSolicitudDTO } from '../../../aplicacion/dto/oferta/CrearOfertaLaboralAdministrador.dto'
+import { CrearOfertaLaboralAdministrador } from '../../../aplicacion/servicios/oferta/CrearOfertaLaboralAdministrador'
 import { RepositorioEmpresa } from '../../adaptadores/RepositorioEmpresa'
 import { RepositorioOfertaLaboral } from '../../adaptadores/RepositorioOfertaLaboral'
-import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/ConsultarOfertasLaboralesAdministrador'
-import { VerDetallesOfertaLaboralAdministradorPeticionDTO } from '../../../aplicacion/dto/VerDetallesOfertaLaboralAdministrador.dto'
-import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/VerDetallesOfertaLaboralAdministrador'
+import { ConsultarOfertasLaborales } from '../../../aplicacion/servicios/oferta/ConsultarOfertasLaboralesAdministrador'
+import { VerDetallesOfertaLaboralAdministradorPeticionDTO } from '../../../aplicacion/dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
+import { VerDetallesOfertaLaboralAdministrador } from '../../../aplicacion/servicios/oferta/VerDetallesOfertaLaboralAdministrador'
 
 export class ServicioOfertasLaborales {
   private readonly repositorioOfertaLaboral: RepositorioOfertaLaboral

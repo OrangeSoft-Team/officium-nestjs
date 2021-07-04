@@ -1,9 +1,9 @@
-import { Resultado } from '../../../comun/aplicacion/Resultado'
-import { EstadoOferta } from '../../dominio/values/oferta/EstadoOferta'
-import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { ConsultarOfertasLaboralesAdministradorDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.dto'
-import { OfertaLaboralAdministradorMapeador } from '../mapeadores/OfertaLaboralAdministrador.mapeador'
-import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
+import { Resultado } from '../../../../comun/aplicacion/Resultado'
+import { EstadoOferta } from '../../../dominio/values/oferta/EstadoOferta'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../../dto/oferta/ConsultarOfertasLaboralesAdministrador.dto'
+import { OfertaLaboralAdministradorMapeador } from '../../mapeadores/OfertaLaboralAdministrador.mapeador'
+import { IRepositorioOfertaLaboral } from '../../puertos/IRepositorioOfertaLaboral'
 
 export class ConsultarOfertasLaborales {
   constructor(

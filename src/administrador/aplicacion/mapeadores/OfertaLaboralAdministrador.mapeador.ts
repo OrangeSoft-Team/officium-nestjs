@@ -10,9 +10,9 @@ import { SueldoOferta } from '../../dominio/values/oferta/SueldoOferta'
 import { TituloOferta } from '../../dominio/values/oferta/TituloOferta'
 import { TurnoOferta } from '../../dominio/values/oferta/TurnoOferta'
 import { DatosOfertaLaboral } from '../../dominio/OfertaLaboral'
-import { CrearOfertaLaboralAdministradorEntidadDTO } from '../dto/CrearOfertaLaboralAdministrador.dto'
+import { CrearOfertaLaboralAdministradorEntidadDTO } from '../dto/oferta/CrearOfertaLaboralAdministrador.dto'
 import { OfertaLaboralPersistenciaDTO } from '../puertos/IRepositorioOfertaLaboral'
-import { ConsultarOfertasLaboralesAdministradorDTO } from '../dto/ConsultarOfertasLaboralesAdministrador.dto'
+import { ConsultarOfertasLaboralesAdministradorDTO } from '../dto/oferta/ConsultarOfertasLaboralesAdministrador.dto'
 import {
   ConsultarOfertaLaboralAdministradorPersistenciaDTO,
   VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
@@ -25,14 +25,10 @@ import { NombreCiudad } from '../../../comun/dominio/values/NombreCiudad'
 import {
   DominioDetallesOfertaLaboralAdministradorDTO,
   VerDetallesOfertaLaboralAdministradorDTO,
-} from '../dto/VerDetallesOfertaLaboralAdministrador.dto';
- 
+} from '../dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
 
-export class OfertaLaboralAdministradorMapeador{
-
-
-
-   // Mapear DTO de solicitud para la creación de una oferta laboral a una entidad de dominio
+export class OfertaLaboralAdministradorMapeador {
+  // Mapear DTO de solicitud para la creación de una oferta laboral a una entidad de dominio
   public static crearEntidadPorSolicitud(
     solicitud: CrearOfertaLaboralAdministradorEntidadDTO,
   ): OfertaLaboral {
@@ -106,7 +102,6 @@ export class OfertaLaboralAdministradorMapeador{
     }
   }
 
-
   public static MapConsultaDominioOferta(
     oferta: ConsultarOfertaLaboralAdministradorPersistenciaDTO,
   ): DatosOfertaLaboral & { nombreEmpresa: NombreEmpresa } {
@@ -130,7 +125,7 @@ export class OfertaLaboralAdministradorMapeador{
         : null,
       nombreEmpresa: NombreEmpresa.crear(oferta.nombreEmpresa),
     }
-  } 
+  }
 
   public static MapConsultaRespuestaOferta(
     oferta: DatosOfertaLaboral & { nombreEmpresa: NombreEmpresa },
@@ -148,7 +143,7 @@ export class OfertaLaboralAdministradorMapeador{
       turnoTrabajo: ofertas.obtenerTurno().obtenerTurno(),
       nombreEmpresa: oferta.nombreEmpresa.obtenerNombre(),
     }
-  } 
+  }
 
   public static MapDetalleDominioOferta(
     oferta: VerDetallesOfertaLaboralAdministradorPersistenciaDTO,
@@ -179,9 +174,9 @@ export class OfertaLaboralAdministradorMapeador{
       ),
       ciudadEmpresa: NombreCiudad.crear(oferta.ciudadEmpresa),
     }
-  }  
+  }
 
- public static MapDetalleRespuestaOferta(
+  public static MapDetalleRespuestaOferta(
     oferta: DatosOfertaLaboral & DominioDetallesOfertaLaboralAdministradorDTO,
   ): VerDetallesOfertaLaboralAdministradorDTO {
     return {
@@ -202,7 +197,9 @@ export class OfertaLaboralAdministradorMapeador{
     }
   }
 
-  private static obtenerDireccion(direccion: DominioDetallesOfertaLaboralAdministradorDTO) {
+  private static obtenerDireccion(
+    direccion: DominioDetallesOfertaLaboralAdministradorDTO,
+  ) {
     return (
       direccion.calleEmpresa.obtenerCalle() +
       ', ' +
@@ -210,5 +207,5 @@ export class OfertaLaboralAdministradorMapeador{
       ', ' +
       direccion.ciudadEmpresa.obtenerNombre()
     )
-  } 
+  }
 }

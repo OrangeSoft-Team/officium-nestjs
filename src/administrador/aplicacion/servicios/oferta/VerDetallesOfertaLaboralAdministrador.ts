@@ -1,12 +1,12 @@
-import { Resultado } from '../../../comun/aplicacion/Resultado'
-import { Excepcion } from '../../../comun/dominio/Excepcion'
-import { IRepositorioOfertaLaboral } from '../puertos/IRepositorioOfertaLaboral'
+import { Resultado } from '../../../../comun/aplicacion/Resultado'
+import { Excepcion } from '../../../../comun/dominio/Excepcion'
+import { IRepositorioOfertaLaboral } from '../../puertos/IRepositorioOfertaLaboral'
 import {
   VerDetallesOfertaLaboralAdministradorDTO,
   VerDetallesOfertaLaboralAdministradorPeticionDTO,
-} from '../dto/VerDetallesOfertaLaboralAdministrador.dto'
-import { OfertaLaboralAdministradorMapeador } from '../../aplicacion/mapeadores/OfertaLaboralAdministrador.mapeador'
-import { OfertaLaboralNoExiste } from '../excepciones/OfertaLaboralNoExiste'
+} from '../../dto/oferta/VerDetallesOfertaLaboralAdministrador.dto'
+import { OfertaLaboralAdministradorMapeador } from '../../mapeadores/OfertaLaboralAdministrador.mapeador'
+import { OfertaLaboralNoExiste } from '../../excepciones/oferta/OfertaLaboralNoExiste'
 
 export class VerDetallesOfertaLaboralAdministrador {
   constructor(

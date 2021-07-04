@@ -27,8 +27,8 @@ describe('Empleador: Crear una nueva oferta laboral para la empresa', () => {
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioEmpresa = new RepositorioEmpresa(null)
-    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
+    mockRepositorioEmpresa = new RepositorioEmpresa()
+    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
     mockGeneradorIdentificador = new GeneradorIdentificadorUUID()
     casoUso = new CrearOfertaLaboral(
       mockRepositorioOfertaLaboral,

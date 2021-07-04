@@ -26,7 +26,6 @@ export interface DatosOfertaLaboral {
 }
 
 export class OfertaLaboral extends Entidad {
-  
   private constructor(
     identificador: Identificador,
     private titulo: TituloOferta,
@@ -38,7 +37,7 @@ export class OfertaLaboral extends Entidad {
     private fechaPublicacion: FechaPublicacionOferta,
     private numeroVacantes: NumeroVacantesOferta,
     private sueldo: SueldoOferta,
-    private fechaModificacion?: FechaModificacionOferta
+    private fechaModificacion?: FechaModificacionOferta,
   ) {
     super(identificador)
   }

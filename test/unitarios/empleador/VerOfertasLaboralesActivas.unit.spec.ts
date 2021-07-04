@@ -19,8 +19,8 @@ describe('Empleador: Ver todas las ofertas laborales activas de la empresa', () 
 
   beforeEach(() => {
     // Para cada prueba generamos los mock de los servicios necesarios
-    mockRepositorioEmpresa = new RepositorioEmpresa(null)
-    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral(null, null)
+    mockRepositorioEmpresa = new RepositorioEmpresa()
+    mockRepositorioOfertaLaboral = new RepositorioOfertaLaboral()
     casoUso = new VerOfertasLaboralesActivas(
       mockRepositorioOfertaLaboral,
       mockRepositorioEmpresa,
