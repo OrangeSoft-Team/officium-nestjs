@@ -5,6 +5,8 @@
 
 Officium Nest.js API es un servicio de backend desarrollado para la aplicación Officium elaborado utilizando los conceptos de "Arquitectura Hexagonal" o "Puertos y Adaptadores" para obtener una capa de dominio y capa de aplicación que se desacopla del framework principal, en este caso "Nest.js" y de otros detalles de implementación, como lo es la utilización de "TypeORM" incluido en "Nest.js" y "PostgreSQL".
 
+[![app](https://github.com/OrangeSoft-Team/officium-nestjs/actions/workflows/action.yml/badge.svg)](https://github.com/OrangeSoft-Team/officium-nestjs/actions/workflows/action.yml)
+
 ### :page_facing_up: Tabla de Contenidos
 
 ---
@@ -39,16 +41,18 @@ Adicionalmente, se utilizan las siguientes plantillas para el repositorio:
 
 ---
 
-| Logo                                                                                                                                        | Tipo                       | Nombre     | Enlace de Descarga                       | Versión |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------- | ---------------------------------------- | ------- |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="24">                                         | Lenguaje                   | TypeScript | https://www.typescriptlang.org/download  | 4.3     |
-| <img src="https://nodejs.org/static/images/logo.svg" width="24">                                                                            | Ambiente de ejecución      | Node.js    | https://nodejs.org/en/download/          | 14.17.1 |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="24">                       | Manejador de Dependencias  | NPM        | https://www.npmjs.com/get-npm            | 6.4.13  |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="24"> | Manejador de base de datos | PostgreSQL | https://www.postgresql.org/download/     | 13.1    |
-| <img src="https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" width="24">         | Framework                  | Nest.js    | https://docs.nestjs.com/#installation    | 7.16.5  |
-| <img src="https://avatars.githubusercontent.com/u/32196900?s=400&v=4" width="24">                                                           | Testing                    | Jest       | https://jestjs.io/docs/getting-started   | 26.6.3  |
-| <img src="https://prettier.io/icon.png" width="24">                                                                                         | Linter                     | Prettier   | https://prettier.io/docs/en/install.html | 7.1.1   |
-
+| Logo                                                                                                                                                                                                                                                                                                | Tipo                       | Nombre         | Enlace de Descarga                       | Versión |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------- | ---------------------------------------- | ------- |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="24">                                                                                                                                                                                                 | Lenguaje                   | TypeScript     | https://www.typescriptlang.org/download  | 4.3     |
+| <img src="https://nodejs.org/static/images/logo.svg" width="24">                                                                                                                                                                                                                                    | Ambiente de ejecución      | Node.js        | https://nodejs.org/en/download/          | 14.17.1 |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="24">                                                                                                                                                                               | Manejador de Dependencias  | NPM            | https://www.npmjs.com/get-npm            | 6.4.13  |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="24">                                                                                                                                                         | Manejador de base de datos | PostgreSQL     | https://www.postgresql.org/download/     | 13.1    |
+| <img src="https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" width="24">                                                                                                                                                                 | Framework                  | Nest.js        | https://docs.nestjs.com/#installation    | 7.16.5  |
+| <img src="https://avatars.githubusercontent.com/u/32196900?s=400&v=4" width="24">                                                                                                                                                                                                                   | Testing                    | Jest           | https://jestjs.io/docs/getting-started   | 26.6.3  |
+| <img src="https://prettier.io/icon.png" width="24">                                                                                                                                                                                                                                                 | Linter                     | Prettier       | https://prettier.io/docs/en/install.html | 7.1.1   |
+| <img src="https://avatars.githubusercontent.com/u/44036562?s=280&v=4" width="24">                                                                                                                                                                                                                   | CI / CD                    | GitHub Actions | https://github.com/features/actions      | 1.0.0   |
+| <img src="https://camo.githubusercontent.com/fcca6a233a54a037861c99ab17d255d215807e6c0fcdce7d16a1a67814ede820/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d656469612d702e736c69642e65732f75706c6f6164732f3333383935382f696d616765732f313439363334352f7375706572746573742e706e67" width="24"> | Testing E2E                | SuperTest      | https://www.npmjs.com/package/supertest  | 6.1.3   |
+| <img src="https://www.aprendexojo.com/wp-content/uploads/2018/03/Sqlite.png" width="24"> | Manejador de base de datos | SQLite | https://www.npmjs.com/package/sqlite3 | 5.0.2 |
 ### :wrench: Instalación de la Aplicación
 
 ---
