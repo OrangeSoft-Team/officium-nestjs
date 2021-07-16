@@ -1,15 +1,8 @@
-export abstract class Excepcion extends Error {
-  public constructor(
-    protected readonly error: string,
-    protected readonly nombre: string,
-  ) {
-    super()
-  }
+export interface ValoresExcepcion {
+  error: string
+  nombre: string
+}
 
-  public getError() {
-    return {
-      error: this.error,
-      nombre: this.nombre,
-    }
-  }
+export interface Excepcion extends Error {
+  getError(): ValoresExcepcion
 }

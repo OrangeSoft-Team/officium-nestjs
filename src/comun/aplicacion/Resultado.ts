@@ -15,7 +15,7 @@ export class Resultado<T> {
     return new Resultado<U>(true, valor)
   }
 
-  public static falla<U extends Excepcion>(error: any): Resultado<U> {
+  public static falla<U extends Excepcion>(error: Excepcion): Resultado<U> {
     return new Resultado<U | any>(false, null, error)
   }
 }

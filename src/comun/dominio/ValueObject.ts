@@ -1,3 +1,3 @@
-export abstract class ValueObject {
-  public abstract esIgual(valueObject: ValueObject): boolean
+export interface ValueObject {
+  esIgual(valueObject: ValueObject): boolean
 }
