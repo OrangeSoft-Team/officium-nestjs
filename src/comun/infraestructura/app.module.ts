@@ -17,7 +17,7 @@ import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc
       username: process.env.USUARIO_BD,
       password: process.env.CLAVE_BD,
       database: process.env.NOMBRE_BD,
-      entities: [],
+      entities: ['dist/core/empleado/infraestructura/persistencia/*'],
       synchronize: false,
     }),
     ModuloCoreEmpleador,
