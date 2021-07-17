@@ -6,7 +6,6 @@ import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core
 import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
 import { ModuloMoocAdministrador } from '../../mooc/administrador/infraestructura/api/mooc.administrador.module'
 import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc.empleado.module'
-import { ModuloMoocEmpleador } from '../../mooc/empleador/infraestructura/api/mooc.empleador.module'
 
 @Module({
   imports: [
@@ -24,7 +23,6 @@ import { ModuloMoocEmpleador } from '../../mooc/empleador/infraestructura/api/mo
     ModuloCoreEmpleador,
     ModuloCoreEmpleado,
     ModuloCoreAdministrador,
-    ModuloMoocEmpleador,
     ModuloMoocEmpleado,
     ModuloMoocAdministrador,
   ],
