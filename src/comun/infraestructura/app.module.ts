@@ -1,6 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { ModuloCoreAdministrador } from '../../core/administrador/infraestructura/api/core.administrador.module'
+import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core.empleado.module'
+import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
+import { ModuloMoocAdministrador } from '../../mooc/administrador/infraestructura/api/mooc.administrador.module'
+import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc.empleado.module'
+import { ModuloMoocEmpleador } from '../../mooc/empleador/infraestructura/api/mooc.empleador.module'
 
 @Module({
   imports: [
@@ -15,6 +21,12 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       entities: [],
       synchronize: false,
     }),
+    ModuloCoreEmpleador,
+    ModuloCoreEmpleado,
+    ModuloCoreAdministrador,
+    ModuloMoocEmpleador,
+    ModuloMoocEmpleado,
+    ModuloMoocAdministrador,
   ],
   controllers: [],
   providers: [],
