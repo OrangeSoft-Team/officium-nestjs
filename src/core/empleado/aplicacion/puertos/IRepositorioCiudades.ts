@@ -1,4 +1,4 @@
-interface CiudadExisteQueryDTO {
+export interface CiudadExisteQueryDTO {
   idEstado: string
   idCiudad: string
 }

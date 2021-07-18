@@ -1,8 +1,15 @@
-import { Column, Entity, ManyToOne, OneToOne, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { CiudadORM } from './Ciudad.orm'
 import { EmpleadoORM } from './Empleado.orm'
 
-@Entity()
+@Entity('direcciones')
 export class DireccionORM {
   @PrimaryColumn({ type: 'uuid' })
   uuid: string
@@ -17,6 +24,9 @@ export class DireccionORM {
   calle_dos: string
 
   @ManyToOne(() => CiudadORM, (ciudad) => ciudad.direcciones)
+  @JoinColumn({
+    name: 'uuid_ciudad',
+  })
   ciudad: CiudadORM
 
   @OneToOne(() => EmpleadoORM)

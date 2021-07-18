@@ -1,4 +1,4 @@
-interface EstadoExisteQueryDTO {
+export interface EstadoExisteQueryDTO {
   idPais: string
   idEstado: string
 }

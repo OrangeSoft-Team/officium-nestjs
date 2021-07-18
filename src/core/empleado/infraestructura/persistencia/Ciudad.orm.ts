@@ -1,4 +1,11 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany } from 'typeorm'
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm'
 import { DireccionORM } from './Direccion.orm'
 import { EstadoORM } from './Estado.orm'
 
@@ -11,6 +18,9 @@ export class CiudadORM {
   nombre: string
 
   @ManyToOne(() => EstadoORM, (estado) => estado.ciudades)
+  @JoinColumn({
+    name: 'uuid_estado',
+  })
   estado: EstadoORM
 
   @OneToMany(() => DireccionORM, (direccion) => direccion.uuid)

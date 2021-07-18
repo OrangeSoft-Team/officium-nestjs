@@ -17,7 +17,7 @@ export abstract class DireccionMapeador {
       calleUno: CalleUnoDireccion.crear(solicitud.calleUno),
       calleDos: CalleDosDireccion.crear(solicitud.calleDos),
       codigoPostal: CodigoPostalDireccion.crear(solicitud.codigoPostal),
-      identificadorCiudad: IdentificadorCiudad.crear(id),
+      identificadorCiudad: IdentificadorCiudad.crear(solicitud.idCiudad),
     })
   }
 

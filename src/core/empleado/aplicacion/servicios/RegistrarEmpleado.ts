@@ -64,7 +64,7 @@ export class RegistrarEmpleado implements IServicioAplicacion {
   private async verificarExisteEmpleado(
     correoElectronico: string,
   ): Promise<void> {
-    const empleadoExiste = this.repositorioEmpleados.existe({
+    const empleadoExiste = await this.repositorioEmpleados.existe({
       correoElectronico,
     })
     if (empleadoExiste)
@@ -125,7 +125,7 @@ export class RegistrarEmpleado implements IServicioAplicacion {
 
       // Publicamos Evento: EmpleadoRegistrado
       const eventos = empleado.obtenerEventos()
-      await this.busEventos.publicar(eventos)
+      //await this.busEventos.publicar(eventos)
 
       return Resultado.ok<void>(null)
     } catch (error) {

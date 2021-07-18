@@ -1,6 +1,3 @@
-// USM 1.1
-// USM 1.2
-// USM 2.1
 export interface DatosRegistroEmpleadoApiDTO {
   correoElectronico: string
   token: string

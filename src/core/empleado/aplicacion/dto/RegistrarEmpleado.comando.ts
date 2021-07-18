@@ -15,7 +15,6 @@ export interface RegistrarEmpleadoComandoDTO {
   correoElectronico: string
   telefono: string
   nivelEducativo: string
-  estatus: string
   genero: string
   fechaNacimiento: Date
   token: string

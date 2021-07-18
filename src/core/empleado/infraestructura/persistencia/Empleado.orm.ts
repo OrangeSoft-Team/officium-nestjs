@@ -19,21 +19,13 @@ export class EmpleadoORM {
   telefono: string
 
   @Column()
-  nivel_educativo:
-    | 'NINGUNO'
-    | 'PRIMARIA'
-    | 'SECUNDARIA'
-    | 'TECNICO'
-    | 'PREGRADO'
-    | 'POSTGRADO'
-    | 'DOCTORADO'
-    | 'MASTER'
+  nivel_educativo: string
 
   @Column()
-  estatus: 'DISPONIBLE' | 'OCUPADO' | 'SUSPENDIDO'
+  estatus: string
 
   @Column()
-  genero: 'MASCULINO' | 'FEMENINO' | 'OTRO'
+  genero: string
 
   @Column()
   fecha_nacimiento: Date
@@ -48,6 +40,8 @@ export class EmpleadoORM {
   segundo_apellido: string
 
   @OneToOne(() => DireccionORM)
-  @JoinColumn()
+  @JoinColumn({
+    name: 'uuid_direccion',
+  })
   direccion: DireccionORM
 }

@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
 import { ModuloCoreAdministrador } from '../../core/administrador/infraestructura/api/core.administrador.module'
 import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core.empleado.module'
 import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
@@ -9,17 +7,6 @@ import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: <any>process.env.TIPO_BD,
-      host: process.env.RUTA_BD,
-      port: parseInt(process.env.PUERTO_BD),
-      username: process.env.USUARIO_BD,
-      password: process.env.CLAVE_BD,
-      database: process.env.NOMBRE_BD,
-      entities: ['dist/core/empleado/infraestructura/persistencia/*'],
-      synchronize: false,
-    }),
     ModuloCoreEmpleador,
     ModuloCoreEmpleado,
     ModuloCoreAdministrador,

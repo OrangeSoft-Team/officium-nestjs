@@ -34,7 +34,7 @@ export abstract class EmpleadoMapeador {
       ),
       genero: GeneroEmpleado.crear(solicitud.genero as any),
       fechaNacimiento: FechaNacimientoEmpleado.crear(solicitud.fechaNacimiento),
-      estatus: EstatusEmpleado.crear(solicitud.estatus as any),
+      estatus: EstatusEmpleado.crear('DISPONIBLE'),
       direccion,
     })
   }
