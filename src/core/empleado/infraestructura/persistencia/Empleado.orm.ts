@@ -1,17 +1,9 @@
-import {
-  Column,
-  Entity,
-  Generated,
-  JoinColumn,
-  OneToOne,
-  PrimaryColumn,
-} from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm'
 import { DireccionORM } from './Direccion.orm'
 
 @Entity('empleados')
 export class EmpleadoORM {
   @PrimaryColumn({ type: 'uuid' })
-  @Generated('uuid')
   uuid: string
 
   @Column()

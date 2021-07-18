@@ -40,7 +40,7 @@ CREATE TABLE empleados (
   estatus VARCHAR(10) NOT NULL,
   genero VARCHAR(10) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
-  token VARCHAR NOT NULL UNIQUE,
+  token VARCHAR NOT NULL,
   uuid_direccion UUID NOT NULL,
   segundo_nombre VARCHAR(40),
   segundo_apellido VARCHAR(40),
@@ -82,7 +82,7 @@ CREATE TABLE empresas (
   nombre VARCHAR(128) NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   correo_electronico VARCHAR(320) NOT NULL UNIQUE,
-  token VARCHAR NOT NULL UNIQUE,
+  token VARCHAR NOT NULL,
   uuid_direccion UUID NOT NULL,
   requisitos_especiales VARCHAR(256),
   CONSTRAINT empresa_pk PRIMARY KEY(uuid),
@@ -118,7 +118,7 @@ CREATE TABLE personales_administrativos (
   primer_apellido VARCHAR(40) NOT NULL,
   correo_electronico VARCHAR(320) NOT NULL UNIQUE,
   cargo VARCHAR(40) NOT NULL,
-  token VARCHAR NOT NULL UNIQUE,
+  token VARCHAR NOT NULL,
   CONSTRAINT admin_pk PRIMARY KEY(uuid)
 );
 

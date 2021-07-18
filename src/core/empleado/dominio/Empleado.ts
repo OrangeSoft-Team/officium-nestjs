@@ -1,4 +1,5 @@
 import { Agregado } from '../../../comun/dominio/Agregado'
+import { Direccion } from './Direccion'
 import { EmpleadoNoEsMayorDeEdad } from './excepciones/empleado/Empleado.excecepciones'
 import { CorreoElectronicoEmpleado } from './values/empleado/CorreoElectronicoEmpleado'
 import { EstatusEmpleado } from './values/empleado/EstatusEmpleado'
@@ -18,18 +19,20 @@ export interface DatosEmpleado {
   estatus: EstatusEmpleado
   genero: GeneroEmpleado
   fechaNacimiento: FechaNacimientoEmpleado
+  direccion: Direccion
 }
 
 export class Empleado extends Agregado {
   private constructor(
-    private readonly identificador: IdentificadorEmpleado,
-    private readonly nombreCompleto: NombreCompletoEmpleado,
-    private readonly correoElectronico: CorreoElectronicoEmpleado,
-    private readonly numeroTelefonico: NumeroTelefonicoEmpleado,
-    private readonly nivelEducativo: NivelEducativoEmpleado,
-    private readonly estatus: EstatusEmpleado,
-    private readonly genero: GeneroEmpleado,
-    private readonly fechaNacimiento: FechaNacimientoEmpleado,
+    private identificador: IdentificadorEmpleado,
+    private nombreCompleto: NombreCompletoEmpleado,
+    private correoElectronico: CorreoElectronicoEmpleado,
+    private numeroTelefonico: NumeroTelefonicoEmpleado,
+    private nivelEducativo: NivelEducativoEmpleado,
+    private estatus: EstatusEmpleado,
+    private genero: GeneroEmpleado,
+    private fechaNacimiento: FechaNacimientoEmpleado,
+    private direccion: Direccion,
   ) {
     super()
   }
@@ -66,6 +69,10 @@ export class Empleado extends Agregado {
     return this.fechaNacimiento
   }
 
+  public obtenerDireccion() {
+    return this.direccion
+  }
+
   public static crear(datos: DatosEmpleado): Empleado {
     const fechaActual = new Date().getFullYear()
     if (fechaActual - datos.fechaNacimiento.obtenerFecha().getFullYear() < 18)
@@ -80,6 +87,7 @@ export class Empleado extends Agregado {
       datos.estatus,
       datos.genero,
       datos.fechaNacimiento,
+      datos.direccion,
     )
 
     empleado.agregarEvento({
