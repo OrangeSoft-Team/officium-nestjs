@@ -1,10 +1,10 @@
 export interface IValoresExcepcion {
-  error: string
-  nombre: string
+  mensaje: string
+  origen: string
 }
 
 export interface IExcepcion {
-  readonly error: string
-  readonly nombre: string
+  readonly mensaje: string
+  readonly origen: string
   getError(): IValoresExcepcion
 }

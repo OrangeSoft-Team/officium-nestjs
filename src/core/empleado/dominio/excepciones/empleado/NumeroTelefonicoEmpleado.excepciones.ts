@@ -1,37 +1,37 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
 export class NumeroTelefonicoEmpleadoVacio implements IExcepcion {
-  public readonly nombre = 'NumeroTelefonicoEmpleadoVacio'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'NumeroTelefonicoEmpleadoVacio'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class LongitudInvalidaNumeroTelefonicoEmpleado implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaNumeroTelefonicoEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaNumeroTelefonicoEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class FormatoIncorrectoNumeroTelefonicoEmpleado implements IExcepcion {
-  public readonly nombre = 'FormatoIncorrectoNumeroTelefonicoEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'FormatoIncorrectoNumeroTelefonicoEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }

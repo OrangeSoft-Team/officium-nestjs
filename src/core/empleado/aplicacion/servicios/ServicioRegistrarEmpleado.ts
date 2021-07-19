@@ -124,7 +124,7 @@ export class ServicioRegistrarEmpleado implements IServicioAplicacion {
 
       // Publicamos Evento: EmpleadoRegistrado
       const eventos = empleado.obtenerEventos()
-      //await this.busEventos.publicar(eventos)
+      await this.busEventos.publicar(eventos)
 
       return Resultado.ok<void>(null)
     } catch (error) {

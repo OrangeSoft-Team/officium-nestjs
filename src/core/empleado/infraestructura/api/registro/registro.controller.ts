@@ -20,7 +20,6 @@ export class ControladorRegistroEmpleado {
     // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
-      console.log(excepcion)
       ErroresHttpRegistroEmpleado.manejarExcepcion(excepcion, 'POST')
     }
 

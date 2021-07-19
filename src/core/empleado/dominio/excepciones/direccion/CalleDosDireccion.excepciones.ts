@@ -1,13 +1,13 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
 export class LongitudInvalidaCalleDosDireccion implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaCalleDosDireccion'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaCalleDosDireccion'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }

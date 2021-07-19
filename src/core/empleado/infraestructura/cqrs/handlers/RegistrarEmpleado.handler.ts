@@ -1,4 +1,7 @@
+import { HttpException, HttpStatus } from '@nestjs/common'
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
+import { hash } from 'bcrypt'
+import { BusEventos } from '../../../../../comun/infraestructura/adaptadores/BusEventos'
 import { ServicioIdentificador } from '../../../../../comun/infraestructura/adaptadores/ServicioIdentificador'
 import { ServicioRegistrarEmpleado } from '../../../aplicacion/servicios/ServicioRegistrarEmpleado'
 import { RepositorioCiudades } from '../../adaptadores/RepositorioCiudades'
@@ -19,6 +22,7 @@ export class HandlerRegistrarEmpleado
   private readonly repositorioDirecciones: RepositorioDirecciones
   private readonly repositorioEmpleados: RepositorioEmpleados
   private readonly servicioIdentificador: ServicioIdentificador
+  private readonly busEventos: BusEventos
 
   private readonly servicioRegistrarEmpleado: ServicioRegistrarEmpleado
 
@@ -29,6 +33,7 @@ export class HandlerRegistrarEmpleado
     this.repositorioDirecciones = new RepositorioDirecciones()
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.servicioIdentificador = new ServicioIdentificador()
+    this.busEventos = new BusEventos()
 
     this.servicioRegistrarEmpleado = new ServicioRegistrarEmpleado(
       this.repositorioPaises,
@@ -37,11 +42,23 @@ export class HandlerRegistrarEmpleado
       this.repositorioDirecciones,
       this.repositorioEmpleados,
       this.servicioIdentificador,
-      null,
+      this.busEventos,
     )
   }
 
   public async execute(comando: ComandoRegistrarEmpleado) {
+    // Hasheamos el token
+    if (!comando.datos.token)
+      throw new HttpException(
+        {
+          mensaje: 'El formato de la fecha debe ser "dd/mm/yyyy".',
+          origen: 'FormatoFechaInvalido',
+        },
+        HttpStatus.BAD_REQUEST,
+      )
+    comando.datos.token = await hash(comando.datos.token, 10)
+
+    // Ejecutamos servicio de registro en aplicacion
     return this.servicioRegistrarEmpleado.ejecutar(
       EmpleadoApiMapeador.transformarComandoRegistrarEmpleado(comando),
     )

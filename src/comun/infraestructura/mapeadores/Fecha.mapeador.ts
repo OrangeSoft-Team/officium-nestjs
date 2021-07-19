@@ -13,8 +13,8 @@ export class MapeadorFecha {
     if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fecha))
       throw new HttpException(
         {
-          error: 'El formato de la fecha debe ser "dd/mm/yyyy".',
-          nombre: 'FormatoFechaInvalido',
+          mensaje: 'El formato de la fecha debe ser "dd/mm/yyyy".',
+          origen: 'FormatoFechaInvalido',
         },
         HttpStatus.BAD_REQUEST,
       )

@@ -55,22 +55,16 @@ export class ErroresHttpRegistroEmpleado {
   ) {
     for (const codigo of codigos) {
       if (
-        codigo.nombres.includes(excepcion.getError().nombre) &&
+        codigo.nombres.includes(excepcion.origen) &&
         codigo.metodos.includes(metodo)
       )
-        throw new HttpException(
-          {
-            error: excepcion.getError().error,
-            nombre: excepcion.getError().nombre,
-          },
-          codigo.http,
-        )
+        throw new HttpException(excepcion.getError(), codigo.http)
     }
     // Si el error no esta contemplado, retornar un 500 como fallback
     throw new HttpException(
       {
-        error: 'No se ha podido procesar la solicitud.',
-        nombre: 'ErrorProcesandoSolicitud',
+        mensaje: 'No se ha podido procesar la solicitud.',
+        origen: 'ErrorProcesandoSolicitud',
       },
       HttpStatus.INTERNAL_SERVER_ERROR,
     )

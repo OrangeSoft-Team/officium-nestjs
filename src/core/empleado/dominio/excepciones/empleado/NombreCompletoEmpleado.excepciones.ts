@@ -1,73 +1,73 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
 export class PrimerNombreEmpleadoVacio implements IExcepcion {
-  public readonly nombre = 'PrimerNombreEmpleadoVacio'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'PrimerNombreEmpleadoVacio'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class LongitudInvalidaPrimerNombreEmpleado implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaPrimerNombreEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaPrimerNombreEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class PrimerApellidoEmpleadoVacio implements IExcepcion {
-  public readonly nombre = 'PrimerApellidoEmpleadoVacio'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'PrimerApellidoEmpleadoVacio'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class LongitudInvalidaPrimerApellidoEmpleado implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaPrimerApellidoEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaPrimerApellidoEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class LongitudInvalidaSegundoNombreEmpleado implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaSegundoNombreEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaSegundoNombreEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
 
 export class LongitudInvalidaSegundoApellidoEmpleado implements IExcepcion {
-  public readonly nombre = 'LongitudInvalidaSegundoApellidoEmpleado'
-  public constructor(public readonly error: string) {}
+  public readonly origen = 'LongitudInvalidaSegundoApellidoEmpleado'
+  public constructor(public readonly mensaje: string) {}
 
   public getError() {
     return {
-      error: this.error,
-      nombre: this.nombre,
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
 }
