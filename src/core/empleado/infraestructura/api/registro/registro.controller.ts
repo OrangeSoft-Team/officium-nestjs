@@ -3,17 +3,17 @@ import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcion
 import { ComandoRegistrarEmpleado } from '../../cqrs/comandos/RegistrarEmpleado.comando'
 import { DatosRegistroEmpleadoApiDTO } from '../../dto/DatosRegistroEmpleado.api.dto'
 import { ErroresHttpRegistroEmpleado } from './registro.errores'
-import { ServicioRegistroEmpleado } from './registro.service'
+import { ServicioApiRegistroEmpleado } from './registro.service'
 
 @Controller('api/empleado/registrar')
 export class ControladorRegistroEmpleado {
   public constructor(
-    private readonly servicioRegistroEmpleado: ServicioRegistroEmpleado,
+    private readonly servicioApiRegistroEmpleado: ServicioApiRegistroEmpleado,
   ) {}
 
   @Post()
   public async registrarEmpleado(@Body() dto: DatosRegistroEmpleadoApiDTO) {
-    const solicitud = await this.servicioRegistroEmpleado.registrarEmpleado(
+    const solicitud = await this.servicioApiRegistroEmpleado.registrarEmpleado(
       new ComandoRegistrarEmpleado(dto),
     )
 

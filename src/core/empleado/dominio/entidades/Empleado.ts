@@ -1,14 +1,14 @@
-import { Agregado } from '../../../comun/dominio/Agregado'
+import { Agregado } from '../../../../comun/dominio/Agregado'
 import { Direccion } from './Direccion'
-import { EmpleadoNoEsMayorDeEdad } from './excepciones/empleado/Empleado.excecepciones'
-import { CorreoElectronicoEmpleado } from './values/empleado/CorreoElectronicoEmpleado'
-import { EstatusEmpleado } from './values/empleado/EstatusEmpleado'
-import { FechaNacimientoEmpleado } from './values/empleado/FechaNacimientoEmpleado'
-import { GeneroEmpleado } from './values/empleado/GeneroEmpleado'
-import { IdentificadorEmpleado } from './values/empleado/IdentificadorEmpleado'
-import { NivelEducativoEmpleado } from './values/empleado/NivelEducativoEmpleado'
-import { NombreCompletoEmpleado } from './values/empleado/NombreCompletoEmpleado'
-import { NumeroTelefonicoEmpleado } from './values/empleado/NumeroTelefonicoEmpleado'
+import { EmpleadoNoEsMayorDeEdad } from '../excepciones/empleado/Empleado.excecepciones'
+import { CorreoElectronicoEmpleado } from '../values/empleado/CorreoElectronicoEmpleado'
+import { EstatusEmpleado } from '../values/empleado/EstatusEmpleado'
+import { FechaNacimientoEmpleado } from '../values/empleado/FechaNacimientoEmpleado'
+import { GeneroEmpleado } from '../values/empleado/GeneroEmpleado'
+import { IdentificadorEmpleado } from '../values/empleado/IdentificadorEmpleado'
+import { NivelEducativoEmpleado } from '../values/empleado/NivelEducativoEmpleado'
+import { NombreCompletoEmpleado } from '../values/empleado/NombreCompletoEmpleado'
+import { NumeroTelefonicoEmpleado } from '../values/empleado/NumeroTelefonicoEmpleado'
 
 export interface DatosEmpleado {
   identificador: IdentificadorEmpleado
@@ -24,7 +24,7 @@ export interface DatosEmpleado {
 
 export class Empleado extends Agregado {
   private constructor(
-    private identificador: IdentificadorEmpleado,
+    private readonly identificador: IdentificadorEmpleado,
     private nombreCompleto: NombreCompletoEmpleado,
     private correoElectronico: CorreoElectronicoEmpleado,
     private numeroTelefonico: NumeroTelefonicoEmpleado,
@@ -35,6 +35,10 @@ export class Empleado extends Agregado {
     private direccion: Direccion,
   ) {
     super()
+  }
+
+  public esIgual(empleado: Empleado): boolean {
+    return this.identificador.esIgual(empleado.obtenerIdentificador())
   }
 
   public obtenerIdentificador() {
@@ -92,7 +96,7 @@ export class Empleado extends Agregado {
 
     empleado.agregarEvento({
       fecha: new Date(),
-      nombre: 'EmpleadoCreado',
+      nombre: 'EmpleadoRegistrado',
       id: datos.identificador.obtenerId(),
     })
 

@@ -4,19 +4,20 @@ import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplic
 import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
 import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
-import { CiudadNoExiste } from '../excepciones/CiudadNoExiste'
-import { EmpleadoYaExiste } from '../excepciones/EmpleadoYaExiste'
-import { EstadoNoExiste } from '../excepciones/EstadoNoExiste'
-import { PaisNoExiste } from '../excepciones/PaisNoExiste'
-import { DireccionMapeador } from '../mapeadores/Direccion.mapeador'
-import { EmpleadoMapeador } from '../mapeadores/Empleado.mapeador'
+import { CiudadNoExiste } from '../../dominio/excepciones/ciudad/CiudadNoExiste'
+import { EmpleadoYaExiste } from '../../dominio/excepciones/empleado/EmpleadoYaExiste'
+import { EstadoNoExiste } from '../../dominio/excepciones/estado/EstadoNoExiste'
+import { PaisNoExiste } from '../../dominio/excepciones/pais/PaisNoExiste'
 import { IRepositorioCiudades } from '../puertos/IRepositorioCiudades'
 import { IRepositorioDirecciones } from '../puertos/IRepositorioDirecciones'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'
 import { IRepositorioEstados } from '../puertos/IRepositorioEstados'
 import { IRepositorioPaises } from '../puertos/IRepositorioPaises'
+import { RegistrarEmpleado } from '../../dominio/servicios/RegistrarEmpleado'
+import { EmpleadoMapeador } from '../mapeadores/Empleado.mapeador'
+import { DireccionMapeador } from '../mapeadores/Direccion.mapeador'
 
-export class RegistrarEmpleado implements IServicioAplicacion {
+export class ServicioRegistrarEmpleado implements IServicioAplicacion {
   public constructor(
     private readonly repositorioPaises: IRepositorioPaises,
     private readonly repositorioEstados: IRepositorioEstados,
@@ -94,25 +95,23 @@ export class RegistrarEmpleado implements IServicioAplicacion {
       // Generamos un identificador para la direccion
       const idDireccion = this.servicioIdentificador.generarIdentificador()
 
-      // Creamos la entidad de dominio Direccion
-      const direccion = DireccionMapeador.transformarSolicitudEnEntidad(
-        datosDir,
-        idDireccion,
-      )
-
       // Generamos un identificador para el empleado
       const idEmpleado = this.servicioIdentificador.generarIdentificador()
 
-      // Creamos la entidad de dominio Empleado
-      const empleado = EmpleadoMapeador.transformarSolicitudEnEntidad(
-        comando,
-        idEmpleado,
-        direccion,
+      // Llamamos al servicio de dominio para RegistrarEmpleado
+      const empleado = RegistrarEmpleado.ejecutar(
+        EmpleadoMapeador.transformarComandoEnDominio(
+          comando,
+          idEmpleado,
+          idDireccion,
+        ),
       )
 
       // Persistimos la direccion
       await this.repositorioDirecciones.crear(
-        DireccionMapeador.transformarEntidadEnPersistencia(direccion),
+        DireccionMapeador.transformarEntidadEnPersistencia(
+          empleado.obtenerDireccion(),
+        ),
       )
 
       // Persistimos el empleado

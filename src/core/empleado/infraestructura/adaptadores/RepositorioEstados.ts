@@ -1,13 +1,13 @@
 import { getRepository } from 'typeorm'
 import {
-  EstadoExisteQueryDTO,
+  EstadoExistePersistenciaDTO,
   IRepositorioEstados,
 } from '../../aplicacion/puertos/IRepositorioEstados'
 import { EstadoORM } from '../persistencia/Estado.orm'
 import { PaisORM } from '../persistencia/Pais.orm'
 
 export class RepositorioEstados implements IRepositorioEstados {
-  public async existe(query: EstadoExisteQueryDTO): Promise<boolean> {
+  public async existe(query: EstadoExistePersistenciaDTO): Promise<boolean> {
     try {
       const paisORM = getRepository(PaisORM)
       const estadoORM = getRepository(EstadoORM)

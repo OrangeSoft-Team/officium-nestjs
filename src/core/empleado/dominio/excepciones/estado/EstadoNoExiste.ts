@@ -1,4 +1,4 @@
-import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionAplicacion'
+import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 
 export class EstadoNoExiste implements IExcepcionAplicacion {
   public readonly nombre = 'EstadoNoExiste'

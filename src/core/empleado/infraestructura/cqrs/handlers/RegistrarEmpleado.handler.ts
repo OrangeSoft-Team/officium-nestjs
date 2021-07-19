@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { ServicioIdentificador } from '../../../../../comun/infraestructura/adaptadores/ServicioIdentificador'
-import { RegistrarEmpleado } from '../../../aplicacion/servicios/RegistrarEmpleado'
+import { ServicioRegistrarEmpleado } from '../../../aplicacion/servicios/ServicioRegistrarEmpleado'
 import { RepositorioCiudades } from '../../adaptadores/RepositorioCiudades'
 import { RepositorioDirecciones } from '../../adaptadores/RepositorioDirecciones'
 import { RepositorioEmpleados } from '../../adaptadores/RepositorioEmpleados'
@@ -20,7 +20,7 @@ export class HandlerRegistrarEmpleado
   private readonly repositorioEmpleados: RepositorioEmpleados
   private readonly servicioIdentificador: ServicioIdentificador
 
-  private readonly servicioRegistrarEmpleado: RegistrarEmpleado
+  private readonly servicioRegistrarEmpleado: ServicioRegistrarEmpleado
 
   public constructor() {
     this.repositorioPaises = new RepositorioPaises()
@@ -30,7 +30,7 @@ export class HandlerRegistrarEmpleado
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.servicioIdentificador = new ServicioIdentificador()
 
-    this.servicioRegistrarEmpleado = new RegistrarEmpleado(
+    this.servicioRegistrarEmpleado = new ServicioRegistrarEmpleado(
       this.repositorioPaises,
       this.repositorioEstados,
       this.repositorioCiudades,

@@ -1,14 +1,14 @@
 import { getRepository } from 'typeorm'
 import {
-  CrearEmpleadoComandoDTO,
-  EmpleadoExisteQueryDTO,
+  CrearEmpleadoPersistenciaDTO,
+  EmpleadoExistePersistenciaDTO,
   IRepositorioEmpleados,
 } from '../../aplicacion/puertos/IRepositorioEmpleados'
 import { DireccionORM } from '../persistencia/Direccion.orm'
 import { EmpleadoORM } from '../persistencia/Empleado.orm'
 
 export class RepositorioEmpleados implements IRepositorioEmpleados {
-  public async crear(comando: CrearEmpleadoComandoDTO): Promise<void> {
+  public async crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void> {
     try {
       const direccionORM = getRepository(DireccionORM)
       const empleadoORM = getRepository(EmpleadoORM)
@@ -35,7 +35,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
     } catch {}
   }
 
-  public async existe(query: EmpleadoExisteQueryDTO): Promise<boolean> {
+  public async existe(query: EmpleadoExistePersistenciaDTO): Promise<boolean> {
     try {
       const empleadoORM = getRepository(EmpleadoORM)
 

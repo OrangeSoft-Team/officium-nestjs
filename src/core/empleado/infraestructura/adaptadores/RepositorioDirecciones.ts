@@ -1,13 +1,13 @@
 import { getRepository } from 'typeorm'
 import {
-  CrearDireccionComandoDTO,
+  CrearDireccionPersistenciaDTO,
   IRepositorioDirecciones,
 } from '../../aplicacion/puertos/IRepositorioDirecciones'
 import { CiudadORM } from '../persistencia/Ciudad.orm'
 import { DireccionORM } from '../persistencia/Direccion.orm'
 
 export class RepositorioDirecciones implements IRepositorioDirecciones {
-  public async crear(comando: CrearDireccionComandoDTO): Promise<void> {
+  public async crear(comando: CrearDireccionPersistenciaDTO): Promise<void> {
     try {
       const ciudadORM = getRepository(CiudadORM)
       const direccionORM = getRepository(DireccionORM)

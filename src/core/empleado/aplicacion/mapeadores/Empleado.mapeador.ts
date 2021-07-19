@@ -1,63 +1,51 @@
-import { Direccion } from '../../dominio/Direccion'
-import { Empleado } from '../../dominio/Empleado'
-import { CorreoElectronicoEmpleado } from '../../dominio/values/empleado/CorreoElectronicoEmpleado'
-import { EstatusEmpleado } from '../../dominio/values/empleado/EstatusEmpleado'
-import { FechaNacimientoEmpleado } from '../../dominio/values/empleado/FechaNacimientoEmpleado'
-import { GeneroEmpleado } from '../../dominio/values/empleado/GeneroEmpleado'
-import { IdentificadorEmpleado } from '../../dominio/values/empleado/IdentificadorEmpleado'
-import { NivelEducativoEmpleado } from '../../dominio/values/empleado/NivelEducativoEmpleado'
-import { NombreCompletoEmpleado } from '../../dominio/values/empleado/NombreCompletoEmpleado'
-import { NumeroTelefonicoEmpleado } from '../../dominio/values/empleado/NumeroTelefonicoEmpleado'
+import { Empleado } from '../../dominio/entidades/Empleado'
+import { DatosRegistroEmpleado } from '../../dominio/servicios/RegistrarEmpleado'
 import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
-import { CrearEmpleadoComandoDTO } from '../puertos/IRepositorioEmpleados'
+import { CrearEmpleadoPersistenciaDTO } from '../puertos/IRepositorioEmpleados'
 
 export abstract class EmpleadoMapeador {
-  public static transformarSolicitudEnEntidad(
-    solicitud: RegistrarEmpleadoComandoDTO,
-    id: string,
-    direccion: Direccion,
-  ): Empleado {
-    return Empleado.crear({
-      identificador: IdentificadorEmpleado.crear(id),
-      nombreCompleto: NombreCompletoEmpleado.crear(
-        solicitud.primerNombre,
-        solicitud.primerApellido,
-        solicitud.segundoNombre,
-        solicitud.segundoApellido,
-      ),
-      correoElectronico: CorreoElectronicoEmpleado.crear(
-        solicitud.correoElectronico,
-      ),
-      numeroTelefonico: NumeroTelefonicoEmpleado.crear(solicitud.telefono),
-      nivelEducativo: NivelEducativoEmpleado.crear(
-        solicitud.nivelEducativo as any,
-      ),
-      genero: GeneroEmpleado.crear(solicitud.genero as any),
-      fechaNacimiento: FechaNacimientoEmpleado.crear(solicitud.fechaNacimiento),
-      estatus: EstatusEmpleado.crear('DISPONIBLE'),
-      direccion,
-    })
+  public static transformarComandoEnDominio(
+    comando: RegistrarEmpleadoComandoDTO,
+    idEmpleado: string,
+    idDireccion: string,
+  ): DatosRegistroEmpleado {
+    const datosDireccion = comando.direccion
+    return {
+      idEmpleado,
+      correoElectronico: comando.correoElectronico,
+      fechaNacimiento: comando.fechaNacimiento,
+      genero: comando.genero,
+      nivelEducativo: comando.nivelEducativo,
+      primerNombre: comando.primerNombre,
+      primerApellido: comando.primerApellido,
+      segundoNombre: comando.segundoNombre,
+      segundoApellido: comando.segundoApellido,
+      telefono: comando.telefono,
+      // Direccion
+      idDireccion,
+      ...datosDireccion,
+    }
   }
 
   public static transformarEntidadEnPersistencia(
-    entidad: Empleado,
+    empleado: Empleado,
     token: string,
-  ): CrearEmpleadoComandoDTO {
+  ): CrearEmpleadoPersistenciaDTO {
     return {
-      id: entidad.obtenerIdentificador().obtenerId(),
-      correoElectronico: entidad.obtenerCorreoElectronico().obtenerCorreo(),
-      estatus: entidad.obtenerEstatus().obtenerEstatus(),
-      fechaNacimiento: entidad.obtenerFechaNacimiento().obtenerFecha(),
-      genero: entidad.obtenerGenero().obtenerGenero(),
-      nivelEducativo: entidad.obtenerNivelEducativo().obtenerNivel(),
-      telefono: entidad.obtenerNumeroTelefonico().obtenerNumero(),
-      primerNombre: entidad.obtenerNombreCompleto().obtenerPrimerNombre(),
-      primerApellido: entidad.obtenerNombreCompleto().obtenerPrimerApellido(),
-      segundoNombre: entidad.obtenerNombreCompleto()?.obtenerSegundoNombre(),
-      segundoApellido: entidad
+      id: empleado.obtenerIdentificador().obtenerId(),
+      correoElectronico: empleado.obtenerCorreoElectronico().obtenerCorreo(),
+      estatus: empleado.obtenerEstatus().obtenerEstatus(),
+      fechaNacimiento: empleado.obtenerFechaNacimiento().obtenerFecha(),
+      genero: empleado.obtenerGenero().obtenerGenero(),
+      nivelEducativo: empleado.obtenerNivelEducativo().obtenerNivel(),
+      primerNombre: empleado.obtenerNombreCompleto().obtenerPrimerNombre(),
+      primerApellido: empleado.obtenerNombreCompleto().obtenerPrimerApellido(),
+      telefono: empleado.obtenerNumeroTelefonico().obtenerNumero(),
+      segundoNombre: empleado.obtenerNombreCompleto()?.obtenerSegundoNombre(),
+      segundoApellido: empleado
         .obtenerNombreCompleto()
         ?.obtenerSegundoApellido(),
-      idDireccion: entidad
+      idDireccion: empleado
         .obtenerDireccion()
         .obtenerIdentificador()
         .obtenerId(),

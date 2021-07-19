@@ -8,7 +8,7 @@ import { EmpleadoORM } from '../../persistencia/Empleado.orm'
 import { EstadoORM } from '../../persistencia/Estado.orm'
 import { PaisORM } from '../../persistencia/Pais.orm'
 import { ControladorRegistroEmpleado } from './registro.controller'
-import { ServicioRegistroEmpleado } from './registro.service'
+import { ServicioApiRegistroEmpleado } from './registro.service'
 
 const ManejadoresComandos = [HandlerRegistrarEmpleado]
 
@@ -24,6 +24,6 @@ const ManejadoresComandos = [HandlerRegistrarEmpleado]
     ]),
   ],
   controllers: [ControladorRegistroEmpleado],
-  providers: [ServicioRegistroEmpleado, ...ManejadoresComandos],
+  providers: [ServicioApiRegistroEmpleado, ...ManejadoresComandos],
 })
 export class ModuloRegistroEmpleado {}

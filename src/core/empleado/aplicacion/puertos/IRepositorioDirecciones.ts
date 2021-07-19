@@ -1,4 +1,4 @@
-export interface CrearDireccionComandoDTO {
+export interface CrearDireccionPersistenciaDTO {
   id: string
   calleUno: string
   calleDos?: string
@@ -7,5 +7,5 @@ export interface CrearDireccionComandoDTO {
 }
 
 export interface IRepositorioDirecciones {
-  crear(comando: CrearDireccionComandoDTO): Promise<void>
+  crear(comando: CrearDireccionPersistenciaDTO): Promise<void>
 }

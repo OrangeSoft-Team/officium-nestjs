@@ -3,7 +3,7 @@ import { CommandBus } from '@nestjs/cqrs'
 import { ComandoRegistrarEmpleado } from '../../cqrs/comandos/RegistrarEmpleado.comando'
 
 @Injectable()
-export class ServicioRegistroEmpleado {
+export class ServicioApiRegistroEmpleado {
   public constructor(private readonly busComandos: CommandBus) {}
 
   public async registrarEmpleado(comando: ComandoRegistrarEmpleado) {

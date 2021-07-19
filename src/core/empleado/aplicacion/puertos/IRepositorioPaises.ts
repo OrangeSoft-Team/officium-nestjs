@@ -1,7 +1,7 @@
-export interface PaisExisteQueryDTO {
+export interface PaisExistePersistenciaDTO {
   id: string
 }
 
 export interface IRepositorioPaises {
-  existe(query: PaisExisteQueryDTO): Promise<boolean>
+  existe(query: PaisExistePersistenciaDTO): Promise<boolean>
 }

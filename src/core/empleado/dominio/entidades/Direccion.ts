@@ -1,9 +1,9 @@
-import { Entidad } from '../../../comun/dominio/Entidad'
-import { IdentificadorCiudad } from './values/ciudad/IdentificadorCiudad'
-import { CalleDosDireccion } from './values/direccion/CalleDosDireccion'
-import { CalleUnoDireccion } from './values/direccion/CalleUnoDireccion'
-import { CodigoPostalDireccion } from './values/direccion/CodigoPostalDireccion'
-import { IdentificadorDireccion } from './values/direccion/IdentificadorDireccion'
+import { Entidad } from '../../../../comun/dominio/Entidad'
+import { IdentificadorCiudad } from '../values/ciudad/IdentificadorCiudad'
+import { CalleDosDireccion } from '../values/direccion/CalleDosDireccion'
+import { CalleUnoDireccion } from '../values/direccion/CalleUnoDireccion'
+import { CodigoPostalDireccion } from '../values/direccion/CodigoPostalDireccion'
+import { IdentificadorDireccion } from '../values/direccion/IdentificadorDireccion'
 
 export interface DatosDireccion {
   identificador: IdentificadorDireccion
@@ -15,13 +15,17 @@ export interface DatosDireccion {
 
 export class Direccion extends Entidad {
   private constructor(
-    public identificador: IdentificadorDireccion,
-    public calleUno: CalleUnoDireccion,
-    public calleDos: CalleDosDireccion,
-    public codigoPostal: CodigoPostalDireccion,
-    public identificadorCiudad: IdentificadorCiudad,
+    private readonly identificador: IdentificadorDireccion,
+    private calleUno: CalleUnoDireccion,
+    private calleDos: CalleDosDireccion,
+    private codigoPostal: CodigoPostalDireccion,
+    private identificadorCiudad: IdentificadorCiudad,
   ) {
     super()
+  }
+
+  public esIgual(direccion: Direccion): boolean {
+    return this.identificador.esIgual(direccion.obtenerIdentificador())
   }
 
   public obtenerIdentificador() {
