@@ -1,28 +1,17 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { ModuloAdministrador } from '../../administrador/infraestructura/api/administrador.module'
-import { ModuloEmpleado } from '../../empleado/infraestructura/api/empleado.module'
-import { ModuloEmpleador } from '../../empleador/infraestructura/api/empleador.module'
-import { ModuloUbicaciones } from './api/ubicaciones.module'
+import { ModuloCoreAdministrador } from '../../core/administrador/infraestructura/api/core.administrador.module'
+import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core.empleado.module'
+import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
+import { ModuloMoocAdministrador } from '../../mooc/administrador/infraestructura/api/mooc.administrador.module'
+import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc.empleado.module'
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: <any>process.env.TIPO_BD,
-      host: process.env.RUTA_BD,
-      port: parseInt(process.env.PUERTO_BD),
-      username: process.env.USUARIO_BD,
-      password: process.env.CLAVE_BD,
-      database: process.env.NOMBRE_BD,
-      entities: ['dist/comun/infraestructura/persistencia/*'],
-      synchronize: true,
-    }),
-    ModuloEmpleador,
-    ModuloUbicaciones,
-    ModuloEmpleado,
-    ModuloAdministrador
+    ModuloCoreEmpleador,
+    ModuloCoreEmpleado,
+    ModuloCoreAdministrador,
+    ModuloMoocEmpleado,
+    ModuloMoocAdministrador,
   ],
   controllers: [],
   providers: [],
