@@ -97,7 +97,9 @@ export class Empleado extends Agregado {
     empleado.agregarEvento({
       fecha: new Date(),
       nombre: 'EmpleadoRegistrado',
-      id: datos.identificador.obtenerId(),
+      datos: {
+        idEmpleado: empleado.identificador.obtenerId(),
+      },
     })
 
     return empleado
