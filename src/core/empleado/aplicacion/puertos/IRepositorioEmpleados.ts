@@ -18,8 +18,22 @@ export interface EmpleadoExistePersistenciaDTO {
   correoElectronico: string
 }
 
+export interface DatosAutentificacionPersistenciaDTO {
+  correoElectronico: string
+  token: string
+}
+
+export interface InformacionSesionPersistenciaDTO {
+  valido: boolean
+  id?: string
+}
+
 export interface IRepositorioEmpleados {
   crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void>
 
   existe(query: EmpleadoExistePersistenciaDTO): Promise<boolean>
+
+  autentificar(
+    query: DatosAutentificacionPersistenciaDTO,
+  ): Promise<InformacionSesionPersistenciaDTO>
 }

@@ -1,13 +1,39 @@
+import { compare, hash } from 'bcrypt'
 import { getRepository } from 'typeorm'
 import {
   CrearEmpleadoPersistenciaDTO,
+  DatosAutentificacionPersistenciaDTO,
   EmpleadoExistePersistenciaDTO,
+  InformacionSesionPersistenciaDTO,
   IRepositorioEmpleados,
 } from '../../aplicacion/puertos/IRepositorioEmpleados'
 import { DireccionORM } from '../persistencia/Direccion.orm'
 import { EmpleadoORM } from '../persistencia/Empleado.orm'
 
 export class RepositorioEmpleados implements IRepositorioEmpleados {
+  public async autentificar(
+    query: DatosAutentificacionPersistenciaDTO,
+  ): Promise<InformacionSesionPersistenciaDTO> {
+    try {
+      const empleadoORM = getRepository(EmpleadoORM)
+
+      const empleado = await empleadoORM.findOneOrFail({
+        where: {
+          correo_electronico: query.correoElectronico,
+        },
+      })
+
+      return {
+        id: empleado.uuid,
+        valido: await compare(query.token, empleado.token),
+      }
+    } catch {
+      return {
+        valido: false,
+      }
+    }
+  }
+
   public async crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void> {
     try {
       const direccionORM = getRepository(DireccionORM)
@@ -29,7 +55,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
         segundo_apellido: comando.segundoApellido,
         segundo_nombre: comando.segundoNombre,
         telefono: comando.telefono,
-        token: comando.token,
+        token: await hash(comando.token, 10),
         direccion,
       })
     } catch {}

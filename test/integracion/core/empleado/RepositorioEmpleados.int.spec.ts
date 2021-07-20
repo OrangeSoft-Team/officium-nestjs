@@ -104,6 +104,18 @@ describe('Integración - Core/Empleado: Repositorio empleados', () => {
     })
   })
 
+  it('Deberia validar los datos de autentificación del empleado previamente creado', () => {
+    const query = repositorioEmpleados.autentificar({
+      correoElectronico: DATOS_EMPLEADO.correoElectronico,
+      token: DATOS_EMPLEADO.token,
+    })
+
+    return query.then((res) => {
+      expect(res.valido).toBeTruthy()
+      expect(res.id).toBe(DATOS_EMPLEADO.id)
+    })
+  })
+
   afterAll(async () => {
     await conexionBD.close()
   })

@@ -1,6 +1,8 @@
 import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fecha.mapeador'
+import { IniciarSesionEmpleadoQueryDTO } from '../../aplicacion/dto/IniciarSesionEmpleado.query'
 import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/RegistrarEmpleado.comando'
 import { ComandoRegistrarEmpleado } from '../cqrs/comandos/RegistrarEmpleado.comando'
+import { QueryIniciarSesionEmpleado } from '../cqrs/queries/IniciarSesionEmpleado.query'
 
 export abstract class EmpleadoApiMapeador {
   public static transformarComandoRegistrarEmpleado(
@@ -26,6 +28,16 @@ export abstract class EmpleadoApiMapeador {
         idEstado: datos.uuidEstado,
         idPais: datos.uuidPais,
       },
+    }
+  }
+
+  public static transformarQueryIniciarSesionEmpleado(
+    query: QueryIniciarSesionEmpleado,
+  ): IniciarSesionEmpleadoQueryDTO {
+    const datos = query.datos
+    return {
+      token: datos.token,
+      correoElectronico: datos.correoElectronico,
     }
   }
 }

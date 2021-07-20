@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { ModuloAuthEmpleado } from './auth/auth.module'
 import { ModuloRegistroEmpleado } from './registro/registro.module'
 
 @Module({
@@ -17,6 +18,7 @@ import { ModuloRegistroEmpleado } from './registro/registro.module'
       synchronize: false,
     }),
     ModuloRegistroEmpleado,
+    ModuloAuthEmpleado,
   ],
 })
 export class ModuloCoreEmpleado {}

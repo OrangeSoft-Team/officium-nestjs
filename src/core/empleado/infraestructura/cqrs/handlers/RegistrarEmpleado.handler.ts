@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
-import { hash } from 'bcrypt'
 import { BusEventos } from '../../../../../comun/infraestructura/adaptadores/BusEventos'
 import { ServicioIdentificador } from '../../../../../comun/infraestructura/adaptadores/ServicioIdentificador'
 import { ServicioRegistrarEmpleado } from '../../../aplicacion/servicios/ServicioRegistrarEmpleado'
@@ -56,7 +55,6 @@ export class HandlerRegistrarEmpleado
         },
         HttpStatus.BAD_REQUEST,
       )
-    comando.datos.token = await hash(comando.datos.token, 10)
 
     // Ejecutamos servicio de registro en aplicacion
     return this.servicioRegistrarEmpleado.ejecutar(

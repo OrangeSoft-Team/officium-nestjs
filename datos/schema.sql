@@ -35,7 +35,7 @@ CREATE TABLE empleados (
   primer_nombre VARCHAR(40) NOT NULL,
   primer_apellido VARCHAR(40) NOT NULL,
   correo_electronico VARCHAR(320) NOT NULL UNIQUE,
-  telefono VARCHAR(16) NOT NULL UNIQUE,
+  telefono VARCHAR(16) NOT NULL,
   nivel_educativo VARCHAR(10) NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   genero VARCHAR(10) NOT NULL,
