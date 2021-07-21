@@ -8,32 +8,32 @@ import {
 } from '@nestjs/common'
 import { Response } from 'express'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
-import { QueryIniciarSesionEmpleado } from '../../cqrs/queries/IniciarSesionEmpleado.query'
-import { DatosInicioSesionEmpleadoApiDTO } from '../../dto/DatosInicioSesionEmpleado.api.dto'
-import { ErroresHttpAuthEmpleado } from './auth.errores'
-import { ServicioApiAuthEmpleado } from './auth.service'
+import { QueryIniciarSesionEmpresa } from '../../cqrs/queries/IniciarSesionEmpresa.query'
+import { DatosInicioSesionEmpleadorApiDTO } from '../../dto/DatosInicioSesionEmpleador.api.dto'
+import { ErroresHttpAuthEmpresa } from './auth.errores'
+import { ServicioApiAuthEmpresa } from './auth.service'
 
-@Controller('api/empleado/auth')
-export class ControladorAuthEmpleado {
+@Controller('api/empleador/auth')
+export class ControladorAuthEmpresa {
   public constructor(
-    private readonly servicioAuthEmpleado: ServicioApiAuthEmpleado,
+    private readonly servicioAuthEmpresa: ServicioApiAuthEmpresa,
   ) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
-  public async loginEmpleado(
-    @Body() dto: DatosInicioSesionEmpleadoApiDTO,
+  public async loginEmpleador(
+    @Body() dto: DatosInicioSesionEmpleadorApiDTO,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const solicitud = await this.servicioAuthEmpleado.autentificarEmpleado(
-      new QueryIniciarSesionEmpleado(dto),
+    const solicitud = await this.servicioAuthEmpresa.autentificarEmpresa(
+      new QueryIniciarSesionEmpresa(dto),
     )
 
     // En caso de error
     if (!solicitud.esExitoso) {
       response.clearCookie('token')
       const excepcion = <IExcepcionAplicacion>solicitud.error
-      ErroresHttpAuthEmpleado.manejarExcepcion(excepcion, 'POST')
+      ErroresHttpAuthEmpresa.manejarExcepcion(excepcion, 'POST')
     }
 
     // En caso de exito
@@ -46,7 +46,7 @@ export class ControladorAuthEmpleado {
 
   @Post('/cerrar')
   @HttpCode(HttpStatus.OK)
-  public cerrarSesionEmpleado(@Res({ passthrough: true }) response: Response) {
+  public cerrarSesionEmpleador(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('token')
     return
   }

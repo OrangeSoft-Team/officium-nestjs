@@ -1,9 +1,9 @@
-export interface IniciarSesionEmpleadoQueryDTO {
+export interface IniciarSesionAdministradorQueryDTO {
   correoElectronico: string
   token: string
 }
 
-export interface IniciarSesionEmpleadoRespuestaDTO {
+export interface IniciarSesionAdministradorRespuestaDTO {
   valido: boolean
   primerNombre?: string
   primerApellido?: string

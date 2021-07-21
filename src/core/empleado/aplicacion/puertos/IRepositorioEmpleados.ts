@@ -25,6 +25,8 @@ export interface DatosAutentificacionPersistenciaDTO {
 
 export interface InformacionSesionPersistenciaDTO {
   valido: boolean
+  primerNombre?: string
+  primerApellido?: string
   id?: string
 }
 

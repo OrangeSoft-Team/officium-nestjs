@@ -25,8 +25,8 @@ export class HandlerIniciarSesionEmpleado implements IQueryHandler {
     if (!query.datos.token)
       throw new HttpException(
         {
-          mensaje: 'El formato de la fecha debe ser "dd/mm/yyyy".',
-          origen: 'FormatoFechaInvalido',
+          mensaje: 'El token de sesión no puede estar vacio.',
+          origen: 'TokenSesionVacio',
         },
         HttpStatus.BAD_REQUEST,
       )
@@ -40,6 +40,11 @@ export class HandlerIniciarSesionEmpleado implements IQueryHandler {
       const jwt = sign(solicitud.valor.id, process.env.JWT_SECRET)
 
       solicitud.valor.jwt = jwt
+
+      solicitud.valor.sesion =
+        EmpleadoApiMapeador.transformarRespuestaIniciarSesionEmpleado({
+          ...solicitud.valor,
+        })
     }
 
     return solicitud

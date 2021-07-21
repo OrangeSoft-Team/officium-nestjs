@@ -1,8 +1,12 @@
 import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fecha.mapeador'
-import { IniciarSesionEmpleadoQueryDTO } from '../../aplicacion/dto/IniciarSesionEmpleado.query'
+import {
+  IniciarSesionEmpleadoQueryDTO,
+  IniciarSesionEmpleadoRespuestaDTO,
+} from '../../aplicacion/dto/IniciarSesionEmpleado.query'
 import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/RegistrarEmpleado.comando'
 import { ComandoRegistrarEmpleado } from '../cqrs/comandos/RegistrarEmpleado.comando'
 import { QueryIniciarSesionEmpleado } from '../cqrs/queries/IniciarSesionEmpleado.query'
+import { DatosSesionAutenticadaEmpleadoApiDTO } from '../dto/DatosInicioSesionEmpleado.api.dto'
 
 export abstract class EmpleadoApiMapeador {
   public static transformarComandoRegistrarEmpleado(
@@ -38,6 +42,15 @@ export abstract class EmpleadoApiMapeador {
     return {
       token: datos.token,
       correoElectronico: datos.correoElectronico,
+    }
+  }
+
+  public static transformarRespuestaIniciarSesionEmpleado(
+    respuesta: IniciarSesionEmpleadoRespuestaDTO,
+  ): DatosSesionAutenticadaEmpleadoApiDTO {
+    return {
+      primerNombre: respuesta.primerNombre,
+      primerApellido: respuesta.primerApellido,
     }
   }
 }
