@@ -15,53 +15,36 @@ import { NivelEducativoEmpleado } from '../values/empleado/NivelEducativoEmplead
 import { NombreCompletoEmpleado } from '../values/empleado/NombreCompletoEmpleado'
 import { NumeroTelefonicoEmpleado } from '../values/empleado/NumeroTelefonicoEmpleado'
 
+export interface DatosRegistroDireccion {
+  identificador: IdentificadorDireccion
+  calleUno: CalleUnoDireccion
+  calleDos: CalleDosDireccion
+  codigoPostal: CodigoPostalDireccion
+  identificadorCiudad: IdentificadorCiudad
+}
+
 export interface DatosRegistroEmpleado {
-  idEmpleado: string
-  primerNombre: string
-  primerApellido: string
-  segundoNombre?: string
-  segundoApellido?: string
-  correoElectronico: string
-  telefono: string
-  nivelEducativo: string
-  genero: string
-  fechaNacimiento: Date
-  idDireccion: string
-  calleUno: string
-  calleDos?: string
-  codigoPostal: string
-  idCiudad: string
-  idEstado: string
-  idPais: string
+  identificador: IdentificadorEmpleado
+  nombreCompleto: NombreCompletoEmpleado
+  correoElectronico: CorreoElectronicoEmpleado
+  numeroTelefonico: NumeroTelefonicoEmpleado
+  nivelEducativo: NivelEducativoEmpleado
+  genero: GeneroEmpleado
+  fechaNacimiento: FechaNacimientoEmpleado
+  direccion: DatosRegistroDireccion
 }
 
 export abstract class RegistrarEmpleado implements IServicioDominio {
-  public static ejecutar(datos: DatosRegistroEmpleado): Empleado {
+  public static registrar(datos: DatosRegistroEmpleado): Empleado {
     const direccion = Direccion.crear({
-      identificador: IdentificadorDireccion.crear(datos.idDireccion),
-      calleUno: CalleUnoDireccion.crear(datos.calleUno),
-      calleDos: CalleDosDireccion.crear(datos.calleDos),
-      codigoPostal: CodigoPostalDireccion.crear(datos.codigoPostal),
-      identificadorCiudad: IdentificadorCiudad.crear(datos.idCiudad),
+      ...datos.direccion,
     })
 
     const empleado = Empleado.crear({
-      identificador: IdentificadorEmpleado.crear(datos.idEmpleado),
-      correoElectronico: CorreoElectronicoEmpleado.crear(
-        datos.correoElectronico,
-      ),
-      fechaNacimiento: FechaNacimientoEmpleado.crear(datos.fechaNacimiento),
-      genero: GeneroEmpleado.crear(datos.genero as any),
-      nivelEducativo: NivelEducativoEmpleado.crear(datos.nivelEducativo as any),
-      nombreCompleto: NombreCompletoEmpleado.crear(
-        datos.primerNombre,
-        datos.primerApellido,
-        datos.segundoNombre,
-        datos.segundoApellido,
-      ),
-      numeroTelefonico: NumeroTelefonicoEmpleado.crear(datos.telefono),
+      ...datos,
       estatus: EstatusEmpleado.crear('DISPONIBLE'),
       direccion,
+      experienciasLaborales: [],
     })
 
     return empleado

@@ -1,5 +1,5 @@
 import {
-  CrearEmpleadoPersistenciaDTO,
+  EmpleadoPersistenciaDTO,
   DatosAutentificacionPersistenciaDTO,
   EmpleadoExistePersistenciaDTO,
   InformacionSesionPersistenciaDTO,
@@ -29,7 +29,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
     }
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public async crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void> {
+  public async crear(comando: EmpleadoPersistenciaDTO): Promise<void> {
     return
   }
 

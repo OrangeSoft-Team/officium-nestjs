@@ -20,75 +20,46 @@ import { IdentificadorExperienciaLaboral } from '../values/experienciaLaboral/Id
 import { NombreEmpresaExperienciaLaboral } from '../values/experienciaLaboral/NombreEmpresaExperienciaLaboral'
 import { RangoFechaExperienciaLaboral } from '../values/experienciaLaboral/RangoFechaExperienciaLaboral'
 
+interface DatosRestaurarDireccion {
+  identificador: IdentificadorDireccion
+  identificadorCiudad: IdentificadorCiudad
+  calleUno: CalleUnoDireccion
+  calleDos: CalleDosDireccion
+  codigoPostal: CodigoPostalDireccion
+}
+
+interface DatosRestaurarExperienciaLaboral {
+  identificador: IdentificadorExperienciaLaboral
+  cargo: CargoExperienciaLaboral
+  nombreEmpresa: NombreEmpresaExperienciaLaboral
+  rangoFecha: RangoFechaExperienciaLaboral
+}
+
 export interface DatosRestaurarEmpleado {
-  id: string
-  primerNombre: string
-  primerApellido: string
-  segundoNombre?: string
-  segundoApellido?: string
-  correoElectronico: string
-  telefono: string
-  nivelEducativo: string
-  genero: string
-  fechaNacimiento: Date
-  estatus: string
-  direccion: {
-    id: string
-    idCiudad: string
-    calleUno: string
-    calleDos?: string
-    codigoPostal: string
-  }
-  experienciasLaborales?: {
-    id: string
-    cargo: string
-    nombreEmpresa: string
-    fechaInicio: Date
-    fechaFin: Date
-  }[]
+  identificador: IdentificadorEmpleado
+  nombreCompleto: NombreCompletoEmpleado
+  correoElectronico: CorreoElectronicoEmpleado
+  numeroTelefonico: NumeroTelefonicoEmpleado
+  nivelEducativo: NivelEducativoEmpleado
+  genero: GeneroEmpleado
+  fechaNacimiento: FechaNacimientoEmpleado
+  estatus: EstatusEmpleado
+  direccion: DatosRestaurarDireccion
+  experienciasLaborales: DatosRestaurarExperienciaLaboral[]
 }
 
 export abstract class RestaurarEmpleado implements IServicioDominio {
   public static restaurar(datos: DatosRestaurarEmpleado): Empleado {
     const direccion = Direccion.restaurar({
-      identificador: IdentificadorDireccion.crear(datos.direccion.id),
-      calleUno: CalleUnoDireccion.crear(datos.direccion.calleUno),
-      calleDos: CalleDosDireccion.crear(datos.direccion.calleDos),
-      codigoPostal: CodigoPostalDireccion.crear(datos.direccion.codigoPostal),
-      identificadorCiudad: IdentificadorCiudad.crear(datos.direccion.idCiudad),
+      ...datos.direccion,
     })
 
     const experienciasLaborales = datos.experienciasLaborales.map(
-      (experiencia) =>
-        ExperienciaLaboral.restaurar({
-          identificador: IdentificadorExperienciaLaboral.crear(experiencia.id),
-          cargo: CargoExperienciaLaboral.crear(experiencia.cargo),
-          nombreEmpresa: NombreEmpresaExperienciaLaboral.crear(
-            experiencia.nombreEmpresa,
-          ),
-          rangoFecha: RangoFechaExperienciaLaboral.crear(
-            experiencia.fechaInicio,
-            experiencia.fechaFin,
-          ),
-        }),
+      (experiencia) => ExperienciaLaboral.restaurar({ ...experiencia }),
     )
 
     return Empleado.restaurar({
-      identificador: IdentificadorEmpleado.crear(datos.id),
-      correoElectronico: CorreoElectronicoEmpleado.crear(
-        datos.correoElectronico,
-      ),
-      estatus: EstatusEmpleado.crear(datos.estatus as any),
-      fechaNacimiento: FechaNacimientoEmpleado.crear(datos.fechaNacimiento),
-      genero: GeneroEmpleado.crear(datos.genero as any),
-      nivelEducativo: NivelEducativoEmpleado.crear(datos.nivelEducativo as any),
-      numeroTelefonico: NumeroTelefonicoEmpleado.crear(datos.telefono),
-      nombreCompleto: NombreCompletoEmpleado.crear(
-        datos.primerNombre,
-        datos.primerApellido,
-        datos.segundoNombre,
-        datos.segundoApellido,
-      ),
+      ...datos,
       direccion,
       experienciasLaborales,
     })

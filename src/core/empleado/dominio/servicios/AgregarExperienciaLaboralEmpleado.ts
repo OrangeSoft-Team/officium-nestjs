@@ -7,28 +7,20 @@ import { NombreEmpresaExperienciaLaboral } from '../values/experienciaLaboral/No
 import { RangoFechaExperienciaLaboral } from '../values/experienciaLaboral/RangoFechaExperienciaLaboral'
 
 export interface DatosAgregarExperienciaLaboral {
-  id: string
-  cargo: string
-  nombreEmpresa: string
-  fechaInicio: Date
-  fechaFin: Date
+  identificador: IdentificadorExperienciaLaboral
+  cargo: CargoExperienciaLaboral
+  nombreEmpresa: NombreEmpresaExperienciaLaboral
+  rangoFecha: RangoFechaExperienciaLaboral
 }
-
 export abstract class AgregarExperienciaLaboralEmpleado
   implements IServicioDominio
 {
-  public static ejecutar(
+  public static agregar(
     datos: DatosAgregarExperienciaLaboral,
     empleado: Empleado,
   ): Empleado {
     const experienciaLaboral = ExperienciaLaboral.crear({
-      identificador: IdentificadorExperienciaLaboral.crear(datos.id),
-      rangoFecha: RangoFechaExperienciaLaboral.crear(
-        datos.fechaInicio,
-        datos.fechaFin,
-      ),
-      nombreEmpresa: NombreEmpresaExperienciaLaboral.crear(datos.nombreEmpresa),
-      cargo: CargoExperienciaLaboral.crear(datos.cargo),
+      ...datos,
     })
 
     empleado.agregarExperienciaLaboral(experienciaLaboral)

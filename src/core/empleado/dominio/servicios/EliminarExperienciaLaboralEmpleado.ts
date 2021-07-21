@@ -2,13 +2,18 @@ import { IServicioDominio } from '../../../../comun/dominio/IServicioDominio'
 import { Empleado } from '../entidades/Empleado'
 import { IdentificadorExperienciaLaboral } from '../values/experienciaLaboral/IdentificadorExperienciaLaboral'
 
+export interface DatosEliminarExperienciaLaboralEmpleado {
+  identificador: IdentificadorExperienciaLaboral
+}
+
 export abstract class EliminarExperienciaLaboralEmpleado
   implements IServicioDominio
 {
-  public static ejecutar(id: string, empleado: Empleado): Empleado {
-    const identificadorExperiencia = IdentificadorExperienciaLaboral.crear(id)
-
-    empleado.eliminarExperienciaLaboral(identificadorExperiencia)
+  public static eliminar(
+    datos: DatosEliminarExperienciaLaboralEmpleado,
+    empleado: Empleado,
+  ): Empleado {
+    empleado.eliminarExperienciaLaboral(datos.identificador)
 
     return empleado
   }

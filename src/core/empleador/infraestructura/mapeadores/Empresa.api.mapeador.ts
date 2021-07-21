@@ -6,7 +6,7 @@ import { QueryIniciarSesionEmpresa } from '../cqrs/queries/IniciarSesionEmpresa.
 import { DatosSesionAutenticadaEmpresaApiDTO } from '../dto/DatosInicioSesionEmpleador.api.dto'
 
 export abstract class EmpresaApiMapeador {
-  public static transformarQueryIniciarSesionEmpresa(
+  public static convertirQueryIniciarSesionEmpresa(
     query: QueryIniciarSesionEmpresa,
   ): IniciarSesionEmpresaQueryDTO {
     const datos = query.datos
@@ -16,7 +16,7 @@ export abstract class EmpresaApiMapeador {
     }
   }
 
-  public static transformarRespuestaIniciarSesionEmpresa(
+  public static convertirRespuestaIniciarSesionEmpresa(
     respuesta: IniciarSesionEmpresaRespuestaDTO,
   ): DatosSesionAutenticadaEmpresaApiDTO {
     return {

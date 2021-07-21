@@ -92,31 +92,31 @@ export class ServicioRegistrarEmpleado implements IServicioAplicacion {
       // Verificamos que el empleado no exista ya
       await this.verificarExisteEmpleado(comando.correoElectronico)
 
-      // Generamos un identificador para la direccion
-      const idDireccion = this.servicioIdentificador.generarIdentificador()
-
-      // Generamos un identificador para el empleado
-      const idEmpleado = this.servicioIdentificador.generarIdentificador()
-
-      // Llamamos al servicio de dominio para RegistrarEmpleado
-      const empleado = RegistrarEmpleado.ejecutar(
-        EmpleadoMapeador.transformarComandoEnDominio(
-          comando,
-          idEmpleado,
-          idDireccion,
-        ),
+      // Mapeamos comandos a dominio
+      const datosDireccion = DireccionMapeador.convertirComandoEnDatosRegistro(
+        this.servicioIdentificador.generarIdentificador(),
+        comando.direccion,
       )
+
+      const datosEmpleado = EmpleadoMapeador.convertirComandoEnDatosRegistro(
+        this.servicioIdentificador.generarIdentificador(),
+        comando,
+        datosDireccion,
+      )
+
+      // Ejecutamos el servicio de dominio
+      const empleado = RegistrarEmpleado.registrar(datosEmpleado)
 
       // Persistimos la direccion
       await this.repositorioDirecciones.crear(
-        DireccionMapeador.transformarEntidadEnPersistencia(
+        DireccionMapeador.convertirDominioEnPersistencia(
           empleado.obtenerDireccion(),
         ),
       )
 
       // Persistimos el empleado
       await this.repositorioEmpleados.crear(
-        EmpleadoMapeador.transformarEntidadEnPersistencia(
+        EmpleadoMapeador.convertirDominioEnPersistencia(
           empleado,
           comando.token,
         ),

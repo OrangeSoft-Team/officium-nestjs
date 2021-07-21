@@ -1,4 +1,4 @@
-export interface CrearEmpleadoPersistenciaDTO {
+export interface EmpleadoPersistenciaDTO {
   id: string
   primerNombre: string
   primerApellido: string
@@ -10,8 +10,8 @@ export interface CrearEmpleadoPersistenciaDTO {
   estatus: string
   genero: string
   fechaNacimiento: Date
-  token: string
   idDireccion: string
+  token?: string
 }
 
 export interface EmpleadoExistePersistenciaDTO {
@@ -31,7 +31,7 @@ export interface InformacionSesionPersistenciaDTO {
 }
 
 export interface IRepositorioEmpleados {
-  crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void>
+  crear(comando: EmpleadoPersistenciaDTO): Promise<void>
 
   existe(query: EmpleadoExistePersistenciaDTO): Promise<boolean>
 

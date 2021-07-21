@@ -1,9 +1,9 @@
 import { compare, hash } from 'bcrypt'
 import { getRepository } from 'typeorm'
 import {
-  CrearEmpleadoPersistenciaDTO,
   DatosAutentificacionPersistenciaDTO,
   EmpleadoExistePersistenciaDTO,
+  EmpleadoPersistenciaDTO,
   InformacionSesionPersistenciaDTO,
   IRepositorioEmpleados,
 } from '../../aplicacion/puertos/IRepositorioEmpleados'
@@ -36,7 +36,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
     }
   }
 
-  public async crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void> {
+  public async crear(comando: EmpleadoPersistenciaDTO): Promise<void> {
     try {
       const direccionORM = getRepository(DireccionORM)
       const empleadoORM = getRepository(EmpleadoORM)

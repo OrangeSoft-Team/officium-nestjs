@@ -6,7 +6,7 @@ import { QueryIniciarSesionAdministrador } from '../cqrs/queries/IniciarSesionAd
 import { DatosSesionAutenticadaAdministradorApiDTO } from '../dto/DatosInicioSesionAdministrador.api.dto'
 
 export abstract class AdministradorApiMapeador {
-  public static transformarQueryIniciarSesionAdministrador(
+  public static convertirQueryIniciarSesionAdministrador(
     query: QueryIniciarSesionAdministrador,
   ): IniciarSesionAdministradorQueryDTO {
     const datos = query.datos
@@ -16,7 +16,7 @@ export abstract class AdministradorApiMapeador {
     }
   }
 
-  public static transformarRespuestaIniciarSesionAdministrador(
+  public static convertirRespuestaIniciarSesionAdministrador(
     respuesta: IniciarSesionAdministradorRespuestaDTO,
   ): DatosSesionAutenticadaAdministradorApiDTO {
     return {

@@ -9,7 +9,7 @@ import { QueryIniciarSesionEmpleado } from '../cqrs/queries/IniciarSesionEmplead
 import { DatosSesionAutenticadaEmpleadoApiDTO } from '../dto/DatosInicioSesionEmpleado.api.dto'
 
 export abstract class EmpleadoApiMapeador {
-  public static transformarComandoRegistrarEmpleado(
+  public static convertirComandoRegistrarEmpleado(
     comando: ComandoRegistrarEmpleado,
   ): RegistrarEmpleadoComandoDTO {
     const datos = comando.datos
@@ -35,7 +35,7 @@ export abstract class EmpleadoApiMapeador {
     }
   }
 
-  public static transformarQueryIniciarSesionEmpleado(
+  public static convertirQueryIniciarSesionEmpleado(
     query: QueryIniciarSesionEmpleado,
   ): IniciarSesionEmpleadoQueryDTO {
     const datos = query.datos
@@ -45,7 +45,7 @@ export abstract class EmpleadoApiMapeador {
     }
   }
 
-  public static transformarRespuestaIniciarSesionEmpleado(
+  public static convertirRespuestaIniciarSesionEmpleado(
     respuesta: IniciarSesionEmpleadoRespuestaDTO,
   ): DatosSesionAutenticadaEmpleadoApiDTO {
     return {
