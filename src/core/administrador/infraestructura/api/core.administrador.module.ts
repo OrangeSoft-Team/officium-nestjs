@@ -1,7 +1,13 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module } from '@nestjs/common'
+import { MiddlewareSesion } from '../../../../comun/infraestructura/middleware/sesion.middleware'
+import { ModuloAuthAdministrador } from './auth/auth.module'
 
 @Module({
-  imports: [],
+  imports: [ModuloAuthAdministrador],
   controllers: [],
 })
-export class ModuloCoreAdministrador {}
+export class ModuloCoreAdministrador {
+  public configure(consumer: MiddlewareConsumer) {
+    consumer.apply(MiddlewareSesion).forRoutes()
+  }
+}

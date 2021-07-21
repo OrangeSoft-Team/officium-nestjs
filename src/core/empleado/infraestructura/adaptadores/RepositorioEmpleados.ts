@@ -25,6 +25,8 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
 
       return {
         id: empleado.uuid,
+        primerNombre: empleado.primer_nombre,
+        primerApellido: empleado.primer_apellido,
         valido: await compare(query.token, empleado.token),
       }
     } catch {
