@@ -58,6 +58,11 @@ export class NombreCompletoEmpleado implements IValueObject {
         'El primer nombre del empleado debe contener como mínimo 3 caracteres.',
       )
 
+    if (primerNombre.length > 40)
+      throw new LongitudInvalidaPrimerNombreEmpleado(
+        'El primer nombre del empleado debe contener como máximo 40 caracteres.',
+      )
+
     // primerApellido
     if (!primerApellido)
       throw new PrimerApellidoEmpleadoVacio(
@@ -67,6 +72,11 @@ export class NombreCompletoEmpleado implements IValueObject {
     if (primerApellido.length < 3)
       throw new LongitudInvalidaPrimerApellidoEmpleado(
         'El primer apellido del empleado debe contener como mínimo 3 caracteres.',
+      )
+
+    if (primerApellido.length > 40)
+      throw new LongitudInvalidaPrimerApellidoEmpleado(
+        'El primer apellido del empleado debe contener como máximo 40 caracteres.',
       )
 
     // segundoNombre

@@ -57,4 +57,14 @@ export class Direccion extends Entidad {
       datos.identificadorCiudad,
     )
   }
+
+  public static restaurar(datos: DatosDireccion): Direccion {
+    return new Direccion(
+      datos.identificador,
+      datos.calleUno,
+      datos.calleDos,
+      datos.codigoPostal,
+      datos.identificadorCiudad,
+    )
+  }
 }

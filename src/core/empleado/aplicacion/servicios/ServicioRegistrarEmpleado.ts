@@ -4,10 +4,6 @@ import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplic
 import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
 import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
-import { CiudadNoExiste } from '../../dominio/excepciones/ciudad/CiudadNoExiste'
-import { EmpleadoYaExiste } from '../../dominio/excepciones/empleado/EmpleadoYaExiste'
-import { EstadoNoExiste } from '../../dominio/excepciones/estado/EstadoNoExiste'
-import { PaisNoExiste } from '../../dominio/excepciones/pais/PaisNoExiste'
 import { IRepositorioCiudades } from '../puertos/IRepositorioCiudades'
 import { IRepositorioDirecciones } from '../puertos/IRepositorioDirecciones'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'
@@ -16,6 +12,10 @@ import { IRepositorioPaises } from '../puertos/IRepositorioPaises'
 import { RegistrarEmpleado } from '../../dominio/servicios/RegistrarEmpleado'
 import { EmpleadoMapeador } from '../mapeadores/Empleado.mapeador'
 import { DireccionMapeador } from '../mapeadores/Direccion.mapeador'
+import { CiudadNoExiste } from '../../dominio/excepciones/ciudad/Ciudad.excepciones'
+import { EmpleadoYaExiste } from '../../dominio/excepciones/empleado/Empleado.excepciones'
+import { EstadoNoExiste } from '../../dominio/excepciones/estado/Estado.excepciones'
+import { PaisNoExiste } from '../../dominio/excepciones/pais/Pais.excepciones'
 
 export class ServicioRegistrarEmpleado implements IServicioAplicacion {
   public constructor(

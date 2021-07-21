@@ -1,7 +1,7 @@
 import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionAplicacion'
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
-import { AutentificacionEmpresaInvalida } from '../../dominio/excepciones/empresa/AutentificacionEmpresaInvalida'
+import { AutentificacionEmpresaInvalida } from '../../dominio/excepciones/empresa/Empresa.excepciones'
 import {
   IniciarSesionEmpresaQueryDTO,
   IniciarSesionEmpresaRespuestaDTO,
