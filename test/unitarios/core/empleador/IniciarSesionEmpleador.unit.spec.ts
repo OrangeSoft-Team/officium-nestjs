@@ -1,6 +1,6 @@
 // Mock: Repositorio Empresas
 import { ServicioIniciarSesionEmpresa } from '../../../../src/core/empleador/aplicacion/servicios/ServicioIniciarSesionEmpleado'
-import { AutentificacionEmpresaInvalida } from '../../../../src/core/empleador/dominio/excepciones/empresa/AutentificacionEmpresaInvalida'
+import { AutentificacionEmpresaInvalida } from '../../../../src/core/empleador/dominio/excepciones/empresa/Empresa.excepciones'
 import { RepositorioEmpresas } from '../../../../src/core/empleador/infraestructura/adaptadores/RepositorioEmpresas'
 
 // mock del Repositorio Empresas

@@ -1,5 +1,5 @@
 import { ServicioIniciarSesionAdministrador } from '../../../../src/core/administrador/aplicacion/servicios/ServicioIniciarSesionAdministrador'
-import { AutentificacionAdministradorInvalida } from '../../../../src/core/administrador/dominio/excepciones/administrador/AutentificacionAdministradorInvalido'
+import { AutentificacionAdministradorInvalida } from '../../../../src/core/administrador/dominio/excepciones/administrador/Administrador.excepciones'
 import { RepositorioAdministradores } from '../../../../src/core/administrador/infraestructura/adaptadores/RepositorioAdministradores'
 
 // mock del Repositorio Administradores

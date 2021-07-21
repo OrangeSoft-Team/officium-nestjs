@@ -1,5 +1,5 @@
 import { ServicioIniciarSesionEmpleado } from '../../../../src/core/empleado/aplicacion/servicios/ServicioIniciarSesionEmpleado'
-import { AutentificacionEmpleadoInvalida } from '../../../../src/core/empleado/dominio/excepciones/empleado/AutentificacionEmpleadoInvalida'
+import { AutentificacionEmpleadoInvalida } from '../../../../src/core/empleado/dominio/excepciones/empleado/Empleado.excepciones'
 import { RepositorioEmpleados } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioEmpleados'
 
 // Mock: Repositorio Empleados
