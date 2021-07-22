@@ -13,7 +13,7 @@ export class MiddlewareSesion implements NestMiddleware {
     const token = req.cookies.token
     try {
       const id_auth = verify(token, process.env.JWT_SECRET)
-      req.body.id_usuario = id_auth
+      req.body.idUsuario = id_auth
     } catch {
       res.clearCookie('token')
       throw new HttpException(
