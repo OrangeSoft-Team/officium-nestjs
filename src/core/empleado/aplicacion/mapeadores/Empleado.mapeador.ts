@@ -3,14 +3,16 @@ import {
   DatosRegistroDireccion,
   DatosRegistroEmpleado,
 } from '../../dominio/servicios/RegistrarEmpleado'
+import { DatosRestaurarEmpleado } from '../../dominio/servicios/RestaurarEmpleado'
 import { CorreoElectronicoEmpleado } from '../../dominio/values/empleado/CorreoElectronicoEmpleado'
+import { EstatusEmpleado } from '../../dominio/values/empleado/EstatusEmpleado'
 import { FechaNacimientoEmpleado } from '../../dominio/values/empleado/FechaNacimientoEmpleado'
 import { GeneroEmpleado } from '../../dominio/values/empleado/GeneroEmpleado'
 import { IdentificadorEmpleado } from '../../dominio/values/empleado/IdentificadorEmpleado'
 import { NivelEducativoEmpleado } from '../../dominio/values/empleado/NivelEducativoEmpleado'
 import { NombreCompletoEmpleado } from '../../dominio/values/empleado/NombreCompletoEmpleado'
 import { NumeroTelefonicoEmpleado } from '../../dominio/values/empleado/NumeroTelefonicoEmpleado'
-import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
+import { RegistrarEmpleadoComandoDTO } from '../dto/comandos/RegistrarEmpleado.comando'
 import { EmpleadoPersistenciaDTO } from '../puertos/IRepositorioEmpleados'
 
 export abstract class EmpleadoMapeador {
@@ -37,6 +39,30 @@ export abstract class EmpleadoMapeador {
         .obtenerIdentificador()
         .obtenerId(),
       token,
+    }
+  }
+
+  public static convertirPersistenciaEnDominio(
+    datos: EmpleadoPersistenciaDTO,
+  ): DatosRestaurarEmpleado {
+    return {
+      identificador: IdentificadorEmpleado.crear(datos.id),
+      correoElectronico: CorreoElectronicoEmpleado.crear(
+        datos.correoElectronico,
+      ),
+      estatus: EstatusEmpleado.crear(datos.estatus as any),
+      numeroTelefonico: NumeroTelefonicoEmpleado.crear(datos.telefono),
+      nombreCompleto: NombreCompletoEmpleado.crear(
+        datos.primerNombre,
+        datos.primerApellido,
+        datos.segundoNombre,
+        datos.segundoApellido,
+      ),
+      fechaNacimiento: FechaNacimientoEmpleado.crear(datos.fechaNacimiento),
+      genero: GeneroEmpleado.crear(datos.genero as any),
+      nivelEducativo: NivelEducativoEmpleado.crear(datos.nivelEducativo as any),
+      experienciasLaborales: [],
+      direccion: null,
     }
   }
 

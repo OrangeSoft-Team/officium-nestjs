@@ -20,7 +20,7 @@ import { IdentificadorExperienciaLaboral } from '../values/experienciaLaboral/Id
 import { NombreEmpresaExperienciaLaboral } from '../values/experienciaLaboral/NombreEmpresaExperienciaLaboral'
 import { RangoFechaExperienciaLaboral } from '../values/experienciaLaboral/RangoFechaExperienciaLaboral'
 
-interface DatosRestaurarDireccion {
+export interface DatosRestaurarDireccion {
   identificador: IdentificadorDireccion
   identificadorCiudad: IdentificadorCiudad
   calleUno: CalleUnoDireccion
@@ -28,7 +28,7 @@ interface DatosRestaurarDireccion {
   codigoPostal: CodigoPostalDireccion
 }
 
-interface DatosRestaurarExperienciaLaboral {
+export interface DatosRestaurarExperienciaLaboral {
   identificador: IdentificadorExperienciaLaboral
   cargo: CargoExperienciaLaboral
   nombreEmpresa: NombreEmpresaExperienciaLaboral

@@ -1,11 +1,12 @@
 import { Direccion } from '../../dominio/entidades/Direccion'
 import { DatosRegistroDireccion } from '../../dominio/servicios/RegistrarEmpleado'
+import { DatosRestaurarDireccion } from '../../dominio/servicios/RestaurarEmpleado'
 import { IdentificadorCiudad } from '../../dominio/values/ciudad/IdentificadorCiudad'
 import { CalleDosDireccion } from '../../dominio/values/direccion/CalleDosDireccion'
 import { CalleUnoDireccion } from '../../dominio/values/direccion/CalleUnoDireccion'
 import { CodigoPostalDireccion } from '../../dominio/values/direccion/CodigoPostalDireccion'
 import { IdentificadorDireccion } from '../../dominio/values/direccion/IdentificadorDireccion'
-import { RegistrarDireccionComandoDTO } from '../dto/RegistrarEmpleado.comando'
+import { RegistrarDireccionComandoDTO } from '../dto/comandos/RegistrarEmpleado.comando'
 import { DireccionPersistenciaDTO } from '../puertos/IRepositorioDirecciones'
 
 export abstract class DireccionMapeador {
@@ -31,6 +32,18 @@ export abstract class DireccionMapeador {
       calleDos: CalleDosDireccion.crear(comando.calleDos),
       codigoPostal: CodigoPostalDireccion.crear(comando.codigoPostal),
       identificadorCiudad: IdentificadorCiudad.crear(comando.idCiudad),
+    }
+  }
+
+  public static convertirPersistenciaEnDominio(
+    datos: DireccionPersistenciaDTO,
+  ): DatosRestaurarDireccion {
+    return {
+      identificador: IdentificadorDireccion.crear(datos.id),
+      calleUno: CalleUnoDireccion.crear(datos.calleUno),
+      calleDos: CalleDosDireccion.crear(datos.calleDos),
+      codigoPostal: CodigoPostalDireccion.crear(datos.codigoPostal),
+      identificadorCiudad: IdentificadorCiudad.crear(datos.idCiudad),
     }
   }
 }

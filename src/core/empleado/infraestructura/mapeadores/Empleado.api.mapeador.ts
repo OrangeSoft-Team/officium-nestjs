@@ -2,8 +2,8 @@ import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fech
 import {
   IniciarSesionEmpleadoQueryDTO,
   IniciarSesionEmpleadoRespuestaDTO,
-} from '../../aplicacion/dto/IniciarSesionEmpleado.query'
-import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/RegistrarEmpleado.comando'
+} from '../../aplicacion/dto/queries/IniciarSesionEmpleado.query'
+import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/comandos/RegistrarEmpleado.comando'
 import { ComandoRegistrarEmpleado } from '../cqrs/comandos/RegistrarEmpleado.comando'
 import { QueryIniciarSesionEmpleado } from '../cqrs/queries/IniciarSesionEmpleado.query'
 import { DatosSesionAutenticadaEmpleadoApiDTO } from '../dto/DatosInicioSesionEmpleado.api.dto'

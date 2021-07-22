@@ -1,13 +1,13 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common'
-import { MiddlewareSesion } from '../../../../comun/infraestructura/middleware/sesion.middleware'
+import { Module } from '@nestjs/common'
 import { ModuloAuthEmpleado } from './auth/auth.module'
+import { ModuloExperienciasEmpleado } from './experiencias/experiencias.module'
 import { ModuloRegistroEmpleado } from './registro/registro.module'
 
 @Module({
-  imports: [ModuloRegistroEmpleado, ModuloAuthEmpleado],
+  imports: [
+    ModuloRegistroEmpleado,
+    ModuloAuthEmpleado,
+    ModuloExperienciasEmpleado,
+  ],
 })
-export class ModuloCoreEmpleado {
-  public configure(consumer: MiddlewareConsumer) {
-    consumer.apply(MiddlewareSesion).forRoutes()
-  }
-}
+export class ModuloCoreEmpleado {}

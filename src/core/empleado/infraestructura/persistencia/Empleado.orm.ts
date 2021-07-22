@@ -1,5 +1,13 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { DireccionORM } from './Direccion.orm'
+import { ExperienciaLaboralORM } from './ExperienciaLaboral.orm'
 
 @Entity('empleados')
 export class EmpleadoORM {
@@ -44,4 +52,7 @@ export class EmpleadoORM {
     name: 'uuid_direccion',
   })
   direccion: DireccionORM
+
+  @OneToMany(() => ExperienciaLaboralORM, (experiencia) => experiencia.empleado)
+  experiencias_laborales: ExperienciaLaboralORM[]
 }

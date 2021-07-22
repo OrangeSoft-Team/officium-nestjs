@@ -23,8 +23,6 @@ export class RepositorioDirecciones implements IRepositorioDirecciones {
         codigo_postal: comando.codigoPostal,
         ciudad,
       })
-    } catch (error) {
-      console.log(error)
-    }
+    } catch {}
   }
 }

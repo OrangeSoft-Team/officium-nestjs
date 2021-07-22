@@ -38,4 +38,6 @@ export interface IRepositorioEmpleados {
   autentificar(
     query: DatosAutentificacionPersistenciaDTO,
   ): Promise<InformacionSesionPersistenciaDTO>
+
+  obtener(id: string): Promise<EmpleadoPersistenciaDTO>
 }

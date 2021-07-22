@@ -114,6 +114,13 @@ export class Empleado extends Agregado {
     return indice
   }
 
+  public obtenerExperienciaLaboral(
+    identificador: IdentificadorExperienciaLaboral,
+  ): ExperienciaLaboral {
+    const indice = this.ubicarIndiceExperienciaLaboral(identificador)
+    return this.experienciasLaborales[indice]
+  }
+
   public editarExperienciaLaboral(experienciaLaboral: ExperienciaLaboral) {
     const indice = this.ubicarIndiceExperienciaLaboral(
       experienciaLaboral.obtenerIdentificador(),

@@ -3,7 +3,7 @@ import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionApl
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
 import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
-import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
+import { RegistrarEmpleadoComandoDTO } from '../dto/comandos/RegistrarEmpleado.comando'
 import { IRepositorioCiudades } from '../puertos/IRepositorioCiudades'
 import { IRepositorioDirecciones } from '../puertos/IRepositorioDirecciones'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'

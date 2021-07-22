@@ -5,7 +5,7 @@ import { AutentificacionEmpleadoInvalida } from '../../dominio/excepciones/emple
 import {
   IniciarSesionEmpleadoQueryDTO,
   IniciarSesionEmpleadoRespuestaDTO,
-} from '../dto/IniciarSesionEmpleado.query'
+} from '../dto/queries/IniciarSesionEmpleado.query'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'
 
 export class ServicioIniciarSesionEmpleado implements IServicioAplicacion {
