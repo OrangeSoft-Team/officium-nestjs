@@ -29,4 +29,18 @@ export class RepositorioExperienciasLaborales
   public async crear(datos: ExperienciaLaboralPersitenciaDTO): Promise<void> {
     return
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public async editar(datos: ExperienciaLaboralPersitenciaDTO): Promise<void> {
+    return
+  }
+
+  public async eliminar(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    idExperiencia: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    idEmpleado: string,
+  ): Promise<void> {
+    return
+  }
 }

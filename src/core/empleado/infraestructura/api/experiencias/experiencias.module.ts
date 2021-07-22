@@ -3,13 +3,21 @@ import { CqrsModule } from '@nestjs/cqrs'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MiddlewareSesion } from '../../../../../comun/infraestructura/middleware/sesion.middleware'
 import { HandlerAgregarExperienciaLaboralEmpleado } from '../../cqrs/handlers/AgregarExperienciaLaboralEmpleado.handler'
+import { HandlerConsultarExperienciasLaboralesEmpleado } from '../../cqrs/handlers/ConsultarExperienciasLaboralesEmpleado.handler'
+import { HandlerEditarExperienciaLaboralEmpleado } from '../../cqrs/handlers/EditarExperienciaLaboralEmpleado.handler'
+import { HandlerEliminarExperienciaLaboralEmpleado } from '../../cqrs/handlers/EliminarExperienciaLaboralEmpleado.handler'
 import { DireccionORM } from '../../persistencia/Direccion.orm'
 import { EmpleadoORM } from '../../persistencia/Empleado.orm'
 import { ExperienciaLaboralORM } from '../../persistencia/ExperienciaLaboral.orm'
 import { ControladorExperienciasEmpleado } from './experiencias.controller'
-import { ServicioApiExperienciasEmpleado } from './experiencias.service'
 
-const ManejadoresComandos = [HandlerAgregarExperienciaLaboralEmpleado]
+const ManejadoresComandos = [
+  HandlerAgregarExperienciaLaboralEmpleado,
+  HandlerEditarExperienciaLaboralEmpleado,
+  HandlerEliminarExperienciaLaboralEmpleado,
+]
+
+const ManejadoresQueries = [HandlerConsultarExperienciasLaboralesEmpleado]
 
 @Module({
   imports: [
@@ -21,7 +29,7 @@ const ManejadoresComandos = [HandlerAgregarExperienciaLaboralEmpleado]
     ]),
   ],
   controllers: [ControladorExperienciasEmpleado],
-  providers: [ServicioApiExperienciasEmpleado, ...ManejadoresComandos],
+  providers: [...ManejadoresComandos, ...ManejadoresQueries],
 })
 export class ModuloExperienciasEmpleado {
   public configure(consumer: MiddlewareConsumer) {

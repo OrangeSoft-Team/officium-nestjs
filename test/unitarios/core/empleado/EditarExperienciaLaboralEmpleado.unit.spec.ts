@@ -1,8 +1,8 @@
 import { BusEventos } from '../../../../src/comun/infraestructura/adaptadores/BusEventos'
-import { ServicioIdentificador } from '../../../../src/comun/infraestructura/adaptadores/ServicioIdentificador'
-import { ServicioAgregarExperienciaLaboralEmpleado } from '../../../../src/core/empleado/aplicacion/servicios/ServicioAgregarExperienciaLaboralEmpleado'
+import { ServicioEditarExperienciaLaboralEmpleado } from '../../../../src/core/empleado/aplicacion/servicios/ServicioEditarExperienciaLaboral'
 import { EmpleadoNoExiste } from '../../../../src/core/empleado/dominio/excepciones/empleado/Empleado.excepciones'
 import { LongitudInvalidaCargoExperienciaLaboral } from '../../../../src/core/empleado/dominio/excepciones/experienciaLaboral/CargoExperienciaLaboral.excepciones'
+import { ExperienciaLaboralNoExiste } from '../../../../src/core/empleado/dominio/excepciones/experienciaLaboral/ExperienciaLaboral.excepciones'
 import { FechaFinNoMayorDeFechaInicioExperienciaLaboral } from '../../../../src/core/empleado/dominio/excepciones/experienciaLaboral/RangoFechaExperienciaLaboral.excepciones'
 import { RepositorioEmpleados } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioEmpleados'
 import { RepositorioExperienciasLaborales } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioExperienciasLaborales'
@@ -10,11 +10,6 @@ import { RepositorioExperienciasLaborales } from '../../../../src/core/empleado/
 // Mock: Repositorio Empleados
 jest.mock(
   '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioEmpleados',
-)
-
-// Mock: Servicio Identificador
-jest.mock(
-  '../../../../src/comun/infraestructura/adaptadores/ServicioIdentificador',
 )
 
 // Mock: Bus Eventos
@@ -25,25 +20,22 @@ jest.mock(
   '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioExperienciasLaborales',
 )
 
-describe('Unitario - Core/Empleado: Agregar una nueva experiencia laboral para un empleado', () => {
+describe('Unitario - Core/Empleado: Editar una experiencia laboral para un empleado', () => {
   let mockRepositorioExperienciasLaborales: RepositorioExperienciasLaborales
   let mockRepositorioEmpleados: RepositorioEmpleados
-  let mockServicioIdentificador: ServicioIdentificador
   let mockBusEventos: BusEventos
 
-  let casoUso: ServicioAgregarExperienciaLaboralEmpleado
+  let casoUso: ServicioEditarExperienciaLaboralEmpleado
 
   beforeAll(() => {
     mockRepositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
     mockRepositorioEmpleados = new RepositorioEmpleados()
     mockBusEventos = new BusEventos()
-    mockServicioIdentificador = new ServicioIdentificador()
 
-    casoUso = new ServicioAgregarExperienciaLaboralEmpleado(
+    casoUso = new ServicioEditarExperienciaLaboralEmpleado(
       mockRepositorioExperienciasLaborales,
       mockRepositorioEmpleados,
-      mockServicioIdentificador,
       mockBusEventos,
     )
 
@@ -51,11 +43,12 @@ describe('Unitario - Core/Empleado: Agregar una nueva experiencia laboral para u
     jest.spyOn(mockBusEventos, 'publicar')
   })
 
-  it('Debe agregar una experiencia laboral al empleado con todos sus datos validos', () => {
+  it('Debe editar una experiencia laboral del empleado con todos sus datos validos', () => {
     const resultado = casoUso.ejecutar({
       idEmpleado: '1',
+      id: 'ced7608e-5db6-464e-93d1-ab32f28e809e',
       cargo: 'Asistente',
-      nombreEmpresa: 'OrangeSoft',
+      nombreEmpresa: 'CitrusSoft',
       fechaInicio: new Date('01-01-2020'),
       fechaFin: new Date('05-05-2020'),
     })
@@ -66,20 +59,21 @@ describe('Unitario - Core/Empleado: Agregar una nueva experiencia laboral para u
         {
           datos: {
             idEmpleado: '1',
-            idExperiencia: expect.any(String),
+            idExperiencia: 'ced7608e-5db6-464e-93d1-ab32f28e809e',
           },
-          nombre: 'ExperienciaLaboralEmpleadoRegistrada',
+          nombre: 'ExperienciaLaboralEmpleadoActualizada',
           fecha: expect.any(Date),
         },
       ])
     })
   })
 
-  it('Debe rechazar la creación de la experiencia laboral debido a una longitud de cargo invalida', () => {
+  it('Debe rechazar la edición de la experiencia laboral debido a una longitud de cargo invalida', () => {
     const resultado = casoUso.ejecutar({
       idEmpleado: '1',
+      id: 'ced7608e-5db6-464e-93d1-ab32f28e809e',
       cargo: 'A',
-      nombreEmpresa: 'OrangeSoft',
+      nombreEmpresa: 'CitrusSoft',
       fechaInicio: new Date('01-01-2020'),
       fechaFin: new Date('05-05-2020'),
     })
@@ -90,11 +84,12 @@ describe('Unitario - Core/Empleado: Agregar una nueva experiencia laboral para u
     })
   })
 
-  it('Debe rechazar la creación de la experiencia laboral debido a un rango de fechas invalido', () => {
+  it('Debe rechazar la edición de la experiencia laboral debido a un rango de fechas invalido', () => {
     const resultado = casoUso.ejecutar({
       idEmpleado: '1',
+      id: 'ced7608e-5db6-464e-93d1-ab32f28e809e',
       cargo: 'Asistente',
-      nombreEmpresa: 'OrangeSoft',
+      nombreEmpresa: 'CitrusSoft',
       fechaInicio: new Date('01-01-2020'),
       fechaFin: new Date('05-05-2019'),
     })
@@ -107,18 +102,35 @@ describe('Unitario - Core/Empleado: Agregar una nueva experiencia laboral para u
     })
   })
 
-  it('Debe rechazar la creación de la experiencia laboral debido a que el empleado no existe', () => {
+  it('Debe rechazar la edición de la experiencia laboral debido a que el empleado no existe', () => {
     const resultado = casoUso.ejecutar({
       idEmpleado: '2',
+      id: 'ced7608e-5db6-464e-93d1-ab32f28e809e',
       cargo: 'Asistente',
-      nombreEmpresa: 'OrangeSoft',
+      nombreEmpresa: 'CitrusSoft',
       fechaInicio: new Date('01-01-2020'),
-      fechaFin: new Date('05-05-2019'),
+      fechaFin: new Date('05-05-2020'),
     })
 
     return resultado.then((res) => {
       expect(res.esExitoso).toBeFalsy()
       expect(res.error).toBeInstanceOf(EmpleadoNoExiste)
+    })
+  })
+
+  it('Debe rechazar la edición de la experiencia laboral debido a que esta no existe', () => {
+    const resultado = casoUso.ejecutar({
+      idEmpleado: '1',
+      id: 'ced7608e-5db6-noex-93d1-ab32f28e809e',
+      cargo: 'Asistente',
+      nombreEmpresa: 'CitrusSoft',
+      fechaInicio: new Date('01-01-2020'),
+      fechaFin: new Date('05-05-2020'),
+    })
+
+    return resultado.then((res) => {
+      expect(res.esExitoso).toBeFalsy()
+      expect(res.error).toBeInstanceOf(ExperienciaLaboralNoExiste)
     })
   })
 })

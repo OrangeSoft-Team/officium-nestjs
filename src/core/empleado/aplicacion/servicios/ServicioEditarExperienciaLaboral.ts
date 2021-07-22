@@ -1,32 +1,30 @@
 import { IBusEventos } from '../../../../comun/aplicacion/IBusEventos'
 import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionAplicacion'
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
-import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
 import { EmpleadoNoExiste } from '../../dominio/excepciones/empleado/Empleado.excepciones'
-import { AgregarExperienciaLaboralEmpleado } from '../../dominio/servicios/AgregarExperienciaLaboralEmpleado'
+import { EditarExperienciaLaboralEmpleado } from '../../dominio/servicios/EditarExperienciaLaboralEmpleado'
 import {
   DatosRestaurarEmpleado,
   RestaurarEmpleado,
 } from '../../dominio/servicios/RestaurarEmpleado'
-import { AgregarExperienciaLaboralEmpleadoComandoDTO } from '../dto/comandos/AgregarExperienciaLaboralEmpleado.comando'
+import { EditarExperienciaLaboralEmpleadoComandoDTO } from '../dto/comandos/EditarExperienciaLaboralEmpleado.comando'
 import { EmpleadoMapeador } from '../mapeadores/Empleado.mapeador'
 import { ExperienciaLaboralMapeador } from '../mapeadores/ExperienciaLaboral.mapeador'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'
 import { IRepositorioExperienciasLaborales } from '../puertos/IRepositorioExperienciasLaborales'
 
-export class ServicioAgregarExperienciaLaboralEmpleado
+export class ServicioEditarExperienciaLaboralEmpleado
   implements IServicioAplicacion
 {
   public constructor(
     private readonly repositorioExperienciasLaborales: IRepositorioExperienciasLaborales,
     private readonly repositorioEmpleados: IRepositorioEmpleados,
-    private readonly servicioIdentificador: IServicioIdentificador,
     private readonly busEventos: IBusEventos,
   ) {}
 
   public async ejecutar(
-    comando: AgregarExperienciaLaboralEmpleadoComandoDTO,
+    comando: EditarExperienciaLaboralEmpleadoComandoDTO,
   ): Promise<Resultado<any>> {
     try {
       // Obtenemos los datos del empleado de persistencia
@@ -52,21 +50,18 @@ export class ServicioAgregarExperienciaLaboralEmpleado
           ),
       }
 
+      // Mappeamos el comando a dominio
+      const datosExperiencia =
+        ExperienciaLaboralMapeador.convertirComandoEnDatosEditar(comando)
+
       // Obtenemos el empleado
       const empleado = RestaurarEmpleado.restaurar(datosRestaurar)
 
-      // Mappeamos el comando a dominio
-      const datosExperiencia =
-        ExperienciaLaboralMapeador.convertirComandoEnDatosAgregar(
-          this.servicioIdentificador.generarIdentificador(),
-          comando,
-        )
-
       // Agregamos la experiencia laboral al empleado
-      AgregarExperienciaLaboralEmpleado.agregar(datosExperiencia, empleado)
+      EditarExperienciaLaboralEmpleado.editar(datosExperiencia, empleado)
 
       // Persistimos el cambio
-      await this.repositorioExperienciasLaborales.crear(
+      await this.repositorioExperienciasLaborales.editar(
         ExperienciaLaboralMapeador.convertirDominioEnPersistencia(
           empleado.obtenerExperienciaLaboral(datosExperiencia.identificador),
           empleado.obtenerIdentificador(),

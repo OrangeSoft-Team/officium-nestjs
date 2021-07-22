@@ -13,4 +13,8 @@ export interface IRepositorioExperienciasLaborales {
   ): Promise<ExperienciaLaboralPersitenciaDTO[]>
 
   crear(datos: ExperienciaLaboralPersitenciaDTO): Promise<void>
+
+  editar(datos: ExperienciaLaboralPersitenciaDTO): Promise<void>
+
+  eliminar(idExperiencia: string, idEmpleado: string): Promise<void>
 }

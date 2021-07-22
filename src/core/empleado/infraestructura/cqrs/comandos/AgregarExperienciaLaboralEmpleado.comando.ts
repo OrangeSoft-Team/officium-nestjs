@@ -2,6 +2,8 @@ import { CrearExperienciaLaboralEmpleadoApiDTO } from '../../dto/CrearExperienci
 
 export class ComandoAgregarExperienciaLaboral {
   public constructor(
-    public readonly datos: CrearExperienciaLaboralEmpleadoApiDTO,
+    public readonly datos: CrearExperienciaLaboralEmpleadoApiDTO & {
+      idUsuario: string
+    },
   ) {}
 }

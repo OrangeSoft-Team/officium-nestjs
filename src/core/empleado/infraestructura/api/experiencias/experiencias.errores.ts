@@ -6,7 +6,7 @@ type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 const codigos = [
   {
     http: HttpStatus.BAD_REQUEST,
-    metodos: ['POST'],
+    metodos: ['POST', 'PUT'],
     nombres: [
       'CargoExperienciaLaboralVacio',
       'LongitudInvalidaCargoExperienciaLaboral',
@@ -23,7 +23,7 @@ const codigos = [
   {
     http: HttpStatus.NOT_FOUND,
     metodos: ['GET', 'PUT', 'DELETE'],
-    nombres: ['ExperienciaLaboralNoExiste'],
+    nombres: ['ExperienciaLaboralNoExiste', 'EmpleadoNoExiste'],
   },
 ]
 
