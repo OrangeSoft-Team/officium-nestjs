@@ -1,6 +1,6 @@
 import { Agregado } from '../../../../comun/dominio/Agregado'
 import { Direccion } from './Direccion'
-import { EmpleadoNoEsMayorDeEdad } from '../excepciones/empleado/Empleado.excecepciones'
+import { EmpleadoNoEsMayorDeEdad } from '../excepciones/empleado/Empleado.excepciones'
 import { CorreoElectronicoEmpleado } from '../values/empleado/CorreoElectronicoEmpleado'
 import { EstatusEmpleado } from '../values/empleado/EstatusEmpleado'
 import { FechaNacimientoEmpleado } from '../values/empleado/FechaNacimientoEmpleado'
@@ -9,6 +9,9 @@ import { IdentificadorEmpleado } from '../values/empleado/IdentificadorEmpleado'
 import { NivelEducativoEmpleado } from '../values/empleado/NivelEducativoEmpleado'
 import { NombreCompletoEmpleado } from '../values/empleado/NombreCompletoEmpleado'
 import { NumeroTelefonicoEmpleado } from '../values/empleado/NumeroTelefonicoEmpleado'
+import { ExperienciaLaboral } from './ExperienciaLaboral'
+import { ExperienciaLaboralNoExiste } from '../excepciones/experienciaLaboral/ExperienciaLaboral.excepciones'
+import { IdentificadorExperienciaLaboral } from '../values/experienciaLaboral/IdentificadorExperienciaLaboral'
 
 export interface DatosEmpleado {
   identificador: IdentificadorEmpleado
@@ -20,6 +23,7 @@ export interface DatosEmpleado {
   genero: GeneroEmpleado
   fechaNacimiento: FechaNacimientoEmpleado
   direccion: Direccion
+  experienciasLaborales?: ExperienciaLaboral[]
 }
 
 export class Empleado extends Agregado {
@@ -33,6 +37,7 @@ export class Empleado extends Agregado {
     private genero: GeneroEmpleado,
     private fechaNacimiento: FechaNacimientoEmpleado,
     private direccion: Direccion,
+    private experienciasLaborales?: ExperienciaLaboral[],
   ) {
     super()
   }
@@ -77,6 +82,79 @@ export class Empleado extends Agregado {
     return this.direccion
   }
 
+  public obtenerExperienciasLaborales() {
+    return this.experienciasLaborales
+  }
+
+  public agregarExperienciaLaboral(experienciaLaboral: ExperienciaLaboral) {
+    this.experienciasLaborales.push(experienciaLaboral)
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'ExperienciaLaboralEmpleadoRegistrada',
+      datos: {
+        idEmpleado: this.identificador.obtenerId(),
+        idExperiencia: experienciaLaboral.obtenerIdentificador().obtenerId(),
+      },
+    })
+  }
+
+  private ubicarIndiceExperienciaLaboral(
+    identificador: IdentificadorExperienciaLaboral,
+  ): number {
+    const indice = this.experienciasLaborales.findIndex((experiencia) =>
+      experiencia.obtenerIdentificador().esIgual(identificador),
+    )
+
+    if (indice == -1) {
+      throw new ExperienciaLaboralNoExiste(
+        'La experiencia laboral especificada no existe.',
+      )
+    }
+
+    return indice
+  }
+
+  public obtenerExperienciaLaboral(
+    identificador: IdentificadorExperienciaLaboral,
+  ): ExperienciaLaboral {
+    const indice = this.ubicarIndiceExperienciaLaboral(identificador)
+    return this.experienciasLaborales[indice]
+  }
+
+  public editarExperienciaLaboral(experienciaLaboral: ExperienciaLaboral) {
+    const indice = this.ubicarIndiceExperienciaLaboral(
+      experienciaLaboral.obtenerIdentificador(),
+    )
+
+    this.experienciasLaborales[indice] = experienciaLaboral
+
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'ExperienciaLaboralEmpleadoActualizada',
+      datos: {
+        idEmpleado: this.identificador.obtenerId(),
+        idExperiencia: experienciaLaboral.obtenerIdentificador().obtenerId(),
+      },
+    })
+  }
+
+  public eliminarExperienciaLaboral(
+    identificador: IdentificadorExperienciaLaboral,
+  ) {
+    const indice = this.ubicarIndiceExperienciaLaboral(identificador)
+
+    this.experienciasLaborales.splice(indice, 1)
+
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'ExperienciaLaboralEmpleadoEliminada',
+      datos: {
+        idEmpleado: this.identificador.obtenerId(),
+        idExperiencia: identificador.obtenerId(),
+      },
+    })
+  }
+
   public static crear(datos: DatosEmpleado): Empleado {
     const fechaActual = new Date().getFullYear()
     if (fechaActual - datos.fechaNacimiento.obtenerFecha().getFullYear() < 18)
@@ -92,6 +170,7 @@ export class Empleado extends Agregado {
       datos.genero,
       datos.fechaNacimiento,
       datos.direccion,
+      [],
     )
 
     empleado.agregarEvento({
@@ -103,5 +182,20 @@ export class Empleado extends Agregado {
     })
 
     return empleado
+  }
+
+  public static restaurar(datos: DatosEmpleado): Empleado {
+    return new Empleado(
+      datos.identificador,
+      datos.nombreCompleto,
+      datos.correoElectronico,
+      datos.numeroTelefonico,
+      datos.nivelEducativo,
+      datos.estatus,
+      datos.genero,
+      datos.fechaNacimiento,
+      datos.direccion,
+      datos.experienciasLaborales || [],
+    )
   }
 }

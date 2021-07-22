@@ -1,4 +1,4 @@
-export interface RegistrarEmpleadoDireccionDTO {
+export interface RegistrarDireccionComandoDTO {
   calleUno: string
   calleDos?: string
   codigoPostal: string
@@ -18,5 +18,5 @@ export interface RegistrarEmpleadoComandoDTO {
   genero: string
   fechaNacimiento: Date
   token: string
-  direccion: RegistrarEmpleadoDireccionDTO
+  direccion: RegistrarDireccionComandoDTO
 }

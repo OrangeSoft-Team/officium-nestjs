@@ -1,13 +1,13 @@
 import { ConfigModule } from '@nestjs/config'
 import { Connection, createConnection, getRepository } from 'typeorm'
-import { CrearEmpleadoPersistenciaDTO } from '../../../../src/core/empleado/aplicacion/puertos/IRepositorioEmpleados'
+import { EmpleadoPersistenciaDTO } from '../../../../src/core/empleado/aplicacion/puertos/IRepositorioEmpleados'
 import { RepositorioEmpleados } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioEmpleados'
 import { CiudadORM } from '../../../../src/core/empleado/infraestructura/persistencia/Ciudad.orm'
 import { DireccionORM } from '../../../../src/core/empleado/infraestructura/persistencia/Direccion.orm'
 import { EstadoORM } from '../../../../src/core/empleado/infraestructura/persistencia/Estado.orm'
 import { PaisORM } from '../../../../src/core/empleado/infraestructura/persistencia/Pais.orm'
 
-const DATOS_EMPLEADO: CrearEmpleadoPersistenciaDTO = {
+const DATOS_EMPLEADO: EmpleadoPersistenciaDTO = {
   id: '0679466b-6198-4d4a-8d2b-bdfeea40c010',
   correoElectronico: 'carlosruiz@gmail.com',
   estatus: 'DISPONIBLE',

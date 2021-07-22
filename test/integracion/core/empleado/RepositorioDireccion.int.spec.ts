@@ -1,13 +1,13 @@
 import { ConfigModule } from '@nestjs/config'
 import { Connection, createConnection, getRepository } from 'typeorm'
-import { CrearDireccionPersistenciaDTO } from '../../../../src/core/empleado/aplicacion/puertos/IRepositorioDirecciones'
+import { DireccionPersistenciaDTO } from '../../../../src/core/empleado/aplicacion/puertos/IRepositorioDirecciones'
 import { RepositorioDirecciones } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioDirecciones'
 import { CiudadORM } from '../../../../src/core/empleado/infraestructura/persistencia/Ciudad.orm'
 import { DireccionORM } from '../../../../src/core/empleado/infraestructura/persistencia/Direccion.orm'
 import { EstadoORM } from '../../../../src/core/empleado/infraestructura/persistencia/Estado.orm'
 import { PaisORM } from '../../../../src/core/empleado/infraestructura/persistencia/Pais.orm'
 
-const DATOS_DIRECCION: CrearDireccionPersistenciaDTO = {
+const DATOS_DIRECCION: DireccionPersistenciaDTO = {
   id: '53c876d7-aec1-4e82-a48b-656119fb76d8',
   calleUno: 'Av. Francisco de Miranda',
   calleDos: 'Res. Pacheco',

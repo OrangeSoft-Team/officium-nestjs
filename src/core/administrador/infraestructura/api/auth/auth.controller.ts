@@ -6,18 +6,16 @@ import {
   Post,
   Res,
 } from '@nestjs/common'
+import { QueryBus } from '@nestjs/cqrs'
 import { Response } from 'express'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { QueryIniciarSesionAdministrador } from '../../cqrs/queries/IniciarSesionAdministrador.query'
 import { DatosInicioSesionAdministradorApiDTO } from '../../dto/DatosInicioSesionAdministrador.api.dto'
 import { ErroresHttpAuthAdministrador } from './auth.errores'
-import { ServicioApiAuthAdministrador } from './auth.service'
 
 @Controller('api/staff/auth')
 export class ControladorAuthAdministrador {
-  public constructor(
-    private readonly servicioAuthAdministrador: ServicioApiAuthAdministrador,
-  ) {}
+  public constructor(private readonly queryBus: QueryBus) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
@@ -25,10 +23,9 @@ export class ControladorAuthAdministrador {
     @Body() dto: DatosInicioSesionAdministradorApiDTO,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const solicitud =
-      await this.servicioAuthAdministrador.autentificarAdministrador(
-        new QueryIniciarSesionAdministrador(dto),
-      )
+    const solicitud = await this.queryBus.execute(
+      new QueryIniciarSesionAdministrador(dto),
+    )
 
     // En caso de error
     if (!solicitud.esExitoso) {

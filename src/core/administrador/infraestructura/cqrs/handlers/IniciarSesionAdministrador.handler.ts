@@ -33,9 +33,7 @@ export class HandlerIniciarSesionAdministrador implements IQueryHandler {
 
     // Ejecutamos servicio de iniciar sesión del administrador
     const solicitud = await this.servicioIniciarSesionAdministrador.ejecutar(
-      AdministradorApiMapeador.transformarQueryIniciarSesionAdministrador(
-        query,
-      ),
+      AdministradorApiMapeador.convertirQueryIniciarSesionAdministrador(query),
     )
 
     if (solicitud.esExitoso) {
@@ -44,11 +42,9 @@ export class HandlerIniciarSesionAdministrador implements IQueryHandler {
       solicitud.valor.jwt = jwt
 
       solicitud.valor.sesion =
-        AdministradorApiMapeador.transformarRespuestaIniciarSesionAdministrador(
-          {
-            ...solicitud.valor,
-          },
-        )
+        AdministradorApiMapeador.convertirRespuestaIniciarSesionAdministrador({
+          ...solicitud.valor,
+        })
     }
 
     return solicitud

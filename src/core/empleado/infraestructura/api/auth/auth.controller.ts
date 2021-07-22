@@ -6,18 +6,16 @@ import {
   Post,
   Res,
 } from '@nestjs/common'
+import { QueryBus } from '@nestjs/cqrs'
 import { Response } from 'express'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { QueryIniciarSesionEmpleado } from '../../cqrs/queries/IniciarSesionEmpleado.query'
 import { DatosInicioSesionEmpleadoApiDTO } from '../../dto/DatosInicioSesionEmpleado.api.dto'
 import { ErroresHttpAuthEmpleado } from './auth.errores'
-import { ServicioApiAuthEmpleado } from './auth.service'
 
 @Controller('api/empleado/auth')
 export class ControladorAuthEmpleado {
-  public constructor(
-    private readonly servicioAuthEmpleado: ServicioApiAuthEmpleado,
-  ) {}
+  public constructor(private readonly queryBus: QueryBus) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
@@ -25,7 +23,7 @@ export class ControladorAuthEmpleado {
     @Body() dto: DatosInicioSesionEmpleadoApiDTO,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const solicitud = await this.servicioAuthEmpleado.autentificarEmpleado(
+    const solicitud = await this.queryBus.execute(
       new QueryIniciarSesionEmpleado(dto),
     )
 

@@ -1,9 +1,9 @@
 import { compare, hash } from 'bcrypt'
 import { getRepository } from 'typeorm'
 import {
-  CrearEmpleadoPersistenciaDTO,
   DatosAutentificacionPersistenciaDTO,
   EmpleadoExistePersistenciaDTO,
+  EmpleadoPersistenciaDTO,
   InformacionSesionPersistenciaDTO,
   IRepositorioEmpleados,
 } from '../../aplicacion/puertos/IRepositorioEmpleados'
@@ -11,6 +11,33 @@ import { DireccionORM } from '../persistencia/Direccion.orm'
 import { EmpleadoORM } from '../persistencia/Empleado.orm'
 
 export class RepositorioEmpleados implements IRepositorioEmpleados {
+  public async obtener(id: string): Promise<EmpleadoPersistenciaDTO> {
+    try {
+      const empleadoORM = getRepository(EmpleadoORM)
+
+      const empleado = await empleadoORM
+        .createQueryBuilder('empleado')
+        .innerJoinAndSelect('empleado.direccion', 'direccion')
+        .where('empleado.uuid = :uuid', { uuid: id })
+        .getOne()
+
+      return {
+        id: empleado.uuid,
+        correoElectronico: empleado.correo_electronico,
+        estatus: empleado.estatus,
+        fechaNacimiento: empleado.fecha_nacimiento,
+        genero: empleado.genero,
+        nivelEducativo: empleado.nivel_educativo,
+        primerNombre: empleado.primer_nombre,
+        primerApellido: empleado.primer_apellido,
+        segundoNombre: empleado.segundo_nombre,
+        segundoApellido: empleado.segundo_apellido,
+        telefono: empleado.telefono,
+        idDireccion: empleado.direccion.uuid,
+      }
+    } catch {}
+  }
+
   public async autentificar(
     query: DatosAutentificacionPersistenciaDTO,
   ): Promise<InformacionSesionPersistenciaDTO> {
@@ -36,7 +63,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
     }
   }
 
-  public async crear(comando: CrearEmpleadoPersistenciaDTO): Promise<void> {
+  public async crear(comando: EmpleadoPersistenciaDTO): Promise<void> {
     try {
       const direccionORM = getRepository(DireccionORM)
       const empleadoORM = getRepository(EmpleadoORM)

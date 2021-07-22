@@ -1,6 +1,6 @@
-import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
+import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
-export class AutentificacionEmpresaInvalida implements IExcepcionAplicacion {
+export class AutentificacionEmpresaInvalida implements IExcepcion {
   public readonly origen = 'AutentificacionEmpresaInvalida'
   public constructor(public readonly mensaje: string) {}
 

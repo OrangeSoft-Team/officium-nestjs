@@ -2,14 +2,14 @@ import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fech
 import {
   IniciarSesionEmpleadoQueryDTO,
   IniciarSesionEmpleadoRespuestaDTO,
-} from '../../aplicacion/dto/IniciarSesionEmpleado.query'
-import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/RegistrarEmpleado.comando'
+} from '../../aplicacion/dto/queries/IniciarSesionEmpleado.query'
+import { RegistrarEmpleadoComandoDTO } from '../../aplicacion/dto/comandos/RegistrarEmpleado.comando'
 import { ComandoRegistrarEmpleado } from '../cqrs/comandos/RegistrarEmpleado.comando'
 import { QueryIniciarSesionEmpleado } from '../cqrs/queries/IniciarSesionEmpleado.query'
 import { DatosSesionAutenticadaEmpleadoApiDTO } from '../dto/DatosInicioSesionEmpleado.api.dto'
 
 export abstract class EmpleadoApiMapeador {
-  public static transformarComandoRegistrarEmpleado(
+  public static convertirComandoRegistrarEmpleado(
     comando: ComandoRegistrarEmpleado,
   ): RegistrarEmpleadoComandoDTO {
     const datos = comando.datos
@@ -35,7 +35,7 @@ export abstract class EmpleadoApiMapeador {
     }
   }
 
-  public static transformarQueryIniciarSesionEmpleado(
+  public static convertirQueryIniciarSesionEmpleado(
     query: QueryIniciarSesionEmpleado,
   ): IniciarSesionEmpleadoQueryDTO {
     const datos = query.datos
@@ -45,7 +45,7 @@ export abstract class EmpleadoApiMapeador {
     }
   }
 
-  public static transformarRespuestaIniciarSesionEmpleado(
+  public static convertirRespuestaIniciarSesionEmpleado(
     respuesta: IniciarSesionEmpleadoRespuestaDTO,
   ): DatosSesionAutenticadaEmpleadoApiDTO {
     return {

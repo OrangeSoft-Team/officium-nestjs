@@ -1,9 +1,9 @@
 import { BusEventos } from '../../../../src/comun/infraestructura/adaptadores/BusEventos'
 import { ServicioIdentificador } from '../../../../src/comun/infraestructura/adaptadores/ServicioIdentificador'
 import { ServicioRegistrarEmpleado } from '../../../../src/core/empleado/aplicacion/servicios/ServicioRegistrarEmpleado'
-import { CiudadNoExiste } from '../../../../src/core/empleado/dominio/excepciones/ciudad/CiudadNoExiste'
+import { CiudadNoExiste } from '../../../../src/core/empleado/dominio/excepciones/ciudad/Ciudad.excepciones'
 import { LongitudInvalidaCalleUnoDireccion } from '../../../../src/core/empleado/dominio/excepciones/direccion/CalleUnoDireccion.excepciones'
-import { EmpleadoYaExiste } from '../../../../src/core/empleado/dominio/excepciones/empleado/EmpleadoYaExiste'
+import { EmpleadoYaExiste } from '../../../../src/core/empleado/dominio/excepciones/empleado/Empleado.excepciones'
 import { GeneroEmpleadoInvalido } from '../../../../src/core/empleado/dominio/excepciones/empleado/GeneroEmpleado.excepciones'
 import { RepositorioCiudades } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioCiudades'
 import { RepositorioDirecciones } from '../../../../src/core/empleado/infraestructura/adaptadores/RepositorioDirecciones'
@@ -73,9 +73,12 @@ describe('Unitario - Core/Empleado: Registrar un nuevo empleado en el sistema', 
       mockServicioIdentificador,
       mockBusEventos,
     )
+
+    // Espiamos el mock de eventos para verificar que se publiquen eventos
+    jest.spyOn(mockBusEventos, 'publicar')
   })
 
-  it('Debe registrar un empleado con todos sus datos validos', () => {
+  it('Debe registrar un empleado con todos sus datos validos y publicar Evento: "EmpleadoRegistrado"', () => {
     const resultado = casoUso.ejecutar({
       correoElectronico: 'carlosruiz@gmail.com',
       fechaNacimiento: new Date('01-31-1999'),
@@ -99,6 +102,15 @@ describe('Unitario - Core/Empleado: Registrar un nuevo empleado en el sistema', 
 
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
+      expect(mockBusEventos.publicar).toHaveBeenCalledWith([
+        {
+          datos: {
+            idEmpleado: expect.any(String),
+          },
+          nombre: 'EmpleadoRegistrado',
+          fecha: expect.any(Date),
+        },
+      ])
     })
   })
 

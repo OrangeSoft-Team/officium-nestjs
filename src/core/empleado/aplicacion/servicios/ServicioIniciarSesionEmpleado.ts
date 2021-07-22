@@ -1,11 +1,11 @@
 import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionAplicacion'
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
-import { AutentificacionEmpleadoInvalida } from '../../dominio/excepciones/empleado/AutentificacionEmpleadoInvalida'
+import { AutentificacionEmpleadoInvalida } from '../../dominio/excepciones/empleado/Empleado.excepciones'
 import {
   IniciarSesionEmpleadoQueryDTO,
   IniciarSesionEmpleadoRespuestaDTO,
-} from '../dto/IniciarSesionEmpleado.query'
+} from '../dto/queries/IniciarSesionEmpleado.query'
 import { IRepositorioEmpleados } from '../puertos/IRepositorioEmpleados'
 
 export class ServicioIniciarSesionEmpleado implements IServicioAplicacion {

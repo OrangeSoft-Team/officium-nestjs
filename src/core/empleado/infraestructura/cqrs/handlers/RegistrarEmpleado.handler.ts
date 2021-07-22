@@ -58,7 +58,7 @@ export class HandlerRegistrarEmpleado
 
     // Ejecutamos servicio de registro en aplicacion
     return this.servicioRegistrarEmpleado.ejecutar(
-      EmpleadoApiMapeador.transformarComandoRegistrarEmpleado(comando),
+      EmpleadoApiMapeador.convertirComandoRegistrarEmpleado(comando),
     )
   }
 }

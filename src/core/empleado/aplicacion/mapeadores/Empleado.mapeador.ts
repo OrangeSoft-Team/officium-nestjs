@@ -1,36 +1,25 @@
 import { Empleado } from '../../dominio/entidades/Empleado'
-import { DatosRegistroEmpleado } from '../../dominio/servicios/RegistrarEmpleado'
-import { RegistrarEmpleadoComandoDTO } from '../dto/RegistrarEmpleado.comando'
-import { CrearEmpleadoPersistenciaDTO } from '../puertos/IRepositorioEmpleados'
+import {
+  DatosRegistroDireccion,
+  DatosRegistroEmpleado,
+} from '../../dominio/servicios/RegistrarEmpleado'
+import { DatosRestaurarEmpleado } from '../../dominio/servicios/RestaurarEmpleado'
+import { CorreoElectronicoEmpleado } from '../../dominio/values/empleado/CorreoElectronicoEmpleado'
+import { EstatusEmpleado } from '../../dominio/values/empleado/EstatusEmpleado'
+import { FechaNacimientoEmpleado } from '../../dominio/values/empleado/FechaNacimientoEmpleado'
+import { GeneroEmpleado } from '../../dominio/values/empleado/GeneroEmpleado'
+import { IdentificadorEmpleado } from '../../dominio/values/empleado/IdentificadorEmpleado'
+import { NivelEducativoEmpleado } from '../../dominio/values/empleado/NivelEducativoEmpleado'
+import { NombreCompletoEmpleado } from '../../dominio/values/empleado/NombreCompletoEmpleado'
+import { NumeroTelefonicoEmpleado } from '../../dominio/values/empleado/NumeroTelefonicoEmpleado'
+import { RegistrarEmpleadoComandoDTO } from '../dto/comandos/RegistrarEmpleado.comando'
+import { EmpleadoPersistenciaDTO } from '../puertos/IRepositorioEmpleados'
 
 export abstract class EmpleadoMapeador {
-  public static transformarComandoEnDominio(
-    comando: RegistrarEmpleadoComandoDTO,
-    idEmpleado: string,
-    idDireccion: string,
-  ): DatosRegistroEmpleado {
-    const datosDireccion = comando.direccion
-    return {
-      idEmpleado,
-      correoElectronico: comando.correoElectronico,
-      fechaNacimiento: comando.fechaNacimiento,
-      genero: comando.genero,
-      nivelEducativo: comando.nivelEducativo,
-      primerNombre: comando.primerNombre,
-      primerApellido: comando.primerApellido,
-      segundoNombre: comando.segundoNombre,
-      segundoApellido: comando.segundoApellido,
-      telefono: comando.telefono,
-      // Direccion
-      idDireccion,
-      ...datosDireccion,
-    }
-  }
-
-  public static transformarEntidadEnPersistencia(
+  public static convertirDominioEnPersistencia(
     empleado: Empleado,
-    token: string,
-  ): CrearEmpleadoPersistenciaDTO {
+    token?: string,
+  ): EmpleadoPersistenciaDTO {
     return {
       id: empleado.obtenerIdentificador().obtenerId(),
       correoElectronico: empleado.obtenerCorreoElectronico().obtenerCorreo(),
@@ -40,16 +29,66 @@ export abstract class EmpleadoMapeador {
       nivelEducativo: empleado.obtenerNivelEducativo().obtenerNivel(),
       primerNombre: empleado.obtenerNombreCompleto().obtenerPrimerNombre(),
       primerApellido: empleado.obtenerNombreCompleto().obtenerPrimerApellido(),
-      telefono: empleado.obtenerNumeroTelefonico().obtenerNumero(),
       segundoNombre: empleado.obtenerNombreCompleto()?.obtenerSegundoNombre(),
       segundoApellido: empleado
         .obtenerNombreCompleto()
         ?.obtenerSegundoApellido(),
+      telefono: empleado.obtenerNumeroTelefonico().obtenerNumero(),
       idDireccion: empleado
         .obtenerDireccion()
         .obtenerIdentificador()
         .obtenerId(),
       token,
+    }
+  }
+
+  public static convertirPersistenciaEnDominio(
+    datos: EmpleadoPersistenciaDTO,
+  ): DatosRestaurarEmpleado {
+    return {
+      identificador: IdentificadorEmpleado.crear(datos.id),
+      correoElectronico: CorreoElectronicoEmpleado.crear(
+        datos.correoElectronico,
+      ),
+      estatus: EstatusEmpleado.crear(datos.estatus as any),
+      numeroTelefonico: NumeroTelefonicoEmpleado.crear(datos.telefono),
+      nombreCompleto: NombreCompletoEmpleado.crear(
+        datos.primerNombre,
+        datos.primerApellido,
+        datos.segundoNombre,
+        datos.segundoApellido,
+      ),
+      fechaNacimiento: FechaNacimientoEmpleado.crear(datos.fechaNacimiento),
+      genero: GeneroEmpleado.crear(datos.genero as any),
+      nivelEducativo: NivelEducativoEmpleado.crear(datos.nivelEducativo as any),
+      experienciasLaborales: [],
+      direccion: null,
+    }
+  }
+
+  public static convertirComandoEnDatosRegistro(
+    id: string,
+    comando: RegistrarEmpleadoComandoDTO,
+    direccion: DatosRegistroDireccion,
+  ): DatosRegistroEmpleado {
+    return {
+      identificador: IdentificadorEmpleado.crear(id),
+      correoElectronico: CorreoElectronicoEmpleado.crear(
+        comando.correoElectronico,
+      ),
+      fechaNacimiento: FechaNacimientoEmpleado.crear(comando.fechaNacimiento),
+      genero: GeneroEmpleado.crear(comando.genero as any),
+      nivelEducativo: NivelEducativoEmpleado.crear(
+        comando.nivelEducativo as any,
+      ),
+      nombreCompleto: NombreCompletoEmpleado.crear(
+        comando.primerNombre,
+        comando.primerApellido,
+        comando.segundoNombre,
+        comando.segundoApellido,
+      ),
+      numeroTelefonico: NumeroTelefonicoEmpleado.crear(comando.telefono),
+      direccion,
     }
   }
 }

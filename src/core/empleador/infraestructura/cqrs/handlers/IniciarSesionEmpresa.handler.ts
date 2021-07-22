@@ -33,7 +33,7 @@ export class HandlerIniciarSesionEmpresa implements IQueryHandler {
 
     // Ejecutamos servicio de iniciar sesión del empleado
     const solicitud = await this.servicioIniciarSesionEmpresa.ejecutar(
-      EmpresaApiMapeador.transformarQueryIniciarSesionEmpresa(query),
+      EmpresaApiMapeador.convertirQueryIniciarSesionEmpresa(query),
     )
 
     if (solicitud.esExitoso) {
@@ -42,7 +42,7 @@ export class HandlerIniciarSesionEmpresa implements IQueryHandler {
       solicitud.valor.jwt = jwt
 
       solicitud.valor.sesion =
-        EmpresaApiMapeador.transformarRespuestaIniciarSesionEmpresa({
+        EmpresaApiMapeador.convertirRespuestaIniciarSesionEmpresa({
           ...solicitud.valor,
         })
     }
