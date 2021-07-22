@@ -9,7 +9,7 @@ import { ModuloMoocEmpleado } from '../../mooc/empleado/infraestructura/api/mooc
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: <any>process.env.TIPO_BD,
       host: process.env.RUTA_BD,
