@@ -73,9 +73,12 @@ describe('Unitario - Core/Empleado: Registrar un nuevo empleado en el sistema', 
       mockServicioIdentificador,
       mockBusEventos,
     )
+
+    // Espiamos el mock de eventos para verificar que se publiquen eventos
+    jest.spyOn(mockBusEventos, 'publicar')
   })
 
-  it('Debe registrar un empleado con todos sus datos validos', () => {
+  it('Debe registrar un empleado con todos sus datos validos y publicar Evento: "EmpleadoRegistrado"', () => {
     const resultado = casoUso.ejecutar({
       correoElectronico: 'carlosruiz@gmail.com',
       fechaNacimiento: new Date('01-31-1999'),
@@ -99,6 +102,15 @@ describe('Unitario - Core/Empleado: Registrar un nuevo empleado en el sistema', 
 
     return resultado.then((res) => {
       expect(res.esExitoso).toBeTruthy()
+      expect(mockBusEventos.publicar).toHaveBeenCalledWith([
+        {
+          datos: {
+            idEmpleado: expect.any(String),
+          },
+          nombre: 'EmpleadoRegistrado',
+          fecha: expect.any(Date),
+        },
+      ])
     })
   })
 
