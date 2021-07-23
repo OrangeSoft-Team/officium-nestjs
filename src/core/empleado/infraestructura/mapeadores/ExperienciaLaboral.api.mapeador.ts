@@ -2,11 +2,15 @@ import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fech
 import { AgregarExperienciaLaboralEmpleadoComandoDTO } from '../../aplicacion/dto/comandos/AgregarExperienciaLaboralEmpleado.comando'
 import { EditarExperienciaLaboralEmpleadoComandoDTO } from '../../aplicacion/dto/comandos/EditarExperienciaLaboralEmpleado.comando'
 import { EliminarExperienciaLaboralEmpleadoComandoDTO } from '../../aplicacion/dto/comandos/EliminarExperienciaLaboralEmpleado.comando'
-import { ConsultarExperienciasLaboralesEmpleadoQueryDTO } from '../../aplicacion/dto/queries/ConsultarExperienciasLaboralesEmpleado.query'
+import {
+  ConsultarExperienciasLaboralesEmpleadoQueryDTO,
+  ConsultarExperienciasLaboralesEmpleadoRespuestaDTO,
+} from '../../aplicacion/dto/queries/ConsultarExperienciasLaboralesEmpleado.query'
 import { ComandoAgregarExperienciaLaboral } from '../cqrs/comandos/AgregarExperienciaLaboralEmpleado.comando'
 import { ComandoEditarExperienciaLaboral } from '../cqrs/comandos/EditarExperienciaLaboralEmpleado.comando'
 import { ComandoEliminarExperienciaLaboral } from '../cqrs/comandos/EliminarExperienciaLaboralEmpleado.comando'
 import { QueryConsultarExperienciasLaboralesEmpleado } from '../cqrs/queries/ConsultarExperienciasLaboralesEmpleado.query'
+import { ExperienciasLaboralesEmpleadoApiDTO } from '../dto/ExperienciasLaboralesEmpleado.api.dto'
 
 export abstract class ExperienciaLaboralApiMapeador {
   public static convertirComandoAgregarExperienciaLaboral(
@@ -52,5 +56,19 @@ export abstract class ExperienciaLaboralApiMapeador {
     return {
       idEmpleado: query.datos.idUsuario,
     }
+  }
+
+  public static convertirRespuestaConsultarExperienciasLaborales(
+    respuesta: ConsultarExperienciasLaboralesEmpleadoRespuestaDTO[],
+  ): ExperienciasLaboralesEmpleadoApiDTO[] {
+    return respuesta.map((experiencia) => {
+      return {
+        uuid: experiencia.id,
+        cargo: experiencia.cargo,
+        nombreEmpresa: experiencia.nombreEmpresa,
+        fechaInicio: MapeadorFecha.formatear(experiencia.fechaInicio),
+        fechaFin: MapeadorFecha.formatear(experiencia.fechaFin),
+      }
+    })
   }
 }

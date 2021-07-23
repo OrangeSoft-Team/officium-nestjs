@@ -116,6 +116,27 @@ describe('Integración - Core/Empleado: Repositorio empleados', () => {
     })
   })
 
+  it('Deberia obtener los datos completos del empleado previamente creado', () => {
+    const query = repositorioEmpleados.obtener(DATOS_EMPLEADO.id)
+
+    return query.then((res) => {
+      expect(res).toStrictEqual({
+        id: '0679466b-6198-4d4a-8d2b-bdfeea40c010',
+        correoElectronico: 'carlosruiz@gmail.com',
+        estatus: 'DISPONIBLE',
+        genero: 'MASCULINO',
+        nivelEducativo: 'SECUNDARIA',
+        fechaNacimiento: new Date('01-31-1999'),
+        telefono: '+584161234598',
+        primerNombre: 'Carlos',
+        primerApellido: 'Ruiz',
+        segundoNombre: 'José',
+        segundoApellido: 'Perez',
+        idDireccion: '53c876d7-aec1-4e82-a48b-656119fb76d8',
+      })
+    })
+  })
+
   afterAll(async () => {
     await conexionBD.close()
   })
