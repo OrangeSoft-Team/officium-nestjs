@@ -10,8 +10,8 @@ import { verify } from 'jsonwebtoken'
 @Injectable()
 export class MiddlewareSesion implements NestMiddleware {
   public use(req: Request, res: Response, next: NextFunction) {
-    const token = req.cookies.token
     try {
+      const token = req.cookies.token
       const id_auth = verify(token, process.env.JWT_SECRET)
       req.body.idUsuario = id_auth
     } catch {
