@@ -12,6 +12,7 @@ import { NumeroTelefonicoEmpleado } from '../values/empleado/NumeroTelefonicoEmp
 import { ExperienciaLaboral } from './ExperienciaLaboral'
 import { ExperienciaLaboralNoExiste } from '../excepciones/experienciaLaboral/ExperienciaLaboral.excepciones'
 import { IdentificadorExperienciaLaboral } from '../values/experienciaLaboral/IdentificadorExperienciaLaboral'
+import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad'
 
 export interface DatosEmpleado {
   identificador: IdentificadorEmpleado
@@ -24,6 +25,7 @@ export interface DatosEmpleado {
   fechaNacimiento: FechaNacimientoEmpleado
   direccion: Direccion
   experienciasLaborales?: ExperienciaLaboral[]
+  identificadoresHabilidades?: IdentificadorHabilidad[]
 }
 
 export class Empleado extends Agregado {
@@ -38,6 +40,7 @@ export class Empleado extends Agregado {
     private fechaNacimiento: FechaNacimientoEmpleado,
     private direccion: Direccion,
     private experienciasLaborales?: ExperienciaLaboral[],
+    private identificadoresHabilidades?: IdentificadorHabilidad[],
   ) {
     super()
   }
@@ -155,6 +158,24 @@ export class Empleado extends Agregado {
     })
   }
 
+  public actualizarHabilidades(
+    identificadoresHabilidades: IdentificadorHabilidad[],
+  ) {
+    this.identificadoresHabilidades = identificadoresHabilidades
+
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'HabilidadesEmpleadoActualizadas',
+      datos: {
+        idEmpleado: this.identificador.obtenerId(),
+      },
+    })
+  }
+
+  public obtenerIdentificadoresHabilidades() {
+    return this.identificadoresHabilidades
+  }
+
   public static crear(datos: DatosEmpleado): Empleado {
     const fechaActual = new Date().getFullYear()
     if (fechaActual - datos.fechaNacimiento.obtenerFecha().getFullYear() < 18)
@@ -170,6 +191,7 @@ export class Empleado extends Agregado {
       datos.genero,
       datos.fechaNacimiento,
       datos.direccion,
+      [],
       [],
     )
 
@@ -196,6 +218,7 @@ export class Empleado extends Agregado {
       datos.fechaNacimiento,
       datos.direccion,
       datos.experienciasLaborales || [],
+      datos.identificadoresHabilidades || [],
     )
   }
 }

@@ -8,6 +8,7 @@ import {
 } from 'typeorm'
 import { DireccionORM } from './Direccion.orm'
 import { ExperienciaLaboralORM } from './ExperienciaLaboral.orm'
+import { HabilidadEmpleadoORM } from './HabilidadEmpleado.orm'
 
 @Entity('empleados')
 export class EmpleadoORM {
@@ -55,4 +56,10 @@ export class EmpleadoORM {
 
   @OneToMany(() => ExperienciaLaboralORM, (experiencia) => experiencia.empleado)
   experiencias_laborales: ExperienciaLaboralORM[]
+
+  @OneToMany(
+    () => HabilidadEmpleadoORM,
+    (habilidadEmpleado) => habilidadEmpleado.empleado,
+  )
+  habilidades_empleados: HabilidadEmpleadoORM[]
 }

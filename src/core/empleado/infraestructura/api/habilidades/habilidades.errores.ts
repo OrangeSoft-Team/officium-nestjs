@@ -6,28 +6,17 @@ type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 const codigos = [
   {
     http: HttpStatus.BAD_REQUEST,
-    metodos: ['POST', 'PUT'],
-    nombres: [
-      'CargoExperienciaLaboralVacio',
-      'LongitudInvalidaCargoExperienciaLaboral',
-      'IdentificadorExperienciaLaboralVacio',
-      'NombreEmpresaExperienciaLaboralVacio',
-      'LongitudInvalidaNombreEmpresaExperienciaLaboral',
-      'FechaInicioExperienciaLaboralVacia',
-      'FechaInicioExperienciaLaboralInvalida',
-      'FechaFinExperienciaLaboralVacia',
-      'FechaFinExperienciaLaboralInvalida',
-      'FechaFinNoMayorDeFechaInicioExperienciaLaboral',
-    ],
+    metodos: ['PUT'],
+    nombres: ['IdentificadorHabilidadVacio'],
   },
   {
     http: HttpStatus.NOT_FOUND,
-    metodos: ['GET', 'PUT', 'DELETE', 'POST'],
-    nombres: ['ExperienciaLaboralNoExiste', 'EmpleadoNoExiste'],
+    metodos: ['GET', 'PUT'],
+    nombres: ['EmpleadoNoExiste'],
   },
 ]
 
-export class ErroresHttpExperienciasEmpleado {
+export class ErroresHttpHabilidadesEmpleado {
   // Obtener codigo HTTP del error obtenido
   public static manejarExcepcion(
     excepcion: IExcepcionAplicacion,

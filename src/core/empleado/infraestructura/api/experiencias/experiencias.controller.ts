@@ -7,8 +7,9 @@ import { ComandoEliminarExperienciaLaboral } from '../../cqrs/comandos/EliminarE
 import { QueryConsultarExperienciasLaboralesEmpleado } from '../../cqrs/queries/ConsultarExperienciasLaboralesEmpleado.query'
 import { ActualizarExperienciaLaboralEmpleadoApiDTO } from '../../dto/ActualizarExperienciaLaboralEmpleado.api.dto'
 import { CrearExperienciaLaboralEmpleadoApiDTO } from '../../dto/CrearExperienciaLaboralEmpleado.api.dto'
-import { ExperienciasLaboralesEmpleadoApiDTO } from '../../dto/ExperienciasLaboralesEmpleado.api.dto'
+import { ExperienciaLaboralApiMapeador } from '../../mapeadores/ExperienciaLaboral.api.mapeador'
 import { ErroresHttpExperienciasEmpleado } from './experiencias.errores'
+import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
 
 @Controller('api/empleado/experiencias_laborales')
 export class ControladorExperienciasEmpleado {
@@ -18,13 +19,9 @@ export class ControladorExperienciasEmpleado {
   ) {}
 
   @Get()
-  public async obtenerExperienciasLaborales(@Body() dto: any) {
-    const datos = {
-      idUsuario: dto.idUsuario as string,
-    }
-
+  public async obtenerExperienciasLaborales(@Body() dto: Auth<any>) {
     const solicitud = await this.queryBus.execute(
-      new QueryConsultarExperienciasLaboralesEmpleado(datos),
+      new QueryConsultarExperienciasLaboralesEmpleado(dto),
     )
 
     // En caso de error
@@ -34,19 +31,17 @@ export class ControladorExperienciasEmpleado {
     }
 
     // En caso de exito
-    return solicitud.valor as ExperienciasLaboralesEmpleadoApiDTO
+    return ExperienciaLaboralApiMapeador.convertirRespuestaConsultarExperienciasLaborales(
+      solicitud.valor,
+    )
   }
 
   @Post()
   public async crearExperienciaLaboral(
-    @Body() dto: CrearExperienciaLaboralEmpleadoApiDTO,
+    @Body() dto: Auth<CrearExperienciaLaboralEmpleadoApiDTO>,
   ) {
-    const datos = dto as CrearExperienciaLaboralEmpleadoApiDTO & {
-      idUsuario: string
-    }
-
     const solicitud = await this.commandBus.execute(
-      new ComandoAgregarExperienciaLaboral(datos),
+      new ComandoAgregarExperienciaLaboral(dto),
     )
 
     // En caso de error
@@ -61,17 +56,11 @@ export class ControladorExperienciasEmpleado {
 
   @Put('/:uuid_experiencia')
   public async editarExperienciaLaboral(
-    @Body() dto: ActualizarExperienciaLaboralEmpleadoApiDTO,
+    @Body() dto: Auth<ActualizarExperienciaLaboralEmpleadoApiDTO>,
     @Param('uuid_experiencia') id: string,
   ) {
-    const datos = dto as ActualizarExperienciaLaboralEmpleadoApiDTO & {
-      id: string
-      idUsuario: string
-    }
-    datos.id = id
-
     const solicitud = await this.commandBus.execute(
-      new ComandoEditarExperienciaLaboral(datos),
+      new ComandoEditarExperienciaLaboral({ ...dto, id }),
     )
 
     // En caso de error
@@ -86,16 +75,11 @@ export class ControladorExperienciasEmpleado {
 
   @Delete('/:uuid_experiencia')
   public async eliminarExperienciaLaboral(
-    @Body() dto: any,
+    @Body() dto: Auth<any>,
     @Param('uuid_experiencia') id: string,
   ) {
-    const datos = {
-      id,
-      idUsuario: dto.idUsuario as string,
-    }
-
     const solicitud = await this.commandBus.execute(
-      new ComandoEliminarExperienciaLaboral(datos),
+      new ComandoEliminarExperienciaLaboral({ ...dto, id }),
     )
 
     // En caso de error

@@ -62,9 +62,11 @@ export class RepositorioExperienciasLaborales
         where: { uuid: idEmpleado },
       })
 
-      const experiencias = await experienciaORM.find({
-        where: { empleado },
-      })
+      const experiencias =
+        (await experienciaORM.find({
+          where: { empleado },
+        })) || []
+
       return experiencias.map((experiencia) => {
         return {
           id: experiencia.uuid,

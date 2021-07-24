@@ -12,6 +12,7 @@ import { EstatusEmpleado } from '../values/empleado/EstatusEmpleado'
 import { FechaNacimientoEmpleado } from '../values/empleado/FechaNacimientoEmpleado'
 import { GeneroEmpleado } from '../values/empleado/GeneroEmpleado'
 import { IdentificadorEmpleado } from '../values/empleado/IdentificadorEmpleado'
+import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad'
 import { NivelEducativoEmpleado } from '../values/empleado/NivelEducativoEmpleado'
 import { NombreCompletoEmpleado } from '../values/empleado/NombreCompletoEmpleado'
 import { NumeroTelefonicoEmpleado } from '../values/empleado/NumeroTelefonicoEmpleado'
@@ -46,6 +47,7 @@ export interface DatosRestaurarEmpleado {
   estatus: EstatusEmpleado
   direccion: DatosRestaurarDireccion
   experienciasLaborales: DatosRestaurarExperienciaLaboral[]
+  identificadoresHabilidades?: IdentificadorHabilidad[]
 }
 
 export abstract class RestaurarEmpleado implements IServicioDominio {
