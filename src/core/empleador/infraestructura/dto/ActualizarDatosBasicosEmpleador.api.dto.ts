@@ -1,7 +1,7 @@
 export interface ActualizarDatosBasicosEmpleadorApiDTO {
   nombreEmpresa: string
-  correoElectronico: string
   requisitosEspeciales?: string
+  codigoPostal: string
   calleUno: string
   calleDos: string
   uuidPais: string
