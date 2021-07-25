@@ -83,7 +83,7 @@ CREATE TABLE empresas (
   estatus VARCHAR(10) NOT NULL,
   correo_electronico VARCHAR(320) NOT NULL UNIQUE,
   token VARCHAR NOT NULL,
-  uuid_direccion UUID NOT NULL,
+  uuid_direccion UUID,
   requisitos_especiales VARCHAR(256),
   CONSTRAINT empresa_pk PRIMARY KEY(uuid),
   CONSTRAINT direccion_empresa_fk FOREIGN KEY(uuid_direccion) REFERENCES direcciones(uuid)
