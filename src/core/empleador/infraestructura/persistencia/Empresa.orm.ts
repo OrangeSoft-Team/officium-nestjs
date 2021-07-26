@@ -1,5 +1,13 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { DireccionORM } from './Direccion.orm'
+import { HabilidadEmpresaORM } from './HabilidadEmpresa.orm'
 
 @Entity('empresas')
 export class EmpresaORM {
@@ -21,9 +29,15 @@ export class EmpresaORM {
   @Column()
   token: string
 
-  @OneToOne(() => DireccionORM)
+  @OneToOne(() => DireccionORM, { nullable: true })
   @JoinColumn({
     name: 'uuid_direccion',
   })
   direccion: DireccionORM
+
+  @OneToMany(
+    () => HabilidadEmpresaORM,
+    (habilidadEmpresa) => habilidadEmpresa.empresa,
+  )
+  habilidades_empresas: HabilidadEmpresaORM[]
 }

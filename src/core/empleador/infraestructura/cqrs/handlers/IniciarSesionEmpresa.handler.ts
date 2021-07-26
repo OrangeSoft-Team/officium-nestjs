@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { sign } from 'jsonwebtoken'
-import { ServicioIniciarSesionEmpresa } from '../../../aplicacion/servicios/ServicioIniciarSesionEmpleado'
+import { ServicioIniciarSesionEmpresa } from '../../../aplicacion/servicios/ServicioIniciarSesionEmpresa'
 import { RepositorioEmpresas } from '../../adaptadores/RepositorioEmpresas'
 import { EmpresaApiMapeador } from '../../mapeadores/Empresa.api.mapeador'
 import { QueryIniciarSesionEmpresa } from '../queries/IniciarSesionEmpresa.query'

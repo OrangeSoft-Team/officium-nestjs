@@ -1,7 +1,7 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
-export class AutentificacionEmpresaInvalida implements IExcepcion {
-  public readonly origen = 'AutentificacionEmpresaInvalida'
+export class EstatusEmpresaVacio implements IExcepcion {
+  public readonly origen = 'EstatusEmpresaVacio'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -12,8 +12,8 @@ export class AutentificacionEmpresaInvalida implements IExcepcion {
   }
 }
 
-export class EmpresaNoExiste implements IExcepcion {
-  public readonly origen = 'EmpresaNoExiste'
+export class EstatusEmpresaInvalido implements IExcepcion {
+  public readonly origen = 'EstatusEmpresaInvalido'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {

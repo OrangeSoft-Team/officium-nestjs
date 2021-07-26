@@ -5,7 +5,7 @@ import { AutentificacionEmpresaInvalida } from '../../dominio/excepciones/empres
 import {
   IniciarSesionEmpresaQueryDTO,
   IniciarSesionEmpresaRespuestaDTO,
-} from '../dto/IniciarSesionEmpresa.query'
+} from '../dto/queries/IniciarSesionEmpresa.query'
 import { IRepositorioEmpresas } from '../puertos/IRepositorioEmpresas'
 
 export class ServicioIniciarSesionEmpresa implements IServicioAplicacion {
