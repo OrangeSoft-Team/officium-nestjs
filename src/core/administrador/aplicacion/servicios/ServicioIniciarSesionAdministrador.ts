@@ -5,7 +5,7 @@ import { AutentificacionAdministradorInvalida } from '../../dominio/excepciones/
 import {
   IniciarSesionAdministradorQueryDTO,
   IniciarSesionAdministradorRespuestaDTO,
-} from '../dto/IniciarSesionAdministrador.query'
+} from '../dto/queries/IniciarSesionAdministrador.query'
 import { IRepositorioAdministradores } from '../puertos/IRepositorioAdministradores'
 
 export class ServicioIniciarSesionAdministrador implements IServicioAplicacion {
