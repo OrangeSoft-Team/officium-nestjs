@@ -11,7 +11,7 @@ export class Resultado<T> {
     this.error = error
   }
 
-  public static ok<U>(valor: U): Resultado<U> {
+  public static ok<U>(valor?: U): Resultado<U> {
     return new Resultado<U>(true, valor)
   }
 

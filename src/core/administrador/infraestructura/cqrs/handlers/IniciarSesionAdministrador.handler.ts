@@ -4,7 +4,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { sign } from 'jsonwebtoken'
 import { ServicioIniciarSesionAdministrador } from '../../../aplicacion/servicios/ServicioIniciarSesionAdministrador'
 import { RepositorioAdministradores } from '../../adaptadores/RepositorioAdministradores'
-import { AdministradorApiMapeador } from '../../mapeadores/Empresa.api.mapeador'
+import { AdministradorApiMapeador } from '../../mapeadores/Administrador.api.mapeador'
 import { QueryIniciarSesionAdministrador } from '../queries/IniciarSesionAdministrador.query'
 
 @QueryHandler(QueryIniciarSesionAdministrador)
