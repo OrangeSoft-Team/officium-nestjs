@@ -14,11 +14,11 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --runInBand",
-    "test:unit": "jest --config ./test/unitarios/jest-unitarios.json",
-    "test:int": "jest --config ./test/integracion/jest-integracion.json --runInBand",
-    "test:acp": "jest --config ./test/aceptacion/jest-aceptacion.json --runInBand",
-    "test:watch": "jest --watch --runInBand"
+    "test": "jest --runInBand --runTestsByPath",
+    "test:unit": "jest --config ./test/unitarios/jest-unitarios.json --runTestsByPath",
+    "test:int": "jest --config ./test/integracion/jest-integracion.json --runInBand --runTestsByPath",
+    "test:acp": "jest --config ./test/aceptacion/jest-aceptacion.json --runInBand --runTestsByPath",
+    "test:watch": "jest --watch --runInBand --runTestsByPath"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
