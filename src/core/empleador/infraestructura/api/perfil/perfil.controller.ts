@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Put,
-} from '@nestjs/common'
+import { Body, Controller, Get, Put } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
@@ -47,8 +40,6 @@ export class ControladorPerfilEmpresa {
     const solicitud = await this.commandBus.execute(
       new ComandoActualizarPerfilEmpresa(dto),
     )
-
-    console.log(solicitud.error)
 
     // En caso de error
     if (!solicitud.esExitoso) {

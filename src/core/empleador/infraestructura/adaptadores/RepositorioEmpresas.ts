@@ -33,7 +33,7 @@ export class RepositorioEmpresas implements IRepositorioEmpresas {
 
       const empresa = await empresaORM
         .createQueryBuilder('empresas')
-        .innerJoinAndSelect('empresas.direccion', 'direccion')
+        .leftJoinAndSelect('empresas.direccion', 'direccion')
         .where('empresas.uuid = :id', { id })
         .getOneOrFail()
 
@@ -43,7 +43,7 @@ export class RepositorioEmpresas implements IRepositorioEmpresas {
         estatus: empresa.estatus,
         nombreEmpresa: empresa.nombre,
         requisitosEspeciales: empresa.requisitos_especiales,
-        idDireccion: empresa.direccion.uuid,
+        idDireccion: empresa?.direccion?.uuid,
       }
     } catch {}
   }
@@ -54,17 +54,11 @@ export class RepositorioEmpresas implements IRepositorioEmpresas {
     try {
       const empresaORM = getRepository(EmpresaORM)
 
-      console.info(query)
-
       const empresa = await empresaORM.findOneOrFail({
         where: {
           correo_electronico: query.correoElectronico,
         },
       })
-      console.info(empresa)
-
-      console.info(empresa.token)
-      console.info(await compare(query.token, empresa.token))
 
       return {
         id: empresa.uuid,

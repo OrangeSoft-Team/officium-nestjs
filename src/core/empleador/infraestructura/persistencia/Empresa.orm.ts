@@ -29,7 +29,7 @@ export class EmpresaORM {
   @Column()
   token: string
 
-  @OneToOne(() => DireccionORM)
+  @OneToOne(() => DireccionORM, { nullable: true })
   @JoinColumn({
     name: 'uuid_direccion',
   })
