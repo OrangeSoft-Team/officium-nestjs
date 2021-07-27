@@ -66,6 +66,16 @@ export class Empresa extends Agregado {
     })
   }
 
+  public eliminar() {
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'EmpresaEliminada',
+      datos: {
+        idEmpresa: this.obtenerIdentificador(),
+      },
+    })
+  }
+
   public static crear(datos: DatosEmpresa): Empresa {
     const empresa = new Empresa(
       datos.identificador,

@@ -1,5 +1,6 @@
 import { CrearEmpresaComandoDTO } from '../../aplicacion/dto/comandos/CrearEmpresa.comando'
 import { EditarEmpresaComandoDTO } from '../../aplicacion/dto/comandos/EditarEmpresa.comando'
+import { EliminarEmpresaComandoDTO } from '../../aplicacion/dto/comandos/EliminarEmpresa.comando'
 import {
   VerDetalleEmpresaQueryDTO,
   VerDetalleEmpresaRespuestaDTO,
@@ -7,6 +8,7 @@ import {
 import { VerListaEmpresasRespuestaDTO } from '../../aplicacion/dto/queries/VerListaEmpresas.query'
 import { ComandoCrearEmpresa } from '../cqrs/comandos/CrearEmpresa.comando'
 import { ComandoEditarEmpresa } from '../cqrs/comandos/EditarEmpresa.comando'
+import { ComandoEliminarEmpresa } from '../cqrs/comandos/EliminarEmpresa.comando'
 import { QueryVerDetalleEmpresa } from '../cqrs/queries/VerDetalleEmpresa.query'
 import { DetalleEmpresaApiDTO } from '../dto/DetalleEmpresa.api.dto'
 import { ListaEmpresasApiDTO } from '../dto/ListaEmpresa.api.dto'
@@ -67,6 +69,15 @@ export abstract class EmpresaApiMapeador {
       estatus: datos.estatus,
       nombre: datos.nombre,
       requisitosEspeciales: datos.requisitosEspeciales,
+    }
+  }
+
+  public static convertirComandoEliminarEmpresa(
+    comando: ComandoEliminarEmpresa,
+  ): EliminarEmpresaComandoDTO {
+    const datos = comando.datos
+    return {
+      id: datos.idEmpresa,
     }
   }
 }

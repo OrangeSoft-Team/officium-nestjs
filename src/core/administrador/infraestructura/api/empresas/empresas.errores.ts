@@ -22,7 +22,7 @@ const codigos = [
   },
   {
     http: HttpStatus.NOT_FOUND,
-    metodos: ['GET', 'PUT'],
+    metodos: ['GET', 'PUT', 'DELETE'],
     nombres: ['EmpresaNoExiste'],
   },
 ]

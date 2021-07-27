@@ -13,4 +13,5 @@ export interface IRepositorioEmpresas {
   crear(datos: EmpresaPersistenciaDTO): Promise<void>
   existe(correo: string): Promise<boolean>
   editar(datos: EmpresaPersistenciaDTO): Promise<void>
+  eliminar(id: string): Promise<void>
 }
