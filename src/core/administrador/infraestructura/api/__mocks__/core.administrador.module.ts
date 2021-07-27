@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ModuloAuthAdministrador } from '../auth/auth.module'
+import { ModuloEmpresasAdministrador } from '../empresas/empresas.module'
 import { ModuloPerfilAdministrador } from '../perfil/perfil.module'
 
 @Module({
@@ -20,6 +21,7 @@ import { ModuloPerfilAdministrador } from '../perfil/perfil.module'
     }),
     ModuloAuthAdministrador,
     ModuloPerfilAdministrador,
+    ModuloEmpresasAdministrador,
   ],
 })
 export class ModuloCoreAdministrador {}
