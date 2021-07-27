@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt'
 import { getRepository } from 'typeorm'
 import {
   EmpresaPersistenciaDTO,
@@ -6,6 +7,35 @@ import {
 import { EmpresaORM } from '../persistencia/Empresa.orm'
 
 export class RepositorioEmpresas implements IRepositorioEmpresas {
+  public async crear(datos: EmpresaPersistenciaDTO): Promise<void> {
+    try {
+      const empresaORM = getRepository(EmpresaORM)
+
+      const empresa = empresaORM.create({
+        uuid: datos.id,
+        correo_electronico: datos.correoElectronico,
+        estatus: datos.estatus,
+        nombre: datos.nombre,
+        requisitos_especiales: datos.requisitosEspeciales,
+        token: await hash(datos.token, 10),
+      })
+
+      await empresaORM.insert(empresa)
+    } catch {}
+  }
+
+  public async existe(correo: string): Promise<boolean> {
+    try {
+      const empresaORM = getRepository(EmpresaORM)
+
+      await empresaORM.findOneOrFail({ where: { correo_electronico: correo } })
+
+      return true
+    } catch {
+      return false
+    }
+  }
+
   public async obtenerTodas(): Promise<EmpresaPersistenciaDTO[]> {
     try {
       const empresaORM = getRepository(EmpresaORM)

@@ -11,3 +11,15 @@ export class EmpresaNoExiste implements IExcepcion {
     }
   }
 }
+
+export class EmpresaYaExiste implements IExcepcion {
+  public readonly origen = 'EmpresaYaExiste'
+  public constructor(public readonly mensaje: string) {}
+
+  public getError() {
+    return {
+      mensaje: this.mensaje,
+      origen: this.origen,
+    }
+  }
+}

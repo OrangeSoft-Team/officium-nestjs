@@ -10,4 +10,6 @@ export interface EmpresaPersistenciaDTO {
 export interface IRepositorioEmpresas {
   obtenerTodas(): Promise<EmpresaPersistenciaDTO[]>
   obtenerPorId(id: string): Promise<EmpresaPersistenciaDTO>
+  crear(datos: EmpresaPersistenciaDTO): Promise<void>
+  existe(correo: string): Promise<boolean>
 }
