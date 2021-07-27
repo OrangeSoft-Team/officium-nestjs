@@ -5,6 +5,22 @@ type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 const codigos = [
   {
+    http: HttpStatus.BAD_REQUEST,
+    metodos: ['POST'],
+    nombres: [
+      'EmpresaYaExiste',
+      'CorreoElectronicoEmpresaVacio',
+      'LongitudInvalidaCorreoElectronicoEmpresa',
+      'FormatoIncorrectoCorreoElectronicoEmpresa',
+      'EstatusEmpresaVacio',
+      'EstatusEmpresaInvalido',
+      'IdentificadorEmpresaVacio',
+      'NombreEmpresaVacio',
+      'LongitudInvalidaNombreEmpresa',
+      'LongitudInvalidaRequisitosEspecialesEmpresa',
+    ],
+  },
+  {
     http: HttpStatus.NOT_FOUND,
     metodos: ['GET'],
     nombres: ['EmpresaNoExiste'],

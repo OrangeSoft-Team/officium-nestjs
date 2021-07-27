@@ -5,9 +5,11 @@ import { EstatusEmpresa } from '../../dominio/values/empresa/EstatusEmpresa'
 import { IdentificadorEmpresa } from '../../dominio/values/empresa/IdentificadorEmpresa'
 import { NombreEmpresa } from '../../dominio/values/empresa/NombreEmpresa'
 import { RequisitosEspecialesEmpresa } from '../../dominio/values/empresa/RequisitosEspecialesEmpresa'
+import { CrearEmpresaComandoDTO } from '../dto/comandos/CrearEmpresa.comando'
 import { VerDetalleEmpresaRespuestaDTO } from '../dto/queries/VerDetalleEmpresa.query'
 import { VerListaEmpresasRespuestaDTO } from '../dto/queries/VerListaEmpresas.query'
 import { EmpresaPersistenciaDTO } from '../puertos/IRepositorioEmpresas'
+import { DatosCrearEmpresa } from '../../dominio/servicios/CrearEmpresa'
 
 export abstract class EmpresaMapeador {
   public static convertirPersistenciaEnDominio(
@@ -19,6 +21,34 @@ export abstract class EmpresaMapeador {
         datos.correoElectronico,
       ),
       estatus: EstatusEmpresa.crear(datos.estatus as any),
+      nombre: NombreEmpresa.crear(datos.nombre),
+      requisitosEspeciales: RequisitosEspecialesEmpresa.crear(
+        datos.requisitosEspeciales,
+      ),
+    }
+  }
+
+  public static convertirDominioEnPersistencia(
+    empresa: Empresa,
+  ): EmpresaPersistenciaDTO {
+    return {
+      id: empresa.obtenerIdentificador(),
+      correoElectronico: empresa.obtenerCorreoElectronico(),
+      estatus: empresa.obtenerEstatus(),
+      nombre: empresa.obtenerNombre(),
+      requisitosEspeciales: empresa.obtenerRequisitosEspeciales(),
+    }
+  }
+
+  public static convertirComandoCrearEmpresa(
+    id: string,
+    datos: CrearEmpresaComandoDTO,
+  ): DatosCrearEmpresa {
+    return {
+      identificador: IdentificadorEmpresa.crear(id),
+      correoElectronico: CorreoElectronicoEmpresa.crear(
+        datos.correoElectronico,
+      ),
       nombre: NombreEmpresa.crear(datos.nombre),
       requisitosEspeciales: RequisitosEspecialesEmpresa.crear(
         datos.requisitosEspeciales,

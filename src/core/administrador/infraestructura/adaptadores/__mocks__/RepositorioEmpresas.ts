@@ -21,6 +21,17 @@ const empresas: EmpresaPersistenciaDTO[] = [
 ]
 
 export class RepositorioEmpresas implements IRepositorioEmpresas {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public async crear(datos: EmpresaPersistenciaDTO): Promise<void> {
+    return
+  }
+
+  public async existe(correo: string): Promise<boolean> {
+    return (
+      empresas.findIndex((empresa) => empresa.correoElectronico == correo) != -1
+    )
+  }
+
   public async obtenerTodas(): Promise<EmpresaPersistenciaDTO[]> {
     return empresas
   }

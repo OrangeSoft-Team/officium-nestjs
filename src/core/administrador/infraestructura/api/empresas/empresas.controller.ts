@@ -1,8 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
+import { ComandoCrearEmpresa } from '../../cqrs/comandos/CrearEmpresa.comando'
 import { QueryVerDetalleEmpresa } from '../../cqrs/queries/VerDetalleEmpresa.query'
 import { QueryVerListaEmpresas } from '../../cqrs/queries/VerListaEmpresas.query'
+import { CrearEmpresaApiDTO } from '../../dto/CrearEmpresa.api.dto'
 import { EmpresaApiMapeador } from '../../mapeadores/Empresa.api.mapeador'
 import { ErroresHttpEmpresasAdministrador } from './empresas.errores'
 
@@ -45,5 +47,21 @@ export class ControladorEmpresasAdministrador {
     return EmpresaApiMapeador.convertirRespuestaVerDetalleEmpresa(
       solicitud.valor,
     )
+  }
+
+  @Post()
+  public async crearEmpresa(@Body() dto: CrearEmpresaApiDTO) {
+    const solicitud = await this.commandBus.execute(
+      new ComandoCrearEmpresa(dto),
+    )
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpEmpresasAdministrador.manejarExcepcion(excepcion, 'POST')
+    }
+
+    // En caso de exito
+    return
   }
 }

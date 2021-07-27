@@ -2,12 +2,13 @@ import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MiddlewareSesion } from '../../../../../comun/infraestructura/middleware/sesion.middleware'
+import { HandlerCrearEmpresa } from '../../cqrs/handlers/CrearEmpresa.handler'
 import { HandlerVerDetalleEmpresas } from '../../cqrs/handlers/VerDetalleEmpresa.handler'
 import { HandlerVerListaEmpresas } from '../../cqrs/handlers/VerListaEmpresas.handler'
 import { EmpresaORM } from '../../persistencia/Empresa.orm'
 import { ControladorEmpresasAdministrador } from './empresas.controller'
 
-const ManejadoresComandos = []
+const ManejadoresComandos = [HandlerCrearEmpresa]
 
 const ManejadoresQueries = [HandlerVerDetalleEmpresas, HandlerVerListaEmpresas]
 
