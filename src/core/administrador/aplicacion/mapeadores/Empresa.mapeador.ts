@@ -10,6 +10,8 @@ import { VerDetalleEmpresaRespuestaDTO } from '../dto/queries/VerDetalleEmpresa.
 import { VerListaEmpresasRespuestaDTO } from '../dto/queries/VerListaEmpresas.query'
 import { EmpresaPersistenciaDTO } from '../puertos/IRepositorioEmpresas'
 import { DatosCrearEmpresa } from '../../dominio/servicios/CrearEmpresa'
+import { EditarEmpresaComandoDTO } from '../dto/comandos/EditarEmpresa.comando'
+import { DatosEditarEmpresa } from '../../dominio/servicios/EditarEmpresa'
 
 export abstract class EmpresaMapeador {
   public static convertirPersistenciaEnDominio(
@@ -37,6 +39,18 @@ export abstract class EmpresaMapeador {
       estatus: empresa.obtenerEstatus(),
       nombre: empresa.obtenerNombre(),
       requisitosEspeciales: empresa.obtenerRequisitosEspeciales(),
+    }
+  }
+
+  public static convertirComandoEditarEmpresa(
+    datos: EditarEmpresaComandoDTO,
+  ): DatosEditarEmpresa {
+    return {
+      nombre: NombreEmpresa.crear(datos.nombre),
+      estatus: EstatusEmpresa.crear(datos.estatus as any),
+      requisitosEspeciales: RequisitosEspecialesEmpresa.crear(
+        datos.requisitosEspeciales,
+      ),
     }
   }
 

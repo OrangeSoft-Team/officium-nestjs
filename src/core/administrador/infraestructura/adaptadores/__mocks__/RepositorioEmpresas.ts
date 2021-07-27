@@ -22,6 +22,11 @@ const empresas: EmpresaPersistenciaDTO[] = [
 
 export class RepositorioEmpresas implements IRepositorioEmpresas {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public async editar(datos: EmpresaPersistenciaDTO): Promise<void> {
+    return
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async crear(datos: EmpresaPersistenciaDTO): Promise<void> {
     return
   }

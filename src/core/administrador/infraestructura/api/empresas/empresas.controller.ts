@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { ComandoCrearEmpresa } from '../../cqrs/comandos/CrearEmpresa.comando'
+import { ComandoEditarEmpresa } from '../../cqrs/comandos/EditarEmpresa.comando'
 import { QueryVerDetalleEmpresa } from '../../cqrs/queries/VerDetalleEmpresa.query'
 import { QueryVerListaEmpresas } from '../../cqrs/queries/VerListaEmpresas.query'
 import { CrearEmpresaApiDTO } from '../../dto/CrearEmpresa.api.dto'
+import { EditarEmpresaApiDTO } from '../../dto/EditarEmpresa.api.dto'
 import { EmpresaApiMapeador } from '../../mapeadores/Empresa.api.mapeador'
 import { ErroresHttpEmpresasAdministrador } from './empresas.errores'
 
@@ -59,6 +61,25 @@ export class ControladorEmpresasAdministrador {
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
       ErroresHttpEmpresasAdministrador.manejarExcepcion(excepcion, 'POST')
+    }
+
+    // En caso de exito
+    return
+  }
+
+  @Put(':uuid_empresa')
+  public async editarEmpresa(
+    @Body() dto: EditarEmpresaApiDTO,
+    @Param('uuid_empresa') idEmpresa: string,
+  ) {
+    const solicitud = await this.commandBus.execute(
+      new ComandoEditarEmpresa({ ...dto, idEmpresa }),
+    )
+
+    // En caso de error
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpEmpresasAdministrador.manejarExcepcion(excepcion, 'PUT')
     }
 
     // En caso de exito

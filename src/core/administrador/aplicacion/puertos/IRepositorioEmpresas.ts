@@ -12,4 +12,5 @@ export interface IRepositorioEmpresas {
   obtenerPorId(id: string): Promise<EmpresaPersistenciaDTO>
   crear(datos: EmpresaPersistenciaDTO): Promise<void>
   existe(correo: string): Promise<boolean>
+  editar(datos: EmpresaPersistenciaDTO): Promise<void>
 }
