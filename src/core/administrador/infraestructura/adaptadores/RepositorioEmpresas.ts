@@ -7,6 +7,22 @@ import {
 import { EmpresaORM } from '../persistencia/Empresa.orm'
 
 export class RepositorioEmpresas implements IRepositorioEmpresas {
+  public async editar(datos: EmpresaPersistenciaDTO): Promise<void> {
+    try {
+      const empresaORM = getRepository(EmpresaORM)
+
+      const empresa = await empresaORM.findOneOrFail({
+        where: { uuid: datos.id },
+      })
+
+      empresa.nombre = datos.nombre
+      empresa.estatus = datos.estatus
+      empresa.requisitos_especiales = datos.requisitosEspeciales
+
+      await empresaORM.save(empresa)
+    } catch {}
+  }
+
   public async crear(datos: EmpresaPersistenciaDTO): Promise<void> {
     try {
       const empresaORM = getRepository(EmpresaORM)

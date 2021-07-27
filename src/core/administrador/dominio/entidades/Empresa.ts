@@ -48,6 +48,24 @@ export class Empresa extends Agregado {
     return this.requisitosEspeciales.obtenerRequisitos()
   }
 
+  public editarDatos(
+    nombre: NombreEmpresa,
+    estatus: EstatusEmpresa,
+    requisitosEspeciales?: RequisitosEspecialesEmpresa,
+  ) {
+    this.nombre = nombre
+    this.estatus = estatus
+    this.requisitosEspeciales = requisitosEspeciales
+
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'EmpresaEditada',
+      datos: {
+        idEmpresa: this.obtenerIdentificador(),
+      },
+    })
+  }
+
   public static crear(datos: DatosEmpresa): Empresa {
     const empresa = new Empresa(
       datos.identificador,
