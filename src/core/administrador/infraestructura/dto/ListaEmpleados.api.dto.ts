@@ -1,6 +1,9 @@
 export interface ListaEmpleadosApiDTO {
   uuid: string
-  nombre: string
+  primerNombre: string
+  primerApellido: string
+  segundoNombre?: string
+  segundoApellido?: string
   correo: string
   estatus: string
   genero: string
