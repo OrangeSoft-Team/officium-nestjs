@@ -3,7 +3,7 @@ import { EstatusCurso } from '../../dominio/values/curso/EstatusCurso'
 import { FechaCreacionCurso } from '../../dominio/values/curso/FechaCreacionCurso'
 import { IdentificadorCurso } from '../../dominio/values/curso/IdentificadorCurso'
 import { TituloCurso } from '../../dominio/values/curso/TituloCurso'
-import { ConsultarListaCursosRespuestaDTO } from '../dto/comandos/ConsultarListaCursos.query'
+import { ConsultarListaCursosRespuestaDTO } from '../dto/queries/ConsultarListaCursos.query'
 import { ListadoCursosPersistenciaDTO } from '../puertos/IRepositorioCursos'
 
 export abstract class CursoMapeador {
