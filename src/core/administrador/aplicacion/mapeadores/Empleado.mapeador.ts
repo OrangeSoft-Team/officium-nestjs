@@ -44,4 +44,18 @@ export abstract class EmpleadoMapeador {
       segundoApellido: empleado.obtenerSegundoApellido(),
     }
   }
+
+  public static convertirDominioEnRespuestaDetallada(empleado: Empleado) {
+    return {
+      id: empleado.obtenerIdentificador(),
+      correoElectronico: empleado.obtenerCorreoElectronico(),
+      estatus: empleado.obtenerEstatus(),
+      genero: empleado.obtenerGenero(),
+      fechaNacimiento: empleado.obtenerFechaNacimiento(),
+      primerNombre: empleado.obtenerPrimerNombre(),
+      primerApellido: empleado.obtenerPrimerApellido(),
+      segundoNombre: empleado.obtenerSegundoNombre(),
+      segundoApellido: empleado.obtenerSegundoApellido(),
+    }
+  }
 }

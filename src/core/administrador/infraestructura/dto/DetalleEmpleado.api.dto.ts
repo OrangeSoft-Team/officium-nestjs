@@ -1,10 +1,10 @@
-interface HabilidadesDetalleEmpleadoApiDTO {
+export interface HabilidadDetalleEmpleadoApiDTO {
   uuid: string
   nombre: string
   categoria: string
 }
 
-interface ExperienciasDetalleEmpleadoApiDTO {
+export interface ExperienciaDetalleEmpleadoApiDTO {
   uuid: string
   cargo: string
   nombreEmpresa: string
@@ -12,21 +12,12 @@ interface ExperienciasDetalleEmpleadoApiDTO {
   fechaFin: string
 }
 
-interface ReferenciasDetalleEmpleadoApiDTO {
+export interface DetalleEmpleadoApiDTO {
   uuid: string
   primerNombre: string
   primerApellido: string
-  segundoNombre: string
-  segundoApellido: string
-  cargo: string
-  nombreEmpresa: string
-  telefono: string
-  correoElectronico: string
-}
-
-export interface DetalleEmpleadoApiDTO {
-  uuid: string
-  nombre: string
+  segundoNombre?: string
+  segundoApellido?: string
   correo: string
   estatus: string
   genero: string
@@ -37,7 +28,6 @@ export interface DetalleEmpleadoApiDTO {
   nombrePais: string
   nombreEstado: string
   nombreCiudad: string
-  habilidades: HabilidadesDetalleEmpleadoApiDTO[]
-  referencias: ReferenciasDetalleEmpleadoApiDTO[]
-  experienciasLaborales: ExperienciasDetalleEmpleadoApiDTO[]
+  habilidades: HabilidadDetalleEmpleadoApiDTO[]
+  experienciasLaborales: ExperienciaDetalleEmpleadoApiDTO[]
 }
