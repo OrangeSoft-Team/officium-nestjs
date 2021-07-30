@@ -1,7 +1,7 @@
 import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionAplicacion'
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
-import { ConsultarListaCursosRespuestaDTO } from '../dto/comandos/ConsultarListaCursos.query'
+import { ConsultarListaCursosRespuestaDTO } from '../dto/queries/ConsultarListaCursos.query'
 import { CursoMapeador } from '../mapeadores/Curso.mapeador'
 import { IRepositorioCursos } from '../puertos/IRepositorioCursos'
 

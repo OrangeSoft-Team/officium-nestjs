@@ -1,5 +1,5 @@
 import { MapeadorFecha } from '../../../../comun/infraestructura/mapeadores/Fecha.mapeador'
-import { ConsultarListaCursosRespuestaDTO } from '../../aplicacion/dto/comandos/ConsultarListaCursos.query'
+import { ConsultarListaCursosRespuestaDTO } from '../../aplicacion/dto/queries/ConsultarListaCursos.query'
 import { ListaCursosApiDTO } from '../dto/ListaCursos.api.dto'
 
 export abstract class CursoApiMapeador {
