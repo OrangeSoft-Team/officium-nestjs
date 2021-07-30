@@ -2,7 +2,7 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import { DuracionEstimadaCuestionarioVacio, DuracionEscalaCuestionarioInvalida, LongitudInvalidaDuracionValorCuestionario } from '../../excepciones/cuestionario/DuracionEstimadaCuestionario.excepciones'
 
 type ESCALA_VALORES =
-'MINUTO'
+'MINUTO' |
 'HORA'
 
 

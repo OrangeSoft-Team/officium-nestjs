@@ -2,9 +2,9 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import { DuracionEstimadaCursoVacio, DuracionEscalaCursoInvalida, LongitudInvalidaDuracionValorCurso } from '../../excepciones/curso/DuracionEstimadaCurso.excepciones'
 
 type ESCALA_VALORES =
-'HORA'
-'DIA'
-'SEMANA'
+'HORA' |
+'DIA' |
+'SEMANA' |
 'MES'
 
 export class DuracionEstimadaCurso implements IValueObject {

@@ -2,10 +2,7 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import { TipoPreguntaVacio, TipoPreguntaInvalida } from '../../excepciones/pregunta/TipoPregunta.excepciones'
 
 
-type TIPOS_PREGUNTA = 
-    'LISTA' 
-    'SIMPLE'
-    'MULTIPLE'
+type TIPOS_PREGUNTA = 'LISTA' | 'SIMPLE' | 'MULTIPLE'
 
 
 export class TipoPregunta implements IValueObject {
@@ -26,7 +23,7 @@ export class TipoPregunta implements IValueObject {
           'El tipo de la pregunta no puede estar vacio.',
         )
 
-      if (!['LISTA','SIMPLE','MULTIPLE'].includes[tipo])
+      if (!['LISTA','SIMPLE','MULTIPLE'].includes(tipo))
         throw new TipoPreguntaInvalida(
             'La pregunta debe estar entre los tipos validos'
         )

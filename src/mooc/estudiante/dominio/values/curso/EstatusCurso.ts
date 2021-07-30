@@ -1,9 +1,7 @@
 import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import { EstatusCursoVacio, EstatusCursoInvalido} from '../../excepciones/curso/EstatusCurso.excepciones'
 
-type ESTATUS_CURSO =
-'ACTIVO'
-'INACTIVO'
+type ESTATUS_CURSO = 'ACTIVO' | 'INACTIVO'
 
 export class EstatusCurso implements IValueObject {
     private constructor(private readonly estatus: ESTATUS_CURSO) {}
@@ -18,15 +16,14 @@ export class EstatusCurso implements IValueObject {
   
     public static crear(estatus: ESTATUS_CURSO): EstatusCurso {
       // No debe ser vacio
-      if (estatus == null || estatus == undefined)
+      if (!estatus)
         throw new EstatusCursoVacio(
           'El estatus del curso no puede estar vacio.',
         )
-
-        if (!['ACTIVO','INACTIVO'].includes[estatus])
+        if(!['ACTIVO','INACTIVO'].includes(estatus))
         throw new EstatusCursoInvalido(
-            'El estatus debe estar entre los tipos validos'
-        )
+              'El estatus debe estar entre los tipos validos'
+          )
       // Si no hay errores
       return new EstatusCurso(estatus)
     }
