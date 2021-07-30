@@ -10,9 +10,9 @@ import { CuestionarioORM } from './Cuestionario.orm'
 import { HabilidadORM } from './Habilidad.orm'
 import { LeccionORM } from './Leccion.orm'
 
-@Entity('cuestionarios')
+@Entity('cursos')
 export class CursoORM {
-  @PrimaryColumn('uuid')
+  @PrimaryColumn({ type: 'uuid' })
   uuid: string
 
   @Column()
@@ -33,9 +33,9 @@ export class CursoORM {
   @OneToMany(() => HabilidadORM, (habilidad) => habilidad.curso)
   habilidades: HabilidadORM[]
 
-  @OneToOne(() => CuestionarioORM, (cuestionario) => cuestionario.curso)
+ @OneToOne(() => CuestionarioORM)
   @JoinColumn({
-    name: 'uuid_cuestionario',
+   name: 'uuid_cuestionario',
   })
   cuestionario: CuestionarioORM
 
