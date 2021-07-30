@@ -12,7 +12,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
 
       const empleado = await empleadoORM
         .createQueryBuilder('empleados')
-        .innerJoinAndSelect('empleados.direccion', 'direcciones')
+        .leftJoinAndSelect('empleados.direccion', 'direcciones')
         .where('empleados.uuid = :id', { id })
         .getOneOrFail()
 
@@ -26,7 +26,7 @@ export class RepositorioEmpleados implements IRepositorioEmpleados {
         primerApellido: empleado.primer_apellido,
         segundoNombre: empleado.segundo_nombre,
         segundoApellido: empleado.segundo_apellido,
-        idDireccion: empleado.direccion.uuid,
+        idDireccion: empleado?.direccion?.uuid || null,
       }
     } catch {}
   }
