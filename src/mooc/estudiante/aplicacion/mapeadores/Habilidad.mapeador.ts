@@ -10,7 +10,7 @@ export abstract class HabilidadMapeador {
     public static ConvertirListaHabilidadesDominio(
         listaHabilidades: HabilidadesPersistenciaDTO[]
     ):DatosRestaurarListaHabilidades[] {
-        const habilidades: DatosRestaurarListaHabilidades[] = listaHabilidades.map((habilidad) => {
+        const habilidades: DatosRestaurarListaHabilidades[] = listaHabilidades?.map((habilidad) => {
             return {
               uuid: IdentificadorHabilidad.crear(habilidad.uuid),
               nombre: NombreHabilidad.crear(habilidad.nombre),
@@ -23,7 +23,7 @@ export abstract class HabilidadMapeador {
     public static ConvertirListaHabilidadesRespuesta(
         habilidadesDominio: DatosRestaurarListaHabilidades[]
     ): HabilidadesRespuestaDTO[] {
-        const habilidades: HabilidadesRespuestaDTO[] = habilidadesDominio.map((habilidad) => {
+        const habilidades: HabilidadesRespuestaDTO[] = habilidadesDominio?.map((habilidad) => {
             return {
               uuid: habilidad.uuid.obtenerId(),
               nombre: habilidad.nombre.obtenerNombreHabilidad(),

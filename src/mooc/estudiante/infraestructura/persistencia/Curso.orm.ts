@@ -22,13 +22,13 @@ export class CursoORM {
   estatus: string
 
   @Column()
-  duracionEstimadaEscala: string
+  escala_duracion: string
 
   @Column()
-  duracionEstimadaValor: number
+  valor_duracion: number
 
   @Column()
-  fechaCreacion: Date
+  fecha_creacion: Date
 
   @OneToMany(() => HabilidadORM, (habilidad) => habilidad.curso)
   habilidades: HabilidadORM[]
@@ -43,5 +43,5 @@ export class CursoORM {
   lecciones: LeccionORM[]
 
   @Column()
-  fechaModificacion: Date
+  fecha_modificacion: Date
 }

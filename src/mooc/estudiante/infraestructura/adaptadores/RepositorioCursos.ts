@@ -18,7 +18,7 @@ export class RepositorioCursos implements IRepositorioCursos {
           uuid: curso.uuid,
           titulo: curso.titulo,
           estatus: curso.estatus,
-          fechaCreacion: curso.fechaCreacion,
+          fechaCreacion: curso.fecha_creacion,
         }
       })
       return cursos
@@ -35,10 +35,10 @@ export class RepositorioCursos implements IRepositorioCursos {
           uuid: curso.uuid,
           titulo: curso.titulo,
           estatus: curso.estatus,
-          valorDuracion: curso.duracionEstimadaValor,
-          escalaDuracion: curso.duracionEstimadaEscala,
-          fechaCreacion: curso.fechaCreacion,
-          fechaUltimaModificacion: curso.fechaModificacion,
+          valorDuracion: curso.valor_duracion,
+          escalaDuracion: curso.escala_duracion,
+          fechaCreacion: curso.fecha_creacion,
+          fechaUltimaModificacion: curso.fecha_modificacion,
         }
     } catch {}
   }

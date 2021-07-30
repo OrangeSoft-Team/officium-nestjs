@@ -10,7 +10,7 @@ export abstract class LeccionMapeador {
     public static ConvertirListaleccionesDominio(
         listalecciones: LeccionesPersistenciaDTO[]
     ):DatosRestaurarListaLecciones[] {
-        const lecciones: DatosRestaurarListaLecciones[] = listalecciones.map((leccion) => {
+        const lecciones: DatosRestaurarListaLecciones[] = listalecciones?.map((leccion) => {
             return {
               uuid: IdentificadorLeccion.crear(leccion.uuid),
               titulo: TituloLeccion.crear(leccion.titulo)
@@ -22,7 +22,7 @@ export abstract class LeccionMapeador {
     public static ConvertirListaLeccionesRespuesta(
         leccionesDominio: DatosRestaurarListaLecciones[]
     ): LeccionesRespuestaDTO[] {
-        const lecciones: LeccionesRespuestaDTO[] = leccionesDominio.map((leccion) => {
+        const lecciones: LeccionesRespuestaDTO[] = leccionesDominio?.map((leccion) => {
             return {
               uuid: leccion.uuid.obtenerId(),
               titulo: leccion.titulo.obtenerTitulo(),

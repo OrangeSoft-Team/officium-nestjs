@@ -2,8 +2,10 @@ import {
   Column,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
 } from 'typeorm'
+import { CursoORM } from './Curso.orm'
 import { PreguntaORM } from './Pregunta.orm'
 
 @Entity('cuestionarios')
@@ -13,15 +15,17 @@ export class CuestionarioORM {
   uuid: string
 
   @Column()
-  duracionEstimadaEscala: string
+  escala_duracion: string
 
   @Column()
-  duracionEstimadaValor: number
+  valor_duracion: number
 
   @Column()
-  intentosPermitidos: number
+  intentos_permitidos: number
 
   @OneToMany(() => PreguntaORM, (pregunta) => pregunta.cuestionario)
   preguntas: PreguntaORM[]
 
+  @OneToOne(() => CursoORM)
+  curso: CursoORM
 }

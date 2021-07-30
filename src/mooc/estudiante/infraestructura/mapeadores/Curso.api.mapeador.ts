@@ -8,7 +8,7 @@ export abstract class CursoApiMapeador {
   public static convertirRespuestaListarCursos(
     respuesta: ConsultarListaCursosRespuestaDTO[],
   ): ListaCursosApiDTO[] {
-    const cursos: ListaCursosApiDTO[] = respuesta.map((curso) => {
+    const cursos: ListaCursosApiDTO[] = respuesta?.map((curso) => {
       return {
         uuid: curso.uuid,
         titulo: curso.titulo,
