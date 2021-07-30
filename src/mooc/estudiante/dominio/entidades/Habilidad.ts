@@ -1,6 +1,6 @@
 import { Entidad } from '../../../../comun/dominio/Entidad'
-import { CategoriaHabilidad } from '../../../../core/empleador/dominio/values/habilidad/CategoriaHabilidad'
-import { NombreHabilidad } from '../../../../core/empleador/dominio/values/habilidad/NombreHabilidad'
+import { CategoriaHabilidad } from '../../dominio/values/habilidad/CategoriaHabilidad'
+import { NombreHabilidad } from '../../dominio/values/habilidad/NombreHabilidad'
 import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad'
 
 export interface DatosHabilidad {
