@@ -1,5 +1,5 @@
 import { Entidad } from '../../../../comun/dominio/Entidad'
-import { Habilidad } from '../../../../core/empleador/dominio/entidades/Habilidad'
+import { Habilidad } from '../../dominio/entidades/Habilidad'
 import { DuracionEstimadaCurso } from '../values/curso/DuracionEstimadaCurso'
 import { EstatusCurso } from '../values/curso/EstatusCurso'
 import { FechaCreacionCurso } from '../values/curso/FechaCreacionCurso'
