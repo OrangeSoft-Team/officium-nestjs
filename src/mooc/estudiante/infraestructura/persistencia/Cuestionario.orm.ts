@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { CursoORM } from './Curso.orm'
 import { PreguntaORM } from './Pregunta.orm'
 
@@ -16,19 +23,12 @@ export class CuestionarioORM {
   @Column()
   intentosPermitidos: number
 
-   @OneToMany(
-    () => PreguntaORM,
-    (pregunta) => pregunta.cuestionario,
-  )
-  preguntas: PreguntaORM[]  
+  @OneToMany(() => PreguntaORM, (pregunta) => pregunta.cuestionario)
+  preguntas: PreguntaORM[]
 
-  @OneToOne(
-    () => CursoORM,
-    (curso) => curso.cuestionario,
-  )
+  @OneToOne(() => CursoORM, (curso) => curso.cuestionario)
   @JoinColumn({
     name: 'uuid_curso',
   })
-  curso: CursoORM  
-
+  curso: CursoORM
 }

@@ -13,13 +13,13 @@ export class EstatusCursoVacio implements IExcepcion {
 }
 
 export class EstatusCursoInvalido implements IExcepcion {
-    public readonly origen = 'EstatusCursoInvalido'
-    public constructor(public readonly mensaje: string) {}
-  
-    public getError() {
-      return {
-        mensaje: this.mensaje,
-        origen: this.origen,
-      }
+  public readonly origen = 'EstatusCursoInvalido'
+  public constructor(public readonly mensaje: string) {}
+
+  public getError() {
+    return {
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
+}

@@ -3,8 +3,6 @@ import { CategoriaHabilidad } from '../../../../core/empleador/dominio/values/ha
 import { NombreHabilidad } from '../../../../core/empleador/dominio/values/habilidad/NombreHabilidad'
 import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad'
 
-
-
 export interface DatosHabilidad {
   identificador: IdentificadorHabilidad
   nombre: NombreHabilidad
@@ -37,18 +35,10 @@ export class Habilidad extends Entidad {
   }
 
   public static crear(datos: DatosHabilidad): Habilidad {
-    return new Habilidad(
-      datos.identificador,
-      datos.nombre,
-      datos.categoria,
-    )
+    return new Habilidad(datos.identificador, datos.nombre, datos.categoria)
   }
 
   public static restaurar(datos: DatosHabilidad): Habilidad {
-    return new Habilidad(
-        datos.identificador,
-        datos.nombre,
-        datos.categoria,
-      )
+    return new Habilidad(datos.identificador, datos.nombre, datos.categoria)
   }
 }

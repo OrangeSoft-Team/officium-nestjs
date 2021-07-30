@@ -4,10 +4,6 @@ import { IdentificadorCuestionario } from '../values/cuestionario/IdentificadorC
 import { IntentosPermitidosCuestionario } from '../values/cuestionario/IntentosPermitidosCuestionario'
 import { Pregunta } from './Pregunta'
 
-
-
-
-
 export interface DatosCuestionario {
   identificador: IdentificadorCuestionario
   duracionEstimada: DuracionEstimadaCuestionario
@@ -20,7 +16,7 @@ export class Cuestionario extends Entidad {
     private readonly identificador: IdentificadorCuestionario,
     private duracionEstimada: DuracionEstimadaCuestionario,
     private intentosPermitidos: IntentosPermitidosCuestionario,
-    private preguntas: Pregunta[]
+    private preguntas: Pregunta[],
   ) {
     super()
   }
@@ -56,10 +52,10 @@ export class Cuestionario extends Entidad {
 
   public static restaurar(datos: DatosCuestionario): Cuestionario {
     return new Cuestionario(
-        datos.identificador,
-        datos.duracionEstimada,
-        datos.intentosPermitidos,
-        datos.preguntas,
-      )
+      datos.identificador,
+      datos.duracionEstimada,
+      datos.intentosPermitidos,
+      datos.preguntas,
+    )
   }
 }

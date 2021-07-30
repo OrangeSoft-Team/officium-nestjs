@@ -1,3 +1,3 @@
 export class QueryConsultarListaCursos {
-    public constructor() {}
-  }
+  public constructor() {}
+}

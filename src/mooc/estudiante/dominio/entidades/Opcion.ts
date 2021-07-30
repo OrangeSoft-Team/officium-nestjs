@@ -3,7 +3,6 @@ import { CorrectoOpcion } from '../values/opcion/CorrectoOpcion'
 import { IdentificadorOpcion } from '../values/opcion/IdentificadorOpcion'
 import { ValorOpcion } from '../values/opcion/ValorOpcion'
 
-
 export interface DatosOpcion {
   identificador: IdentificadorOpcion
   valor: ValorOpcion
@@ -36,18 +35,10 @@ export class Opcion extends Entidad {
   }
 
   public static crear(datos: DatosOpcion): Opcion {
-    return new Opcion(
-      datos.identificador,
-      datos.valor,
-      datos.correcto,
-    )
+    return new Opcion(datos.identificador, datos.valor, datos.correcto)
   }
 
   public static restaurar(datos: DatosOpcion): Opcion {
-    return new Opcion(
-      datos.identificador,
-      datos.valor,
-      datos.correcto,
-    )
+    return new Opcion(datos.identificador, datos.valor, datos.correcto)
   }
 }

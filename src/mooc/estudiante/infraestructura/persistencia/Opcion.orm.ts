@@ -12,10 +12,7 @@ export class OpcionORM {
   @Column()
   correcto: boolean
 
-  @ManyToOne(
-    () => PreguntaORM,
-    (pregunta) => pregunta.opciones,
-  ) 
+  @ManyToOne(() => PreguntaORM, (pregunta) => pregunta.opciones)
   @JoinColumn({ name: 'uuid_pregunta' })
   pregunta: PreguntaORM
 }

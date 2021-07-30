@@ -12,10 +12,7 @@ export class HabilidadORM {
   @Column()
   categoria: string
 
-  @ManyToOne(
-    () => CursoORM,
-    (curso) => curso.habilidades,
-  ) 
+  @ManyToOne(() => CursoORM, (curso) => curso.habilidades)
   @JoinColumn({ name: 'uuid_curso' })
   curso: CursoORM
 }

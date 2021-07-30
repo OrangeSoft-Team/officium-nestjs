@@ -11,10 +11,7 @@ const ManejadoresComandos = []
 const ManejadoresQueries = [HandlerColsultarListaCursos]
 
 @Module({
-  imports: [
-    CqrsModule,
-    TypeOrmModule.forFeature([CursoORM]),
-  ],
+  imports: [CqrsModule, TypeOrmModule.forFeature([CursoORM])],
   controllers: [ControladorCursos],
   providers: [...ManejadoresComandos, ...ManejadoresQueries],
 })

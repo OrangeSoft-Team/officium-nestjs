@@ -9,9 +9,6 @@ import { TituloCurso } from '../values/curso/TituloCurso'
 import { Cuestionario } from './Cuestionario'
 import { Leccion } from './Leccion'
 
-
-
-
 export interface DatosCurso {
   identificador: IdentificadorCurso
   titulo: TituloCurso
@@ -35,7 +32,6 @@ export class Curso extends Entidad {
     private cuestionario: Cuestionario,
     private lecciones: Leccion[],
     private fechaModificacion?: FechaUltimaModificacionCurso,
-
   ) {
     super()
   }
@@ -96,15 +92,15 @@ export class Curso extends Entidad {
 
   public static restaurar(datos: DatosCurso): Curso {
     return new Curso(
-        datos.identificador,
-        datos.titulo,
-        datos.estatus,
-        datos.duracionEstimada,
-        datos.fechaCreacion,
-        datos.habilidades,
-        datos.cuestionario,
-        datos.lecciones,
-        datos.fechaModificacion,
-      )
+      datos.identificador,
+      datos.titulo,
+      datos.estatus,
+      datos.duracionEstimada,
+      datos.fechaCreacion,
+      datos.habilidades,
+      datos.cuestionario,
+      datos.lecciones,
+      datos.fechaModificacion,
+    )
   }
 }

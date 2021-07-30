@@ -5,8 +5,6 @@ import { PonderacionPregunta } from '../values/pregunta/PonderacionPregunta'
 import { TipoPregunta } from '../values/pregunta/TipoPregunta'
 import { Opcion } from './Opcion'
 
-
-
 export interface DatosPregunta {
   identificador: IdentificadorPregunta
   enunciado: EnunciadoPregunta
@@ -21,7 +19,7 @@ export class Pregunta extends Entidad {
     private enunciado: EnunciadoPregunta,
     private tipo: TipoPregunta,
     private poderacion: PonderacionPregunta,
-    private opciones: Opcion[]
+    private opciones: Opcion[],
   ) {
     super()
   }
@@ -62,11 +60,11 @@ export class Pregunta extends Entidad {
 
   public static restaurar(datos: DatosPregunta): Pregunta {
     return new Pregunta(
-        datos.identificador,
-        datos.enunciado,
-        datos.tipo,
-        datos.poderacion,
-        datos.opciones,
+      datos.identificador,
+      datos.enunciado,
+      datos.tipo,
+      datos.poderacion,
+      datos.opciones,
     )
   }
 }

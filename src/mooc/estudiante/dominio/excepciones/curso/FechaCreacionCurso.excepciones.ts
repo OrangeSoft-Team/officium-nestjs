@@ -13,13 +13,13 @@ export class FechaCreacionCursoVacia implements IExcepcion {
 }
 
 export class FechaCreacionCursoInvalida implements IExcepcion {
-    public readonly origen = 'FechaCreacionCursoInvalida'
-    public constructor(public readonly mensaje: string) {}
-  
-    public getError() {
-      return {
-        mensaje: this.mensaje,
-        origen: this.origen,
-      }
+  public readonly origen = 'FechaCreacionCursoInvalida'
+  public constructor(public readonly mensaje: string) {}
+
+  public getError() {
+    return {
+      mensaje: this.mensaje,
+      origen: this.origen,
     }
   }
+}

@@ -49,7 +49,6 @@ export class Estudiante extends Agregado {
   }
 
   public static crear(datos: DatosEmpleado): Estudiante {
-
     const estudiante = new Estudiante(
       datos.identificador,
       datos.nombreCompleto,

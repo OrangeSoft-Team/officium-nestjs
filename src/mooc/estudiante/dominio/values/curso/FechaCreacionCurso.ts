@@ -1,6 +1,6 @@
 import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import {
-    FechaCreacionCursoVacia,
+  FechaCreacionCursoVacia,
   FechaCreacionCursoInvalida,
 } from '../../excepciones/curso/FechaCreacionCurso.excepciones'
 

@@ -1,8 +1,14 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { CuestionarioORM } from './Cuestionario.orm'
 import { HabilidadORM } from './Habilidad.orm'
 import { LeccionORM } from './Leccion.orm'
-
 
 @Entity('cuestionarios')
 export class CursoORM {
@@ -24,26 +30,17 @@ export class CursoORM {
   @Column()
   fechaCreacion: Date
 
-  @OneToMany(
-    () => HabilidadORM,
-    (habilidad) => habilidad.curso,
-   )
-   habilidades: HabilidadORM[]  
+  @OneToMany(() => HabilidadORM, (habilidad) => habilidad.curso)
+  habilidades: HabilidadORM[]
 
-   @OneToOne(
-    () => CuestionarioORM,
-    (cuestionario) => cuestionario.curso,
-  )
+  @OneToOne(() => CuestionarioORM, (cuestionario) => cuestionario.curso)
   @JoinColumn({
     name: 'uuid_cuestionario',
   })
-  cuestionario: CuestionarioORM  
+  cuestionario: CuestionarioORM
 
-  @OneToMany(
-    () => LeccionORM,
-    (leccion) => leccion.curso,
-   )
-   lecciones: LeccionORM[]  
+  @OneToMany(() => LeccionORM, (leccion) => leccion.curso)
+  lecciones: LeccionORM[]
 
   @Column()
   fechaModificacion: Date

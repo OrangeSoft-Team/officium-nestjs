@@ -1,7 +1,7 @@
 import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import {
-    FechaUltimaModificacionCursoVacia,
-    FechaUltimaModificacionCursoInvalida,
+  FechaUltimaModificacionCursoVacia,
+  FechaUltimaModificacionCursoInvalida,
 } from '../../excepciones/curso/FechaUltimaModificacionCurso.excepciones'
 
 export class FechaUltimaModificacionCurso implements IValueObject {

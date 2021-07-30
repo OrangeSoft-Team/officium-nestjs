@@ -24,7 +24,9 @@ export class LongitudInvalidaCorreoElectronicoEstudiante implements IExcepcion {
   }
 }
 
-export class FormatoIncorrectoCorreoElectronicoEstudiante implements IExcepcion {
+export class FormatoIncorrectoCorreoElectronicoEstudiante
+  implements IExcepcion
+{
   public readonly origen = 'FormatoIncorrectoCorreoElectronicoEstudiante'
   public constructor(public readonly mensaje: string) {}
 

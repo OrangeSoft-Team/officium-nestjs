@@ -13,7 +13,6 @@ export class ControladorCursos {
     private readonly queryBus: QueryBus,
   ) {}
 
-
   @Get()
   public async ConsultarListadoCursos(@Body() dto: Auth<any>) {
     const solicitud = await this.queryBus.execute(
@@ -27,8 +26,6 @@ export class ControladorCursos {
     }
 
     // En caso de exito
-    return CursoApiMapeador.convertirRespuestaListarCursos(
-      solicitud.valor,
-    )
+    return CursoApiMapeador.convertirRespuestaListarCursos(solicitud.valor)
   }
 }

@@ -4,9 +4,6 @@ import { DescripcionLeccion } from '../values/leccion/DescripcionLeccion'
 import { IdentificadorLeccion } from '../values/leccion/IdentificadorLeccion'
 import { TituloLeccion } from '../values/leccion/TituloLeccion'
 
-
-
-
 export interface DatosLeccion {
   identificador: IdentificadorLeccion
   titulo: TituloLeccion
@@ -44,7 +41,6 @@ export class Leccion extends Entidad {
     return this.contenido
   }
 
-
   public static crear(datos: DatosLeccion): Leccion {
     return new Leccion(
       datos.identificador,
@@ -56,10 +52,10 @@ export class Leccion extends Entidad {
 
   public static restaurar(datos: DatosLeccion): Leccion {
     return new Leccion(
-        datos.identificador,
-        datos.titulo,
-        datos.descripcion,
-        datos.contenido,
+      datos.identificador,
+      datos.titulo,
+      datos.descripcion,
+      datos.contenido,
     )
   }
 }
