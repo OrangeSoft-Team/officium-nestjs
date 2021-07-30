@@ -1,10 +1,10 @@
-export interface ListaEmpleadosApiDTO {
-  uuid: string
+export interface ListarEmpleadosRespuestaDTO {
+  id: string
   primerNombre: string
   primerApellido: string
   segundoNombre?: string
   segundoApellido?: string
-  correo: string
-  estatus: string
+  correoElectronico: string
   genero: string
+  estatus: string
 }
