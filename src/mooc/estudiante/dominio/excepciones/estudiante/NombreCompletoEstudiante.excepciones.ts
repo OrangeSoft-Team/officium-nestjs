@@ -1,7 +1,7 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
-export class PrimerNombreEmpleadoVacio implements IExcepcion {
-  public readonly origen = 'PrimerNombreEmpleadoVacio'
+export class PrimerNombreEstudianteVacio implements IExcepcion {
+  public readonly origen = 'PrimerNombreEstudianteVacio'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -12,8 +12,8 @@ export class PrimerNombreEmpleadoVacio implements IExcepcion {
   }
 }
 
-export class LongitudInvalidaPrimerNombreEmpleado implements IExcepcion {
-  public readonly origen = 'LongitudInvalidaPrimerNombreEmpleado'
+export class LongitudInvalidaPrimerNombreEstudiante implements IExcepcion {
+  public readonly origen = 'LongitudInvalidaPrimerNombreEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -24,8 +24,8 @@ export class LongitudInvalidaPrimerNombreEmpleado implements IExcepcion {
   }
 }
 
-export class PrimerApellidoEmpleadoVacio implements IExcepcion {
-  public readonly origen = 'PrimerApellidoEmpleadoVacio'
+export class PrimerApellidoEstudianteVacio implements IExcepcion {
+  public readonly origen = 'PrimerApellidoEstudianteVacio'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -36,8 +36,8 @@ export class PrimerApellidoEmpleadoVacio implements IExcepcion {
   }
 }
 
-export class LongitudInvalidaPrimerApellidoEmpleado implements IExcepcion {
-  public readonly origen = 'LongitudInvalidaPrimerApellidoEmpleado'
+export class LongitudInvalidaPrimerApellidoEstudiante implements IExcepcion {
+  public readonly origen = 'LongitudInvalidaPrimerApellidoEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -48,8 +48,8 @@ export class LongitudInvalidaPrimerApellidoEmpleado implements IExcepcion {
   }
 }
 
-export class LongitudInvalidaSegundoNombreEmpleado implements IExcepcion {
-  public readonly origen = 'LongitudInvalidaSegundoNombreEmpleado'
+export class LongitudInvalidaSegundoNombreEstudiante implements IExcepcion {
+  public readonly origen = 'LongitudInvalidaSegundoNombreEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -60,8 +60,8 @@ export class LongitudInvalidaSegundoNombreEmpleado implements IExcepcion {
   }
 }
 
-export class LongitudInvalidaSegundoApellidoEmpleado implements IExcepcion {
-  public readonly origen = 'LongitudInvalidaSegundoApellidoEmpleado'
+export class LongitudInvalidaSegundoApellidoEstudiante implements IExcepcion {
+  public readonly origen = 'LongitudInvalidaSegundoApellidoEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {

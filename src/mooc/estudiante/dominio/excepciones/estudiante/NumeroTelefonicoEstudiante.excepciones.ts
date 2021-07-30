@@ -1,7 +1,7 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
-export class CorreoElectronicoEmpleadoVacio implements IExcepcion {
-  public readonly origen = 'CorreoElectronicoEmpleadoVacio'
+export class NumeroTelefonicoEstudianteVacio implements IExcepcion {
+  public readonly origen = 'NumeroTelefonicoEstudianteVacio'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -12,8 +12,8 @@ export class CorreoElectronicoEmpleadoVacio implements IExcepcion {
   }
 }
 
-export class LongitudInvalidaCorreoElectronicoEmpleado implements IExcepcion {
-  public readonly origen = 'LongitudInvalidaCorreoElectronicoEmpleado'
+export class LongitudInvalidaNumeroTelefonicoEstudiante implements IExcepcion {
+  public readonly origen = 'LongitudInvalidaNumeroTelefonicoEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
@@ -24,8 +24,8 @@ export class LongitudInvalidaCorreoElectronicoEmpleado implements IExcepcion {
   }
 }
 
-export class FormatoIncorrectoCorreoElectronicoEmpleado implements IExcepcion {
-  public readonly origen = 'FormatoIncorrectoCorreoElectronicoEmpleado'
+export class FormatoIncorrectoNumeroTelefonicoEstudiante implements IExcepcion {
+  public readonly origen = 'FormatoIncorrectoNumeroTelefonicoEstudiante'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
