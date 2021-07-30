@@ -5,6 +5,7 @@ import { FechaNacimientoEmpleado } from '../values/empleado/FechaNacimientoEmple
 import { GeneroEmpleado } from '../values/empleado/GeneroEmpleado'
 import { IdentificadorEmpleado } from '../values/empleado/IdentificadorEmpleado'
 import { NombreCompletoEmpleado } from '../values/empleado/NombreCompletoEmpleado'
+import { Direccion } from './Direccion'
 import { ExperienciaLaboral } from './ExperienciaLaboral'
 import { Habilidad } from './Habilidad'
 
@@ -15,6 +16,7 @@ export interface DatosEmpleado {
   estatus: EstatusEmpleado
   correoElectronico: CorreoElectronicoEmpleado
   fechaNacimiento: FechaNacimientoEmpleado
+  direccion?: Direccion
   habilidades?: Habilidad[]
   experienciasLaborales?: ExperienciaLaboral[]
 }
@@ -27,6 +29,7 @@ export class Empleado extends Agregado {
     private estatus: EstatusEmpleado,
     private correoElectronico: CorreoElectronicoEmpleado,
     private fechaNacimiento: FechaNacimientoEmpleado,
+    private direccion?: Direccion,
     private habilidades?: Habilidad[],
     private experienciasLaborales?: ExperienciaLaboral[],
   ) {
@@ -81,6 +84,10 @@ export class Empleado extends Agregado {
     return this.experienciasLaborales
   }
 
+  public obtenerDireccion() {
+    return this.direccion
+  }
+
   public static restaurar(datos: DatosEmpleado): Empleado {
     return new Empleado(
       datos.identificador,
@@ -89,6 +96,7 @@ export class Empleado extends Agregado {
       datos.estatus,
       datos.correoElectronico,
       datos.fechaNacimiento,
+      datos.direccion,
       datos.habilidades,
       datos.experienciasLaborales,
     )

@@ -22,7 +22,7 @@ export class ExperienciaLaboral extends Entidad {
   }
 
   public obtenerIdentificador() {
-    return this.identificador
+    return this.identificador.obtenerId()
   }
 
   public esIgual(experiencia: ExperienciaLaboral): boolean {
@@ -30,15 +30,19 @@ export class ExperienciaLaboral extends Entidad {
   }
 
   public obtenerCargo() {
-    return this.cargo
+    return this.cargo.obtenerCargo()
   }
 
   public obtenerNombreEmpresa() {
-    return this.nombreEmpresa
+    return this.nombreEmpresa.obtenerNombre()
   }
 
-  public obtenerRangoFecha() {
-    return this.rangoFecha
+  public obtenerFechaInicio() {
+    return this.rangoFecha.obtenerFechaInicio()
+  }
+
+  public obtenerFechaFin() {
+    return this.rangoFecha.obtenerFechaFin()
   }
 
   public static restaurar(datos: DatosExperienciaLaboral): ExperienciaLaboral {
