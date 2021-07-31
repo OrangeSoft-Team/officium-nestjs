@@ -6,6 +6,7 @@ import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core
 import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
 import { ModuloMoocAdministrador } from '../../mooc/administrador/infraestructura/api/mooc.administrador.module'
 import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mooc.empleado.module'
+import { ModuloUbicaciones } from './api/ubicaciones.module'
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mo
         'dist/core/empleador/infraestructura/persistencia/*',
         'dist/core/administrador/infraestructura/persistencia/*',
         'dist/mooc/estudiante/infraestructura/persistencia/*',
+        'dist/comun/infraestructura/persistencia/*',
       ],
       synchronize: false,
     }),
@@ -30,6 +32,7 @@ import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mo
     ModuloCoreAdministrador,
     ModuloMoocEmpleado,
     ModuloMoocAdministrador,
+    ModuloUbicaciones,
   ],
   controllers: [],
   providers: [],
