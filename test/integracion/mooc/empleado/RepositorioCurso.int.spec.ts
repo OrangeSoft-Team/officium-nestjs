@@ -18,11 +18,24 @@ const insertarDatosRequeridosPrueba = async () => {
   const leccionORM = getRepository(LeccionORM)
   const opcionORM = getRepository(OpcionORM)
 
+
+  const curso = cursoORM.create({
+    uuid: 'ebaf050e-ca26-4ea1-9f26-2627bddcbbcb',
+    titulo: 'Curso de heladeria',
+    estatus: 'ACTIVO',
+    escala_duracion: 'DIA',
+    valor_duracion: 2,
+    fecha_creacion: new Date('09-06-2020'),
+    fecha_ultima_modificacion: new Date('09-06-2020'),
+  })
+  await cursoORM.save(curso)
+
   const cuestionario = cuestionarioORM.create({
     uuid: 'ebaf050e-cd26-4ea1-9f26-2627bddcbbcb',
-    duracionEstimadaEscala: 'HORA',
-    duracionEstimadaValor: 2,
-    intentosPermitidos: 4,
+    escala_duracion: 'HORA',
+    valor_duracion: 2,
+    intentos_permitidos: 4,
+    curso,
   })
   await cuestionarioORM.save(cuestionario)
   
@@ -34,18 +47,6 @@ const insertarDatosRequeridosPrueba = async () => {
    cuestionario
   })
   await preguntaORM.save(pregunta)
-
-  const curso = cursoORM.create({
-    uuid: 'ebaf050e-ca26-4ea1-9f26-2627bddcbbcb',
-    titulo: 'Curso de heladeria',
-    estatus: 'ACTIVO',
-    duracionEstimadaEscala: 'DIA',
-    duracionEstimadaValor: 2,
-    fechaCreacion: new Date('09-06-2020'),
-   // cuestionario,
-    fechaModificacion: new Date('09-06-2020'),
-  })
-  await cursoORM.save(curso)
   
   const leccion = leccionORM.create({
     uuid: 'aefed3af-56a5-4a49-874a-57231b57af28',

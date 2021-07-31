@@ -1,7 +1,6 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryColumn,
@@ -22,26 +21,25 @@ export class CursoORM {
   estatus: string
 
   @Column()
-  duracionEstimadaEscala: string
+  valor_duracion: number
 
   @Column()
-  duracionEstimadaValor: number
+  escala_duracion: string
 
   @Column()
-  fechaCreacion: Date
+  fecha_creacion: Date
+
+  @Column()
+  fecha_ultima_modificacion: Date
 
   @OneToMany(() => HabilidadORM, (habilidad) => habilidad.curso)
   habilidades: HabilidadORM[]
 
  @OneToOne(() => CuestionarioORM)
-  @JoinColumn({
-   name: 'uuid_cuestionario',
-  })
   cuestionario: CuestionarioORM
 
   @OneToMany(() => LeccionORM, (leccion) => leccion.curso)
   lecciones: LeccionORM[]
 
-  @Column()
-  fechaModificacion: Date
+
 }

@@ -21,6 +21,7 @@ import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mo
         'dist/core/empleado/infraestructura/persistencia/*',
         'dist/core/empleador/infraestructura/persistencia/*',
         'dist/core/administrador/infraestructura/persistencia/*',
+        'dist/mooc/estudiante/infraestructura/persistencia/*',
       ],
       synchronize: false,
     }),
