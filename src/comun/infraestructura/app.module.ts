@@ -22,6 +22,7 @@ import { ModuloUbicaciones } from './api/ubicaciones.module'
         'dist/core/empleado/infraestructura/persistencia/*',
         'dist/core/empleador/infraestructura/persistencia/*',
         'dist/core/administrador/infraestructura/persistencia/*',
+        'dist/mooc/estudiante/infraestructura/persistencia/*',
         'dist/comun/infraestructura/persistencia/*',
       ],
       synchronize: false,

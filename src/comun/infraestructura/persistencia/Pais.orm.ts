@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
+import { EstadoORM } from './Estado.orm'
 
 @Entity('paises')
 export class PaisORM {
@@ -7,4 +8,7 @@ export class PaisORM {
 
   @Column()
   nombre: string
+
+  @OneToMany(() => EstadoORM, (estado) => estado.uuid)
+  estados: EstadoORM[]
 }
