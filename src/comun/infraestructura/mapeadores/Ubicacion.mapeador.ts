@@ -1,9 +1,15 @@
 import {
+  ObtenerCiudadesQueryDTO,
+  ObtenerCiudadesRespuestaDTO,
+} from '../../aplicacion/dto/queries/ObtenerCiudades.query'
+import {
   ObtenerEstadosQueryDTO,
   ObtenerEstadosRespuestaDTO,
 } from '../../aplicacion/dto/queries/ObtenerEstados.query'
 import { ObtenerPaisesRespuestaDTO } from '../../aplicacion/dto/queries/ObtenerPaises.query'
+import { QueryObtenerCiudades } from '../cqrs/queries/ObtenerCiudades.query'
 import { QueryObtenerEstados } from '../cqrs/queries/ObtenerEstados.query'
+import { CiudadesApiDTO } from '../dto/Ciudades.api.dto'
 import { EstadosApiDTO } from '../dto/Estados.api.dto'
 import { PaisesApiDTO } from '../dto/Paises.api.dto'
 
@@ -33,6 +39,28 @@ export abstract class UbicacionApiMapeador {
         uuidEstado: estado.id,
         uuidPais: estado.idPais,
         nombreEstado: estado.nombre,
+      }
+    })
+  }
+
+  public static convertirQueryObtenerCiudades(
+    query: QueryObtenerCiudades,
+  ): ObtenerCiudadesQueryDTO {
+    return {
+      idEstado: query.datos.idEstado,
+      idPais: query.datos.idPais,
+    }
+  }
+
+  public static convertirRespuestaObtenerCiudades(
+    respuesta: ObtenerCiudadesRespuestaDTO[],
+  ): CiudadesApiDTO[] {
+    return respuesta?.map((ciudad) => {
+      return {
+        uuidPais: ciudad.idPais,
+        uuidEstado: ciudad.idEstado,
+        uuidCiudad: ciudad.id,
+        nombreCiudad: ciudad.nombre,
       }
     })
   }

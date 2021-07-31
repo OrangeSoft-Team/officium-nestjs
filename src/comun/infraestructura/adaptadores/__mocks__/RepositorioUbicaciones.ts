@@ -1,4 +1,5 @@
 import {
+  CiudadPersistenciaDTO,
   EstadoPersistenciaDTO,
   IRepositorioUbicaciones,
   PaisPersistenciaDTO,
@@ -32,7 +33,28 @@ const ESTADOS = [
   },
 ]
 
+const CIUDADES = [
+  {
+    id: '49569b81-2579-45ac-ada4-ee17eade3145',
+    nombre: 'Caracas',
+    idPais: 'bfa803c2-4d33-42d1-911d-2bf1e8bde939',
+    idEstado: '943be322-5074-4550-9132-90a8a46e660b',
+  },
+  {
+    id: 'be8bfd7a-3806-46df-9eef-12a449b66878',
+    nombre: 'San Antonio',
+    idPais: 'bfa803c2-4d33-42d1-911d-2bf1e8bde939',
+    idEstado: 'be8bfd7a-3806-46df-9eef-12a449b66878',
+  },
+]
+
 export class RepositorioUbicaciones implements IRepositorioUbicaciones {
+  public async listarCiudadesPorIdEstado(
+    id: string,
+  ): Promise<CiudadPersistenciaDTO[]> {
+    return CIUDADES.filter((cd) => cd.idEstado == id)
+  }
+
   public async listarEstadosPorIdPais(
     id: string,
   ): Promise<EstadoPersistenciaDTO[]> {

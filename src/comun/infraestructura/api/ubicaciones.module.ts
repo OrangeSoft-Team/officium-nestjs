@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { HandlerObtenerCiudades } from '../cqrs/handlers/ObtenerCiudades.handler'
 import { HandlerObtenerEstados } from '../cqrs/handlers/ObtenerEstados.handler'
 import { HandlerObtenerPaises } from '../cqrs/handlers/ObtenerPaises.handler'
 import { EstadoORM } from '../persistencia/Estado.orm'
@@ -9,7 +10,11 @@ import { ControladorUbicaciones } from './ubicaciones.controller'
 
 const ManejadoresComandos = []
 
-const ManejadoresQueries = [HandlerObtenerPaises, HandlerObtenerEstados]
+const ManejadoresQueries = [
+  HandlerObtenerPaises,
+  HandlerObtenerEstados,
+  HandlerObtenerCiudades,
+]
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([PaisORM, EstadoORM])],
