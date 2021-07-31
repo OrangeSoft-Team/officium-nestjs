@@ -3,7 +3,13 @@ import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcion
 
 type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
-const codigos = []
+const codigos = [
+  {
+    http: HttpStatus.NOT_FOUND,
+    metodos: ['GET'],
+    nombres: ['CursoNoExiste'],
+  },
+]
 
 export class ErroresHttpCursos {
   // Obtener codigo HTTP del error obtenido
