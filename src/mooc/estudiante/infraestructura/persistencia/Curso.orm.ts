@@ -5,6 +5,7 @@ import {
   OneToOne,
   PrimaryColumn,
 } from 'typeorm'
+import { CertificadoORM } from './Certificado.orm'
 import { CuestionarioORM } from './Cuestionario.orm'
 import { HabilidadORM } from './Habilidad.orm'
 import { LeccionORM } from './Leccion.orm'
@@ -41,5 +42,7 @@ export class CursoORM {
   @OneToMany(() => LeccionORM, (leccion) => leccion.curso)
   lecciones: LeccionORM[]
 
+  @OneToMany(() => CertificadoORM, (certificado) => certificado.curso)
+  certificados: CertificadoORM[]
 
 }
