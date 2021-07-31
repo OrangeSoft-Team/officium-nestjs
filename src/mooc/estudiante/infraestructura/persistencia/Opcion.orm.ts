@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
 import { PreguntaORM } from './Pregunta.orm'
 
-@Entity('opciones')
+@Entity('opciones_preguntas')
 export class OpcionORM {
   @PrimaryColumn('uuid')
   uuid: string

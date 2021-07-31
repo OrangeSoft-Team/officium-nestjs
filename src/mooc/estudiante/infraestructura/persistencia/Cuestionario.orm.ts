@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryColumn,
@@ -15,17 +16,20 @@ export class CuestionarioORM {
   uuid: string
 
   @Column()
-  escala_duracion: string
+  valor_duracion: number
 
   @Column()
-  valor_duracion: number
+  escala_duracion: string
 
   @Column()
   intentos_permitidos: number
 
+  @OneToOne(() => CursoORM)
+  @JoinColumn({
+    name: 'uuid_curso',
+   })
+  curso: CursoORM
+
   @OneToMany(() => PreguntaORM, (pregunta) => pregunta.cuestionario)
   preguntas: PreguntaORM[]
-
-  @OneToOne(() => CursoORM)
-  curso: CursoORM
 }

@@ -38,7 +38,7 @@ export class RepositorioCursos implements IRepositorioCursos {
           valorDuracion: curso.valor_duracion,
           escalaDuracion: curso.escala_duracion,
           fechaCreacion: curso.fecha_creacion,
-          fechaUltimaModificacion: curso.fecha_modificacion,
+          fechaUltimaModificacion: curso.fecha_ultima_modificacion,
         }
     } catch {}
   }

@@ -4,12 +4,13 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { MiddlewareSesion } from '../../../../../comun/infraestructura/middleware/sesion.middleware'
 import { HandlerConsultarDetalleCurso } from '../../cqrs/handlers/ConsultarDetalleCurso.handler'
 import { HandlerColsultarListaCursos } from '../../cqrs/handlers/ConsultarListaCursos.handler'
+import { HandlerVerLeccion } from '../../cqrs/handlers/VerLeccion.handler'
 import { CursoORM } from '../../persistencia/Curso.orm'
 import { ControladorCursos } from './cursos.controller'
 
 const ManejadoresComandos = []
 
-const ManejadoresQueries = [HandlerColsultarListaCursos, HandlerConsultarDetalleCurso]
+const ManejadoresQueries = [HandlerColsultarListaCursos, HandlerConsultarDetalleCurso, HandlerVerLeccion]
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([CursoORM])],

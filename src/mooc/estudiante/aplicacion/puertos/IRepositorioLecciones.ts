@@ -6,7 +6,19 @@ export interface LeccionesCursoPersistenciaDTO {
     uuid: string
     titulo: string
   }
+
+  export interface VerLeccionPersistenciaDTO {
+    uuidLeccion: string
+  }
+
+  export interface LeccionPersistenciaDTO {
+    uuid: string
+    titulo: string
+    descripcion: string
+    contenido: string
+  }
   
   export interface IRepositorioLecciones {
     listar(query: LeccionesCursoPersistenciaDTO): Promise<LeccionesPersistenciaDTO[]>
+    consultar(query: VerLeccionPersistenciaDTO): Promise<LeccionPersistenciaDTO>
   }

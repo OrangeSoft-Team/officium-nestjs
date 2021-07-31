@@ -3,6 +3,7 @@ import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplic
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
 import { HabilidadMapeador } from '../../aplicacion/mapeadores/Habilidad.mapeador'
 import { IRepositorioHabilidades } from '../../aplicacion/puertos/IRepositorioHabilidades'
+import { CursoNoExiste } from '../../dominio/excepciones/curso/Curso.excepciones'
 import { ConsultarDetalleCursoQueryDTO, ConsultarDetalleCursoRespuestaDTO } from '../dto/queries/ConsultarDetalleCurso.query'
 import { CursoMapeador } from '../mapeadores/Curso.mapeador'
 import { LeccionMapeador } from '../mapeadores/Leccion.mapeador'
@@ -20,6 +21,9 @@ export class ServicioConsultarDetalleCurso implements IServicioAplicacion {
     try {
       //Traer curso, lecciones y habilidades de persistencia
       const cursoPersistencia = await this.repositorioCursos.consultar({uuid: query.uuidCurso})
+      if(!cursoPersistencia)
+        throw new CursoNoExiste('El curso no se ha encontrado.')
+
       const leccionesPersistencia = await this.repositorioLecciones.listar({uuidCurso: cursoPersistencia.uuid})
       const habilidadesPersistencia = await this.repositorioHabilidades.listar({uuidCurso: cursoPersistencia.uuid})
 
