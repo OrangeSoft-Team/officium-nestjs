@@ -38,6 +38,8 @@ export class ControladorAuthEmpresa {
     response.cookie('token', solicitud.valor.jwt, {
       httpOnly: true,
       expires: new Date(Date.now() + parseInt(process.env.AUTH_EXPIRA)),
+      sameSite: 'none',
+      secure: true,
     })
     return solicitud.valor.sesion
   }
