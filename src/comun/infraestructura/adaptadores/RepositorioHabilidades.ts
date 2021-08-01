@@ -11,7 +11,6 @@ export class RepositorioHabilidades implements IRepositorioHabilidades {
       const habilidadORM = getRepository(HabilidadORM)
 
       const habilidades = await habilidadORM.find()
-      console.log(habilidades)
       return habilidades.map((hab) => {
         return {
           id: hab.uuid,
