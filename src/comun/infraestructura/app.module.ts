@@ -6,6 +6,7 @@ import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core
 import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
 import { ModuloMoocAdministrador } from '../../mooc/administrador/infraestructura/api/mooc.administrador.module'
 import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mooc.empleado.module'
+import { ModuloHabilidades } from './api/habilidades.module'
 import { ModuloUbicaciones } from './api/ubicaciones.module'
 
 @Module({
@@ -33,6 +34,7 @@ import { ModuloUbicaciones } from './api/ubicaciones.module'
     ModuloMoocEmpleado,
     ModuloMoocAdministrador,
     ModuloUbicaciones,
+    ModuloHabilidades,
   ],
   controllers: [],
   providers: [],
