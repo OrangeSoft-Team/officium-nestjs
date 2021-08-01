@@ -13,8 +13,6 @@ export class ControladorHabilidades {
   public async obtenerHabilidades() {
     const solicitud = await this.queryBus.execute(new QueryObtenerHabilidades())
 
-    console.log(solicitud)
-
     // En caso de error
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
