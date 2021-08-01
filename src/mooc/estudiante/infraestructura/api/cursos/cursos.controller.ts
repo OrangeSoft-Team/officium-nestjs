@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
+import { ComandoInscribirCursoEstudiante } from '../../cqrs/comandos/InscribirCursoEstudiante.comando'
 import { QueryConsultarDetalleCurso } from '../../cqrs/queries/ConsultarDetalleCurso.query'
 import { QueryConsultarListaCursos } from '../../cqrs/queries/ConsultarListaCursos.query'
 import { QueryVerLeccion } from '../../cqrs/queries/VerLeccion.query'
@@ -49,6 +50,25 @@ export class ControladorCursos {
 
     // En caso de exito
     return CursoApiMapeador.convertirRespuestaDetalleCurso(solicitud.valor)
+  }
+
+  @Post('/:uuid_curso/inscribirse')
+  public async InscribirCursoEstudiante(
+    @Body() dto: Auth<any>,
+    @Param('uuid_curso') uuidCurso: string,
+  ){
+    const solicitud = await this.commandBus.execute(
+      new ComandoInscribirCursoEstudiante(
+        {
+          uuidCurso: uuidCurso,
+          uuidEstudiante: dto.idUsuario,
+        }))
+
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
+    }
+    return
   }
 
   @Get('/:uuid_curso/leccion/:uuid_leccion')

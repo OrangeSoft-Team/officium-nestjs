@@ -1,6 +1,7 @@
 import {
   ConsultarCursoPersistenciaDTO,
   CursoPersistenciaDTO,
+  InscribirEmpleadoPersistenciaDTO,
   IRepositorioCursos,
   ListadoCursosPersistenciaDTO,
 } from '../../../aplicacion/puertos/IRepositorioCursos'
@@ -24,9 +25,15 @@ const curso  = {
   fechaUltimaModificacion :new Date('09-06-2020'),
 }
 export class RepositorioCursos implements IRepositorioCursos {
+
+  inscribirEmpleado(comando: InscribirEmpleadoPersistenciaDTO): Promise<void> {
+    return
+  }
+
   public async consultar(query: ConsultarCursoPersistenciaDTO): Promise<CursoPersistenciaDTO> {
     return curso
   }
+  
   public async listar(): Promise<ListadoCursosPersistenciaDTO[]> {
     return cursos
   }

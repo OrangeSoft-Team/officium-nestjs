@@ -5,7 +5,7 @@ import { EstudianteNoExiste } from "../../dominio/excepciones/estudiante/Estudia
 import { ConsultarCertificadoEstudianteQueryDTO, ConsultarCertificadoEstudianteRespuestaDTO } from "../dto/queries/ConsultarCertificadosEstudiante";
 import { CertificadoMapeador } from "../mapeadores/Certificado.mapeador";
 import { IRepositorioCertificados } from "../puertos/IRepositorioCertificados";
-import { IRepositorioEstudiantes } from "../puertos/IRepositorioEstudiante";
+import { IRepositorioEstudiantes } from "../puertos/IRepositorioEstudiantes";
 
 export class ServicioConsultarCertificadosEstudiante implements IServicioAplicacion {
     public constructor(

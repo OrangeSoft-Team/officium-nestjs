@@ -7,6 +7,7 @@ import {
 } from 'typeorm'
 import { CertificadoORM } from './Certificado.orm'
 import { CuestionarioORM } from './Cuestionario.orm'
+import { CursoEstudianteORM } from './CursoEstudiante.orm'
 import { HabilidadORM } from './Habilidad.orm'
 import { LeccionORM } from './Leccion.orm'
 
@@ -44,5 +45,8 @@ export class CursoORM {
 
   @OneToMany(() => CertificadoORM, (certificado) => certificado.curso)
   certificados: CertificadoORM[]
+
+  @OneToMany(() => CursoEstudianteORM, (cursoEstudiante) => cursoEstudiante.curso)
+  cursos_empleados: CursoEstudianteORM[]
 
 }
