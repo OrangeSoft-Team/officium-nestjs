@@ -2,6 +2,7 @@ import { IExcepcionAplicacion } from "../../../../comun/aplicacion/IExcepcionApl
 import { IServicioAplicacion } from "../../../../comun/aplicacion/IServicioAplicacion";
 import { Resultado } from "../../../../comun/aplicacion/Resultado";
 import { CursoNoExiste } from "../../dominio/excepciones/curso/Curso.excepciones";
+import { LeccionNoExiste } from "../../dominio/excepciones/leccion/Leccion.excepciones";
 import { VerLeccionQueryDTO, VerLeccionRespuestaDTO } from "../dto/queries/VerLeccion.query";
 import { LeccionMapeador } from "../mapeadores/Leccion.mapeador";
 import { IRepositorioCursos } from "../puertos/IRepositorioCursos";
@@ -21,6 +22,8 @@ export class ServicioVerLeccion implements IServicioAplicacion {
             if(!cursoPersistencia)
               throw new CursoNoExiste('El curso no se ha encontrado.')
             const leccionPersistencia = await this.repositorioLecciones.consultar({uuidLeccion: query.uuidLeccion})
+            if(!leccionPersistencia)
+                throw new LeccionNoExiste('La leccion no existe')
 
             //transformar leccion en dominio
             const leccionDominio = LeccionMapeador.ConvertirLeccionDominio(leccionPersistencia)

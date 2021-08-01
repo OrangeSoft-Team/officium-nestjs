@@ -50,7 +50,7 @@ export abstract class CursoMapeador {
       duracionEstimada: DuracionEstimadaCurso.crear(cursoPersistencia.escalaDuracion as any,
         cursoPersistencia.valorDuracion),
       fechaCreacion: FechaCreacionCurso.crear(cursoPersistencia.fechaCreacion),
-      fechaUltimaModificacion: FechaUltimaModificacionCurso.crear(cursoPersistencia.fechaUltimaModificacion),
+      fechaUltimaModificacion: FechaUltimaModificacionCurso?.crear(cursoPersistencia.fechaUltimaModificacion),
     }
   }
 
@@ -68,8 +68,7 @@ export abstract class CursoMapeador {
         fechaCreacion: cursoDominio.fechaCreacion.obtenerFecha(),
         lecciones: lecciones,
         habilidades: habilidades,
-        fechaUltimaModificacion: cursoDominio.fechaUltimaModificacion.obtenerFecha(),
+        fechaUltimaModificacion: cursoDominio.fechaUltimaModificacion?.obtenerFecha(),
       }
-
   }
 }

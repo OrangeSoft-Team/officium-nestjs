@@ -11,7 +11,7 @@ export class RepositorioHabilidades implements IRepositorioHabilidades {
         try{
             const habilidadORM = getRepository(HabilidadORM) 
             const cursoORM = getRepository(CursoORM)
-            const curso = cursoORM.findOneOrFail({
+            const curso = await cursoORM.findOneOrFail({
                 where: {uuid: query.uuidCurso}
             })
             const habilidades = (

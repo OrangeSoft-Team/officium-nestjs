@@ -29,7 +29,7 @@ export abstract class CursoApiMapeador {
         valorDuracion: respuesta.valorDuracion,
         escalaDuracion: respuesta.escalaDuracion,
         fechaCreacion: MapeadorFecha.formatear(respuesta.fechaCreacion),
-        fechaUltimaModificacion: MapeadorFecha.formatear(respuesta.fechaUltimaModificacion),
+        fechaUltimaModificacion: MapeadorFecha.formatear(respuesta?.fechaUltimaModificacion),
         lecciones: respuesta.lecciones,
         habilidades: respuesta.habilidades,
       }

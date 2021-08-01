@@ -9,6 +9,11 @@ const codigos = [
     metodos: ['GET'],
     nombres: ['CursoNoExiste'],
   },
+  {
+    http: HttpStatus.NOT_FOUND,
+    metodos: ['GET'],
+    nombres: ['LeccionNoExiste'],
+  },
 ]
 
 export class ErroresHttpCursos {

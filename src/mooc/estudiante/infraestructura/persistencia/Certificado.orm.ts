@@ -18,6 +18,6 @@ export class CertificadoORM {
     curso: CursoORM
 
     @ManyToOne(() => EstudianteORM, (estudiante) => estudiante.certificados)
-    @JoinColumn({ name: 'uuid_estudiante' })
+    @JoinColumn({ name: 'uuid_empleado' })
     estudiante: EstudianteORM
 }

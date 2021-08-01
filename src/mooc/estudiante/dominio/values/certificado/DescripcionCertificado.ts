@@ -19,12 +19,12 @@ export class DescripcionCertificado implements IValueObject {
         throw new DescripcionCertificadoVacio('La descripcion del certificado no puede estar vacio.')
       if (descripcion.length < 32)
         throw new LongitudInvalidaDescripcionCertificado(
-          'El descripcion del certificado no puede ser menor a 16 caracteres',
+          'La descripcion del certificado no puede ser menor a 32 caracteres',
         )
   
       if (descripcion.length > 512)
         throw new LongitudInvalidaDescripcionCertificado(
-          'El descripcion del certificadono puede ser mayor a 16 caracteres',
+          'La descripcion del certificadono puede ser mayor a 512 caracteres',
         )
   
       // Si no hay errores

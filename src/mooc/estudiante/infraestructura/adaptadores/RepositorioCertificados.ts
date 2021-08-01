@@ -10,7 +10,7 @@ export class RepositorioCertificados implements IRepositorioCertificados {
             const certificadoORM = getRepository(CertificadoORM)
             const certificado = await certificadoORM
             .createQueryBuilder('certificados')
-            .innerJoinAndSelect('certificados.cursos', 'curso')
+            .innerJoinAndSelect('certificados.curso', 'curso')
             .where('certificados.uuid = :uuid',{uuid: query.uuidCertificado})
             .getOneOrFail()
             return {
@@ -27,9 +27,9 @@ export class RepositorioCertificados implements IRepositorioCertificados {
             const certificadoORM = getRepository(CertificadoORM)
             const certificados = await certificadoORM
             .createQueryBuilder('certificados')
-            .innerJoinAndSelect('certificados.empleados','estudiante')
-            .innerJoinAndSelect('certificados.cursos', 'curso')
-            .where('certificados.empleados.uuid = :uuid',{uuid: query.uuidEstudiante})
+            .innerJoinAndSelect('certificados.estudiante','empleado')
+            .innerJoinAndSelect('certificados.curso', 'curso')
+            .where('empleado.uuid = :uuid',{uuid: query.uuidEstudiante})
             .getMany()
 
             return certificados?.map((certificado) => {

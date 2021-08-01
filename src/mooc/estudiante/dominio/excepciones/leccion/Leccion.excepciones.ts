@@ -1,7 +1,7 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
 
-export class FechaUltimaModificacionCursoInvalida implements IExcepcion {
-  public readonly origen = 'FechaUltimaModificacionCursoInvalida'
+export class LeccionNoExiste implements IExcepcion {
+  public readonly origen = 'LeccionNoExiste'
   public constructor(public readonly mensaje: string) {}
 
   public getError() {
