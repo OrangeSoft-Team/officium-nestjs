@@ -48,7 +48,7 @@ export class ControladorCursos {
     }
 
     // En caso de exito
-    return CursoApiMapeador.convertirRespuestaListarCursos(solicitud.valor)
+    return CursoApiMapeador.convertirRespuestaDetalleCurso(solicitud.valor)
   }
 
   @Get('/:uuid_curso/leccion/:uuid_leccion')

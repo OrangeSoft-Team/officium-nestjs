@@ -1,6 +1,7 @@
 import { MapeadorFecha } from "../../../../comun/infraestructura/mapeadores/Fecha.mapeador";
 import { ConsultarCertificadoEstudianteRespuestaDTO } from "../../aplicacion/dto/queries/ConsultarCertificadosEstudiante";
-import { ListaCertificadosApiDTO } from "../dto/Certificado.api.dto";
+import { ConsultarDetalleCertificadoRespuestaDTO } from "../../aplicacion/dto/queries/ConsultarDetalleCertificado.query";
+import { DetalleCertificadoApiDTO, ListaCertificadosApiDTO } from "../dto/Certificado.api.dto";
 
 export abstract class CertificadoApiMapeador {
     public static convertirRespuestaListarCertificados(
@@ -14,5 +15,16 @@ export abstract class CertificadoApiMapeador {
             }
         })
         return certificados
+    }
+
+    public static convertirRespuestaDetalleCurso(
+        respuesta: ConsultarDetalleCertificadoRespuestaDTO
+    ): DetalleCertificadoApiDTO {
+        return{
+            uuid: respuesta.uuid,
+            titulo: respuesta.titulo,
+            fechaExpedicion: MapeadorFecha.formatear(respuesta.fechaExpedicion),
+            descripcion: respuesta.descripcion,
+        }
     }
 }
