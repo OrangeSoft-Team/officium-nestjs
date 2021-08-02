@@ -14,7 +14,7 @@ async function bootstrap() {
     ],
     credentials: true,
   })
-  const port = configService.get('PUERTO')
+  const port = configService.get('PORT')
   app.use(cookieParser())
   await app.listen(port || '3000')
 }
