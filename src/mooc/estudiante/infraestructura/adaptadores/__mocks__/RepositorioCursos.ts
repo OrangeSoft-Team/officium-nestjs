@@ -26,7 +26,7 @@ const curso  = {
 }
 export class RepositorioCursos implements IRepositorioCursos {
 
-  inscribirEmpleado(comando: InscribirEmpleadoPersistenciaDTO): Promise<void> {
+  public async inscribirEmpleado(comando: InscribirEmpleadoPersistenciaDTO): Promise<void> {
     return
   }
 

@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MiddlewareSesion } from '../../../../../comun/infraestructura/middleware/sesion.middleware'
+import { HandlerConsultarCuestionario } from '../../cqrs/handlers/ConsultarCuestionario.handler'
 import { HandlerConsultarDetalleCurso } from '../../cqrs/handlers/ConsultarDetalleCurso.handler'
 import { HandlerColsultarListaCursos } from '../../cqrs/handlers/ConsultarListaCursos.handler'
 import { HandlerInscribirCursoEstudiante } from '../../cqrs/handlers/InscribirCursoEstudiante.handler'
@@ -15,7 +16,8 @@ const ManejadoresQueries = [
   HandlerColsultarListaCursos, 
   HandlerConsultarDetalleCurso,
   HandlerInscribirCursoEstudiante,
-  HandlerVerLeccion]
+  HandlerVerLeccion,
+  HandlerConsultarCuestionario]
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([CursoORM])],

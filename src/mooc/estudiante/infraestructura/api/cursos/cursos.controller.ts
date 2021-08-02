@@ -3,6 +3,7 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
 import { ComandoInscribirCursoEstudiante } from '../../cqrs/comandos/InscribirCursoEstudiante.comando'
+import { QueryConsultarCuestionario } from '../../cqrs/queries/ConsultarCuestionario.query'
 import { QueryConsultarDetalleCurso } from '../../cqrs/queries/ConsultarDetalleCurso.query'
 import { QueryConsultarListaCursos } from '../../cqrs/queries/ConsultarListaCursos.query'
 import { QueryVerLeccion } from '../../cqrs/queries/VerLeccion.query'
@@ -87,4 +88,20 @@ export class ControladorCursos {
       }
       return LeccionApiMapeador.ConvertirRespuestaVerLeccion(solicitud.valor)
     }
+
+    @Get('/:uuid_curso/cuestionario')
+    public async ConsultarCuestionario(
+      @Body() dto: Auth<any>,
+      @Param('uuid_curso') uuidCurso: string,
+      ){
+        const solicitud = await this.queryBus.execute(
+          new QueryConsultarCuestionario({uuidCurso: uuidCurso})
+        )
+  
+        if (!solicitud.esExitoso) {
+          const excepcion = <IExcepcionAplicacion>solicitud.error
+          ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
+        }
+        return solicitud.valor
+      }
 }

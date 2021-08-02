@@ -2,7 +2,7 @@ import { IExcepcionAplicacion } from "../../../../comun/aplicacion/IExcepcionApl
 import { IServicioAplicacion } from "../../../../comun/aplicacion/IServicioAplicacion";
 import { Resultado } from "../../../../comun/aplicacion/Resultado";
 import { EstudianteNoExiste } from "../../dominio/excepciones/estudiante/Estudiante.excepciones";
-import { ConsultarCertificadoEstudianteQueryDTO, ConsultarCertificadoEstudianteRespuestaDTO } from "../dto/queries/ConsultarCertificadosEstudiante";
+import { ConsultarCertificadoEstudianteQueryDTO, ConsultarCertificadoEstudianteRespuestaDTO } from "../dto/queries/ConsultarCertificadosEstudiante.query";
 import { CertificadoMapeador } from "../mapeadores/Certificado.mapeador";
 import { IRepositorioCertificados } from "../puertos/IRepositorioCertificados";
 import { IRepositorioEstudiantes } from "../puertos/IRepositorioEstudiantes";

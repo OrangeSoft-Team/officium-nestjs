@@ -1,5 +1,5 @@
 import { MapeadorFecha } from "../../../../comun/infraestructura/mapeadores/Fecha.mapeador";
-import { ConsultarCertificadoEstudianteRespuestaDTO } from "../../aplicacion/dto/queries/ConsultarCertificadosEstudiante";
+import { ConsultarCertificadoEstudianteRespuestaDTO } from "../../aplicacion/dto/queries/ConsultarCertificadosEstudiante.query";
 import { ConsultarDetalleCertificadoRespuestaDTO } from "../../aplicacion/dto/queries/ConsultarDetalleCertificado.query";
 import { DetalleCertificadoApiDTO, ListaCertificadosApiDTO } from "../dto/Certificado.api.dto";
 

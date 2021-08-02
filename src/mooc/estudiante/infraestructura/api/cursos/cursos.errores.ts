@@ -7,7 +7,7 @@ const codigos = [
   {
     http: HttpStatus.NOT_FOUND,
     metodos: ['GET','POST'],
-    nombres: ['CursoNoExiste','LeccionNoExiste','EstudianteNoExiste'],
+    nombres: ['CursoNoExiste','LeccionNoExiste','EstudianteNoExiste','CuestionarioNoExiste'],
   },
 
   {

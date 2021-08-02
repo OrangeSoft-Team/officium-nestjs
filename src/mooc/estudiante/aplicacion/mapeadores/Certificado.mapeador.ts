@@ -3,7 +3,7 @@ import { DescripcionCertificado } from "../../dominio/values/certificado/Descrip
 import { FechaExpedicionCertificado } from "../../dominio/values/certificado/FechaExpedicionCertificado";
 import { IdentificadorCertificado } from "../../dominio/values/certificado/IdentificadorCertificado";
 import { TituloCurso } from "../../dominio/values/curso/TituloCurso";
-import { ConsultarCertificadoEstudianteRespuestaDTO } from "../dto/queries/ConsultarCertificadosEstudiante";
+import { ConsultarCertificadoEstudianteRespuestaDTO } from "../dto/queries/ConsultarCertificadosEstudiante.query";
 import { ConsultarDetalleCertificadoRespuestaDTO } from "../dto/queries/ConsultarDetalleCertificado.query";
 import { CertificadoDetallePersistenciaDTO, CertificadosPersistenciaDTO } from "../puertos/IRepositorioCertificados";
 
