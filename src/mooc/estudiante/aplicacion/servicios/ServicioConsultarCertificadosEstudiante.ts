@@ -16,7 +16,7 @@ export class ServicioConsultarCertificadosEstudiante implements IServicioAplicac
     public async ejecutar(query: ConsultarCertificadoEstudianteQueryDTO): Promise<Resultado<any>>{
         try{
             //Busca si el estudiante existe
-            const estudianteExiste = this.repositorioEstudiantes.existe(query.uuidEstudiante)
+            const estudianteExiste = await this.repositorioEstudiantes.existe(query.uuidEstudiante)
             if (!estudianteExiste)
                 throw new EstudianteNoExiste('El estudiante no existe')
             //Busca el certificado en repositorio

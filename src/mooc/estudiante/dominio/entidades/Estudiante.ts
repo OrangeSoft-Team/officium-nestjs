@@ -42,6 +42,32 @@ export class Estudiante extends Agregado {
     })
   }
 
+  public cursoAprobado(
+    idCurso: IdentificadorCurso
+  ){
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'EmpleadoCursoAprobado',
+      datos: {
+        idEmpleado: this.obtenerIdentificador().obtenerId(),
+        idCurso: idCurso.obtenerId(),
+      }
+    })
+  }
+
+  public cursoReprobado(
+    idCurso: IdentificadorCurso
+  ){
+    this.agregarEvento({
+      fecha: new Date(),
+      nombre: 'EmpleadoCursoReprobado',
+      datos: {
+        idEmpleado: this.obtenerIdentificador().obtenerId(),
+        idCurso: idCurso.obtenerId(),
+      }
+    })
+  }
+
   public static crear(datos: DatosEmpleado): Estudiante {
     const estudiante = new Estudiante(
       datos.identificador,

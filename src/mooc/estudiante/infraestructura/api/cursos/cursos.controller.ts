@@ -3,10 +3,12 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
 import { ComandoInscribirCursoEstudiante } from '../../cqrs/comandos/InscribirCursoEstudiante.comando'
+import { ComandoResponderCuestionario } from '../../cqrs/comandos/ResponderCuestionario.comando'
 import { QueryConsultarCuestionario } from '../../cqrs/queries/ConsultarCuestionario.query'
 import { QueryConsultarDetalleCurso } from '../../cqrs/queries/ConsultarDetalleCurso.query'
 import { QueryConsultarListaCursos } from '../../cqrs/queries/ConsultarListaCursos.query'
 import { QueryVerLeccion } from '../../cqrs/queries/VerLeccion.query'
+import { RespuestasOpcionesApiDTO } from '../../dto/CuestionarioCurso.api.dto'
 import { CursoApiMapeador } from '../../mapeadores/Curso.api.mapeador'
 import { LeccionApiMapeador } from '../../mapeadores/Leccion.api.mapeador'
 import { ErroresHttpCursos } from './cursos.errores'
@@ -17,6 +19,7 @@ export class ControladorCursos {
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
   ) {}
+
 
   @Get()
   public async ConsultarListadoCursos(@Body() dto: Auth<any>) {
@@ -33,6 +36,7 @@ export class ControladorCursos {
     // En caso de exito
     return CursoApiMapeador.convertirRespuestaListarCursos(solicitud.valor)
   }
+
 
   @Get('/:uuid_curso')
   public async ConsultarDetalleCurso(
@@ -53,6 +57,7 @@ export class ControladorCursos {
     return CursoApiMapeador.convertirRespuestaDetalleCurso(solicitud.valor)
   }
 
+
   @Post('/:uuid_curso/inscribirse')
   public async InscribirCursoEstudiante(
     @Body() dto: Auth<any>,
@@ -72,6 +77,30 @@ export class ControladorCursos {
     return
   }
 
+
+  @Post('/:uuid_curso/cuestionario/:uuid_cuestionario')
+  public async ResponderCuestionario(
+    @Body() dto: Auth<RespuestasOpcionesApiDTO[]>,
+    @Param('uuid_curso') uuidCurso: string,
+    @Param('uuid_cuestionario') uuidCuestionario: string
+  ){
+    const solicitud = await this.commandBus.execute(
+      new ComandoResponderCuestionario(
+        {
+          uuidCurso: uuidCurso,
+          uuidCuestionario: uuidCuestionario,
+          uuidEstudiante: dto.idUsuario,
+          respuestasCuestionario: dto
+        }))
+
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
+    }
+    return solicitud.valor
+  }
+  
+
   @Get('/:uuid_curso/leccion/:uuid_leccion')
   public async VerLeccion(
     @Body() dto: Auth<any>,
@@ -89,6 +118,7 @@ export class ControladorCursos {
       return LeccionApiMapeador.ConvertirRespuestaVerLeccion(solicitud.valor)
     }
 
+    
     @Get('/:uuid_curso/cuestionario')
     public async ConsultarCuestionario(
       @Body() dto: Auth<any>,
