@@ -19,9 +19,12 @@ import { ModuloUbicaciones } from './api/ubicaciones.module'
       username: process.env.USUARIO_BD,
       password: process.env.CLAVE_BD,
       database: process.env.NOMBRE_BD,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl:
+        process.env.NODE_ENV == 'production'
+          ? {
+              rejectUnauthorized: false,
+            }
+          : false,
       entities: [
         'dist/core/empleado/infraestructura/persistencia/*',
         'dist/core/empleador/infraestructura/persistencia/*',
