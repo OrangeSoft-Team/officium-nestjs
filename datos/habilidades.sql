@@ -1,4 +1,15 @@
 INSERT INTO habilidades VALUES
-(gen_random_uuid(), 'Python', 'Desarrollo'),
-(gen_random_uuid(), 'Java', 'Desarrollo'),
-(gen_random_uuid(), 'DDD', 'Desarrollo');
+('76da530e-a50b-43d5-874a-f7d48d9d8ab4', 'Computadoras', 'Manteninimiento'),
+('69c08f52-f815-42d7-997c-03024c8f1382', 'Plomeria', 'Manteninimiento'),
+('35f05b01-7b31-4c5d-8fe2-2008f5dc1d86', 'Electricidad', 'Manteninimiento'),
+('fcc83beb-5763-4d28-8d36-d018ec4cc89a', 'Mecanica', 'Manteninimiento'),
+('85fb9a58-2f32-44b5-b775-bc699ac71d3b', 'Escoba', 'Limpieza'),
+('ea55e76b-3ff2-4eeb-b1df-8f64133d2f63', 'Coleto', 'Limpieza'),
+('1ba272c9-9307-4c49-a2fd-6695da3bddf3', 'Aspiradora', 'Limpieza'),
+('69cdf389-e7bd-41e9-b849-07463041d72f', 'Desengrasar', 'Limpieza'),
+('b63d4d7e-a220-483d-a226-5d5714afb791', 'Reposteria', 'Cocina'),
+('196cc5b5-d1ff-4892-8ec5-0f34b0d329eb', 'Panaderia', 'Cocina'),
+('1cdc61c0-cff9-49b0-86ae-43738fcbbf8f', 'Charcuteria', 'Cocina'),
+('aa75ae99-95a7-47c7-800e-b1a9e96de11a', 'Lavadora', 'Lavanderia'),
+('aed812c7-ad35-46cd-8714-0a84457d755d', 'Secadora', 'Lavanderia'),
+('ce0c3013-2342-42c6-8673-d2a6f15a5ba6', 'Tendedero', 'Lavanderia');
