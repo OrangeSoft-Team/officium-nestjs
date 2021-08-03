@@ -35,7 +35,7 @@ INSERT INTO empleados VALUES
   'DISPONIBLE', 
   'MASCULINO', 
   '01-13-1998', 
-  -- brGPeEtMWsZLPxUv
+  -- gfVC5J7dVzVWG3o7sPPQVDgWmhz2
   '$2b$10$BEx963lFK7vj8uybHCbSTOm0YJBxtk5ELhTz/35K8.5QfI55w3TUO', 
   '9587f0bb-576a-4d6e-a647-3307b6b23a7d', 
   'Alfonso', 
@@ -51,7 +51,7 @@ INSERT INTO empleados VALUES
   'DISPONIBLE',
   'MASCULINO',
   '04-27-1993',
-  -- QICvsEaKfKTFF20V
+  -- Xf0aa6HgNZYSFAz5DEWz3PU7tX33
   '$2b$10$HMZQty3mrs1RffzxcjBI.eDdmmekAdIX00oibz9L7f4wMOAyOqA5K',
   '63ee99b9-3f12-4e1e-b5ec-7d11097a02f1',
   'Andres',
@@ -67,7 +67,7 @@ INSERT INTO empleados VALUES
   'DISPONIBLE',
   'FEMENINO',
   '09-17-2004',
-  -- yOBNl7BWHhW0pAEr
+  -- NY2b2X0DVegcV1Dp8WfRIOZgJ5I2 
   '$2b$10$AgbHju8bCGuIbrSDlXbJe.aQJBB8dj2VgjWmDbrS9BkH6k401OvLG',
   '6c0486e9-e9f2-48e8-b37b-fb6d7bf02a0e',
   'Andrea',

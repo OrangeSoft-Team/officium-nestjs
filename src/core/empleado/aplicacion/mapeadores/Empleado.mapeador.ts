@@ -13,6 +13,7 @@ import { NivelEducativoEmpleado } from '../../dominio/values/empleado/NivelEduca
 import { NombreCompletoEmpleado } from '../../dominio/values/empleado/NombreCompletoEmpleado'
 import { NumeroTelefonicoEmpleado } from '../../dominio/values/empleado/NumeroTelefonicoEmpleado'
 import { RegistrarEmpleadoComandoDTO } from '../dto/comandos/RegistrarEmpleado.comando'
+import { VerPerfilEmpleadoRespuestaDTO } from '../dto/queries/VerPerfilEmpleado.query'
 import { EmpleadoPersistenciaDTO } from '../puertos/IRepositorioEmpleados'
 
 export abstract class EmpleadoMapeador {
@@ -63,6 +64,38 @@ export abstract class EmpleadoMapeador {
       nivelEducativo: NivelEducativoEmpleado.crear(datos.nivelEducativo as any),
       experienciasLaborales: [],
       direccion: null,
+    }
+  }
+
+  public static convertirDominioEnRespuestaVerPerfil(
+    empleado: Empleado,
+    idPais: string,
+    idEstado: string,
+  ): VerPerfilEmpleadoRespuestaDTO {
+    return {
+      correo: empleado.obtenerCorreoElectronico().obtenerCorreo(),
+      genero: empleado.obtenerGenero().obtenerGenero(),
+      nivelEducativo: empleado.obtenerNivelEducativo().obtenerNivel(),
+      fechaNacimiento: empleado.obtenerFechaNacimiento().obtenerFecha(),
+      primerNombre: empleado.obtenerNombreCompleto().obtenerPrimerNombre(),
+      primerApellido: empleado.obtenerNombreCompleto().obtenerPrimerApellido(),
+      segundoNombre: empleado.obtenerNombreCompleto().obtenerSegundoNombre(),
+      segundoApellido: empleado
+        .obtenerNombreCompleto()
+        .obtenerSegundoApellido(),
+      numeroTelefonico: empleado.obtenerNumeroTelefonico().obtenerNumero(),
+      calleUno: empleado.obtenerDireccion().obtenerCalleUno().obtenerCalle(),
+      calleDos: empleado.obtenerDireccion().obtenerCalleDos().obtenerCalle(),
+      codigoPostal: empleado
+        .obtenerDireccion()
+        .obtenerCodigoPostal()
+        .obtenerCodigo(),
+      idCiudad: empleado
+        .obtenerDireccion()
+        .obtenerIdentificadorCiudad()
+        .obtenerId(),
+      idPais,
+      idEstado,
     }
   }
 
