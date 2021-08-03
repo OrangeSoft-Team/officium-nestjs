@@ -20,9 +20,8 @@ export class ControladorCursos {
     private readonly queryBus: QueryBus,
   ) {}
 
-
   @Get()
-  public async ConsultarListadoCursos(@Body() dto: Auth<any>) {
+  public async ConsultarListadoCursos() {
     const solicitud = await this.queryBus.execute(
       new QueryConsultarListaCursos(),
     )
@@ -37,14 +36,13 @@ export class ControladorCursos {
     return CursoApiMapeador.convertirRespuestaListarCursos(solicitud.valor)
   }
 
-
   @Get('/:uuid_curso')
   public async ConsultarDetalleCurso(
-      @Body() dto: Auth<any>,
-      @Param('uuid_curso') uuid: string,
+    @Body() dto: Auth<any>,
+    @Param('uuid_curso') uuid: string,
   ) {
     const solicitud = await this.queryBus.execute(
-      new QueryConsultarDetalleCurso({uuidCurso: uuid}),
+      new QueryConsultarDetalleCurso({ uuidCurso: uuid }),
     )
 
     // En caso de error
@@ -57,18 +55,17 @@ export class ControladorCursos {
     return CursoApiMapeador.convertirRespuestaDetalleCurso(solicitud.valor)
   }
 
-
   @Post('/:uuid_curso/inscribirse')
   public async InscribirCursoEstudiante(
     @Body() dto: Auth<any>,
     @Param('uuid_curso') uuidCurso: string,
-  ){
+  ) {
     const solicitud = await this.commandBus.execute(
-      new ComandoInscribirCursoEstudiante(
-        {
-          uuidCurso: uuidCurso,
-          uuidEstudiante: dto.idUsuario,
-        }))
+      new ComandoInscribirCursoEstudiante({
+        uuidCurso: uuidCurso,
+        uuidEstudiante: dto.idUsuario,
+      }),
+    )
 
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
@@ -77,21 +74,20 @@ export class ControladorCursos {
     return
   }
 
-
   @Post('/:uuid_curso/cuestionario/:uuid_cuestionario')
   public async ResponderCuestionario(
     @Body() dto: Auth<RespuestasOpcionesApiDTO[]>,
     @Param('uuid_curso') uuidCurso: string,
-    @Param('uuid_cuestionario') uuidCuestionario: string
-  ){
+    @Param('uuid_cuestionario') uuidCuestionario: string,
+  ) {
     const solicitud = await this.commandBus.execute(
-      new ComandoResponderCuestionario(
-        {
-          uuidCurso: uuidCurso,
-          uuidCuestionario: uuidCuestionario,
-          uuidEstudiante: dto.idUsuario,
-          respuestasCuestionario: dto
-        }))
+      new ComandoResponderCuestionario({
+        uuidCurso: uuidCurso,
+        uuidCuestionario: uuidCuestionario,
+        uuidEstudiante: dto.idUsuario,
+        respuestasCuestionario: dto,
+      }),
+    )
 
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
@@ -99,39 +95,37 @@ export class ControladorCursos {
     }
     return solicitud.valor
   }
-  
 
   @Get('/:uuid_curso/leccion/:uuid_leccion')
   public async VerLeccion(
     @Body() dto: Auth<any>,
     @Param('uuid_curso') uuidCurso: string,
     @Param('uuid_leccion') uuidLeccion: string,
-    ){
-      const solicitud = await this.queryBus.execute(
-        new QueryVerLeccion({uuidLeccion: uuidLeccion, uuidCurso: uuidCurso})
-      )
+  ) {
+    const solicitud = await this.queryBus.execute(
+      new QueryVerLeccion({ uuidLeccion: uuidLeccion, uuidCurso: uuidCurso }),
+    )
 
-      if (!solicitud.esExitoso) {
-        const excepcion = <IExcepcionAplicacion>solicitud.error
-        ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
-      }
-      return LeccionApiMapeador.ConvertirRespuestaVerLeccion(solicitud.valor)
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
     }
+    return LeccionApiMapeador.ConvertirRespuestaVerLeccion(solicitud.valor)
+  }
 
-    
-    @Get('/:uuid_curso/cuestionario')
-    public async ConsultarCuestionario(
-      @Body() dto: Auth<any>,
-      @Param('uuid_curso') uuidCurso: string,
-      ){
-        const solicitud = await this.queryBus.execute(
-          new QueryConsultarCuestionario({uuidCurso: uuidCurso})
-        )
-  
-        if (!solicitud.esExitoso) {
-          const excepcion = <IExcepcionAplicacion>solicitud.error
-          ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
-        }
-        return solicitud.valor
-      }
+  @Get('/:uuid_curso/cuestionario')
+  public async ConsultarCuestionario(
+    @Body() dto: Auth<any>,
+    @Param('uuid_curso') uuidCurso: string,
+  ) {
+    const solicitud = await this.queryBus.execute(
+      new QueryConsultarCuestionario({ uuidCurso: uuidCurso }),
+    )
+
+    if (!solicitud.esExitoso) {
+      const excepcion = <IExcepcionAplicacion>solicitud.error
+      ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')
+    }
+    return solicitud.valor
+  }
 }

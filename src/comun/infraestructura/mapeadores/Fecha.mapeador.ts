@@ -1,7 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
 
 export class MapeadorFecha {
-  public static formatear(fecha: Date): string {
+  public static formatear(fecha: Date, opcional?: boolean): string {
+    if (!fecha && opcional) return ''
     return fecha.toLocaleDateString('es', {
       day: '2-digit',
       month: '2-digit',

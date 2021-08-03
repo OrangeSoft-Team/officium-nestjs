@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Param } from "@nestjs/common"
-import { CommandBus, QueryBus } from "@nestjs/cqrs"
-import { IExcepcionAplicacion } from "../../../../../comun/aplicacion/IExcepcionAplicacion"
-import { Auth } from "../../../../../comun/infraestructura/dto/Auth.dto"
-import { QueryConsultarCertificadosEstudiante } from "../../cqrs/queries/ConsultarCertificadosEstudiante.query"
-import { QueryConsultarDetalleCertificado } from "../../cqrs/queries/ConsultarDetalleCertificado.query"
-import { CertificadoApiMapeador } from "../../mapeadores/Certificado.api.mapeador"
-import { ErroresHttpCertificados } from "./certificados.errores"
+import { Body, Controller, Get, Param } from '@nestjs/common'
+import { CommandBus, QueryBus } from '@nestjs/cqrs'
+import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
+import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
+import { QueryConsultarCertificadosEstudiante } from '../../cqrs/queries/ConsultarCertificadosEstudiante.query'
+import { QueryConsultarDetalleCertificado } from '../../cqrs/queries/ConsultarDetalleCertificado.query'
+import { CertificadoApiMapeador } from '../../mapeadores/Certificado.api.mapeador'
+import { ErroresHttpCertificados } from './certificados.errores'
 
 @Controller('api/empleado/certificado')
 export class ControladorCertificados {
@@ -17,7 +17,9 @@ export class ControladorCertificados {
   @Get()
   public async ConsultarCertificadosEmpleado(@Body() dto: Auth<any>) {
     const solicitud = await this.queryBus.execute(
-      new QueryConsultarCertificadosEstudiante({uuidEstudiante: dto.idUsuario}),
+      new QueryConsultarCertificadosEstudiante({
+        uuidEstudiante: dto.idUsuario,
+      }),
     )
 
     // En caso de error
@@ -27,16 +29,18 @@ export class ControladorCertificados {
     }
 
     // En caso de exito
-    return CertificadoApiMapeador.convertirRespuestaListarCertificados(solicitud.valor)
+    return CertificadoApiMapeador.convertirRespuestaListarCertificados(
+      solicitud.valor,
+    )
   }
 
   @Get('/:uuid_certificado')
   public async ConsultarDetalleCertificado(
-      @Body() dto: Auth<any>,
-      @Param('uuid_certificado') uuid: string,
-    ){
+    @Body() dto: Auth<any>,
+    @Param('uuid_certificado') uuid: string,
+  ) {
     const solicitud = await this.queryBus.execute(
-      new QueryConsultarDetalleCertificado({uuidCertificado: uuid}),
+      new QueryConsultarDetalleCertificado({ uuidCertificado: uuid }),
     )
 
     // En caso de error
@@ -46,6 +50,8 @@ export class ControladorCertificados {
     }
 
     // En caso de exito
-    return CertificadoApiMapeador.convertirRespuestaDetalleCurso(solicitud.valor)
+    return CertificadoApiMapeador.convertirRespuestaDetalleCurso(
+      solicitud.valor,
+    )
   }
 }
