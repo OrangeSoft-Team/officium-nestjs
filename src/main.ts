@@ -12,6 +12,7 @@ async function bootstrap() {
       configService.get('ORIGIN_VUE'),
       configService.get('ORIGIN_FLUTTER'),
       configService.get('ORIGIN_VAADIN'),
+      configService.get('ORIGIN_VUE_DEV'),
     ],
     credentials: true,
   })
