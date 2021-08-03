@@ -10,6 +10,17 @@ import { CrearExperienciaLaboralEmpleadoApiDTO } from '../../dto/CrearExperienci
 import { ExperienciaLaboralApiMapeador } from '../../mapeadores/ExperienciaLaboral.api.mapeador'
 import { ErroresHttpExperienciasEmpleado } from './experiencias.errores'
 import { Auth } from '../../../../../comun/infraestructura/dto/Auth.dto'
+import {
+  ApiBadRequestResponse,
+  ApiBasicAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger'
+import { ExperienciasLaboralesEmpleadoApiDTO } from '../../dto/ExperienciasLaboralesEmpleado.api.dto'
 
 @Controller('api/empleado/experiencias_laborales')
 export class ControladorExperienciasEmpleado {
@@ -19,6 +30,16 @@ export class ControladorExperienciasEmpleado {
   ) {}
 
   @Get()
+  @ApiTags('Core/Empleado')
+  @ApiOkResponse({
+    description:
+      'Se han obtenido las experiencias laborales del empleado correctamente.',
+    type: ExperienciasLaboralesEmpleadoApiDTO,
+  })
+  @ApiNotFoundResponse({
+    description: 'No se ha podido encontrar al empleado.',
+  })
+  @ApiBasicAuth()
   public async obtenerExperienciasLaborales(@Body() dto: Auth<any>) {
     const solicitud = await this.queryBus.execute(
       new QueryConsultarExperienciasLaboralesEmpleado(dto),
@@ -37,6 +58,22 @@ export class ControladorExperienciasEmpleado {
   }
 
   @Post()
+  @ApiTags('Core/Empleado')
+  @ApiCreatedResponse({
+    description:
+      'Se ha creado la experiencia laboral del empleado correctamente.',
+  })
+  @ApiNotFoundResponse({
+    description: 'No se ha podido encontrar al empleado.',
+  })
+  @ApiBadRequestResponse({
+    description:
+      'Algún dato especificado de la experiencia laboral es invalido.',
+  })
+  @ApiBody({
+    type: CrearExperienciaLaboralEmpleadoApiDTO,
+  })
+  @ApiBasicAuth()
   public async crearExperienciaLaboral(
     @Body() dto: Auth<CrearExperienciaLaboralEmpleadoApiDTO>,
   ) {
@@ -55,6 +92,26 @@ export class ControladorExperienciasEmpleado {
   }
 
   @Put('/:uuid_experiencia')
+  @ApiTags('Core/Empleado')
+  @ApiOkResponse({
+    description:
+      'Se ha actualizado la experiencia laboral del empleado correctamente.',
+  })
+  @ApiNotFoundResponse({
+    description:
+      'No se ha podido encontrar al empleado o la experiencia laboral.',
+  })
+  @ApiBadRequestResponse({
+    description:
+      'Algún dato especificado de la experiencia laboral es invalido.',
+  })
+  @ApiBody({ type: ActualizarExperienciaLaboralEmpleadoApiDTO })
+  @ApiParam({
+    name: 'uuid_experiencia',
+    type: 'string',
+    example: '5e4c28fc-b6f6-4db4-b0ad-e53e48a9390a',
+  })
+  @ApiBasicAuth()
   public async editarExperienciaLaboral(
     @Body() dto: Auth<ActualizarExperienciaLaboralEmpleadoApiDTO>,
     @Param('uuid_experiencia') id: string,
@@ -74,6 +131,22 @@ export class ControladorExperienciasEmpleado {
   }
 
   @Delete('/:uuid_experiencia')
+  @ApiTags('Core/Empleado')
+  @ApiTags('Core/Empleado')
+  @ApiOkResponse({
+    description:
+      'Se ha eliminado la experiencia laboral del empleado correctamente.',
+  })
+  @ApiNotFoundResponse({
+    description:
+      'No se ha podido encontrar al empleado o la experiencia laboral.',
+  })
+  @ApiParam({
+    name: 'uuid_experiencia',
+    type: 'string',
+    example: '5e4c28fc-b6f6-4db4-b0ad-e53e48a9390a',
+  })
+  @ApiBasicAuth()
   public async eliminarExperienciaLaboral(
     @Body() dto: Auth<any>,
     @Param('uuid_experiencia') id: string,

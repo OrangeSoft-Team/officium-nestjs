@@ -7,10 +7,18 @@ import {
   Res,
 } from '@nestjs/common'
 import { QueryBus } from '@nestjs/cqrs'
+import {
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger'
 import { Response } from 'express'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { QueryIniciarSesionAdministrador } from '../../cqrs/queries/IniciarSesionAdministrador.query'
-import { DatosInicioSesionAdministradorApiDTO } from '../../dto/DatosInicioSesionAdministrador.api.dto'
+import {
+  DatosInicioSesionAdministradorApiDTO,
+  DatosSesionAutenticadaAdministradorApiDTO,
+} from '../../dto/DatosInicioSesionAdministrador.api.dto'
 import { ErroresHttpAuthAdministrador } from './auth.errores'
 
 @Controller('api/staff/auth')
@@ -19,6 +27,14 @@ export class ControladorAuthAdministrador {
 
   @Post()
   @HttpCode(HttpStatus.OK)
+  @ApiTags('Auth/Administrador')
+  @ApiOkResponse({
+    description: 'Los datos del administrador suministrados son correctos.',
+    type: DatosSesionAutenticadaAdministradorApiDTO,
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Los datos del administrador suministrados son incorrectos.',
+  })
   public async loginAdmin(
     @Body() dto: DatosInicioSesionAdministradorApiDTO,
     @Res({ passthrough: true }) response: Response,
@@ -44,6 +60,8 @@ export class ControladorAuthAdministrador {
 
   @Post('/cerrar')
   @HttpCode(HttpStatus.OK)
+  @ApiTags('Auth/Administrador')
+  @ApiOkResponse({ description: 'Se ha cerrado sesión correctamente.' })
   public cerrarSesionAdmin(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('token')
     return

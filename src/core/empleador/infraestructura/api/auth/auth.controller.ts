@@ -7,10 +7,19 @@ import {
   Res,
 } from '@nestjs/common'
 import { QueryBus } from '@nestjs/cqrs'
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger'
 import { Response } from 'express'
 import { IExcepcionAplicacion } from '../../../../../comun/aplicacion/IExcepcionAplicacion'
 import { QueryIniciarSesionEmpresa } from '../../cqrs/queries/IniciarSesionEmpresa.query'
-import { DatosInicioSesionEmpleadorApiDTO } from '../../dto/DatosInicioSesionEmpleador.api.dto'
+import {
+  DatosInicioSesionEmpleadorApiDTO,
+  DatosSesionAutenticadaEmpresaApiDTO,
+} from '../../dto/DatosInicioSesionEmpleador.api.dto'
 import { ErroresHttpAuthEmpresa } from './auth.errores'
 
 @Controller('api/empleador/auth')
@@ -19,6 +28,15 @@ export class ControladorAuthEmpresa {
 
   @Post()
   @HttpCode(HttpStatus.OK)
+  @ApiTags('Auth/Empleador')
+  @ApiBody({ type: DatosInicioSesionEmpleadorApiDTO })
+  @ApiOkResponse({
+    type: DatosSesionAutenticadaEmpresaApiDTO,
+    description: 'Los datos de la empresa suministrada son correctos.',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Los datos de la empresa suministrada son incorrectos.',
+  })
   public async loginEmpleador(
     @Body() dto: DatosInicioSesionEmpleadorApiDTO,
     @Res({ passthrough: true }) response: Response,
@@ -46,6 +64,10 @@ export class ControladorAuthEmpresa {
 
   @Post('/cerrar')
   @HttpCode(HttpStatus.OK)
+  @ApiTags('Auth/Empleador')
+  @ApiOkResponse({
+    description: 'Se ha cerrado la sesión de la empresa correctamente.',
+  })
   public cerrarSesionEmpleador(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('token')
     return
