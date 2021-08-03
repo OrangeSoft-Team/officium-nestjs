@@ -22,6 +22,7 @@ export interface EmpresaPersistenciaDTO {
 export interface DatosBasicosEmpresaPersistenciaDTO {
   id: string
   nombreEmpresa: string
+  idDireccion?: string
   requisitosEspeciales?: string
 }
 

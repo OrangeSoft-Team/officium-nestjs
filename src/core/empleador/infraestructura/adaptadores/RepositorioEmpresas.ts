@@ -7,6 +7,7 @@ import {
   InformacionSesionPersistenciaDTO,
   IRepositorioEmpresas,
 } from '../../aplicacion/puertos/IRepositorioEmpresas'
+import { DireccionORM } from '../persistencia/Direccion.orm'
 import { EmpresaORM } from '../persistencia/Empresa.orm'
 
 export class RepositorioEmpresas implements IRepositorioEmpresas {
@@ -15,13 +16,19 @@ export class RepositorioEmpresas implements IRepositorioEmpresas {
   ): Promise<void> {
     try {
       const empresaORM = getRepository(EmpresaORM)
+      const direccionORM = getRepository(DireccionORM)
 
       const empresa = await empresaORM.findOneOrFail({
         where: { uuid: datosBasicos.id },
       })
 
+      const direccion = await direccionORM.findOne({
+        where: { uuid: datosBasicos.idDireccion },
+      })
+
       empresa.nombre = datosBasicos.nombreEmpresa
       empresa.requisitos_especiales = datosBasicos.requisitosEspeciales
+      empresa.direccion = direccion
 
       await empresaORM.save(empresa)
     } catch {}

@@ -54,6 +54,8 @@ export class ControladorAuthAdministrador {
     response.cookie('token', solicitud.valor.jwt, {
       httpOnly: true,
       expires: new Date(Date.now() + parseInt(process.env.AUTH_EXPIRA)),
+      secure: process.env.NODE_ENV == 'production',
+      sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'lax',
     })
     return solicitud.valor.sesion
   }

@@ -85,6 +85,7 @@ export abstract class EmpresaMapeador {
       id: empresa.obtenerIdentificador(),
       nombreEmpresa: empresa.obtenerNombre(),
       requisitosEspeciales: empresa.obtenerRequisitosEspeciales(),
+      idDireccion: empresa.obtenerDireccion().obtenerIdentificador(),
     }
   }
 }
