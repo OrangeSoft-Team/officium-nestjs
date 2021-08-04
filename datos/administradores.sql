@@ -5,8 +5,8 @@ INSERT INTO personales_administrativos VALUES
   'De Olim', 
   'miguel@officium.com', 
   'Director', 
-  -- E4Gf2hRwdVdWCGxZ
-  '$2b$10$IQqSasvmy4t7ypVzAeYYa.sUaDZce4SBQwuVAXbLPMCvtYmaOcYJ.'
+  -- dL2EJcrzMtNn63LvarxyHXXGIqp1
+  '$2b$10$Ng/q5NjNjs9zehttZcL9suP5/LdHBHUpp5JTXw1I1zHlOAo2bv0XO'
 ),
 (
   '8453b217-ac7d-48e5-8d08-89bbd0d958eb',
@@ -14,8 +14,8 @@ INSERT INTO personales_administrativos VALUES
   'Ruiz',
   'leonardo@officium.com',
   'Tesorero',
-  -- 9M88kVyUnFzyFYn6
-  '$2b$10$nGSqiPftLEgjt6X6ZOjRTe19qDPKuXN5gAgL.lrIJhBriH9Yxecs6'
+  -- XNfrYMPWuahJUdi4eWGRziHSUQ42
+  '$2b$10$Ofu.uAuAdh5/7q0sFouuPOGF0sZUqyeARXr/9MhqOl8jmwhw85uVW'
 ),
 (
   '43c8da77-6ee9-4a59-8d29-2d88e848a705',
@@ -23,8 +23,8 @@ INSERT INTO personales_administrativos VALUES
   'Da Pena',
   'isaac@officium.com',
   'Gerente',
-  -- LsDOjSUeSE5VTDFO
-  '$2b$10$3QKLbAInM29TNBTQxgHOL..qL.trWqlFTksH8AqKga9e82KW/KON2'
+  -- E7MvDvvtRFYY2AobGdqZsL4wssG2
+  '$2b$10$spMhBbQowAR4Z/i.xX64luatWJbLewjsDGvfys6jQ8DsIS9SEV1zi'
 ),
 (
   'b121986f-6de9-46a6-81ee-0e4826b4e9b9',
@@ -32,8 +32,8 @@ INSERT INTO personales_administrativos VALUES
   'Salvatorelli',
   'ricardo@officium.com',
   'Supervisor',
-  -- NcmmN8zHrUVEEoTA
-  '$2b$10$gUpff914mUXtOJbyFPbUL.RMviL1/D8tyqQCHxZ8oVARtZ1YxG4vK'
+  -- LJFJEzpJy5RNjXgOUzCi4kPKNr52
+  '$2b$10$eFnOrzTnaLLpFHIGotzkOOm4fLZScd64kXRvGeyWEPGC9RcC.4E4C'
 ),
 (
   '4d8cc2a4-4d35-4f5c-9491-815598215731',
@@ -41,6 +41,6 @@ INSERT INTO personales_administrativos VALUES
   'Gonzales',
   'robert@officium.com',
   'Supervisor',
-  -- 0OMPgbyAyaNoyNk2
-  '$2b$10$kroIe8SYsS1kT.EJic0F5etWbjJe9J./DLrIIxqM76Be8IY85Kqaa'
+  -- 9g65kUWa4SWfeXHfM0CRBSZlMmO2
+  '$2b$10$iJADxcI4q9fjYf66LeykH.2KCw3uQgR4GVWH2uEbXQLW9oVi29EVS'
 );
