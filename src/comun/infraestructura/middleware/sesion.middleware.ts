@@ -11,7 +11,7 @@ import { JwtPayload, verify } from 'jsonwebtoken'
 export class MiddlewareSesion implements NestMiddleware {
   public use(req: Request, res: Response, next: NextFunction) {
     try {
-      const token = req.cookies.token
+      const token = req.cookies.token || req.headers.authorization
       const payload = <JwtPayload>verify(token, process.env.JWT_SECRET)
       req.body.idUsuario = payload.idUsuario
     } catch {
