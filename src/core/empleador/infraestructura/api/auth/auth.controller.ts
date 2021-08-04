@@ -54,17 +54,9 @@ export class ControladorAuthEmpresa {
 
     // En caso de exito
     response.cookie('token', solicitud.valor.jwt, {
-      httpOnly: true,
       expires: new Date(Date.now() + parseInt(process.env.AUTH_EXPIRA)),
       sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'lax',
       secure: process.env.NODE_ENV == 'production',
-    })
-    response.cookie('token', solicitud.valor.jwt, {
-      httpOnly: true,
-      expires: new Date(Date.now() + parseInt(process.env.AUTH_EXPIRA)),
-      secure: process.env.NODE_ENV == 'production',
-      sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'lax',
-      domain: process.env.ORIGIN_SPRING,
     })
     return solicitud.valor.sesion
   }
