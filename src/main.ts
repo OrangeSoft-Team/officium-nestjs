@@ -14,6 +14,7 @@ async function bootstrap() {
       configService.get('ORIGIN_VAADIN'),
       configService.get('ORIGIN_VUE_DEV'),
     ],
+    exposedHeaders: ['Authorization'],
     credentials: true,
   })
   const port = configService.get('PORT')

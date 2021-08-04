@@ -60,7 +60,7 @@ export class ControladorAuthEmpleado {
       secure: process.env.NODE_ENV == 'production',
       sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'lax',
     })
-    response.setHeader('authorization', solicitud.valor.jwt)
+    response.setHeader('Authorization', solicitud.valor.jwt)
     return solicitud.valor.sesion
   }
 

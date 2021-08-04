@@ -58,7 +58,7 @@ export class ControladorAuthEmpresa {
       sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'lax',
       secure: process.env.NODE_ENV == 'production',
     })
-    response.setHeader('authorization', solicitud.valor.jwt)
+    response.setHeader('Authorization', solicitud.valor.jwt)
     return solicitud.valor.sesion
   }
 
