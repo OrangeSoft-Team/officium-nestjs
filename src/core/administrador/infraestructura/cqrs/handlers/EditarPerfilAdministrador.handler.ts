@@ -14,7 +14,7 @@ export class HandlerEditarPerfilAdministrador implements ICommandHandler {
 
   public constructor() {
     this.repositorioAdministradores = new RepositorioAdministradores()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.editarPerfilAdministrador = new ServicioEditarPerfilAdministrador(
       this.repositorioAdministradores,

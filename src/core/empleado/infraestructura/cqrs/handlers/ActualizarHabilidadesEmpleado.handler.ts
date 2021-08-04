@@ -17,8 +17,7 @@ export class HandlerActualizarHabilidadesEmpleado implements IQueryHandler {
   public constructor() {
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.repositorioHabilidades = new RepositorioHabilidades()
-    this.busEventos = new BusEventos()
-
+    this.busEventos = BusEventos.obtenerInstancia()
     this.actualizarHabilidadesEmpleado =
       new ServicioActualizarHabilidadesEmpleado(
         this.repositorioEmpleados,

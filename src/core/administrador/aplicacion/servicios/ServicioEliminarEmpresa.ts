@@ -39,7 +39,7 @@ export class ServicioEliminarEmpresa implements IServicioAplicacion {
       await this.repositorioEmpresas.eliminar(empresa.obtenerIdentificador())
 
       // Publicamos eventos
-      await this.busEventos.publicar(empresa.obtenerEventos())
+      this.busEventos.publicar(empresa.obtenerEventos())
 
       // Retornamos ok
       return Resultado.ok<void>()

@@ -14,7 +14,7 @@ export class HandlerEditarEmpresa implements ICommandHandler {
 
   public constructor() {
     this.repositorioEmpresas = new RepositorioEmpresas()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.editarEmpresa = new ServicioEditarEmpresa(
       this.repositorioEmpresas,

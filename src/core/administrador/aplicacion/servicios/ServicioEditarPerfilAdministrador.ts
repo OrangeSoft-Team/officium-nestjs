@@ -51,7 +51,7 @@ export class ServicioEditarPerfilAdministrador implements IServicioAplicacion {
       )
 
       // Publicamos el evento
-      await this.busEventos.publicar(administrador.obtenerEventos())
+      this.busEventos.publicar(administrador.obtenerEventos())
 
       // Retornamos ok
       return Resultado.ok<void>()

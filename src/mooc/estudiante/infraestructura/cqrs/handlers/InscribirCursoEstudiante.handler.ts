@@ -15,7 +15,7 @@ export class HandlerInscribirCursoEstudiante implements ICommandHandler {
   public constructor() {
     this.repositorioCursos = new RepositorioCursos()
     this.repositorioEstudiantes = new RepositorioEstudiantes()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
     this.inscribirCurso = new ServicioInscribirCursoEstudiante(
       this.repositorioEstudiantes,
       this.repositorioCursos,

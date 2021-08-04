@@ -17,7 +17,7 @@ export class HandlerCrearEmpresa implements ICommandHandler {
 
   public constructor() {
     this.repositorioEmpresas = new RepositorioEmpresas()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
     this.servicioIdentificador = new ServicioIdentificador()
 
     this.crearEmpresa = new ServicioCrearEmpresa(

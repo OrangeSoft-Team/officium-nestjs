@@ -14,7 +14,7 @@ export class HandlerEliminarEmpresa implements ICommandHandler {
 
   public constructor() {
     this.repositorioEmpresas = new RepositorioEmpresas()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.eliminarEmpresa = new ServicioEliminarEmpresa(
       this.repositorioEmpresas,

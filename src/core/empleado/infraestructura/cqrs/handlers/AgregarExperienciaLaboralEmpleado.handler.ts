@@ -20,7 +20,7 @@ export class HandlerAgregarExperienciaLaboralEmpleado implements IQueryHandler {
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.repositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
     this.servicioIdentificador = new ServicioIdentificador()
 
     this.agregarExperienciaLaboralEmpleado =

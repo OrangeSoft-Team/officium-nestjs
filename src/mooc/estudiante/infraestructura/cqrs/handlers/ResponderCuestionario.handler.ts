@@ -18,7 +18,7 @@ export class HandlerResponderCuestionario implements ICommandHandler {
     this.repositorioCursos = new RepositorioCursos()
     this.repositorioEstudiantes = new RepositorioEstudiantes()
     this.repositorioRespuestas = new RepositorioRespuestas()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
     this.responderCuestionario = new ServicioResponderCuestionario(
       this.repositorioRespuestas,
       this.repositorioEstudiantes,

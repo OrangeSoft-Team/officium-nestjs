@@ -139,7 +139,7 @@ export class ServicioEditarPerfilEmpresa implements IServicioAplicacion {
       )
 
       // Publicamos eventos
-      await this.busEventos.publicar(empresa.obtenerEventos())
+      this.busEventos.publicar(empresa.obtenerEventos())
 
       return Resultado.ok<void>(null)
     } catch (error) {

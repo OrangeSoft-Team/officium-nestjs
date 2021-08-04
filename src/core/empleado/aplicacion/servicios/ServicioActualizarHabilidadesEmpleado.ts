@@ -61,7 +61,7 @@ export class ServicioActualizarHabilidadesEmpleado
       )
 
       // Publicamos el evento de dominio
-      await this.busEventos.publicar(empleado.obtenerEventos())
+      this.busEventos.publicar(empleado.obtenerEventos())
 
       return Resultado.ok<void>(null)
     } catch (error) {

@@ -20,7 +20,7 @@ export class HandlerEliminarExperienciaLaboralEmpleado
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.repositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.eliminarExperienciaLaboralEmpleado =
       new ServicioEliminarExperienciaLaboralEmpleado(

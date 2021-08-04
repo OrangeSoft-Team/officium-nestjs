@@ -67,7 +67,7 @@ export class ServicioEliminarExperienciaLaboralEmpleado
       )
 
       // Publicamos el evento de dominio
-      await this.busEventos.publicar(empleado.obtenerEventos())
+      this.busEventos.publicar(empleado.obtenerEventos())
 
       // Retornamos ok
       return Resultado.ok<void>(null)

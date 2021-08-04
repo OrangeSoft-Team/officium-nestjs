@@ -63,7 +63,7 @@ export class ServicioResponderCuestionario implements IServicioAplicacion {
       if (verificar) estudianteDominio.cursoAprobado(cursoDominio.uuid)
       else estudianteDominio.cursoReprobado(cursoDominio.uuid)
 
-      await this.busEventos.publicar(estudianteDominio.obtenerEventos())
+      this.busEventos.publicar(estudianteDominio.obtenerEventos())
 
       return Resultado.ok<boolean>(verificar)
     } catch (error) {

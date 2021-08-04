@@ -18,7 +18,7 @@ export class HandlerEditarExperienciaLaboralEmpleado implements IQueryHandler {
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.repositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.editarExperienciaLaboralEmpleado =
       new ServicioEditarExperienciaLaboralEmpleado(

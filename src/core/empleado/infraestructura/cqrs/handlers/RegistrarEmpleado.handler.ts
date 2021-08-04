@@ -32,7 +32,7 @@ export class HandlerRegistrarEmpleado
     this.repositorioDirecciones = new RepositorioDirecciones()
     this.repositorioEmpleados = new RepositorioEmpleados()
     this.servicioIdentificador = new ServicioIdentificador()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.servicioRegistrarEmpleado = new ServicioRegistrarEmpleado(
       this.repositorioPaises,

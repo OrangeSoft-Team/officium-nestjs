@@ -23,7 +23,7 @@ export class HandlerActualizarPerfilEmpresa implements ICommandHandler {
     this.repositorioHabilidades = new RepositorioHabilidades()
     this.repositorioDirecciones = new RepositorioDirecciones()
     this.servicioIdentificadores = new ServicioIdentificador()
-    this.busEventos = new BusEventos()
+    this.busEventos = BusEventos.obtenerInstancia()
 
     this.actualizarPerfilEmpresa = new ServicioEditarPerfilEmpresa(
       this.repositorioEmpresas,
