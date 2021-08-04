@@ -89,6 +89,8 @@ export class ControladorCursos {
       }),
     )
 
+    console.log(solicitud)
+
     if (!solicitud.esExitoso) {
       const excepcion = <IExcepcionAplicacion>solicitud.error
       ErroresHttpCursos.manejarExcepcion(excepcion, 'GET')

@@ -11,7 +11,7 @@ interface PreguntasCuestionarioApiDTO {
   opciones: OpcionesPreguntaApiDTO[]
 }
 
-export interface RespuestasOpcionesApiDTO{
+export interface RespuestasOpcionesApiDTO {
   uuidPregunta: string
   uuidOpcion: string
 }

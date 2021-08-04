@@ -6,18 +6,20 @@ import { HandlerConsultarCuestionario } from '../../cqrs/handlers/ConsultarCuest
 import { HandlerConsultarDetalleCurso } from '../../cqrs/handlers/ConsultarDetalleCurso.handler'
 import { HandlerColsultarListaCursos } from '../../cqrs/handlers/ConsultarListaCursos.handler'
 import { HandlerInscribirCursoEstudiante } from '../../cqrs/handlers/InscribirCursoEstudiante.handler'
+import { HandlerResponderCuestionario } from '../../cqrs/handlers/ResponderCuestionario.handler'
 import { HandlerVerLeccion } from '../../cqrs/handlers/VerLeccion.handler'
 import { CursoORM } from '../../persistencia/Curso.orm'
 import { ControladorCursos } from './cursos.controller'
 
-const ManejadoresComandos = []
+const ManejadoresComandos = [HandlerResponderCuestionario]
 
 const ManejadoresQueries = [
-  HandlerColsultarListaCursos, 
+  HandlerColsultarListaCursos,
   HandlerConsultarDetalleCurso,
   HandlerInscribirCursoEstudiante,
   HandlerVerLeccion,
-  HandlerConsultarCuestionario]
+  HandlerConsultarCuestionario,
+]
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([CursoORM])],
