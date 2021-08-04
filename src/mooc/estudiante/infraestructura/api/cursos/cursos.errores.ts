@@ -6,8 +6,14 @@ type METODOS = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 const codigos = [
   {
     http: HttpStatus.NOT_FOUND,
-    metodos: ['GET'],
-    nombres: ['CursoNoExiste'],
+    metodos: ['GET','POST'],
+    nombres: ['CursoNoExiste','LeccionNoExiste','EstudianteNoExiste','CuestionarioNoExiste'],
+  },
+
+  {
+    http: HttpStatus.BAD_REQUEST,
+    metodos: ['POST'],
+    nombres: ['EstudianteInactivo'],
   },
 ]
 

@@ -18,20 +18,23 @@ export abstract class CursoApiMapeador {
     })
     return cursos
   }
-  
+
   public static convertirRespuestaDetalleCurso(
-      respuesta: ConsultarDetalleCursoRespuestaDTO
+    respuesta: ConsultarDetalleCursoRespuestaDTO,
   ): DetalleCursoApiDTO {
-      return {
-        uuid: respuesta.uuid,
-        titulo: respuesta.titulo,
-        estatus: respuesta.estatus,
-        valorDuracion: respuesta.valorDuracion,
-        escalaDuracion: respuesta.escalaDuracion,
-        fechaCreacion: MapeadorFecha.formatear(respuesta.fechaCreacion),
-        fechaUltimaModificacion: MapeadorFecha.formatear(respuesta.fechaUltimaModificacion),
-        lecciones: respuesta.lecciones,
-        habilidades: respuesta.habilidades,
-      }
+    return {
+      uuid: respuesta.uuid,
+      titulo: respuesta.titulo,
+      estatus: respuesta.estatus,
+      valorDuracion: respuesta.valorDuracion,
+      escalaDuracion: respuesta.escalaDuracion,
+      fechaCreacion: MapeadorFecha.formatear(respuesta.fechaCreacion),
+      fechaUltimaModificacion: MapeadorFecha.formatear(
+        respuesta?.fechaUltimaModificacion,
+        true,
+      ),
+      lecciones: respuesta.lecciones,
+      habilidades: respuesta.habilidades,
+    }
   }
 }

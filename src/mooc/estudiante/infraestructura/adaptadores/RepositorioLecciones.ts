@@ -26,7 +26,7 @@ export class RepositorioLecciones implements IRepositorioLecciones {
         try{
             const leccionORM = getRepository(LeccionORM) 
             const cursoORM = getRepository(CursoORM)
-            const curso = cursoORM.findOneOrFail({
+            const curso = await cursoORM.findOneOrFail({
                 where: {uuid: query.uuidCurso}
             })
             const lecciones = (

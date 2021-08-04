@@ -19,7 +19,13 @@ export interface CursoPersistenciaDTO {
   fechaUltimaModificacion?: Date
 }
 
+export interface InscribirEmpleadoPersistenciaDTO {
+  uuidCurso: string
+  uuidEstudiante: string
+}
+
 export interface IRepositorioCursos {
   listar(): Promise<ListadoCursosPersistenciaDTO[]>
   consultar(query: ConsultarCursoPersistenciaDTO): Promise<CursoPersistenciaDTO>
+  inscribirEmpleado(comando: InscribirEmpleadoPersistenciaDTO): Promise<void>
 }
