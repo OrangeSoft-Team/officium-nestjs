@@ -28,6 +28,8 @@
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^7.1.5",
+    "@types/amqplib": "^0.8.1",
+    "amqplib": "^0.8.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "jsonwebtoken": "^8.5.1",
