@@ -37,7 +37,10 @@ export class HandlerIniciarSesionEmpresa implements IQueryHandler {
     )
 
     if (solicitud.esExitoso) {
-      const jwt = sign(solicitud.valor.id, process.env.JWT_SECRET)
+      const jwt = sign(
+        { idUsuario: solicitud.valor.id },
+        process.env.JWT_SECRET,
+      )
 
       solicitud.valor.jwt = jwt
 

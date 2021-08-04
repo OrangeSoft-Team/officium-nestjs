@@ -5,15 +5,15 @@ import {
   NestMiddleware,
 } from '@nestjs/common'
 import { NextFunction, Request, Response } from 'express'
-import { verify } from 'jsonwebtoken'
+import { JwtPayload, verify } from 'jsonwebtoken'
 
 @Injectable()
 export class MiddlewareSesion implements NestMiddleware {
   public use(req: Request, res: Response, next: NextFunction) {
     try {
       const token = req.cookies.token
-      const id_auth = verify(token, process.env.JWT_SECRET)
-      req.body.idUsuario = id_auth
+      const payload = <JwtPayload>verify(token, process.env.JWT_SECRET)
+      req.body.idUsuario = payload.idUsuario
     } catch {
       res.clearCookie('token')
       throw new HttpException(
