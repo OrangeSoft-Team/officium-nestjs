@@ -2,7 +2,7 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import {
   FechaCreacionCursoVacia,
   FechaCreacionCursoInvalida,
-} from '../../excepciones/curso/FechaCreacionCurso.excepciones'
+} from '../../Excepciones/curso/FechaCreacionCurso.excepciones'
 
 export class FechaCreacionCurso implements IValueObject {
   private constructor(private readonly fecha: Date) {}
