@@ -2,7 +2,7 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import {
   TituloCursoVacio,
   LongitudInvalidaTituloCurso,
-} from '../../excepciones/curso/TituloCurso.excepciones'
+} from '../../Excepciones/curso/TituloCurso.excepciones'
 
 export class TituloCurso implements IValueObject {
   private constructor(private readonly titulo: string) {}

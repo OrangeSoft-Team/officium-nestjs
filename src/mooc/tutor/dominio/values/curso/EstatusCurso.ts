@@ -2,7 +2,7 @@ import { IValueObject } from '../../../../../comun/dominio/IValueObject'
 import {
   EstatusCursoVacio,
   EstatusCursoInvalido,
-} from '../../excepciones/curso/EstatusCurso.excepciones'
+} from '../../Excepciones/curso/EstatusCurso.excepciones'
 
 type ESTATUS_CURSO = 'ACTIVO' | 'INACTIVO'
 

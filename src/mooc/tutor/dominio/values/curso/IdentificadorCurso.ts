@@ -1,5 +1,5 @@
 import { IValueObject } from '../../../../../comun/dominio/IValueObject'
-import { IdentificadorCursoVacio } from '../../excepciones/curso/IdentificadorCurso.excepciones'
+import { IdentificadorCursoVacio } from '../../Excepciones/curso/IdentificadorCurso.excepciones'
 
 export class IdentificadorCurso implements IValueObject {
   private constructor(private readonly id: string) {}

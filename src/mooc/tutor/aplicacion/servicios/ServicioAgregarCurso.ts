@@ -3,9 +3,8 @@ import { IExcepcionAplicacion } from '../../../../comun/aplicacion/IExcepcionApl
 import { IServicioAplicacion } from '../../../../comun/aplicacion/IServicioAplicacion'
 import { IServicioIdentificador } from '../../../../comun/aplicacion/puertos/IServicioIdentificador'
 import { Resultado } from '../../../../comun/aplicacion/Resultado'
-import { CursoYaExiste } from '../../dominio/excepciones/curso/Curso.excepciones'
+import { CursoYaExiste } from '../../dominio/Excepciones/curso/Curso.excepciones'
 import { CrearCurso } from '../../dominio/servicios/CrearCurso'
-import { DatosRestaurarListaHabilidades } from '../../dominio/servicios/RestaurarHabilidad';
 import { CrearCursoComandoDTO } from '../dto/comandos/CrearCurso.comando'
 import { CursoMapeador } from '../mapeadores/Curso.mapeador'
 import { HabilidadMapeador } from '../mapeadores/Habilidad.mapeador'

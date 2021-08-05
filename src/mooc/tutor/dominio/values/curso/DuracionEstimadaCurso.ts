@@ -3,7 +3,7 @@ import {
   DuracionEstimadaCursoVacio,
   DuracionEscalaCursoInvalida,
   LongitudInvalidaDuracionValorCurso,
-} from '../../excepciones/curso/DuracionEstimadaCurso.excepciones'
+} from '../../Excepciones/curso/DuracionEstimadaCurso.excepciones'
 
 type ESCALA_VALORES = 'HORA' | 'DIA' | 'SEMANA' | 'MES'
 
