@@ -2,6 +2,10 @@ import { IBusEventos } from '../../aplicacion/IBusEventos'
 import { IEventoDominio } from '../../dominio/IEventoDominio'
 import { connect, Connection } from 'amqplib'
 
+type EventoNest<T> = {
+  [P in keyof T]: T[P]
+} & { backend: 'Nest' }
+
 export class BusEventos implements IBusEventos {
   private static instancia: BusEventos
   private amqp: Connection
@@ -24,7 +28,11 @@ export class BusEventos implements IBusEventos {
     const canal = await this.amqp.createChannel()
 
     for (const evento of eventos) {
-      const json = JSON.stringify(evento)
+      const eventoNest: EventoNest<IEventoDominio> = {
+        ...evento,
+        backend: 'Nest',
+      }
+      const json = JSON.stringify(eventoNest)
       canal.sendToQueue(this.nombreCola, Buffer.from(json))
     }
   }
