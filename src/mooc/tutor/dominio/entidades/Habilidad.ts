@@ -7,7 +7,7 @@ export interface DatosHabilidad {
 
 export class Habilidad extends Entidad {
   private constructor(
-    private readonly uuidHabilidad: IdentificadorHabilidad
+    public readonly uuidHabilidad: IdentificadorHabilidad
   ) {
     super()
   }
