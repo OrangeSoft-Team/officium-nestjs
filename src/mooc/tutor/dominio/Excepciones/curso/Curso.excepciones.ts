@@ -1,5 +1,4 @@
 import { IExcepcion } from "../../../../../comun/dominio/IExcepcion"
-
 export class CursoNoExiste implements IExcepcion {
     public readonly origen = 'CursoNoExiste'
     public constructor(public readonly mensaje: string) {}
@@ -12,7 +11,6 @@ export class CursoNoExiste implements IExcepcion {
     }
 
   }
-
 export class CursoYaExiste implements IExcepcion {
   public readonly origen = 'CursoYaExiste'
   public constructor(public readonly mensaje: string) {}

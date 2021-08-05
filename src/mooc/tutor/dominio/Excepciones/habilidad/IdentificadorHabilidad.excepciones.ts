@@ -1,5 +1,4 @@
 import { IExcepcion } from '../../../../../comun/dominio/IExcepcion'
-
 export class IdentificadorHabilidadVacio implements IExcepcion {
   public readonly origen = 'IdentificadorHabilidadVacio'
   public constructor(public readonly mensaje: string) {}

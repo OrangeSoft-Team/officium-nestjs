@@ -4,8 +4,7 @@ import { IdentificadorCurso } from '../values/curso/IdentificadorCurso'
 import { TituloCurso } from '../values/curso/TituloCurso'
 import { DuracionEstimadaCurso } from '../values/curso/DuracionEstimadaCurso';
 import { FechaCreacionCurso } from '../values/curso/FechaCreacionCurso';
-import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad';
-import { Habilidad } from '../../dominio/entidades/Habilidad'
+import { Habilidad } from './Habilidad'
 
 export interface DatosCurso {
       identificador: IdentificadorCurso
@@ -13,9 +12,8 @@ export interface DatosCurso {
       estatus: EstatusCurso
       duracionEstimada: DuracionEstimadaCurso
       fechaCreacion: FechaCreacionCurso
-      identificadorHabilidades: Habilidad[]
+      habilidades?: Habilidad[]
     }
-
 
 export class Curso extends Entidad {
       private constructor(
@@ -64,7 +62,7 @@ export class Curso extends Entidad {
             datos.estatus,
             datos.duracionEstimada,
             datos.fechaCreacion,
-            datos.identificadorHabilidades
+            datos.habilidades
             )
       }
 }

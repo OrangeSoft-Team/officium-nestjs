@@ -1,44 +1,30 @@
 import { Entidad } from '../../../../comun/dominio/Entidad'
-import { CategoriaHabilidad } from '../../dominio/values/habilidad/CategoriaHabilidad'
-import { NombreHabilidad } from '../../dominio/values/habilidad/NombreHabilidad'
 import { IdentificadorHabilidad } from '../values/habilidad/IdentificadorHabilidad'
 
 export interface DatosHabilidad {
-  identificador: IdentificadorHabilidad
-  nombre: NombreHabilidad
-  categoria: CategoriaHabilidad
+  uuidHabilidad: IdentificadorHabilidad
 }
 
 export class Habilidad extends Entidad {
   private constructor(
-    private readonly identificador: IdentificadorHabilidad,
-    private nombre: NombreHabilidad,
-    private categoria: CategoriaHabilidad,
+    private readonly uuidHabilidad: IdentificadorHabilidad
   ) {
     super()
   }
 
   public obtenerIdentificador() {
-    return this.identificador
+    return this.uuidHabilidad
   }
 
   public esIgual(habilidad: Habilidad): boolean {
-    return this.identificador.esIgual(habilidad.obtenerIdentificador())
-  }
-
-  public obtenerNombre() {
-    return this.nombre
-  }
-
-  public obtenerCategoria() {
-    return this.categoria
+    return this.uuidHabilidad.esIgual(habilidad.obtenerIdentificador())
   }
 
   public static crear(datos: DatosHabilidad): Habilidad {
-    return new Habilidad(datos.identificador, datos.nombre, datos.categoria)
+    return new Habilidad(datos.uuidHabilidad)
   }
 
   public static restaurar(datos: DatosHabilidad): Habilidad {
-    return new Habilidad(datos.identificador, datos.nombre, datos.categoria)
+    return new Habilidad(datos.uuidHabilidad)
   }
 }
