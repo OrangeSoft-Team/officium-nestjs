@@ -53,7 +53,7 @@ describe('Unitario - Core/Empleador: Obtener perfil de la empresa', () => {
     mockRepositorioDirecciones = new RepositorioDirecciones()
     mockRepositorioHabilidades = new RepositorioHabilidades()
     mockServicioIdentificador = new ServicioIdentificador()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEditarPerfilEmpresa(
       mockRepositorioEmpresas,

@@ -13,6 +13,8 @@ const EMPRESA: Auth<CrearEmpresaApiDTO> = {
   token: '468948694684',
 }
 
+jest.mock('../../../../src/comun/infraestructura/adaptadores/BusEventos')
+
 jest.mock('../../../../src/comun/infraestructura/middleware/sesion.middleware')
 
 jest.mock(

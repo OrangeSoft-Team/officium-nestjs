@@ -29,7 +29,7 @@ describe('Unitario - Core/Empleado: Eliminar una experiencia laboral para un emp
     mockRepositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
     mockRepositorioEmpleados = new RepositorioEmpleados()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEliminarExperienciaLaboralEmpleado(
       mockRepositorioExperienciasLaborales,

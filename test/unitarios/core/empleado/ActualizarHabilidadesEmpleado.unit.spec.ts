@@ -33,7 +33,7 @@ describe('Unitario - Core/Empleado: Actualizar habilidades para un empleado', ()
   beforeAll(() => {
     mockRepositorioHabilidades = new RepositorioHabilidades()
     mockRepositorioEmpleados = new RepositorioEmpleados()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioActualizarHabilidadesEmpleado(
       mockRepositorioEmpleados,

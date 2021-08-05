@@ -33,7 +33,7 @@ describe('Unitario - Core/Administrador: Crear una nueva empresa', () => {
   beforeAll(() => {
     mockRepositorioEmpresas = new RepositorioEmpresas()
     mockServicioIdentificador = new ServicioIdentificador()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioCrearEmpresa(
       mockRepositorioEmpresas,

@@ -19,7 +19,7 @@ describe('Unitario - Core/Administrador: Eliminar empresa actual', () => {
 
   beforeAll(() => {
     mockRepositorioEmpresas = new RepositorioEmpresas()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEliminarEmpresa(
       mockRepositorioEmpresas,

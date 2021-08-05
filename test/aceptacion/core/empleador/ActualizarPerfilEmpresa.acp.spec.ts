@@ -17,6 +17,8 @@ jest.mock(
 
 jest.mock('../../../../src/comun/infraestructura/middleware/sesion.middleware')
 
+jest.mock('../../../../src/comun/infraestructura/adaptadores/BusEventos')
+
 const DATOS_PERFIL: Auth<ActualizarDatosBasicosEmpleadorApiDTO> = {
   idUsuario: '1069dfaf-4740-4a05-821e-c22f4538ae91',
   nombreEmpresa: 'LimonSoft',

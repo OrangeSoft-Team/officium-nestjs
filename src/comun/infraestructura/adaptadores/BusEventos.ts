@@ -19,11 +19,11 @@ export class BusEventos implements IBusEventos {
     return BusEventos.instancia
   }
 
-  public async publicar(eventos: IEventoDominio[]): Promise<void> {
+  public async publicar(eventos: IEventoDominio[]) {
     this.amqp = await connect(process.env.RUTA_AMQP)
     const canal = await this.amqp.createChannel()
 
     const json = JSON.stringify(eventos)
-    await canal.sendToQueue(this.nombreCola, Buffer.from(json))
+    canal.sendToQueue(this.nombreCola, Buffer.from(json))
   }
 }

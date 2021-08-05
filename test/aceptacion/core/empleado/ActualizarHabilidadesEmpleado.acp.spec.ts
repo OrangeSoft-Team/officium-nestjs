@@ -18,6 +18,8 @@ jest.mock(
 
 jest.mock('../../../../src/comun/infraestructura/middleware/sesion.middleware')
 
+jest.mock('../../../../src/comun/infraestructura/adaptadores/BusEventos')
+
 const DATOS_HABILIDADES: Auth<ActualizarHabilidadesEmpleadoApiDTO> = {
   idUsuario: '0679466b-6198-4d4a-8d2b-bdfeea40c010',
   uuid: [

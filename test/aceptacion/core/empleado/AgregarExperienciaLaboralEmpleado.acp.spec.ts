@@ -17,6 +17,8 @@ jest.mock(
 
 jest.mock('../../../../src/comun/infraestructura/middleware/sesion.middleware')
 
+jest.mock('../../../../src/comun/infraestructura/adaptadores/BusEventos')
+
 const DATOS_EXPERIENCIA: Auth<CrearExperienciaLaboralEmpleadoApiDTO> = {
   cargo: 'Asistente',
   nombreEmpresa: 'OrangeSoft',

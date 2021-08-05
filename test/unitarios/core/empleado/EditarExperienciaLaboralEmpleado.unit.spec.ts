@@ -31,7 +31,7 @@ describe('Unitario - Core/Empleado: Editar una experiencia laboral para un emple
     mockRepositorioExperienciasLaborales =
       new RepositorioExperienciasLaborales()
     mockRepositorioEmpleados = new RepositorioEmpleados()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEditarExperienciaLaboralEmpleado(
       mockRepositorioExperienciasLaborales,

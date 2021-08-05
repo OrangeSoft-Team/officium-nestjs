@@ -26,7 +26,7 @@ describe('Unitario - Core/Administrador: Editar datos de una empresa actual', ()
 
   beforeAll(() => {
     mockRepositorioEmpresas = new RepositorioEmpresas()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEditarEmpresa(mockRepositorioEmpresas, mockBusEventos)
 

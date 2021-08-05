@@ -26,7 +26,7 @@ describe('Unitario - Core/Administrador: Editar el perfil de un administrador', 
 
   beforeAll(() => {
     mockRepositorioAdministradores = new RepositorioAdministradores()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioEditarPerfilAdministrador(
       mockRepositorioAdministradores,

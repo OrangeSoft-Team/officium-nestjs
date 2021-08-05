@@ -62,7 +62,7 @@ describe('Unitario - Core/Empleado: Registrar un nuevo empleado en el sistema', 
     mockRepositorioDirecciones = new RepositorioDirecciones()
     mockRepositorioEmpleados = new RepositorioEmpleados()
     mockServicioIdentificador = new ServicioIdentificador()
-    mockBusEventos = new BusEventos()
+    mockBusEventos = BusEventos.obtenerInstancia()
 
     casoUso = new ServicioRegistrarEmpleado(
       mockRepositorioPaises,

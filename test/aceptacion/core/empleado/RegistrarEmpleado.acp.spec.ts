@@ -12,6 +12,8 @@ jest.mock(
   '../../../../src/core/empleado/infraestructura/api/core.empleado.module',
 )
 
+jest.mock('../../../../src/comun/infraestructura/adaptadores/BusEventos')
+
 const DATOS_EMPLEADO: DatosRegistroEmpleadoApiDTO = {
   correoElectronico: 'carlosruiz@gmail.com',
   genero: 'MASCULINO',
