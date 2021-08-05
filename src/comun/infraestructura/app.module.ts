@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ModuloCoreAdministrador } from '../../core/administrador/infraestructura/api/core.administrador.module'
 import { ModuloCoreEmpleado } from '../../core/empleado/infraestructura/api/core.empleado.module'
 import { ModuloCoreEmpleador } from '../../core/empleador/infraestructura/api/core.empleador.module'
-import { ModuloMoocAdministrador } from '../../mooc/tutor/infraestructura/api/mooc.administrador.module'
+import { ModuloMoocTutor } from '../../mooc/tutor/infraestructura/api/mooc.tutor.module'
 import { ModuloMoocEmpleado } from '../../mooc/estudiante/infraestructura/api/mooc.empleado.module'
 import { ModuloUbicaciones } from './api/ubicaciones.module'
 
@@ -31,7 +31,7 @@ import { ModuloUbicaciones } from './api/ubicaciones.module'
     ModuloCoreEmpleador,
     ModuloCoreAdministrador,
     ModuloMoocEmpleado,
-    ModuloMoocAdministrador,
+    ModuloMoocTutor,
     ModuloUbicaciones,
   ],
   controllers: [],

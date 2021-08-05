@@ -6,11 +6,6 @@ export class HabilidadORM {
   @PrimaryColumn('uuid')
   uuid: string
 
-  @Column()
-  nombre: string
-
-  @Column()
-  categoria: string
 
   @ManyToOne(() => CursoORM, (curso) => curso.habilidades)
   @JoinColumn({ name: 'uuid_curso' })

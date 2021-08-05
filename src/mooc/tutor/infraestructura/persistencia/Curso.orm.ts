@@ -5,9 +5,8 @@ import {
   OneToOne,
   PrimaryColumn,
 } from 'typeorm'
-import { CuestionarioORM } from './Cuestionario.orm'
 import { HabilidadORM } from './Habilidad.orm'
-import { LeccionORM } from './Leccion.orm'
+
 
 @Entity('cursos')
 export class CursoORM {
@@ -25,21 +24,21 @@ export class CursoORM {
 
   @Column()
   escala_duracion: string
-
+/* 
   @Column()
   fecha_creacion: Date
 
   @Column()
   fecha_ultima_modificacion: Date
-
+ */
   @OneToMany(() => HabilidadORM, (habilidad) => habilidad.curso)
   habilidades: HabilidadORM[]
-
- @OneToOne(() => CuestionarioORM)
+/* 
+  @OneToOne(() => CuestionarioORM)
   cuestionario: CuestionarioORM
 
   @OneToMany(() => LeccionORM, (leccion) => leccion.curso)
   lecciones: LeccionORM[]
-
+ */
 
 }

@@ -12,7 +12,7 @@ import { HabilidadMapeador } from '../mapeadores/Habilidad.mapeador'
 import { IRepositorioCursos } from '../puertos/IRepositorioCursos'
 import { IRepositorioHabilidades } from '../puertos/IRepositorioHabilidades'
 
-export class ServicioCrearEmpresa implements IServicioAplicacion {
+export class ServicioAgregarCurso implements IServicioAplicacion {
   public constructor(
     private readonly repositorioCursos: IRepositorioCursos,
     private readonly repositorioHabilidades: IRepositorioHabilidades,
