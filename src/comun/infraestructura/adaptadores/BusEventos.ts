@@ -23,7 +23,9 @@ export class BusEventos implements IBusEventos {
     this.amqp = await connect(process.env.RUTA_AMQP)
     const canal = await this.amqp.createChannel()
 
-    const json = JSON.stringify(eventos)
-    canal.sendToQueue(this.nombreCola, Buffer.from(json))
+    for (const evento of eventos) {
+      const json = JSON.stringify(evento)
+      canal.sendToQueue(this.nombreCola, Buffer.from(json))
+    }
   }
 }
