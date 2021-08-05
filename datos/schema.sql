@@ -39,7 +39,7 @@ CREATE TABLE empleados (
   nivel_educativo VARCHAR(10) NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   genero VARCHAR(10) NOT NULL,
-  fecha_nacimiento DATE NOT NULL,
+  fecha_nacimiento TIMESTAMP NOT NULL,
   token VARCHAR NOT NULL,
   uuid_direccion UUID NOT NULL,
   segundo_nombre VARCHAR(40),
@@ -70,8 +70,8 @@ CREATE TABLE experiencias_laborales (
   uuid UUID NOT NULL,
   cargo VARCHAR(40) NOT NULL,
   nombre_empresa VARCHAR(128) NOT NULL,
-  fecha_inicio DATE NOT NULL,
-  fecha_fin DATE NOT NULL,
+  fecha_inicio TIMESTAMP NOT NULL,
+  fecha_fin TIMESTAMP NOT NULL,
   uuid_empleado UUID NOT NULL,
   CONSTRAINT experiencia_pk PRIMARY KEY(uuid),
   CONSTRAINT empleado_experiencia_fk FOREIGN KEY(uuid_empleado) REFERENCES empleados(uuid)
@@ -125,8 +125,8 @@ CREATE TABLE personales_administrativos (
 CREATE TABLE ofertas_laborales (
   uuid UUID NOT NULL,
   titulo VARCHAR(80) NOT NULL,
-  fecha_publicacion DATE NOT NULL,
-  fecha_limite DATE NOT NULL,
+  fecha_publicacion TIMESTAMP NOT NULL,
+  fecha_limite TIMESTAMP NOT NULL,
   cargo VARCHAR(40) NOT NULL,
   sueldo NUMERIC(9,2) NOT NULL,
   descripcion VARCHAR(512) NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE ofertas_laborales (
   numero_vacantes NUMERIC(2,0) NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   uuid_empresa UUID NOT NULL,
-  fecha_ultima_modificacion DATE,
+  fecha_ultima_modificacion TIMESTAMP,
   requisitos_especiales VARCHAR(256),
   CONSTRAINT oferta_pk PRIMARY KEY(uuid),
   CONSTRAINT empresa_oferta_pk FOREIGN KEY(uuid_empresa) REFERENCES empresas(uuid),
@@ -147,7 +147,7 @@ CREATE TABLE ofertas_laborales (
 
 CREATE TABLE postulaciones_ofertas_laborales (
   uuid UUID NOT NULL,
-  fecha_postulacion DATE NOT NULL,
+  fecha_postulacion TIMESTAMP NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   uuid_oferta UUID NOT NULL,
   uuid_empleado UUID NOT NULL,
@@ -160,10 +160,10 @@ CREATE TABLE postulaciones_ofertas_laborales (
 
 CREATE TABLE trabajos (
   uuid UUID NOT NULL,
-  fecha_inicio DATE NOT NULL,
+  fecha_inicio TIMESTAMP NOT NULL,
   estatus VARCHAR(11) NOT NULL,
   uuid_postulacion UUID NOT NULL,
-  fecha_culminacion DATE,
+  fecha_culminacion TIMESTAMP,
   CONSTRAINT trabajo_pk PRIMARY KEY(uuid),
   CONSTRAINT postulacion_trabajo_fk FOREIGN KEY(uuid_postulacion) REFERENCES postulaciones_ofertas_laborales(uuid),
   CONSTRAINT estatus_trabajo CHECK(estatus IN ('EN PROGRESO', 'CULMINADO', 'DESPEDIDO', 'RETIRADO'))
@@ -171,7 +171,7 @@ CREATE TABLE trabajos (
 
 CREATE TABLE entrevistas (
   uuid UUID NOT NULL,
-  fecha_pautada DATE NOT NULL,
+  fecha_pautada TIMESTAMP NOT NULL,
   asunto VARCHAR(128) NOT NULL,
   estatus VARCHAR(10) NOT NULL,
   uuid_postulacion UUID NOT NULL,
@@ -189,8 +189,8 @@ CREATE TABLE cursos (
   estatus VARCHAR(10) NOT NULL,
   valor_duracion NUMERIC(2,0) NOT NULL,
   escala_duracion VARCHAR(10) NOT NULL,
-  fecha_creacion DATE NOT NULL,
-  fecha_ultima_modificacion DATE,
+  fecha_creacion TIMESTAMP NOT NULL,
+  fecha_ultima_modificacion TIMESTAMP,
   CONSTRAINT curso_pk PRIMARY KEY(uuid),
   CONSTRAINT estatus_curso CHECK(estatus IN ('ACTIVO', 'INACTIVO')),
   CONSTRAINT escala_duracion_curso CHECK(escala_duracion IN ('HORA', 'DIA', 'SEMANA', 'MES'))
@@ -208,7 +208,7 @@ CREATE TABLE lecciones (
 
 CREATE TABLE certificados (
   uuid UUID NOT NULL,
-  fecha_expedicion DATE NOT NULL,
+  fecha_expedicion TIMESTAMP NOT NULL,
   descripcion VARCHAR(512) NOT NULL,
   uuid_curso UUID NOT NULL,
   uuid_empleado UUID NOT NULL,
